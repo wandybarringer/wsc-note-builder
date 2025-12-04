@@ -5,3 +5,7 @@ html {
 .hide-content {
   display: none;
 }
+
+.show-content {
+  display: block;
+}
