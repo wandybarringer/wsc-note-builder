@@ -2,10 +2,53 @@ html {
   color-scheme: dark;
 }
 
+.wrapper {
+  max-inline-size: 1200px;
+  margin-inline: auto;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  font-size: 3rem;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+}
+
 .hide-content {
   display: none;
 }
 
 .show-content {
   display: block;
+}
+
+#input-panel {
+  background: darkblue;
+  font-size: 1.3rem;
+}
+
+#output-panel {
+  background: darkcyan;
+  inline-size: 50%;
+  block-size: 80vh;
+}
+
+textarea {
+  resize: none;
+}
+
+#hmtl-notes {
+  inline-size: 100%;
+  block-size: 100%;
 }

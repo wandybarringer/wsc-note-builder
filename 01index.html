@@ -7,19 +7,20 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <header>
-      <nav id="primary-nav">
-        <ul>
-          <li>Note Builder</li>
-          <li>Note Snippets</li>
-        </ul>
-      </nav>
-    </header>
+    <div class="wrapper">
+      <header>
+        <!-- TODO: Link header nav -->
+        <nav id="primary-nav" aria-label="Primary Navigation">
+          <ul>
+            <li>Note Builder</li>
+            <li>Note Snippets</li>
+          </ul>
+        </nav>
+      </header>
 
-    <main>
-      <section>
-        <form action="">
-          <div>
+      <main class="flexbox">
+        <section id="input-panel">
+          <form action="">
             <label for="appointment">Appointment</label>
             <select name="appointment" id="appointment">
               <option value="default">select appointment</option>
@@ -28,319 +29,320 @@
               <option value="3rd Appointment">3rd Appointment</option>
               <option value="Post Appointment">Post Appointment</option>
             </select>
-          </div>
-        </form>
+          </form>
 
-        <!-- *1st APPT -->
-        <form action="" class="hide-content" id="first-appt-form">
-          <div>
-            <label for="continuation">Continuation appointment?</label>
-            <input type="checkbox" name="continuation" id="continuation" />
-          </div>
+          <!-- *1st APPT -->
+          <form action="" class="hide-content" id="first-appt-form">
+            <div>
+              <label for="continuation">Continuation appointment?</label>
+              <input type="checkbox" name="continuation" id="continuation" />
+            </div>
 
-          <div>
-            <label for="intro-completed">Intro to WH completed?</label>
-            <input type="checkbox" name="intro-completed" id="intro-completed" />
-          </div>
+            <div>
+              <label for="intro-completed">Intro to WH completed?</label>
+              <input type="checkbox" name="intro-completed" id="intro-completed" />
+            </div>
 
-          <div>
-            <label for="hw-completed">Homework completed?</label>
-            <input type="checkbox" name="hw-completed" id="hw-completed" />
-          </div>
+            <div>
+              <label for="hw-completed">Homework completed?</label>
+              <input type="checkbox" name="hw-completed" id="hw-completed" />
+            </div>
 
-          <div>
-            <label for="hw-percent">Homework %</label>
-            <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
-          </div>
+            <div>
+              <label for="hw-percent">Homework %</label>
+              <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
+            </div>
 
-          <!-- Worked on -->
-          <div>
-            <p>Worked on:</p>
-            <div><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
+            <!-- Worked on -->
+            <div>
+              <p>Worked on:</p>
+              <div><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
 
-            <div><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
+              <div><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
 
-            <div><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
+              <div><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
 
-            <div><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
+              <div><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
 
-            <div><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
+              <div><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
 
-            <div><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
+              <div><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
 
-            <div><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
-          </div>
+              <div><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
+            </div>
 
-          <!-- Assigned hw -->
-          <div>
-            <p>Assigned homework:</p>
-            <div><input type="checkbox" name="finish-videos" id="finish-videos" /> <label for="finish-videos">Finish 1st appointment teachable videos</label></div>
+            <!-- Assigned hw -->
+            <div>
+              <p>Assigned homework:</p>
+              <div><input type="checkbox" name="finish-videos" id="finish-videos" /> <label for="finish-videos">Finish 1st appointment teachable videos</label></div>
 
-            <div><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
+              <div><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
 
-            <div><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
+              <div><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
 
-            <div><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
+              <div><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
 
-            <div><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
+              <div><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
 
-            <div><input type="checkbox" name="continue-videos" id="continue-videos" /> <label for="continue-videos">Continue watching teachable videos</label></div>
-          </div>
+              <div><input type="checkbox" name="continue-videos" id="continue-videos" /> <label for="continue-videos">Continue watching teachable videos</label></div>
+            </div>
 
-          <div>
-            <label for="additional-notes">Additional Notes:</label>
-            <textarea name="additional-notes" id="additional-notes"></textarea>
-          </div>
+            <div>
+              <label for="additional-notes">Additional Notes:</label>
+              <textarea name="additional-notes" id="additional-notes"></textarea>
+            </div>
 
-          <div>
-            <label for="registered-business">Started registering business?</label>
-            <input type="checkbox" name="registered-business" id="registered-business" />
-          </div>
+            <div>
+              <label for="registered-business">Started registering business?</label>
+              <input type="checkbox" name="registered-business" id="registered-business" />
+            </div>
 
-          <!-- !EDGE CASE: User sets to past date -->
-          <div>
-            <label for="next-appointment-date">Set next appointment on:</label>
-            <input type="datetime-local" name="next-appointment-date" id="next-appointment-date" />
-          </div>
+            <!-- !EDGE CASE: User sets to past date -->
+            <div>
+              <label for="next-appointment-date">Set next appointment on:</label>
+              <input type="datetime-local" name="next-appointment-date" id="next-appointment-date" />
+            </div>
 
-          <div>
-            <label for="next-topic">Next topic:</label>
-            <textarea name="next-topic" id="next-topic"></textarea>
-          </div>
+            <div>
+              <label for="next-topic">Next topic:</label>
+              <textarea name="next-topic" id="next-topic"></textarea>
+            </div>
 
-          <div><label for="signature">Signature</label> <input type="text" name="signature" id="signature" required /></div>
-        </form>
+            <div><label for="signature">Signature</label> <input type="text" name="signature" id="signature" required /></div>
+          </form>
 
-        <!-- *2nd APPT -->
-        <form action="" class="hide-content" id="second-appt-form">
-          <div>
-            <label for="continuation">Continuation appointment?</label>
-            <input type="checkbox" name="continuation" id="continuation" />
-          </div>
+          <!-- *2nd APPT -->
+          <form action="" class="hide-content" id="second-appt-form">
+            <div>
+              <label for="continuation">Continuation appointment?</label>
+              <input type="checkbox" name="continuation" id="continuation" />
+            </div>
 
-          <div>
-            <label for="hw-completed">Homework completed?</label>
-            <input type="checkbox" name="hw-completed" id="hw-completed" />
-          </div>
+            <div>
+              <label for="hw-completed">Homework completed?</label>
+              <input type="checkbox" name="hw-completed" id="hw-completed" />
+            </div>
 
-          <div>
-            <label for="hw-percent">Homework %</label>
-            <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
-          </div>
+            <div>
+              <label for="hw-percent">Homework %</label>
+              <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
+            </div>
 
-          <!-- Worked on -->
-          <div>
-            <p>Worked on:</p>
-            <div><input type="checkbox" name="discounts" id="discounts" /> <label for="discounts">Discounts</label></div>
-
-            <div><input type="checkbox" name="checkout-sections" id="checkout-sections" /> <label for="checkout-sections">Checkout Sections</label></div>
-
-            <div><input type="checkbox" name="paypal-apple-pay" id="paypal-apple-pay" /> <label for="paypal-apple-pay">Linked PayPal/Apple Pay</label></div>
-
-            <div><input type="checkbox" name="test-order" id="test-order" /> <label for="test-order">Creating a Test Order</label></div>
-
-            <div><input type="checkbox" name="process-order" id="process-order" /> <label for="process-order">Processing Test Order</label></div>
-          </div>
-
-          <!-- Assigned hw -->
-          <div>
-            <p>Assigned homework:</p>
-            <div><input type="checkbox" name="finish-videos" id="finish-videos" /> <label for="finish-videos">Finish 2nd appointment teachable videos</label></div>
-
-            <div><input type="checkbox" name="practice-discounts" id="practice-discounts" /> <label for="practice-discounts">Practice creating discounts</label></div>
-
-            <div><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
-
-            <div><input type="checkbox" name="continue-videos" id="continue-videos" /> <label for="continue-videos">Continue watching teachable videos</label></div>
-          </div>
-
-          <div>
-            <label for="additional-notes">Additional Notes:</label>
-            <textarea name="additional-notes" id="additional-notes"></textarea>
-          </div>
-
-          <!-- !EDGE CASE: User sets to past date -->
-          <div>
-            <label for="next-appointment-date">Set next appointment on:</label>
-            <input type="datetime-local" name="next-appointment-date" id="next-appointment-date" />
-          </div>
-
-          <div>
-            <label for="next-topic">Next topic:</label>
-            <textarea name="next-topic" id="next-topic"></textarea>
-          </div>
-
-          <div><label for="signature">Signature</label> <input type="text" name="signature" id="signature" required /></div>
-        </form>
-
-        <!-- *3rd APPT -->
-        <form action="" class="hide-content" id="third-appt-form">
-          <div>
-            <label for="continuation">Continuation appointment?</label>
-            <input type="checkbox" name="continuation" id="continuation" />
-          </div>
-
-          <div>
-            <label for="hw-completed">Homework completed?</label>
-            <input type="checkbox" name="hw-completed" id="hw-completed" />
-          </div>
-
-          <div>
-            <label for="hw-percent">Homework %</label>
-            <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
-          </div>
-
-          <!-- Worked on -->
-          <div>
-            <p>Worked on:</p>
-            <div><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
+            <!-- Worked on -->
+            <div>
+              <p>Worked on:</p>
+              <div><input type="checkbox" name="discounts" id="discounts" /> <label for="discounts">Discounts</label></div>
+
+              <div><input type="checkbox" name="checkout-sections" id="checkout-sections" /> <label for="checkout-sections">Checkout Sections</label></div>
+
+              <div><input type="checkbox" name="paypal-apple-pay" id="paypal-apple-pay" /> <label for="paypal-apple-pay">Linked PayPal/Apple Pay</label></div>
+
+              <div><input type="checkbox" name="test-order" id="test-order" /> <label for="test-order">Creating a Test Order</label></div>
+
+              <div><input type="checkbox" name="process-order" id="process-order" /> <label for="process-order">Processing Test Order</label></div>
+            </div>
+
+            <!-- Assigned hw -->
+            <div>
+              <p>Assigned homework:</p>
+              <div><input type="checkbox" name="finish-videos" id="finish-videos" /> <label for="finish-videos">Finish 2nd appointment teachable videos</label></div>
+
+              <div><input type="checkbox" name="practice-discounts" id="practice-discounts" /> <label for="practice-discounts">Practice creating discounts</label></div>
+
+              <div><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
+
+              <div><input type="checkbox" name="continue-videos" id="continue-videos" /> <label for="continue-videos">Continue watching teachable videos</label></div>
+            </div>
+
+            <div>
+              <label for="additional-notes">Additional Notes:</label>
+              <textarea name="additional-notes" id="additional-notes"></textarea>
+            </div>
+
+            <!-- !EDGE CASE: User sets to past date -->
+            <div>
+              <label for="next-appointment-date">Set next appointment on:</label>
+              <input type="datetime-local" name="next-appointment-date" id="next-appointment-date" />
+            </div>
+
+            <div>
+              <label for="next-topic">Next topic:</label>
+              <textarea name="next-topic" id="next-topic"></textarea>
+            </div>
+
+            <div><label for="signature">Signature</label> <input type="text" name="signature" id="signature" required /></div>
+          </form>
+
+          <!-- *3rd APPT -->
+          <form action="" class="hide-content" id="third-appt-form">
+            <div>
+              <label for="continuation">Continuation appointment?</label>
+              <input type="checkbox" name="continuation" id="continuation" />
+            </div>
+
+            <div>
+              <label for="hw-completed">Homework completed?</label>
+              <input type="checkbox" name="hw-completed" id="hw-completed" />
+            </div>
+
+            <div>
+              <label for="hw-percent">Homework %</label>
+              <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
+            </div>
+
+            <!-- Worked on -->
+            <div>
+              <p>Worked on:</p>
+              <div><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
 
-            <div><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
-          </div>
+              <div><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
+            </div>
 
-          <!-- Assigned hw -->
-          <div>
-            <p>Assigned homework:</p>
-            <div><input type="checkbox" name="finish-videos" id="finish-videos" /> <label for="finish-videos">Finish 3rd appointment teachable videos</label></div>
+            <!-- Assigned hw -->
+            <div>
+              <p>Assigned homework:</p>
+              <div><input type="checkbox" name="finish-videos" id="finish-videos" /> <label for="finish-videos">Finish 3rd appointment teachable videos</label></div>
 
-            <div><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating Doba products using guide</label></div>
+              <div><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating Doba products using guide</label></div>
 
-            <div><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
-          </div>
+              <div><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
+            </div>
 
-          <div>
-            <label for="additional-notes">Additional Notes:</label>
-            <textarea name="additional-notes" id="additional-notes"></textarea>
-          </div>
+            <div>
+              <label for="additional-notes">Additional Notes:</label>
+              <textarea name="additional-notes" id="additional-notes"></textarea>
+            </div>
 
-          <div>
-            <label for="completion-form-sent">Completion form sent?</label>
-            <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
-          </div>
+            <div>
+              <label for="completion-form-sent">Completion form sent?</label>
+              <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
+            </div>
 
-          <div>
-            <label for="completion-form-signed">Client signed completion form?</label>
-            <input type="checkbox" name="completion-form-signed" id="completion-form-signed" />
-          </div>
+            <div>
+              <label for="completion-form-signed">Client signed completion form?</label>
+              <input type="checkbox" name="completion-form-signed" id="completion-form-signed" />
+            </div>
 
-          <div>
-            <label for="why-not-signed">Why didn't client sign?</label>
-            <textarea name="why-not-signed" id="why-not-signed"></textarea>
-          </div>
+            <div>
+              <label for="why-not-signed">Why didn't client sign?</label>
+              <textarea name="why-not-signed" id="why-not-signed"></textarea>
+            </div>
 
-          <!-- !EDGE CASE: User sets to past date -->
-          <div>
-            <label for="next-appointment-date">Set next appointment on:</label>
-            <input type="datetime-local" name="next-appointment-date" id="next-appointment-date" />
-          </div>
-
-          <div>
-            <label for="sent-sm-guide">Sent SM How to Guide</label>
-            <input type="checkbox" name="sent-sm-guide" id="sent-sm-guide" />
-          </div>
-
-          <div>
-            <label for="enrolled-sm">Enrolled in SM training course</label>
-            <input type="checkbox" name="enrolled-sm" id="enrolled-sm" />
-          </div>
-
-          <div>
-            <label for="sm-tech">SM Tech assigned</label>
-            <input type="text" name="sm-tech" id="sm-tech" />
-          </div>
-
-          <div>
-            <label for="sm-appointment-date">Booked SM appointment on:</label>
-            <input type="datetime-local" name="sm-appointment-date" id="sm-appointment-date" />
-          </div>
-
-          <div>
-            <label for="next-topic">Next topic:</label>
-            <textarea name="next-topic" id="next-topic"></textarea>
-          </div>
-
-          <div><label for="signature">Signature</label> <input type="text" name="signature" id="signature" required /></div>
-        </form>
-
-        <!-- *POST APPT -->
-        <form action="" class="hide-content" id="post-appt-form">
-          <div>
-            <label for="continuation">Continuation appointment?</label>
-            <input type="checkbox" name="continuation" id="continuation" />
-          </div>
-
-          <!-- Worked on -->
-          <div>
-            <p>Worked on:</p>
-            <div><input type="checkbox" name="stripe" id="stripe" /> <label for="stripe">Linked Stripe</label></div>
-
-            <div><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensed Variants</label></div>
-
-            <div><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products from CJ</label></div>
-          </div>
-
-          <!-- Post training checklist -->
-          <div>
-            <p>Post Training Checklist:</p>
-            <div><input type="checkbox" name="business-email" id="business-email" /> <label for="business-email">Business email appears on Settings & Extra Forms</label></div>
-
-            <div><input type="checkbox" name="time-zone" id="time-zone" /> <label for="time-zone">Time-zone is set to client's</label></div>
-
-            <div><input type="checkbox" name="tax-group" id="tax-group" /> <label for="tax-group">Default Tax Group set</label></div>
-
-            <div><input type="checkbox" name="modules" id="modules" /> <label for="modules">Shipping & Payment Modules are set</label></div>
-
-            <div><input type="checkbox" name="test-items" id="test-items" /> <label for="test-items">Test items removed</label></div>
-
-            <div><input type="checkbox" name="brands" id="brands" /> <label for="brands">Unrelated brands removed</label></div>
-
-            <div><input type="checkbox" name="generic-categories" id="generic-categories" /> <label for="generic-categories">Generic categories removed</label></div>
-
-            <div><input type="checkbox" name="varients-condensed" id="varients-condensed" /> <label for="varients-condensed">Variants are condensed</label></div>
-
-            <div><input type="checkbox" name="tagline" id="tagline" /> <label for="tagline">Removed tagline placeholder text</label></div>
-          </div>
-
-          <div>
-            <label for="additional-notes">Additional Notes:</label>
-            <textarea name="additional-notes" id="additional-notes"></textarea>
-          </div>
-
-          <div>
-            <label for="live">Is client's website live?</label>
-            <input type="checkbox" name="live" id="live" />
-          </div>
-
-          <div>
-            <label for="additional-training">Does client require additional WH training?</label>
-            <input type="checkbox" name="additional-training" id="additional-training" />
-          </div>
-
-          <!-- !EDGE CASE: User sets to past date -->
-          <div>
-            <label for="next-appointment-date">Set next appointment on:</label>
-            <input type="datetime-local" name="next-appointment-date" id="next-appointment-date" />
-          </div>
-
-          <div>
-            <label for="sm-reminder">Reminded client about next SM appointment on:</label>
-            <input type="datetime-local" name="sm-reminder" id="sm-reminder" />
-          </div>
-
-          <div>
-            <label for="next-topic">Next topic:</label>
-            <textarea name="next-topic" id="next-topic"></textarea>
-          </div>
-
-          <div><label for="signature">Signature</label> <input type="text" name="signature" id="signature" required /></div>
-        </form>
-      </section>
-      <section>
-        <!-- Genterated HTML container goes here -->
-        <textarea name="html-notes" id="html-notes"></textarea>
-      </section>
-    </main>
-
-    <script src="assets/js/script.js"></script>
+            <!-- !EDGE CASE: User sets to past date -->
+            <div>
+              <label for="next-appointment-date">Set next appointment on:</label>
+              <input type="datetime-local" name="next-appointment-date" id="next-appointment-date" />
+            </div>
+
+            <div>
+              <label for="sent-sm-guide">Sent SM How to Guide</label>
+              <input type="checkbox" name="sent-sm-guide" id="sent-sm-guide" />
+            </div>
+
+            <div>
+              <label for="enrolled-sm">Enrolled in SM training course</label>
+              <input type="checkbox" name="enrolled-sm" id="enrolled-sm" />
+            </div>
+
+            <div>
+              <label for="sm-tech">SM Tech assigned</label>
+              <input type="text" name="sm-tech" id="sm-tech" />
+            </div>
+
+            <div>
+              <label for="sm-appointment-date">Booked SM appointment on:</label>
+              <input type="datetime-local" name="sm-appointment-date" id="sm-appointment-date" />
+            </div>
+
+            <div>
+              <label for="next-topic">Next topic:</label>
+              <textarea name="next-topic" id="next-topic"></textarea>
+            </div>
+
+            <div><label for="signature">Signature</label> <input type="text" name="signature" id="signature" required /></div>
+          </form>
+
+          <!-- *POST APPT -->
+          <form action="" class="hide-content" id="post-appt-form">
+            <div>
+              <label for="continuation">Continuation appointment?</label>
+              <input type="checkbox" name="continuation" id="continuation" />
+            </div>
+
+            <!-- Worked on -->
+            <div>
+              <p>Worked on:</p>
+              <div><input type="checkbox" name="stripe" id="stripe" /> <label for="stripe">Linked Stripe</label></div>
+
+              <div><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensed Variants</label></div>
+
+              <div><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products from CJ</label></div>
+            </div>
+
+            <!-- Post training checklist -->
+            <div>
+              <p>Post Training Checklist:</p>
+              <div><input type="checkbox" name="business-email" id="business-email" /> <label for="business-email">Business email appears on Settings & Extra Forms</label></div>
+
+              <div><input type="checkbox" name="time-zone" id="time-zone" /> <label for="time-zone">Time-zone is set to client's</label></div>
+
+              <div><input type="checkbox" name="tax-group" id="tax-group" /> <label for="tax-group">Default Tax Group set</label></div>
+
+              <div><input type="checkbox" name="modules" id="modules" /> <label for="modules">Shipping & Payment Modules are set</label></div>
+
+              <div><input type="checkbox" name="test-items" id="test-items" /> <label for="test-items">Test items removed</label></div>
+
+              <div><input type="checkbox" name="brands" id="brands" /> <label for="brands">Unrelated brands removed</label></div>
+
+              <div><input type="checkbox" name="generic-categories" id="generic-categories" /> <label for="generic-categories">Generic categories removed</label></div>
+
+              <div><input type="checkbox" name="varients-condensed" id="varients-condensed" /> <label for="varients-condensed">Variants are condensed</label></div>
+
+              <div><input type="checkbox" name="tagline" id="tagline" /> <label for="tagline">Removed tagline placeholder text</label></div>
+            </div>
+
+            <div>
+              <label for="additional-notes">Additional Notes:</label>
+              <textarea name="additional-notes" id="additional-notes"></textarea>
+            </div>
+
+            <div>
+              <label for="live">Is client's website live?</label>
+              <input type="checkbox" name="live" id="live" />
+            </div>
+
+            <div>
+              <label for="additional-training">Does client require additional WH training?</label>
+              <input type="checkbox" name="additional-training" id="additional-training" />
+            </div>
+
+            <!-- !EDGE CASE: User sets to past date -->
+            <div>
+              <label for="next-appointment-date">Set next appointment on:</label>
+              <input type="datetime-local" name="next-appointment-date" id="next-appointment-date" />
+            </div>
+
+            <div>
+              <label for="sm-reminder">Reminded client about next SM appointment on:</label>
+              <input type="datetime-local" name="sm-reminder" id="sm-reminder" />
+            </div>
+
+            <div>
+              <label for="next-topic">Next topic:</label>
+              <textarea name="next-topic" id="next-topic"></textarea>
+            </div>
+
+            <div><label for="signature">Signature</label> <input type="text" name="signature" id="signature" required /></div>
+          </form>
+        </section>
+
+        <section id="output-panel">
+          <!-- Genterated HTML container goes here -->
+          <textarea name="html-notes" id="html-notes"></textarea>
+        </section>
+      </main>
+
+      <script src="assets/js/script.js"></script>
+    </div>
   </body>
 </html>

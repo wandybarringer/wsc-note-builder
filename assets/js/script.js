@@ -3,6 +3,7 @@ var firstApptFormEl = document.querySelector('#first-appt-form');
 var secondApptFormEl = document.querySelector('#second-appt-form');
 var thirdApptFormEl = document.querySelector('#third-appt-form');
 var postApptFormEl = document.querySelector('#post-appt-form');
+var htmlNotesEl = document.querySelector('#html-notes');
 
 // event listener for selected appointment that displays the correct form
 
@@ -17,6 +18,9 @@ function handleApptSelection() {
       secondApptFormEl.setAttribute('class', 'hide-content');
       thirdApptFormEl.setAttribute('class', 'hide-content');
       postApptFormEl.setAttribute('class', 'hide-content');
+      htmlNotesEl.innerHTML = `<p>
+  <b>Contacted client for Post Warhead Training appointment</b>
+</p>`;
     } else if (selectedValue === '2nd Appointment') {
       firstApptFormEl.setAttribute('class', 'hide-content');
       secondApptFormEl.setAttribute('class', 'show-content');
