@@ -71,7 +71,7 @@
 
             <div class="first-appt hide-content">
               <p>Assigned homework:</p>
-              <div><input type="checkbox" name="finish-videos" id="finish-videos" /> <label for="finish-videos">Finish 1st appointment teachable videos</label></div>
+              <div><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
 
               <div><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
 
@@ -81,7 +81,7 @@
 
               <div><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
 
-              <div><input type="checkbox" name="continue-videos" id="continue-videos" /> <label for="continue-videos">Continue watching teachable videos</label></div>
+              <div><input type="checkbox" name="first-appt-continue-videos" id="first-appt-continue-videos" /> <label for="first-appt-continue-videos">Continue watching teachable videos</label></div>
             </div>
 
             <div class="second-appt hide-content">
@@ -215,9 +215,10 @@
             </div>
 
             <!-- !EDGE CASE: User sets to past date -->
+            <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
             <div>
               <label for="next-appointment-date">Set next appointment on:</label>
-              <input type="datetime-local" name="next-appointment-date" id="next-appointment-date" />
+              <input type="text" name="next-appointment-date" id="next-appointment-date-text" />
             </div>
 
             <div>

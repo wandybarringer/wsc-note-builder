@@ -19,12 +19,31 @@ var createProdEl = document.querySelector('#creating-products');
 var prodGridEl = document.querySelector('#products-grid');
 var catProdEl = document.querySelector('#categorizing-products');
 
+// * "Assigned Homework" checkbox elements (1st Appt)
+var firstApptFinishVidEl = document.querySelector('#first-appt-finish-videos');
+var reviewExtraPagesEl = document.querySelector('#review-extra-pages');
+var removeProdEl = document.querySelector('#remove-products');
+var practiceCatProdEl = document.querySelector('#practice-categorizing-products');
+var practiceCreateCatdEl = document.querySelector('#practice-creating-categories');
+var firstApptContinueVidEl = document.querySelector('#first-appt-continue-videos');
+
+var additionalNotesEl = document.querySelector('#additional-notes');
+var registeredBusinessEl = document.querySelector('#registered-business');
+var nextAppointmentEl = document.querySelector('#next-appointment-date');
+var nextTopicEl = document.querySelector('#next-topic');
+
 var htmlNotes = '';
 var currentApptValue = '';
 var contText = '';
 var introText = '';
 var hwCompletedText = '';
 var hwPercentText = '';
+var workedOnText = '';
+var assignedHwText = '';
+var additionalNotesText = '';
+var registeredBusinessText = '';
+var nextAppointmentText = '';
+var nextTopicText = '';
 
 var dashNavText = '';
 var extraPageText = '';
@@ -33,14 +52,21 @@ var organizeCatText = '';
 var createProdText = '';
 var prodGridText = '';
 var catProdText = '';
-var workedOnText = '';
+
+var firstApptFinishVidText = '';
+var reviewExtraPagesText = '';
+var removeProdText = '';
+var practiceCatProdText = '';
+var practiceCreateCatdText = '';
+var firstApptContinueVidText = '';
 
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default') {
     contactedClient = `<p>
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
-</p>`;
-    htmlNotes = contactedClient + introText + hwCompletedText + hwPercentText + workedOnText;
+</p>
+`;
+    htmlNotes = contactedClient + introText + hwCompletedText + hwPercentText + workedOnText + assignedHwText + additionalNotesText + registeredBusinessText + nextAppointmentText;
   }
 
   htmlNotesEl.innerHTML = htmlNotes;
@@ -52,6 +78,11 @@ function resetHtmlNotes() {
   introText = '';
   hwCompletedText = '';
   hwPercentText = '';
+  workedOnText = '';
+  assignedHwText = '';
+  additionalNotesText = '';
+  registeredBusinessText = '';
+  nextAppointmentText = '';
 }
 
 function handleApptSelection() {
@@ -124,9 +155,15 @@ function setIntroCompleted() {
     }
 
     if (introCompletedEl.checked) {
-      introText = '<p>Client did do an intro warhead call with onboarding.</p>';
+      introText = `<p>
+  Client did do an intro warhead call with onboarding.
+</p>
+`;
     } else {
-      introText = '<p>Client did not do an intro warhead call with onboarding.</p>';
+      introText = `<p>
+  Client did not do an intro warhead call with onboarding.
+</p>
+`;
     }
     updateHtmlNotes();
   });
@@ -139,9 +176,15 @@ function setHwCompleted() {
 
   hwCompletedEl.addEventListener('change', function () {
     if (hwCompletedEl.checked) {
-      hwCompletedText = `<p>Homework has been completed by client.</p>`;
+      hwCompletedText = `<p>
+  Homework has been completed by client.
+</p>
+`;
     } else {
-      hwCompletedText = `<p>Homework has not been completed by client.</p>`;
+      hwCompletedText = `<p>
+  Homework has not been completed by client.
+</p>
+`;
     }
 
     updateHtmlNotes();
@@ -154,7 +197,10 @@ function setHwPercent() {
   }
 
   hwPercentEl.addEventListener('input', function (event) {
-    hwPercentText = `<p>${event.target.value}% of WH videos completed.</p>`;
+    hwPercentText = `<p>
+  ${event.target.value}% of WH videos completed.
+</p>
+`;
     updateHtmlNotes();
   });
 }
@@ -182,10 +228,103 @@ function updateFirstApptWorkedOn() {
   catProdText = catProdEl && catProdEl.checked ? `<li>Categorizing Products</li>` : '';
 
   if (dashNavEl.checked || extraPageEl.checked || createCatEl.checked || organizeCatEl.checked || createProdEl.checked || prodGridEl.checked || catProdEl.checked) {
-    workedOnText = `Worked On: <ul> ${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}</ul>`;
+    workedOnText = `Worked On: 
+<ul> 
+  ${dashNavText}
+  ${extraPageText}
+  ${createCatText}
+  ${organizeCatText}
+  ${createProdText}
+  ${prodGridText}
+  ${catProdText}
+</ul>
+`;
   } else {
     workedOnText = '';
   }
+}
+
+function setFirstApptAssignedHw() {
+  var firstApptAssignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, firstApptContinueVidEl];
+
+  firstApptAssignedHwElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updateFirstApptAssignedHw();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
+function updateFirstApptAssignedHw() {
+  firstApptFinishVidText = firstApptFinishVidEl && firstApptFinishVidEl.checked ? `<li>Finish 1st appointment teachable videos</li>` : ``;
+  reviewExtraPagesText = reviewExtraPagesEl && reviewExtraPagesEl.checked ? `<li>Review Extra Pages</li>` : ``;
+  removeProdText = removeProdEl && removeProdEl.checked ? `<li>Remove unrelated products</li>` : '';
+  practiceCatProdText = practiceCatProdEl && practiceCatProdEl.checked ? `<li>Practice categorizing products using guide</li>` : '';
+  practiceCreateCatdText = practiceCreateCatdEl && practiceCreateCatdEl.checked ? `<li>Practice creating categories</li>` : '';
+  firstApptContinueVidText = firstApptContinueVidEl && firstApptContinueVidEl.checked ? `<li>Continue watching teachable videos</li>` : '';
+
+  if (firstApptFinishVidEl.checked || reviewExtraPagesEl.checked || removeProdEl.checked || practiceCatProdEl.checked || practiceCreateCatdEl.checked || firstApptContinueVidText.checked) {
+    assignedHwText = `Assigned homework: <ul> ${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${firstApptContinueVidText}</ul>`;
+  } else {
+    assignedHwText = '';
+  }
+}
+
+function setAdditionalNotes() {
+  additionalNotesEl.addEventListener('keyup', function (event) {
+    additionalNotesText = `<p>Additional Notes: ${event.target.value}</p>`;
+    updateHtmlNotes();
+  });
+}
+
+function setRegisteredBusiness() {
+  if (!registeredBusinessEl) {
+    return;
+  }
+
+  registeredBusinessEl.addEventListener('change', function () {
+    if (currentApptValue !== '1st Appointment') {
+      registeredBusinessText = '';
+      return;
+    }
+
+    if (registeredBusinessEl.checked) {
+      registeredBusinessText = '<p>Client has started registering their business</p>';
+    } else {
+      registeredBusinessText = '<p>Client has not started registering their business</p>';
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setNextAppointment() {
+  nextAppointmentEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      nextAppointmentText = '';
+    } else {
+      nextAppointmentText = `<p>
+  Set next Warhead appointment for ${event.target.value}.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setNextTopic() {
+  nextTopicEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      nextTopicText = '';
+    } else {
+      nextTopicText = `<p>
+  Next topic: ${event.target.value}.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
 }
 
 handleApptSelection();
@@ -194,6 +333,11 @@ setIntroCompleted();
 setHwCompleted();
 setHwPercent();
 setFirstApptWorkedOn();
+setFirstApptAssignedHw();
+setAdditionalNotes();
+setRegisteredBusiness();
+setNextAppointment();
+setNextTopic();
 
 // ✅ TODO: User selects an appointment, the coresponding form appears and the first line of html is added to output panel
 // TODO: As user fills out form, the appropriate html notes are added to the output panel
