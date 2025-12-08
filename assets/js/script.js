@@ -19,6 +19,17 @@ var createProdEl = document.querySelector('#creating-products');
 var prodGridEl = document.querySelector('#products-grid');
 var catProdEl = document.querySelector('#categorizing-products');
 
+// * "Worked On" checkbox elements (2nd Appt)
+var discountsEl = document.querySelector('#discounts');
+var checkoutSectionsEl = document.querySelector('#checkout-sections');
+var payPalEl = document.querySelector('#paypal-apple-pay');
+var testOrderEl = document.querySelector('#test-order');
+var processOrderEl = document.querySelector('#process-order');
+
+// * "Worked On" checkbox elements (3rd Appt)
+var updatingProdEl = document.querySelector('#updating-products');
+var unavailableProdEl = document.querySelector('#unavailable-products');
+
 // * "Assigned Homework" checkbox elements (1st Appt)
 var firstApptFinishVidEl = document.querySelector('#first-appt-finish-videos');
 var reviewExtraPagesEl = document.querySelector('#review-extra-pages');
@@ -27,10 +38,17 @@ var practiceCatProdEl = document.querySelector('#practice-categorizing-products'
 var practiceCreateCatdEl = document.querySelector('#practice-creating-categories');
 var firstApptContinueVidEl = document.querySelector('#first-appt-continue-videos');
 
+// * "Assigned Homework" checkbox elements (2nd Appt)
+var secondApptFinishVidEl = document.querySelector('#second-appt-finish-videos');
+var practiceDiscountsEl = document.querySelector('#practice-discounts');
+var practiceOrdersEl = document.querySelector('#practice-orders');
+var secondApptContinueVidEl = document.querySelector('#second-appt-continue-videos');
+
 var additionalNotesEl = document.querySelector('#additional-notes');
 var registeredBusinessEl = document.querySelector('#registered-business');
 var nextAppointmentEl = document.querySelector('#next-appointment-date');
 var nextTopicEl = document.querySelector('#next-topic');
+var initialsEl = document.querySelector('#initials');
 
 var htmlNotes = '';
 var currentApptValue = '';
@@ -44,6 +62,7 @@ var additionalNotesText = '';
 var registeredBusinessText = '';
 var nextAppointmentText = '';
 var nextTopicText = '';
+var initialsText = '';
 
 var dashNavText = '';
 var extraPageText = '';
@@ -52,6 +71,13 @@ var organizeCatText = '';
 var createProdText = '';
 var prodGridText = '';
 var catProdText = '';
+var discountsText = '';
+var checkoutSectionsText = '';
+var payPalText = '';
+var testOrderText = '';
+var processOrderText = '';
+var updatingProdText = '';
+var unavailableProdText = '';
 
 var firstApptFinishVidText = '';
 var reviewExtraPagesText = '';
@@ -59,6 +85,10 @@ var removeProdText = '';
 var practiceCatProdText = '';
 var practiceCreateCatdText = '';
 var firstApptContinueVidText = '';
+var secondApptFinishVidText = '';
+var practiceDiscountsText = '';
+var practiceOrdersText = '';
+var secondApptContinueVidText = '';
 
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default') {
@@ -66,7 +96,7 @@ function updateHtmlNotes() {
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
-    htmlNotes = contactedClient + introText + hwCompletedText + hwPercentText + workedOnText + assignedHwText + additionalNotesText + registeredBusinessText + nextAppointmentText;
+    htmlNotes = contactedClient + introText + hwCompletedText + hwPercentText + workedOnText + assignedHwText + additionalNotesText + registeredBusinessText + nextAppointmentText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.innerHTML = htmlNotes;
@@ -83,11 +113,11 @@ function resetHtmlNotes() {
   additionalNotesText = '';
   registeredBusinessText = '';
   nextAppointmentText = '';
+  nextTopicText = '';
 }
 
 function handleApptSelection() {
   apptSelectEl.addEventListener('change', function (event) {
-    htmlNotes = '';
     resetHtmlNotes();
     var selectedValue = event.target.value;
     currentApptValue = selectedValue;
@@ -211,32 +241,61 @@ function setFirstApptWorkedOn() {
   firstApptWorkedOnElements.forEach(function (element) {
     if (element) {
       element.addEventListener('change', function () {
-        updateFirstApptWorkedOn();
+        updateWorkedOn();
         updateHtmlNotes();
       });
     }
   });
 }
 
-function updateFirstApptWorkedOn() {
-  dashNavText = dashNavEl && dashNavEl.checked ? `<li>Dashboard/Account Navigation</li>` : ``;
-  extraPageText = extraPageEl && extraPageEl.checked ? `<li>Extra Pages</li>` : ``;
-  createCatText = createCatEl && createCatEl.checked ? `<li>Creating Categories</li>` : '';
-  organizeCatText = organizeCatEl && organizeCatEl.checked ? `<li>Organizing Categories</li>` : '';
-  createProdText = createProdEl && createProdEl.checked ? `<li>Creating Products</li>` : '';
-  prodGridText = prodGridEl && prodGridEl.checked ? `<li>Products Grid</li>` : '';
-  catProdText = catProdEl && catProdEl.checked ? `<li>Categorizing Products</li>` : '';
+function setSecondApptWorkedOn() {
+  var secondApptWorkedOnElements = [discountsEl, checkoutSectionsEl, payPalEl, testOrderEl, processOrderEl];
 
-  if (dashNavEl.checked || extraPageEl.checked || createCatEl.checked || organizeCatEl.checked || createProdEl.checked || prodGridEl.checked || catProdEl.checked) {
+  secondApptWorkedOnElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updateWorkedOn();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
+function setThirdApptWorkedOn() {
+  var thirdApptWorkedOnElements = [updatingProdEl, unavailableProdEl];
+
+  thirdApptWorkedOnElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updateWorkedOn();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
+// TODO: Add a "show all" option to allow any appointment worked on items to be selected
+function updateWorkedOn() {
+  dashNavText = dashNavEl && dashNavEl.checked ? `\n  <li>Dashboard/Account Navigation</li>` : ``;
+  extraPageText = extraPageEl && extraPageEl.checked ? `\n  <li>Extra Pages</li>` : ``;
+  createCatText = createCatEl && createCatEl.checked ? `\n  <li>Creating Categories</li>` : '';
+  organizeCatText = organizeCatEl && organizeCatEl.checked ? `\n  <li>Organizing Categories</li>` : '';
+  createProdText = createProdEl && createProdEl.checked ? `\n  <li>Creating Products</li>` : '';
+  prodGridText = prodGridEl && prodGridEl.checked ? `\n  <li>Products Grid</li>` : '';
+  catProdText = catProdEl && catProdEl.checked ? `\n  <li>Categorizing Products</li>` : '';
+
+  discountsText = discountsEl && discountsEl.checked ? `\n  <li>Discounts</li>` : '';
+  checkoutSectionsText = checkoutSectionsEl && checkoutSectionsEl.checked ? `\n  <li>Checkout Sections</li>` : '';
+  payPalText = payPalEl && payPalEl.checked ? `\n  <li>Linked PayPal/Apple Pay</li>` : '';
+  testOrderText = testOrderEl && testOrderEl.checked ? `\n  <li>Creating a Test Order</li>` : '';
+  processOrderText = processOrderEl && processOrderEl.checked ? `\n  <li>Processing Test Order</li>` : '';
+
+  updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
+  unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products</li>` : '';
+
+  if (dashNavEl.checked || extraPageEl.checked || createCatEl.checked || organizeCatEl.checked || createProdEl.checked || prodGridEl.checked || catProdEl.checked || discountsEl.checked || checkoutSectionsEl.checked || payPalEl.checked || testOrderEl.checked || processOrderEl.checked || updatingProdEl.checked || unavailableProdEl.checked) {
     workedOnText = `Worked On: 
-<ul> 
-  ${dashNavText}
-  ${extraPageText}
-  ${createCatText}
-  ${organizeCatText}
-  ${createProdText}
-  ${prodGridText}
-  ${catProdText}
+<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}
 </ul>
 `;
   } else {
@@ -250,23 +309,44 @@ function setFirstApptAssignedHw() {
   firstApptAssignedHwElements.forEach(function (element) {
     if (element) {
       element.addEventListener('change', function () {
-        updateFirstApptAssignedHw();
+        updateAssignedHw();
         updateHtmlNotes();
       });
     }
   });
 }
 
-function updateFirstApptAssignedHw() {
-  firstApptFinishVidText = firstApptFinishVidEl && firstApptFinishVidEl.checked ? `<li>Finish 1st appointment teachable videos</li>` : ``;
-  reviewExtraPagesText = reviewExtraPagesEl && reviewExtraPagesEl.checked ? `<li>Review Extra Pages</li>` : ``;
-  removeProdText = removeProdEl && removeProdEl.checked ? `<li>Remove unrelated products</li>` : '';
-  practiceCatProdText = practiceCatProdEl && practiceCatProdEl.checked ? `<li>Practice categorizing products using guide</li>` : '';
-  practiceCreateCatdText = practiceCreateCatdEl && practiceCreateCatdEl.checked ? `<li>Practice creating categories</li>` : '';
-  firstApptContinueVidText = firstApptContinueVidEl && firstApptContinueVidEl.checked ? `<li>Continue watching teachable videos</li>` : '';
+function setSecondApptAssignedHw() {
+  var secondApptAssignedHwElements = [secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, secondApptContinueVidEl];
 
-  if (firstApptFinishVidEl.checked || reviewExtraPagesEl.checked || removeProdEl.checked || practiceCatProdEl.checked || practiceCreateCatdEl.checked || firstApptContinueVidText.checked) {
-    assignedHwText = `Assigned homework: <ul> ${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${firstApptContinueVidText}</ul>`;
+  secondApptAssignedHwElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updateAssignedHw();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
+function updateAssignedHw() {
+  firstApptFinishVidText = firstApptFinishVidEl && firstApptFinishVidEl.checked ? `\n <li>Finish 1st appointment teachable videos</li>` : ``;
+  reviewExtraPagesText = reviewExtraPagesEl && reviewExtraPagesEl.checked ? `\n <li>Review Extra Pages</li>` : ``;
+  removeProdText = removeProdEl && removeProdEl.checked ? `\n <li>Remove unrelated products</li>` : '';
+  practiceCatProdText = practiceCatProdEl && practiceCatProdEl.checked ? `\n <li>Practice categorizing products using guide</li>` : '';
+  practiceCreateCatdText = practiceCreateCatdEl && practiceCreateCatdEl.checked ? `\n <li>Practice creating categories</li>` : '';
+  firstApptContinueVidText = firstApptContinueVidEl && firstApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos</li>` : '';
+
+  secondApptFinishVidText = secondApptFinishVidEl && secondApptFinishVidEl.checked ? `\n <li>Finish 2nd appointment teachable videos</li>` : ``;
+  practiceDiscountsText = practiceDiscountsEl && practiceDiscountsEl.checked ? `\n <li>Practice creating discounts</li>` : ``;
+  practiceOrdersText = practiceOrdersEl && practiceOrdersEl.checked ? `\n <li>Practice making & processing test orders using guides</li>` : '';
+  secondApptContinueVidText = secondApptContinueVidEl && secondApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos<</li>` : '';
+
+  if (firstApptFinishVidEl.checked || reviewExtraPagesEl.checked || removeProdEl.checked || practiceCatProdEl.checked || practiceCreateCatdEl.checked || firstApptContinueVidEl.checked.checked || secondApptFinishVidEl.checked || practiceDiscountsEl.checked || practiceOrdersEl.checked || secondApptContinueVidEl.checked) {
+    assignedHwText = `Assigned homework: 
+<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}
+</ul>
+`;
   } else {
     assignedHwText = '';
   }
@@ -274,7 +354,10 @@ function updateFirstApptAssignedHw() {
 
 function setAdditionalNotes() {
   additionalNotesEl.addEventListener('keyup', function (event) {
-    additionalNotesText = `<p>Additional Notes: ${event.target.value}</p>`;
+    additionalNotesText = `<p>
+  Additional Notes: ${event.target.value}
+</p>
+`;
     updateHtmlNotes();
   });
 }
@@ -291,9 +374,15 @@ function setRegisteredBusiness() {
     }
 
     if (registeredBusinessEl.checked) {
-      registeredBusinessText = '<p>Client has started registering their business</p>';
+      registeredBusinessText = `<p>
+  Client has started registering their business
+</p>
+`;
     } else {
-      registeredBusinessText = '<p>Client has not started registering their business</p>';
+      registeredBusinessText = `<p>
+  Client has not started registering their business
+</p>
+`;
     }
     updateHtmlNotes();
   });
@@ -319,10 +408,20 @@ function setNextTopic() {
       nextTopicText = '';
     } else {
       nextTopicText = `<p>
-  Next topic: ${event.target.value}.
+  Next topic: <b>${event.target.value}.</b>
 </p>
 `;
     }
+    updateHtmlNotes();
+  });
+}
+
+// TODO: Get initials from local storage and have it ADDED TO the html notes ON PAGE LOAD
+function setInitials() {
+  initialsEl.addEventListener('input', function (event) {
+    initialsText = `<p> -${event.target.value}</p>`;
+    var initials = event.target.value;
+    localStorage.setItem('initials', initials);
     updateHtmlNotes();
   });
 }
@@ -333,13 +432,17 @@ setIntroCompleted();
 setHwCompleted();
 setHwPercent();
 setFirstApptWorkedOn();
+setSecondApptWorkedOn();
 setFirstApptAssignedHw();
+setSecondApptAssignedHw();
+setThirdApptWorkedOn();
 setAdditionalNotes();
 setRegisteredBusiness();
 setNextAppointment();
 setNextTopic();
+setInitials();
 
 // ✅ TODO: User selects an appointment, the coresponding form appears and the first line of html is added to output panel
 // TODO: As user fills out form, the appropriate html notes are added to the output panel
-// TODO: All form inputs go back to default on page load
+// TODO: All form inputs go back to default on page load/selecting another appointment
 // TODO: When user clicks on the output panel, the notes are copied
