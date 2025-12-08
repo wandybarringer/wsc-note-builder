@@ -44,8 +44,18 @@ var practiceDiscountsEl = document.querySelector('#practice-discounts');
 var practiceOrdersEl = document.querySelector('#practice-orders');
 var secondApptContinueVidEl = document.querySelector('#second-appt-continue-videos');
 
+// * "Assigned Homework" checkbox elements (3rd Appt)
+var thirdApptFinishVidEl = document.querySelector('#third-appt-finish-videos');
+var practiceUpdateEl = document.querySelector('#practice-updating');
+var allVidEl = document.querySelector('#all-videos');
+
 var additionalNotesEl = document.querySelector('#additional-notes');
 var registeredBusinessEl = document.querySelector('#registered-business');
+var completionFormSentEl = document.querySelector('#completion-form-sent');
+var completionFormSignedEl = document.querySelector('#completion-form-signed');
+var completionFormSignedPromptEl = document.querySelector('#completion-form-signed-prompt');
+var whyNotSignedEl = document.querySelector('#why-not-signed');
+var whyNotSignedPromptEl = document.querySelector('#why-not-signed-prompt');
 var nextAppointmentEl = document.querySelector('#next-appointment-date');
 var nextTopicEl = document.querySelector('#next-topic');
 var initialsEl = document.querySelector('#initials');
@@ -60,6 +70,10 @@ var workedOnText = '';
 var assignedHwText = '';
 var additionalNotesText = '';
 var registeredBusinessText = '';
+var completionFormSentText = '';
+var completionFormSignedText = '';
+var whyNotSignedText = '';
+var completionFormText = '';
 var nextAppointmentText = '';
 var nextTopicText = '';
 var initialsText = '';
@@ -89,6 +103,9 @@ var secondApptFinishVidText = '';
 var practiceDiscountsText = '';
 var practiceOrdersText = '';
 var secondApptContinueVidText = '';
+var thirdApptFinishVidText = '';
+var practiceUpdateText = '';
+var allVidText = '';
 
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default') {
@@ -96,7 +113,7 @@ function updateHtmlNotes() {
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
-    htmlNotes = contactedClient + introText + hwCompletedText + hwPercentText + workedOnText + assignedHwText + additionalNotesText + registeredBusinessText + nextAppointmentText + nextTopicText + initialsText;
+    htmlNotes = contactedClient + introText + hwCompletedText + hwPercentText + workedOnText + assignedHwText + additionalNotesText + registeredBusinessText + completionFormText + nextAppointmentText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.innerHTML = htmlNotes;
@@ -158,6 +175,7 @@ function handleApptSelection() {
   });
 }
 
+// TODO: Change yes/no options to radio buttons
 function setContAppt() {
   if (!contApptEl) {
     return;
@@ -329,6 +347,19 @@ function setSecondApptAssignedHw() {
   });
 }
 
+function setThirdApptAssignedHw() {
+  var thirdApptAssignedHwElements = [thirdApptFinishVidEl, practiceUpdateEl, allVidEl];
+
+  thirdApptAssignedHwElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updateAssignedHw();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
 function updateAssignedHw() {
   firstApptFinishVidText = firstApptFinishVidEl && firstApptFinishVidEl.checked ? `\n <li>Finish 1st appointment teachable videos</li>` : ``;
   reviewExtraPagesText = reviewExtraPagesEl && reviewExtraPagesEl.checked ? `\n <li>Review Extra Pages</li>` : ``;
@@ -342,9 +373,13 @@ function updateAssignedHw() {
   practiceOrdersText = practiceOrdersEl && practiceOrdersEl.checked ? `\n <li>Practice making & processing test orders using guides</li>` : '';
   secondApptContinueVidText = secondApptContinueVidEl && secondApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos<</li>` : '';
 
-  if (firstApptFinishVidEl.checked || reviewExtraPagesEl.checked || removeProdEl.checked || practiceCatProdEl.checked || practiceCreateCatdEl.checked || firstApptContinueVidEl.checked.checked || secondApptFinishVidEl.checked || practiceDiscountsEl.checked || practiceOrdersEl.checked || secondApptContinueVidEl.checked) {
+  thirdApptFinishVidText = thirdApptFinishVidEl && thirdApptFinishVidEl.checked ? `\n <li>Finish 3rd appointment teachable videos</li>` : '';
+  practiceUpdateText = practiceUpdateEl && practiceUpdateEl.checked ? `\n <li>Practice updating products using guides</li>` : '';
+  allVidText = allVidEl && allVidEl.checked ? `\n <li>Complete all videos</li>` : '';
+
+  if (firstApptFinishVidEl.checked || reviewExtraPagesEl.checked || removeProdEl.checked || practiceCatProdEl.checked || practiceCreateCatdEl.checked || firstApptContinueVidEl.checked || secondApptFinishVidEl.checked || practiceDiscountsEl.checked || practiceOrdersEl.checked || secondApptContinueVidEl.checked || thirdApptFinishVidEl.checked || practiceUpdateEl.checked || allVidEl.checked) {
     assignedHwText = `Assigned homework: 
-<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}
+<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}
 </ul>
 `;
   } else {
@@ -388,6 +423,55 @@ function setRegisteredBusiness() {
   });
 }
 
+function setCompletionForm() {
+  var completionFormPrompts = [completionFormSignedPromptEl, whyNotSignedPromptEl];
+
+  completionFormPrompts.forEach(function (element) {
+    element.setAttribute('class', 'hide-content');
+  });
+
+  completionFormSentEl.addEventListener('change', function () {
+    if (completionFormSentEl.checked) {
+      completionFormSignedPromptEl.setAttribute('class', 'show-content');
+    } else {
+      completionFormSignedPromptEl.setAttribute('class', 'hide-content');
+      whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+    }
+    updateCompletionForm();
+    updateHtmlNotes();
+  });
+
+  completionFormSignedEl.addEventListener('change', function () {
+    if (completionFormSignedEl.checked) {
+      whyNotSignedPromptEl.setAttribute('class', 'show-content');
+    } else {
+      whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+    }
+    updateCompletionForm();
+    updateHtmlNotes();
+  });
+
+  whyNotSignedEl.addEventListener('keyup', function (event) {
+    whyNotSignedText = event.target.value;
+    updateCompletionForm();
+    updateHtmlNotes();
+  });
+}
+
+function updateCompletionForm() {
+  completionFormSentText = completionFormSentEl && completionFormSentEl.checked ? `Sent completion form.` : '';
+  completionFormSignedText = completionFormSignedEl && completionFormSignedEl.checked ? ` <b>SIGNED</b> ` : ` <b>NOT SIGNED</b> `;
+
+  if (completionFormSentEl.checked || (completionFormSentEl && completionFormSignedEl)) {
+    completionFormText = `<p>
+  ${completionFormSentText}${completionFormSignedText}${whyNotSignedText}
+  <p>
+  `;
+  } else {
+    completionFormText = '';
+  }
+}
+
 function setNextAppointment() {
   nextAppointmentEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -408,7 +492,7 @@ function setNextTopic() {
       nextTopicText = '';
     } else {
       nextTopicText = `<p>
-  Next topic: <b>${event.target.value}.</b>
+  Next topic: <b>${event.target.value}</b>
 </p>
 `;
     }
@@ -433,11 +517,13 @@ setHwCompleted();
 setHwPercent();
 setFirstApptWorkedOn();
 setSecondApptWorkedOn();
+setThirdApptWorkedOn();
 setFirstApptAssignedHw();
 setSecondApptAssignedHw();
-setThirdApptWorkedOn();
+setThirdApptAssignedHw();
 setAdditionalNotes();
 setRegisteredBusiness();
+setCompletionForm();
 setNextAppointment();
 setNextTopic();
 setInitials();
