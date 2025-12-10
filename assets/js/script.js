@@ -6,8 +6,12 @@ var thirdApptSpecEl = document.querySelectorAll('.third-appt');
 var postApptSpecEl = document.querySelectorAll('.post-appt');
 var htmlNotesEl = document.querySelector('#html-notes');
 var contApptEl = document.querySelector('#continuation');
-var introCompletedEl = document.querySelector('#intro-completed');
-var hwCompletedEl = document.querySelector('#hw-completed');
+var introNoEl = document.querySelector('#intro-no');
+var introNoneEl = document.querySelector('#intro-none');
+var introYesEl = document.querySelector('#intro-yes');
+var hwNoEl = document.querySelector('#hw-no');
+var hwNoneEl = document.querySelector('#hw-none');
+var hwYesEl = document.querySelector('#hw-yes');
 var hwPercentEl = document.querySelector('#hw-percent');
 
 // * "Worked On" checkbox elements (1st Appt)
@@ -50,12 +54,28 @@ var practiceUpdateEl = document.querySelector('#practice-updating');
 var allVidEl = document.querySelector('#all-videos');
 
 var additionalNotesEl = document.querySelector('#additional-notes');
-var registeredBusinessEl = document.querySelector('#registered-business');
+var registeredBusinessNoEl = document.querySelector('#registered-no');
+var registeredBusinessNoneEl = document.querySelector('#registered-none');
+var registeredBusinessYesEl = document.querySelector('#registered-yes');
+
 var completionFormSentEl = document.querySelector('#completion-form-sent');
-var completionFormSignedEl = document.querySelector('#completion-form-signed');
+var cfSignedElNo = document.querySelector('#cf-signed-no');
+var cfSignedElNone = document.querySelector('#cf-signed-none');
+var cfSignedElYes = document.querySelector('#cf-signed-yes');
 var completionFormSignedPromptEl = document.querySelector('#completion-form-signed-prompt');
 var whyNotSignedEl = document.querySelector('#why-not-signed');
 var whyNotSignedPromptEl = document.querySelector('#why-not-signed-prompt');
+
+var bookedSmEl = document.querySelector('#booked-sm');
+var sentSmGuidePromptEl = document.querySelector('#sent-sm-guide-prompt');
+var sentSmGuideEl = document.querySelector('#sent-sm-guide');
+var enrolledSmPromptEl = document.querySelector('#enrolled-sm-prompt');
+var enrolledSmEl = document.querySelector('#enrolled-sm');
+var smTechPromptEl = document.querySelector('#sm-tech-assigned-prompt');
+var smTechEl = document.querySelector('#sm-tech');
+var smApptPromptEl = document.querySelector('#sm-appointment-date-prompt');
+var smApptEl = document.querySelector('#sm-appointment-date');
+
 var nextAppointmentEl = document.querySelector('#next-appointment-date');
 var nextTopicEl = document.querySelector('#next-topic');
 var initialsEl = document.querySelector('#initials');
@@ -66,18 +86,9 @@ var contText = '';
 var introText = '';
 var hwCompletedText = '';
 var hwPercentText = '';
-var workedOnText = '';
-var assignedHwText = '';
-var additionalNotesText = '';
-var registeredBusinessText = '';
-var completionFormSentText = '';
-var completionFormSignedText = '';
-var whyNotSignedText = '';
-var completionFormText = '';
-var nextAppointmentText = '';
-var nextTopicText = '';
-var initialsText = '';
+var hwText = '';
 
+var workedOnText = '';
 var dashNavText = '';
 var extraPageText = '';
 var createCatText = '';
@@ -93,6 +104,7 @@ var processOrderText = '';
 var updatingProdText = '';
 var unavailableProdText = '';
 
+var assignedHwText = '';
 var firstApptFinishVidText = '';
 var reviewExtraPagesText = '';
 var removeProdText = '';
@@ -107,13 +119,31 @@ var thirdApptFinishVidText = '';
 var practiceUpdateText = '';
 var allVidText = '';
 
+var additionalNotesText = '';
+var registeredBusinessText = '';
+
+var completionFormSentText = '';
+var completionFormSignedText = '';
+var whyNotSignedText = '';
+var completionFormText = '';
+
+var sentSmGuideText = '';
+var enrolledSmText = '';
+var smTechText = '';
+var smApptText = '';
+var smText = '';
+
+var nextAppointmentText = '';
+var nextTopicText = '';
+var initialsText = '';
+
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default') {
     contactedClient = `<p>
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
-    htmlNotes = contactedClient + introText + hwCompletedText + hwPercentText + workedOnText + assignedHwText + additionalNotesText + registeredBusinessText + completionFormText + nextAppointmentText + nextTopicText + initialsText;
+    htmlNotes = contactedClient + introText + hwText + workedOnText + assignedHwText + additionalNotesText + registeredBusinessText + completionFormText + smText + nextAppointmentText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.innerHTML = htmlNotes;
@@ -175,7 +205,6 @@ function handleApptSelection() {
   });
 }
 
-// TODO: Change yes/no options to radio buttons
 function setContAppt() {
   if (!contApptEl) {
     return;
@@ -192,50 +221,53 @@ function setContAppt() {
 }
 
 function setIntroCompleted() {
-  if (!introCompletedEl) {
-    return;
-  }
+  var introRadioElements = [introNoEl, introNoneEl, introYesEl];
 
-  introCompletedEl.addEventListener('change', function () {
-    if (currentApptValue !== '1st Appointment') {
-      introText = '';
-      return;
-    }
+  introRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (currentApptValue !== '1st Appointment') {
+        introText = '';
+        updateHtmlNotes();
+        return;
+      }
 
-    if (introCompletedEl.checked) {
-      introText = `<p>
-  Client did do an intro warhead call with onboarding.
-</p>
-`;
-    } else {
-      introText = `<p>
-  Client did not do an intro warhead call with onboarding.
-</p>
-`;
-    }
-    updateHtmlNotes();
+      if (introYesEl.checked) {
+        introText = `<p>
+  Client did an intro warhead call with onboarding.
+</p>`;
+      } else if (introNoEl.checked) {
+        introText = `<p>
+  Client didn't do an intro warhead call with onboarding.
+</p>`;
+      } else if (introNoneEl.checked) {
+        introText = '';
+      } else {
+        introText = '';
+      }
+
+      updateHtmlNotes();
+    });
   });
 }
 
+// TODO: Change yes/no options to radio buttons
 function setHwCompleted() {
-  if (!hwCompletedEl) {
-    return;
-  }
+  var hwRadioElements = [hwNoEl, hwNoneEl, hwYesEl];
 
-  hwCompletedEl.addEventListener('change', function () {
-    if (hwCompletedEl.checked) {
-      hwCompletedText = `<p>
-  Homework has been completed by client.
-</p>
-`;
-    } else {
-      hwCompletedText = `<p>
-  Homework has not been completed by client.
-</p>
-`;
-    }
-
-    updateHtmlNotes();
+  hwRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (hwYesEl.checked) {
+        hwCompletedText = `Homework has been completed by client.`;
+      } else if (hwNoEl.checked) {
+        hwCompletedText = `Homework has not been completed by client.`;
+      } else if (hwNoneEl.checked) {
+        hwCompletedText = '';
+      } else {
+        hwCompletedText = '';
+      }
+      updateHw();
+      updateHtmlNotes();
+    });
   });
 }
 
@@ -245,12 +277,21 @@ function setHwPercent() {
   }
 
   hwPercentEl.addEventListener('input', function (event) {
-    hwPercentText = `<p>
-  ${event.target.value}% of WH videos completed.
-</p>
-`;
+    hwPercentText = `${event.target.value}% of WH videos completed.`;
+    updateHw();
     updateHtmlNotes();
   });
+}
+
+function updateHw() {
+  if (hwCompletedText || hwPercentText) {
+    hwText = `<p>
+  ${hwCompletedText} ${hwPercentText}
+<p>
+  `;
+  } else {
+    hwText = '';
+  }
 }
 
 function setFirstApptWorkedOn() {
@@ -398,28 +439,32 @@ function setAdditionalNotes() {
 }
 
 function setRegisteredBusiness() {
-  if (!registeredBusinessEl) {
-    return;
-  }
+  var registeredRadioElements = [registeredBusinessNoEl, registeredBusinessNoneEl, registeredBusinessYesEl];
 
-  registeredBusinessEl.addEventListener('change', function () {
-    if (currentApptValue !== '1st Appointment') {
-      registeredBusinessText = '';
-      return;
-    }
+  registeredRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (currentApptValue !== '1st Appointment') {
+        registeredBusinessText = '';
+        updateHtmlNotes();
+        return;
+      }
 
-    if (registeredBusinessEl.checked) {
-      registeredBusinessText = `<p>
-  Client has started registering their business
-</p>
-`;
-    } else {
-      registeredBusinessText = `<p>
-  Client has not started registering their business
-</p>
-`;
-    }
-    updateHtmlNotes();
+      if (registeredBusinessYesEl.checked) {
+        registeredBusinessText = `<p>
+  Client <b>has</b> started registering business.
+</p>`;
+      } else if (registeredBusinessNoEl.checked) {
+        registeredBusinessText = `<p>
+  Client <b>has not</b> started registering business.
+</p>`;
+      } else if (registeredBusinessNoneEl.checked) {
+        registeredBusinessText = '';
+      } else {
+        registeredBusinessText = '';
+      }
+
+      updateHtmlNotes();
+    });
   });
 }
 
@@ -431,24 +476,50 @@ function setCompletionForm() {
   });
 
   completionFormSentEl.addEventListener('change', function () {
+    if (currentApptValue !== '3rd Appointment') {
+      completionFormSentText = '';
+      updateHtmlNotes();
+      return;
+    }
+
     if (completionFormSentEl.checked) {
       completionFormSignedPromptEl.setAttribute('class', 'show-content');
+      completionFormSentText = `Sent completion form.`;
     } else {
       completionFormSignedPromptEl.setAttribute('class', 'hide-content');
       whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+      completionFormSentText = ``;
+      completionFormSignedText = '';
+      whyNotSignedText = '';
     }
     updateCompletionForm();
     updateHtmlNotes();
   });
 
-  completionFormSignedEl.addEventListener('change', function () {
-    if (completionFormSignedEl.checked) {
-      whyNotSignedPromptEl.setAttribute('class', 'show-content');
-    } else {
-      whyNotSignedPromptEl.setAttribute('class', 'hide-content');
-    }
-    updateCompletionForm();
-    updateHtmlNotes();
+  var cfSignedRadioElements = [cfSignedElNo, cfSignedElNone, cfSignedElYes];
+
+  cfSignedRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (currentApptValue !== '3rd Appointment') {
+        completionFormSignedText = '';
+        updateHtmlNotes();
+        return;
+      }
+
+      if (cfSignedElYes.checked) {
+        whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+        completionFormSignedText = ` <b>SIGNED</b> `;
+      } else if (cfSignedElNo.checked) {
+        whyNotSignedPromptEl.setAttribute('class', 'show-content');
+        completionFormSignedText = ` <b>NOT SIGNED</b> `;
+      } else if (cfSignedElNone.checked) {
+        completionFormSignedText = '';
+      } else {
+        completionFormSignedText = '';
+      }
+      updateCompletionForm();
+      updateHtmlNotes();
+    });
   });
 
   whyNotSignedEl.addEventListener('keyup', function (event) {
@@ -459,10 +530,7 @@ function setCompletionForm() {
 }
 
 function updateCompletionForm() {
-  completionFormSentText = completionFormSentEl && completionFormSentEl.checked ? `Sent completion form.` : '';
-  completionFormSignedText = completionFormSignedEl && completionFormSignedEl.checked ? ` <b>SIGNED</b> ` : ` <b>NOT SIGNED</b> `;
-
-  if (completionFormSentEl.checked || (completionFormSentEl && completionFormSignedEl)) {
+  if (completionFormSentText) {
     completionFormText = `<p>
   ${completionFormSentText}${completionFormSignedText}${whyNotSignedText}
   <p>
@@ -472,6 +540,82 @@ function updateCompletionForm() {
   }
 }
 
+function setSupplierManagement() {
+  var smPrompts = [sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl];
+
+  smPrompts.forEach(function (element) {
+    element.setAttribute('class', 'hide-content');
+  });
+
+  bookedSmEl.addEventListener('change', function () {
+    if (bookedSmEl.checked) {
+      smPrompts.forEach(function (element) {
+        element.setAttribute('class', 'show-content');
+      });
+    } else {
+      smPrompts.forEach(function (element) {
+        element.setAttribute('class', 'hide-content');
+        smText = '';
+        updateHtmlNotes();
+      });
+    }
+  });
+
+  sentSmGuideEl.addEventListener('change', function () {
+    if (currentApptValue !== '3rd Appointment') {
+      sentSmGuideText = '';
+      updateHtmlNotes();
+      return;
+    }
+
+    if (sentSmGuideEl.checked) {
+      sentSmGuideText = `Sent client SM How to Guide PDF.`;
+    } else {
+      sentSmGuideText = '';
+    }
+
+    updateSupplierManagement();
+    updateHtmlNotes();
+  });
+
+  enrolledSmEl.addEventListener('change', function () {
+    if (currentApptValue !== '3rd Appointment') {
+      enrolledSmText = '';
+      updateHtmlNotes();
+      return;
+    }
+
+    if (enrolledSmEl.checked) {
+      enrolledSmText = `Enrolled client in SM Appointment Training course.`;
+    } else {
+      enrolledSmText = '';
+    }
+
+    updateSupplierManagement();
+    updateHtmlNotes();
+  });
+
+  smTechEl.addEventListener('keyup', function (event) {
+    smTechText = event.target.value;
+    updateSupplierManagement();
+    updateHtmlNotes();
+  });
+
+  smApptEl.addEventListener('keyup', function (event) {
+    smApptText = event.target.value;
+    updateSupplierManagement();
+    updateHtmlNotes();
+  });
+}
+
+function updateSupplierManagement() {
+  smText = `<p>
+  ${sentSmGuideText} ${enrolledSmText} Booked SM Appointment with ${smTechText} on ${smApptText}.
+<p>
+`;
+}
+
+// TODO: Remove the ⋅ symbol from date
 function setNextAppointment() {
   nextAppointmentEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -524,6 +668,7 @@ setThirdApptAssignedHw();
 setAdditionalNotes();
 setRegisteredBusiness();
 setCompletionForm();
+setSupplierManagement();
 setNextAppointment();
 setNextTopic();
 setInitials();

@@ -38,15 +38,26 @@
             </div>
 
             <div class="first-appt hide-content">
-              <label for="intro-completed">Intro to WH completed?</label>
-              <input type="checkbox" name="intro-completed" id="intro-completed" />
+              <label>Intro to WH completed?</label>
+              <label for="intro-no">No</label>
+              <input type="radio" name="intro" id="intro-no" value="No" />
+              <label for="intro-none">-</label>
+              <input type="radio" name="intro" id="intro-none" value="None" checked />
+              <label for="intro-yes">Yes</label>
+              <input type="radio" name="intro" id="intro-yes" value="Yes" />
             </div>
 
             <div>
-              <label for="hw-completed">Homework completed?</label>
-              <input type="checkbox" name="hw-completed" id="hw-completed" />
+              <label>Homework completed?</label>
+              <label for="hw-no">No</label>
+              <input type="radio" name="hw" id="hw-no" value="No" />
+              <label for="hw-none">-</label>
+              <input type="radio" name="hw" id="hw-none" value="None" checked />
+              <label for="hw-yes">Yes</label>
+              <input type="radio" name="hw" id="hw-yes" value="Yes" />
             </div>
 
+            <!-- TODO: Clear button that sets number to null and removes html notes -->
             <div>
               <label for="hw-percent">Homework %</label>
               <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
@@ -160,8 +171,13 @@
             </div>
 
             <div class="first-appt hide-content">
-              <label for="registered-business">Started registering business?</label>
-              <input type="checkbox" name="registered-business" id="registered-business" />
+              <label>Started registering business?</label>
+              <label for="registered-no">No</label>
+              <input type="radio" name="registered" id="registered-no" value="No" />
+              <label for="registered-none">-</label>
+              <input type="radio" name="registered" id="registered-none" value="None" checked />
+              <label for="registered-yes">Yes</label>
+              <input type="radio" name="registered" id="registered-yes" value="Yes" />
             </div>
 
             <div class="third-appt hide-content">
@@ -170,8 +186,13 @@
             </div>
 
             <div id="completion-form-signed-prompt">
-              <label for="completion-form-signed">Client signed completion form?</label>
-              <input type="checkbox" name="completion-form-signed" id="completion-form-signed" />
+              <label>Client signed completion form?</label>
+              <label for="cf-signed-no">No</label>
+              <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
+              <label for="cf-signed-none">-</label>
+              <input type="radio" name="cf-signed" id="cf-signed-none" value="None" checked />
+              <label for="cf-signed-yes">Yes</label>
+              <input type="radio" name="cf-signed" id="cf-signed-yes" value="Yes" />
             </div>
 
             <div id="why-not-signed-prompt">
@@ -180,23 +201,29 @@
             </div>
 
             <div class="third-appt hide-content">
+              <label for="booked-sm">Supplier Management set up?</label>
+              <input type="checkbox" name="booked-sm" id="booked-sm" />
+            </div>
+
+            <div id="sent-sm-guide-prompt">
               <label for="sent-sm-guide">Sent SM How to Guide</label>
               <input type="checkbox" name="sent-sm-guide" id="sent-sm-guide" />
             </div>
 
-            <div class="third-appt hide-content">
+            <div id="enrolled-sm-prompt">
               <label for="enrolled-sm">Enrolled in SM training course</label>
               <input type="checkbox" name="enrolled-sm" id="enrolled-sm" />
             </div>
 
-            <div class="third-appt hide-content">
+            <div id="sm-tech-assigned-prompt">
               <label for="sm-tech">SM Tech assigned</label>
               <input type="text" name="sm-tech" id="sm-tech" />
             </div>
 
-            <div class="third-appt hide-content">
+            <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
+            <div id="sm-appointment-date-prompt">
               <label for="sm-appointment-date">Booked SM appointment on:</label>
-              <input type="datetime-local" name="sm-appointment-date" id="sm-appointment-date" />
+              <input type="text" name="sm-appointment-date" id="sm-appointment-date" />
             </div>
 
             <div class="post-appt hide-content">
@@ -234,8 +261,7 @@
           <textarea name="html-notes" id="html-notes"></textarea>
         </section>
       </main>
-
-      <script src="assets/js/script.js"></script>
     </div>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
