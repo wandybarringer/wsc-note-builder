@@ -227,27 +227,33 @@
             </div>
 
             <div class="post-appt hide-content">
-              <label for="live">Is client's website live?</label>
-              <input type="checkbox" name="live" id="live" />
+              <label>Is client's website live?</label>
+              <label for="live-no">No</label>
+              <input type="radio" name="live" id="live-no" value="No" />
+              <label for="live-none">-</label>
+              <input type="radio" name="live" id="live-none" value="None" checked />
+              <label for="live-yes">Yes</label>
+              <input type="radio" name="live" id="live-yes" value="Yes" />
             </div>
 
-            <div class="post-appt hide-content">
-              <label for="additional-training">Does client require additional WH training?</label>
+            <div id="additional-training-prompt">
+              <label for="additional-training">Is client requesting additional WH training?</label>
               <input type="checkbox" name="additional-training" id="additional-training" />
             </div>
 
+            <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
             <div class="post-appt hide-content">
               <label for="sm-reminder">Reminded client about next SM appointment on:</label>
-              <input type="datetime-local" name="sm-reminder" id="sm-reminder" />
+              <input type="text" name="sm-reminder" id="sm-reminder" />
             </div>
 
             <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
-            <div>
+            <div id="next-appt-date-prompt">
               <label for="next-appointment-date">Set next appointment on:</label>
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
             </div>
 
-            <div>
+            <div id="next-topic-prompt">
               <label for="next-topic">Next topic:</label>
               <textarea name="next-topic" id="next-topic"></textarea>
             </div>

@@ -92,6 +92,15 @@ var smTechEl = document.querySelector('#sm-tech');
 var smApptPromptEl = document.querySelector('#sm-appointment-date-prompt');
 var smApptEl = document.querySelector('#sm-appointment-date');
 
+var nextApptDatePromptEl = document.querySelector('#next-appt-date-prompt');
+var nextTopicPromptEl = document.querySelector('#next-topic-prompt');
+var liveNoEl = document.querySelector('#live-no');
+var liveNoneEl = document.querySelector('#live-none');
+var liveYesEl = document.querySelector('#live-yes');
+var additionalTrainingPromptEl = document.querySelector('#additional-training-prompt');
+var additionalTrainingEl = document.querySelector('#additional-training');
+var smReminderEl = document.querySelector('#sm-reminder');
+
 var nextAppointmentEl = document.querySelector('#next-appointment-date');
 var nextTopicEl = document.querySelector('#next-topic');
 var initialsEl = document.querySelector('#initials');
@@ -164,6 +173,10 @@ var smTechText = '';
 var smApptText = '';
 var smText = '';
 
+var liveText = '';
+var additionalTrainingText = '';
+var smReminderText = '';
+
 var nextAppointmentText = '';
 var nextTopicText = '';
 var initialsText = '';
@@ -174,7 +187,7 @@ function updateHtmlNotes() {
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
-    htmlNotes = contactedClient + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + nextAppointmentText + nextTopicText + initialsText;
+    htmlNotes = contactedClient + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + nextTopicText + smReminderText + initialsText;
   }
 
   htmlNotesEl.innerHTML = htmlNotes;
@@ -201,6 +214,7 @@ function handleApptSelection() {
   apptSelectEl.addEventListener('change', function (event) {
     resetHtmlNotes();
     var selectedValue = event.target.value;
+    var nextPrompts = [nextApptDatePromptEl, nextTopicPromptEl, additionalTrainingPromptEl];
     currentApptValue = selectedValue;
 
     var allForms = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl];
@@ -215,6 +229,16 @@ function handleApptSelection() {
       nonSpecFormEl.setAttribute('class', 'hide-content');
     } else {
       nonSpecFormEl.setAttribute('class', 'show-content');
+    }
+
+    if (selectedValue === 'Post Appointment') {
+      nextPrompts.forEach(function (element) {
+        element.setAttribute('class', 'hide-content');
+      });
+    } else {
+      nextPrompts.forEach(function (element) {
+        element.setAttribute('class', 'show-content');
+      });
     }
 
     if (selectedValue === '1st Appointment' && firstApptSpecEl) {
@@ -284,7 +308,6 @@ function setIntroCompleted() {
   });
 }
 
-// TODO: Change yes/no options to radio buttons
 function setHwCompleted() {
   var hwRadioElements = [hwNoEl, hwNoneEl, hwYesEl];
 
@@ -711,6 +734,72 @@ function updateSupplierManagement() {
 `;
 }
 
+function setPostApptExtras() {
+  var liveRadioElements = [liveNoEl, liveNoneEl, liveYesEl];
+
+  liveRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (liveYesEl.checked) {
+        additionalTrainingPromptEl.setAttribute('class', 'show-content');
+        nextApptDatePromptEl.setAttribute('class', 'hide-content');
+        nextTopicPromptEl.setAttribute('class', 'hide-content');
+        liveText = `<p>
+  <b>Client's website is live.</b>
+<p>
+`;
+      } else if (liveNoEl.checked) {
+        additionalTrainingPromptEl.setAttribute('class', 'hide-content');
+        nextApptDatePromptEl.setAttribute('class', 'show-content');
+        nextTopicPromptEl.setAttribute('class', 'show-content');
+        liveText = `<p>
+  <b>Client's website is not live yet</b>
+<p>
+`;
+      } else if (liveNoneEl.checked) {
+        additionalTrainingPromptEl.setAttribute('class', 'hide-content');
+        nextApptDatePromptEl.setAttribute('class', 'hide-content');
+        nextTopicPromptEl.setAttribute('class', 'hide-content');
+        liveText = '';
+      } else {
+        additionalTrainingPromptEl.setAttribute('class', 'hide-content');
+        nextApptDatePromptEl.setAttribute('class', 'hide-content');
+        nextTopicPromptEl.setAttribute('class', 'hide-content');
+        liveText = '';
+      }
+      updateHtmlNotes();
+    });
+  });
+
+  additionalTrainingEl.addEventListener('change', function () {
+    if (additionalTrainingEl.checked) {
+      nextApptDatePromptEl.setAttribute('class', 'show-content');
+      nextTopicPromptEl.setAttribute('class', 'show-content');
+      additionalTrainingText = `<p>
+  Client requesting additional training.
+<p>
+`;
+    } else {
+      nextApptDatePromptEl.setAttribute('class', 'hide-content');
+      nextTopicPromptEl.setAttribute('class', 'hide-content');
+      additionalTrainingText = '';
+    }
+    updateHtmlNotes();
+  });
+
+  smReminderEl.addEventListener('keyup', function (event) {
+    if (!event.target.value) {
+      smReminderText = '';
+    } else {
+      smReminderText = `<p>
+  Reminded client about Supplier Management Appointment on ${event.target.value}
+<p>
+`;
+    }
+
+    updateHtmlNotes();
+  });
+}
+
 // TODO: Remove the ⋅ symbol from date
 function setNextAppointment() {
   nextAppointmentEl.addEventListener('input', function (event) {
@@ -742,10 +831,17 @@ function setNextTopic() {
 
 // TODO: Get initials from local storage and have it ADDED TO the html notes ON PAGE LOAD
 function setInitials() {
-  initialsEl.addEventListener('input', function (event) {
-    initialsText = `<p> -${event.target.value}</p>`;
-    var initials = event.target.value;
-    localStorage.setItem('initials', initials);
+  initialsEl.addEventListener('keyup', function (event) {
+    if (!event.target.value) {
+      initialsText = '';
+    } else {
+      initialsText = `<p> 
+  -${event.target.value}
+</p>
+`;
+      var initials = event.target.value;
+      localStorage.setItem('initials', initials);
+    }
     updateHtmlNotes();
   });
 }
@@ -767,6 +863,7 @@ setAdditionalNotes();
 setRegisteredBusiness();
 setCompletionForm();
 setSupplierManagement();
+setPostApptExtras();
 setNextAppointment();
 setNextTopic();
 setInitials();
