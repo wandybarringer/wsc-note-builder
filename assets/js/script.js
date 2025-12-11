@@ -34,6 +34,11 @@ var processOrderEl = document.querySelector('#process-order');
 var updatingProdEl = document.querySelector('#updating-products');
 var unavailableProdEl = document.querySelector('#unavailable-products');
 
+// * "Worked On" checkbox elements (Post Appt)
+var stripeEl = document.querySelector('#stripe');
+var variantsEl = document.querySelector('#variants');
+var unavailableCjProdEl = document.querySelector('#unavailable-cj-products');
+
 // * "Assigned Homework" checkbox elements (1st Appt)
 var firstApptFinishVidEl = document.querySelector('#first-appt-finish-videos');
 var reviewExtraPagesEl = document.querySelector('#review-extra-pages');
@@ -52,6 +57,17 @@ var secondApptContinueVidEl = document.querySelector('#second-appt-continue-vide
 var thirdApptFinishVidEl = document.querySelector('#third-appt-finish-videos');
 var practiceUpdateEl = document.querySelector('#practice-updating');
 var allVidEl = document.querySelector('#all-videos');
+
+// * "Post Checklist" checkbox elements
+var businessEmailEl = document.querySelector('#business-email');
+var timeZoneEl = document.querySelector('#time-zone');
+var taxGroupEl = document.querySelector('#tax-group');
+var modulesEl = document.querySelector('#modules');
+var testItemsEl = document.querySelector('#test-items');
+var brandsEl = document.querySelector('#brands');
+var genericCategoriesEl = document.querySelector('#generic-categories');
+var varientsCondensedEl = document.querySelector('#varients-condensed');
+var taglineEl = document.querySelector('#tagline');
 
 var additionalNotesEl = document.querySelector('#additional-notes');
 var registeredBusinessNoEl = document.querySelector('#registered-no');
@@ -89,6 +105,7 @@ var hwPercentText = '';
 var hwText = '';
 
 var workedOnText = '';
+var postWorkedOnText = '';
 var dashNavText = '';
 var extraPageText = '';
 var createCatText = '';
@@ -103,6 +120,9 @@ var testOrderText = '';
 var processOrderText = '';
 var updatingProdText = '';
 var unavailableProdText = '';
+var stripeText = '';
+var variantsText = '';
+var unavailableCjProdText = '';
 
 var assignedHwText = '';
 var firstApptFinishVidText = '';
@@ -118,6 +138,17 @@ var secondApptContinueVidText = '';
 var thirdApptFinishVidText = '';
 var practiceUpdateText = '';
 var allVidText = '';
+
+var postChecklistText = '';
+var businessEmailText = '';
+var timeZoneText = '';
+var taxGroupText = '';
+var modulesText = '';
+var testItemsText = '';
+var brandsText = '';
+var genericCategoriesText = '';
+var varientsCondensedText = '';
+var taglineText = '';
 
 var additionalNotesText = '';
 var registeredBusinessText = '';
@@ -143,7 +174,7 @@ function updateHtmlNotes() {
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
-    htmlNotes = contactedClient + introText + hwText + workedOnText + assignedHwText + additionalNotesText + registeredBusinessText + completionFormText + smText + nextAppointmentText + nextTopicText + initialsText;
+    htmlNotes = contactedClient + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + nextAppointmentText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.innerHTML = htmlNotes;
@@ -156,9 +187,12 @@ function resetHtmlNotes() {
   hwCompletedText = '';
   hwPercentText = '';
   workedOnText = '';
+  postWorkedOnText = '';
   assignedHwText = '';
+  postChecklistText = '';
   additionalNotesText = '';
   registeredBusinessText = '';
+  smText = '';
   nextAppointmentText = '';
   nextTopicText = '';
 }
@@ -333,6 +367,19 @@ function setThirdApptWorkedOn() {
   });
 }
 
+function setPostApptWorkedOn() {
+  var postApptWorkedOnElements = [stripeEl, variantsEl, unavailableCjProdEl];
+
+  postApptWorkedOnElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updatePostWorkedOn();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
 // TODO: Add a "show all" option to allow any appointment worked on items to be selected
 function updateWorkedOn() {
   dashNavText = dashNavEl && dashNavEl.checked ? `\n  <li>Dashboard/Account Navigation</li>` : ``;
@@ -359,6 +406,21 @@ function updateWorkedOn() {
 `;
   } else {
     workedOnText = '';
+  }
+}
+
+function updatePostWorkedOn() {
+  stripeText = stripeEl && stripeEl.checked ? `\n <li>Linked Stripe</li>` : ``;
+  variantsText = variantsEl && variantsEl.checked ? `\n <li>Condensing variants</li>` : ``;
+  unavailableCjProdText = unavailableCjProdEl && unavailableCjProdEl.checked ? `\n <li>Managing unavailable products from CJ</li>` : ``;
+
+  if (stripeEl.checked || variantsEl.checked || unavailableCjProdEl.checked) {
+    postWorkedOnText = `Worked On/Reviewed:
+<ul>${stripeText}${variantsText}${unavailableCjProdText}
+</ul>
+`;
+  } else {
+    postWorkedOnText = '';
   }
 }
 
@@ -401,6 +463,19 @@ function setThirdApptAssignedHw() {
   });
 }
 
+function setPostChecklist() {
+  var postChecklistsElements = [businessEmailEl, timeZoneEl, taxGroupEl, modulesEl, testItemsEl, brandsEl, genericCategoriesEl, varientsCondensedEl, taglineEl];
+
+  postChecklistsElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updatePostChecklist();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
 function updateAssignedHw() {
   firstApptFinishVidText = firstApptFinishVidEl && firstApptFinishVidEl.checked ? `\n <li>Finish 1st appointment teachable videos</li>` : ``;
   reviewExtraPagesText = reviewExtraPagesEl && reviewExtraPagesEl.checked ? `\n <li>Review Extra Pages</li>` : ``;
@@ -425,6 +500,27 @@ function updateAssignedHw() {
 `;
   } else {
     assignedHwText = '';
+  }
+}
+
+function updatePostChecklist() {
+  businessEmailText = businessEmailEl && businessEmailEl.checked ? `\n <li>Business email appears on Settings & Extra Forms</li>` : '';
+  timeZoneText = timeZoneEl && timeZoneEl.checked ? `\n <li>Time-zone is set to client's</li>` : '';
+  taxGroupText = taxGroupEl && taxGroupEl.checked ? `\n <li>Default Tax Group set</li>` : '';
+  modulesText = modulesEl && modulesEl.checked ? `\n <li>Shipping & Payment Modules are set</li>` : '';
+  testItemsText = testItemsEl && testItemsEl.checked ? `\n <li>Test items are removed</li>` : '';
+  brandsText = brandsEl && brandsEl.checked ? `\n <li>Unrelated brands removed</li>` : '';
+  genericCategoriesText = genericCategoriesEl && genericCategoriesEl.checked ? `\n <li>Generic categories removed</li>` : '';
+  varientsCondensedText = varientsCondensedEl && varientsCondensedEl.checked ? `\n <li>Variants are condensed</li>` : '';
+  taglineText = taglineEl && taglineEl.checked ? `\n <li>Removed tagline placeholder text</li>` : '';
+
+  if (businessEmailText || timeZoneText || taxGroupText || modulesText || testItemsText || brandsText || genericCategoriesText || varientsCondensedText || taglineText) {
+    postChecklistText = `Post Training Checklist:
+<ul>${businessEmailText}${timeZoneText}${taxGroupText}${modulesText}${testItemsText}${brandsText}${genericCategoriesText}${varientsCondensedText}${taglineText}
+<ul>
+`;
+  } else {
+    postChecklistText = '';
   }
 }
 
@@ -662,9 +758,11 @@ setHwPercent();
 setFirstApptWorkedOn();
 setSecondApptWorkedOn();
 setThirdApptWorkedOn();
+setPostApptWorkedOn();
 setFirstApptAssignedHw();
 setSecondApptAssignedHw();
 setThirdApptAssignedHw();
+setPostChecklist();
 setAdditionalNotes();
 setRegisteredBusiness();
 setCompletionForm();
