@@ -14,6 +14,10 @@ var hwNoneEl = document.querySelector('#hw-none');
 var hwYesEl = document.querySelector('#hw-yes');
 var hwPercentEl = document.querySelector('#hw-percent');
 
+var firstApptWorkedOnItems = document.querySelectorAll('div:has(> #dashboard-navigation), ' + 'div:has(> #extra-pages), ' + 'div:has(> #creating-categories), ' + 'div:has(> #organizing-categories), ' + 'div:has(> #creating-products), ' + 'div:has(> #products-grid), ' + 'div:has(> #categorizing-products) ');
+var secondApptWorkedOnItems = document.querySelectorAll('div:has(> #discounts), ' + 'div:has(> #checkout-sections), ' + 'div:has(> #paypal-apple-pay), ' + 'div:has(> #test-order), ' + 'div:has(> #process-order) ');
+var thirdApptWorkedOnItems = document.querySelectorAll('div:has(> #updating-products), ' + 'div:has(> #unavailable-products)');
+
 // * "Worked On" checkbox elements (1st Appt)
 var dashNavEl = document.querySelector('#dashboard-navigation');
 var extraPageEl = document.querySelector('#extra-pages');
@@ -104,6 +108,8 @@ var smReminderEl = document.querySelector('#sm-reminder');
 var nextAppointmentEl = document.querySelector('#next-appointment-date');
 var nextTopicEl = document.querySelector('#next-topic');
 var initialsEl = document.querySelector('#initials');
+var copyBtnEl = document.querySelector('#copy-btn');
+var showAllWorkedOnEl = document.querySelector('#show-all-worked-on');
 
 var htmlNotes = '';
 var currentApptValue = '';
@@ -179,7 +185,73 @@ var smReminderText = '';
 
 var nextAppointmentText = '';
 var nextTopicText = '';
+var storedInitials = '';
 var initialsText = '';
+
+function copyHtmlNotes() {
+  copyBtnEl.addEventListener('click', function () {
+    navigator.clipboard.writeText(htmlNotesEl.value);
+  });
+}
+
+function setShowAllWorkedOn() {
+  if (!showAllWorkedOnEl) {
+    return;
+  }
+
+  var allWorkedOnNodeLists = [firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems];
+
+  showAllWorkedOnEl.addEventListener('change', function () {
+    if (showAllWorkedOnEl.checked) {
+      allWorkedOnNodeLists.forEach(function (nodeList) {
+        nodeList.forEach(function (element) {
+          element.classList.remove('hide-content');
+          element.classList.add('show-content');
+        });
+      });
+    } else {
+      updateApptVisibility();
+    }
+  });
+}
+
+// function setShowAllWorkedOn() {
+//   if (!showAllWorkedOnEl) {
+//     return;
+//   }
+
+//   showAllWorkedOnEl.addEventListener('change', function () {
+//     if (showAllWorkedOnEl.checked) {
+//       // SHOW ALL: make all individual "Worked On" divs visible
+//       firstApptWorkedOnItems.forEach(function (element) {
+//         // Ensure the individual item is visible
+//         element.classList.remove('hide-content');
+//         element.classList.add('show-content');
+//       });
+//       secondApptWorkedOnItems.forEach(function (element) {
+//         // Ensure the individual item is visible
+//         element.classList.remove('hide-content');
+//         element.classList.add('show-content');
+//       });
+
+//       thirdApptWorkedOnItems.forEach(function (element) {
+//         // Ensure the individual item is visible
+//         element.classList.remove('hide-content');
+//         element.classList.add('show-content');
+//       });
+//       // Also ensure the Post-Appt Worked On/Reviewed section is visible
+//       if (postApptWorkedOnReviewedEl) {
+//         postApptWorkedOnReviewedEl.classList.remove('hide-content');
+//         postApptWorkedOnReviewedEl.classList.add('show-content');
+//       }
+//     } else if (!showAllWorkedOnEl.checked) {
+//       // HIDE ALL: Re-run the main appointment selector logic
+//       // This is critical to hide the items that don't belong to the
+//       // currently selected appointment.
+//       handleApptSelection();
+//     }
+//   });
+// }
 
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default') {
@@ -190,15 +262,14 @@ function updateHtmlNotes() {
     htmlNotes = contactedClient + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + nextTopicText + smReminderText + initialsText;
   }
 
-  htmlNotesEl.innerHTML = htmlNotes;
+  htmlNotesEl.value = htmlNotes;
 }
 
 function resetHtmlNotes() {
   htmlNotes = '';
   contText = '';
   introText = '';
-  hwCompletedText = '';
-  hwPercentText = '';
+  hwText = '';
   workedOnText = '';
   postWorkedOnText = '';
   assignedHwText = '';
@@ -208,60 +279,184 @@ function resetHtmlNotes() {
   smText = '';
   nextAppointmentText = '';
   nextTopicText = '';
+
+  htmlNotesEl.value = '';
+
+  var nonSpecForms = document.querySelectorAll('#non-specific-form');
+
+  nonSpecForms.forEach((form) => {
+    form.reset();
+  });
+}
+
+function updateApptVisibility() {
+  var selectedValue = apptSelectEl.value;
+  var nextPrompts = [nextApptDatePromptEl, nextTopicPromptEl, additionalTrainingPromptEl];
+  currentApptValue = selectedValue;
+
+  var allForms = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl];
+
+  allForms.forEach(function (nodeList) {
+    nodeList.forEach(function (element) {
+      element.classList.remove('show-content');
+      element.classList.add('hide-content');
+    });
+  });
+
+  if (!showAllWorkedOnEl.checked) {
+    var allWorkedOnNodeLists = [firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems];
+
+    allWorkedOnNodeLists.forEach(function (nodeList) {
+      nodeList.forEach(function (element) {
+        element.classList.remove('show-content');
+        element.classList.add('hide-content');
+      });
+    });
+  }
+
+  if (selectedValue === 'default') {
+    nonSpecFormEl.classList.remove('show-content');
+    nonSpecFormEl.classList.add('hide-content');
+  } else {
+    nonSpecFormEl.classList.remove('hide-content');
+    nonSpecFormEl.classList.add('show-content');
+  }
+
+  if (selectedValue === 'Post Appointment') {
+    nextPrompts.forEach(function (element) {
+      element.classList.remove('show-content');
+      element.classList.add('hide-content');
+    });
+  } else {
+    nextPrompts.forEach(function (element) {
+      element.classList.remove('hide-content');
+      element.classList.add('show-content');
+    });
+  }
+
+  if (selectedValue === '1st Appointment' && firstApptSpecEl) {
+    firstApptSpecEl.forEach(function (element) {
+      element.classList.remove('hide-content');
+      element.classList.add('show-content');
+    });
+  } else if (selectedValue === '2nd Appointment' && secondApptSpecEl) {
+    secondApptSpecEl.forEach(function (element) {
+      element.classList.remove('hide-content');
+      element.classList.add('show-content');
+    });
+  } else if (selectedValue === '3rd Appointment' && thirdApptSpecEl) {
+    thirdApptSpecEl.forEach(function (element) {
+      element.classList.remove('hide-content');
+      element.classList.add('show-content');
+    });
+  } else if (selectedValue === 'Post Appointment' && postApptSpecEl) {
+    postApptSpecEl.forEach(function (element) {
+      element.classList.remove('hide-content');
+      element.classList.add('show-content');
+    });
+  }
+
+  updateHtmlNotes();
 }
 
 function handleApptSelection() {
   apptSelectEl.addEventListener('change', function (event) {
     resetHtmlNotes();
-    var selectedValue = event.target.value;
-    var nextPrompts = [nextApptDatePromptEl, nextTopicPromptEl, additionalTrainingPromptEl];
-    currentApptValue = selectedValue;
-
-    var allForms = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl];
-
-    allForms.forEach(function (nodeList) {
-      nodeList.forEach(function (element) {
-        element.setAttribute('class', 'hide-content');
-      });
-    });
-
-    if (selectedValue === 'default') {
-      nonSpecFormEl.setAttribute('class', 'hide-content');
-    } else {
-      nonSpecFormEl.setAttribute('class', 'show-content');
-    }
-
-    if (selectedValue === 'Post Appointment') {
-      nextPrompts.forEach(function (element) {
-        element.setAttribute('class', 'hide-content');
-      });
-    } else {
-      nextPrompts.forEach(function (element) {
-        element.setAttribute('class', 'show-content');
-      });
-    }
-
-    if (selectedValue === '1st Appointment' && firstApptSpecEl) {
-      firstApptSpecEl.forEach(function (element) {
-        element.setAttribute('class', 'show-content');
-      });
-    } else if (selectedValue === '2nd Appointment' && secondApptSpecEl) {
-      secondApptSpecEl.forEach(function (element) {
-        element.setAttribute('class', 'show-content');
-      });
-    } else if (selectedValue === '3rd Appointment' && thirdApptSpecEl) {
-      thirdApptSpecEl.forEach(function (element) {
-        element.setAttribute('class', 'show-content');
-      });
-    } else if (selectedValue === 'Post Appointment' && postApptSpecEl) {
-      postApptSpecEl.forEach(function (element) {
-        element.setAttribute('class', 'show-content');
-      });
-    }
-
-    updateHtmlNotes();
+    setInitials();
+    updateApptVisibility();
   });
 }
+
+// function handleApptSelection() {
+//   apptSelectEl.addEventListener('change', function (event) {
+//     resetHtmlNotes();
+//     setInitials();
+//     var selectedValue = event.target.value;
+//     var nextPrompts = [nextApptDatePromptEl, nextTopicPromptEl, additionalTrainingPromptEl];
+//     currentApptValue = selectedValue;
+
+//     var allForms = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl];
+
+//     allForms.forEach(function (nodeList) {
+//       nodeList.forEach(function (element) {
+//         element.setAttribute('class', 'hide-content');
+//       });
+//     }); // ... existing resetHtmlNotes() and selectedValue logic ...
+
+//     // Inside handleApptSelection function:
+//     // --- NEW LOGIC: Conditional Hiding ---
+//     if (showAllWorkedOnEl && !showAllWorkedOnEl.checked) {
+//       // Hide all general "Worked On" items first
+//       firstApptWorkedOnItems.forEach(function (element) {
+//         // Ensure the individual item is visible
+//         element.classList.remove('show-content');
+//         element.classList.add('hide-content');
+//       });
+//       secondApptWorkedOnItems.forEach(function (element) {
+//         // Ensure the individual item is visible
+//         element.classList.remove('show-content');
+//         element.classList.add('hide-content');
+//       });
+
+//       thirdApptWorkedOnItems.forEach(function (element) {
+//         // Ensure the individual item is visible
+//         element.classList.remove('show-content');
+//         element.classList.add('hide-content');
+//       });
+
+//       // Hide the Post-Appt Worked On/Reviewed container
+//       if (postApptWorkedOnReviewedEl) {
+//         postApptWorkedOnReviewedEl.classList.remove('show-content');
+//         postApptWorkedOnReviewedEl.classList.add('hide-content');
+//       }
+
+//       // Hide all Appointment-Specific content blocks (like Intro, Homework lists, etc.)
+//       var allForms = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl];
+//       allForms.forEach(function (nodeList) {
+//         nodeList.forEach(function (element) {
+//           element.classList.remove('show-content');
+//           element.classList.add('hide-content');
+//         });
+//       });
+//     } // ... rest of the function where you show the currently selected appointment (1st, 2nd, etc.) ...
+
+//     if (selectedValue === 'default') {
+//       nonSpecFormEl.setAttribute('class', 'hide-content');
+//     } else {
+//       nonSpecFormEl.setAttribute('class', 'show-content');
+//     }
+
+//     if (selectedValue === 'Post Appointment') {
+//       nextPrompts.forEach(function (element) {
+//         element.setAttribute('class', 'hide-content');
+//       });
+//     } else {
+//       nextPrompts.forEach(function (element) {
+//         element.setAttribute('class', 'show-content');
+//       });
+//     }
+
+//     if (selectedValue === '1st Appointment' && firstApptSpecEl) {
+//       firstApptSpecEl.forEach(function (element) {
+//         element.setAttribute('class', 'show-content');
+//       });
+//     } else if (selectedValue === '2nd Appointment' && secondApptSpecEl) {
+//       secondApptSpecEl.forEach(function (element) {
+//         element.setAttribute('class', 'show-content');
+//       });
+//     } else if (selectedValue === '3rd Appointment' && thirdApptSpecEl) {
+//       thirdApptSpecEl.forEach(function (element) {
+//         element.setAttribute('class', 'show-content');
+//       });
+//     } else if (selectedValue === 'Post Appointment' && postApptSpecEl) {
+//       postApptSpecEl.forEach(function (element) {
+//         element.setAttribute('class', 'show-content');
+//       });
+//     }
+
+//     updateHtmlNotes();
+//   });
+// }
 
 function setContAppt() {
   if (!contApptEl) {
@@ -403,21 +598,21 @@ function setPostApptWorkedOn() {
   });
 }
 
-// TODO: Add a "show all" option to allow any appointment worked on items to be selected
+// TODO: Add a "show all" option to allow any appointment worked on items to be selected on any appt value
 function updateWorkedOn() {
-  dashNavText = dashNavEl && dashNavEl.checked ? `\n  <li>Dashboard/Account Navigation</li>` : ``;
-  extraPageText = extraPageEl && extraPageEl.checked ? `\n  <li>Extra Pages</li>` : ``;
-  createCatText = createCatEl && createCatEl.checked ? `\n  <li>Creating Categories</li>` : '';
-  organizeCatText = organizeCatEl && organizeCatEl.checked ? `\n  <li>Organizing Categories</li>` : '';
-  createProdText = createProdEl && createProdEl.checked ? `\n  <li>Creating Products</li>` : '';
-  prodGridText = prodGridEl && prodGridEl.checked ? `\n  <li>Products Grid</li>` : '';
-  catProdText = catProdEl && catProdEl.checked ? `\n  <li>Categorizing Products</li>` : '';
+  dashNavText = dashNavEl && dashNavEl.checked ? `\n <li>Dashboard/Account Navigation</li>` : ``;
+  extraPageText = extraPageEl && extraPageEl.checked ? `\n <li>Extra Pages</li>` : ``;
+  createCatText = createCatEl && createCatEl.checked ? `\n <li>Creating Categories</li>` : '';
+  organizeCatText = organizeCatEl && organizeCatEl.checked ? `\n <li>Organizing Categories</li>` : '';
+  createProdText = createProdEl && createProdEl.checked ? `\n <li>Creating Products</li>` : '';
+  prodGridText = prodGridEl && prodGridEl.checked ? `\n <li>Products Grid</li>` : '';
+  catProdText = catProdEl && catProdEl.checked ? `\n <li>Categorizing Products</li>` : '';
 
-  discountsText = discountsEl && discountsEl.checked ? `\n  <li>Discounts</li>` : '';
-  checkoutSectionsText = checkoutSectionsEl && checkoutSectionsEl.checked ? `\n  <li>Checkout Sections</li>` : '';
-  payPalText = payPalEl && payPalEl.checked ? `\n  <li>Linked PayPal/Apple Pay</li>` : '';
-  testOrderText = testOrderEl && testOrderEl.checked ? `\n  <li>Creating a Test Order</li>` : '';
-  processOrderText = processOrderEl && processOrderEl.checked ? `\n  <li>Processing Test Order</li>` : '';
+  discountsText = discountsEl && discountsEl.checked ? `\n <li>Discounts</li>` : '';
+  checkoutSectionsText = checkoutSectionsEl && checkoutSectionsEl.checked ? `\n <li>Checkout Sections</li>` : '';
+  payPalText = payPalEl && payPalEl.checked ? `\n <li>Linked PayPal/Apple Pay</li>` : '';
+  testOrderText = testOrderEl && testOrderEl.checked ? `\n <li>Creating a Test Order</li>` : '';
+  processOrderText = processOrderEl && processOrderEl.checked ? `\n <li>Processing Test Order</li>` : '';
 
   updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
   unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products</li>` : '';
@@ -800,14 +995,16 @@ function setPostApptExtras() {
   });
 }
 
-// TODO: Remove the ⋅ symbol from date
 function setNextAppointment() {
   nextAppointmentEl.addEventListener('input', function (event) {
+    var nextApptOriginalStr = event.target.value;
+    var nextApptNewStr = nextApptOriginalStr.replace('⋅', ', ');
+
     if (!event.target.value) {
       nextAppointmentText = '';
     } else {
       nextAppointmentText = `<p>
-  Set next Warhead appointment for ${event.target.value}.
+  Set next Warhead appointment for ${nextApptNewStr}.
 </p>
 `;
     }
@@ -829,9 +1026,19 @@ function setNextTopic() {
   });
 }
 
-// TODO: Get initials from local storage and have it ADDED TO the html notes ON PAGE LOAD
 function setInitials() {
+  storedInitials = localStorage.getItem('initials');
+
+  if (storedInitials) {
+    initialsEl.value = storedInitials;
+    initialsText = `<p> 
+  -${storedInitials}
+</p>
+`;
+  }
   initialsEl.addEventListener('keyup', function (event) {
+    var currentInitials = event.target.value;
+
     if (!event.target.value) {
       initialsText = '';
     } else {
@@ -839,36 +1046,43 @@ function setInitials() {
   -${event.target.value}
 </p>
 `;
-      var initials = event.target.value;
-      localStorage.setItem('initials', initials);
+
+      localStorage.setItem('initials', currentInitials);
     }
     updateHtmlNotes();
   });
 }
 
-handleApptSelection();
-setContAppt();
-setIntroCompleted();
-setHwCompleted();
-setHwPercent();
-setFirstApptWorkedOn();
-setSecondApptWorkedOn();
-setThirdApptWorkedOn();
-setPostApptWorkedOn();
-setFirstApptAssignedHw();
-setSecondApptAssignedHw();
-setThirdApptAssignedHw();
-setPostChecklist();
-setAdditionalNotes();
-setRegisteredBusiness();
-setCompletionForm();
-setSupplierManagement();
-setPostApptExtras();
-setNextAppointment();
-setNextTopic();
-setInitials();
+document.addEventListener('DOMContentLoaded', () => {
+  htmlNotesEl.value = '';
 
-// ✅ TODO: User selects an appointment, the coresponding form appears and the first line of html is added to output panel
-// TODO: As user fills out form, the appropriate html notes are added to the output panel
-// TODO: All form inputs go back to default on page load/selecting another appointment
-// TODO: When user clicks on the output panel, the notes are copied
+  var allForms = document.querySelectorAll('form');
+
+  allForms.forEach((form) => {
+    form.reset();
+  });
+
+  copyHtmlNotes();
+  setShowAllWorkedOn();
+  handleApptSelection();
+  setContAppt();
+  setIntroCompleted();
+  setHwCompleted();
+  setHwPercent();
+  setFirstApptWorkedOn();
+  setSecondApptWorkedOn();
+  setThirdApptWorkedOn();
+  setPostApptWorkedOn();
+  setFirstApptAssignedHw();
+  setSecondApptAssignedHw();
+  setThirdApptAssignedHw();
+  setPostChecklist();
+  setAdditionalNotes();
+  setRegisteredBusiness();
+  setCompletionForm();
+  setSupplierManagement();
+  setPostApptExtras();
+  setNextAppointment();
+  setNextTopic();
+  setInitials();
+});

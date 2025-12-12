@@ -13,7 +13,7 @@
         <nav id="primary-nav" aria-label="Primary Navigation">
           <ul>
             <li>Note Builder</li>
-            <li>Note Snippets</li>
+            <!-- <li>Note Snippets</li> -->
           </ul>
         </nav>
       </header>
@@ -23,7 +23,7 @@
           <form action="">
             <label for="appointment">Appointment</label>
             <select name="appointment" id="appointment">
-              <option value="default">select appointment</option>
+              <option value="default" selected>select appointment</option>
               <option value="1st Appointment">1st Appointment</option>
               <option value="2nd Appointment">2nd Appointment</option>
               <option value="3rd Appointment">3rd Appointment</option>
@@ -63,39 +63,72 @@
               <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
             </div>
 
-            <div class="first-appt hide-content">
+            <div>
+              <input type="checkbox" id="show-all-worked-on" />
+              <label for="show-all-worked-on">Show All Worked On Options</label>
+            </div>
+
+            <div id="worked-on">
               <p>Worked on:</p>
-              <div><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
+              <div class="first-appt"><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
 
-              <div><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
+              <div class="first-appt"><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
 
-              <div><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
+              <div class="first-appt"><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
 
-              <div><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
+              <div class="first-appt"><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
 
-              <div><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
+              <div class="first-appt"><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
 
-              <div><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
+              <div class="first-appt"><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
 
-              <div><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
+              <div class="first-appt"><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
+
+              <div class="second-appt"><input type="checkbox" name="discounts" id="discounts" /> <label for="discounts">Discounts</label></div>
+
+              <div class="second-appt"><input type="checkbox" name="checkout-sections" id="checkout-sections" /> <label for="checkout-sections">Checkout Sections</label></div>
+
+              <div class="second-appt"><input type="checkbox" name="paypal-apple-pay" id="paypal-apple-pay" /> <label for="paypal-apple-pay">Linked PayPal/Apple Pay</label></div>
+
+              <div class="second-appt"><input type="checkbox" name="test-order" id="test-order" /> <label for="test-order">Creating a Test Order</label></div>
+
+              <div class="second-appt"><input type="checkbox" name="process-order" id="process-order" /> <label for="process-order">Processing Test Order</label></div>
+
+              <div class="third-appt"><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
+
+              <div class="third-appt"><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
             </div>
 
-            <div class="first-appt hide-content">
+            <div id="assigned-hw">
               <p>Assigned homework:</p>
-              <div><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
+              <div class="first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
 
-              <div><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
+              <div class="first-appt"><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
 
-              <div><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
+              <div class="first-appt"><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
 
-              <div><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
+              <div class="first-appt"><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
 
-              <div><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
+              <div class="first-appt"><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
 
-              <div><input type="checkbox" name="first-appt-continue-videos" id="first-appt-continue-videos" /> <label for="first-appt-continue-videos">Continue watching teachable videos</label></div>
+              <div class="first-appt"><input type="checkbox" name="first-appt-continue-videos" id="first-appt-continue-videos" /> <label for="first-appt-continue-videos">Continue watching teachable videos</label></div>
+
+              <div class="second-appt"><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
+
+              <div class="second-appt"><input type="checkbox" name="practice-discounts" id="practice-discounts" /> <label for="practice-discounts">Practice creating discounts</label></div>
+
+              <div class="second-appt"><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
+
+              <div class="second-appt"><input type="checkbox" name="second-appt-continue-videos" id="second-appt-continue-videos" /> <label for="second-appt-continue-videos">Continue watching teachable videos</label></div>
+
+              <div class="third-appt"><input type="checkbox" name="finish-videos" id="third-appt-finish-videos" /> <label for="finish-videos">Finish 3rd appointment teachable videos</label></div>
+
+              <div class="third-appt"><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating products using guide</label></div>
+
+              <div class="third-appt"><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
             </div>
 
-            <div class="second-appt hide-content">
+            <!-- <div class="second-appt hide-content">
               <p>Worked on:</p>
               <div><input type="checkbox" name="discounts" id="discounts" /> <label for="discounts">Discounts</label></div>
 
@@ -106,9 +139,9 @@
               <div><input type="checkbox" name="test-order" id="test-order" /> <label for="test-order">Creating a Test Order</label></div>
 
               <div><input type="checkbox" name="process-order" id="process-order" /> <label for="process-order">Processing Test Order</label></div>
-            </div>
+            </div> -->
 
-            <div class="second-appt hide-content">
+            <!-- <div class="second-appt hide-content">
               <p>Assigned homework:</p>
               <div><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
 
@@ -117,23 +150,23 @@
               <div><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
 
               <div><input type="checkbox" name="second-appt-continue-videos" id="second-appt-continue-videos" /> <label for="second-appt-continue-videos">Continue watching teachable videos</label></div>
-            </div>
+            </div> -->
 
-            <div class="third-appt hide-content">
+            <!-- <div class="third-appt hide-content">
               <p>Worked on:</p>
               <div><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
 
               <div><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
-            </div>
+            </div> -->
 
-            <div class="third-appt hide-content">
+            <!-- <div class="third-appt hide-content">
               <p>Assigned homework:</p>
               <div><input type="checkbox" name="finish-videos" id="third-appt-finish-videos" /> <label for="finish-videos">Finish 3rd appointment teachable videos</label></div>
 
               <div><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating products using guide</label></div>
 
               <div><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
-            </div>
+            </div> -->
 
             <div class="post-appt hide-content">
               <p>Worked on/Reviewed:</p>
@@ -264,6 +297,7 @@
 
         <section id="output-panel">
           <!-- Genterated HTML container goes here -->
+          <button id="copy-btn">Copy</button>
           <textarea name="html-notes" id="html-notes"></textarea>
         </section>
       </main>
