@@ -18,6 +18,10 @@ var firstApptWorkedOnItems = document.querySelectorAll('div:has(> #dashboard-nav
 var secondApptWorkedOnItems = document.querySelectorAll('div:has(> #discounts), ' + 'div:has(> #checkout-sections), ' + 'div:has(> #paypal-apple-pay), ' + 'div:has(> #test-order), ' + 'div:has(> #process-order) ');
 var thirdApptWorkedOnItems = document.querySelectorAll('div:has(> #updating-products), ' + 'div:has(> #unavailable-products)');
 
+var firstApptAssignedHwItems = document.querySelectorAll('div:has(> #first-appt-finish-videos), ' + 'div:has(> #review-extra-pages), ' + 'div:has(> #remove-products), ' + 'div:has(> #practice-categorizing-products), ' + 'div:has(> #practice-creating-categories), ' + 'div:has(> #first-appt-continue-videos)');
+var secondApptAssignedHwItems = document.querySelectorAll('div:has(> #second-appt-finish-videos), ' + 'div:has(> #practice-discounts), ' + 'div:has(> #practice-orders), ' + 'div:has(> #second-appt-continue-videos)');
+var thirdApptAssignedHwItems = document.querySelectorAll('div:has(> #third-appt-finish-videos), ' + 'div:has(> #practice-updating), ' + 'div:has(> #all-videos)');
+
 // * "Worked On" checkbox elements (1st Appt)
 var dashNavEl = document.querySelector('#dashboard-navigation');
 var extraPageEl = document.querySelector('#extra-pages');
@@ -110,6 +114,7 @@ var nextTopicEl = document.querySelector('#next-topic');
 var initialsEl = document.querySelector('#initials');
 var copyBtnEl = document.querySelector('#copy-btn');
 var showAllWorkedOnEl = document.querySelector('#show-all-worked-on');
+var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
 
 var htmlNotes = '';
 var currentApptValue = '';
@@ -215,43 +220,26 @@ function setShowAllWorkedOn() {
   });
 }
 
-// function setShowAllWorkedOn() {
-//   if (!showAllWorkedOnEl) {
-//     return;
-//   }
+function setShowAllAssignedHw() {
+  if (!showAllAssignedHwEl) {
+    return;
+  }
 
-//   showAllWorkedOnEl.addEventListener('change', function () {
-//     if (showAllWorkedOnEl.checked) {
-//       // SHOW ALL: make all individual "Worked On" divs visible
-//       firstApptWorkedOnItems.forEach(function (element) {
-//         // Ensure the individual item is visible
-//         element.classList.remove('hide-content');
-//         element.classList.add('show-content');
-//       });
-//       secondApptWorkedOnItems.forEach(function (element) {
-//         // Ensure the individual item is visible
-//         element.classList.remove('hide-content');
-//         element.classList.add('show-content');
-//       });
+  var allAssignedHwNodeLists = [firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems];
 
-//       thirdApptWorkedOnItems.forEach(function (element) {
-//         // Ensure the individual item is visible
-//         element.classList.remove('hide-content');
-//         element.classList.add('show-content');
-//       });
-//       // Also ensure the Post-Appt Worked On/Reviewed section is visible
-//       if (postApptWorkedOnReviewedEl) {
-//         postApptWorkedOnReviewedEl.classList.remove('hide-content');
-//         postApptWorkedOnReviewedEl.classList.add('show-content');
-//       }
-//     } else if (!showAllWorkedOnEl.checked) {
-//       // HIDE ALL: Re-run the main appointment selector logic
-//       // This is critical to hide the items that don't belong to the
-//       // currently selected appointment.
-//       handleApptSelection();
-//     }
-//   });
-// }
+  showAllAssignedHwEl.addEventListener('change', function () {
+    if (showAllAssignedHwEl.checked) {
+      allAssignedHwNodeLists.forEach(function (nodeList) {
+        nodeList.forEach(function (element) {
+          element.classList.remove('hide-content');
+          element.classList.add('show-content');
+        });
+      });
+    } else {
+      updateApptVisibility();
+    }
+  });
+}
 
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default') {
@@ -314,6 +302,17 @@ function updateApptVisibility() {
     });
   }
 
+  var allAssignedHwNodeLists = [firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems];
+
+  if (!showAllAssignedHwEl.checked) {
+    allAssignedHwNodeLists.forEach(function (nodeList) {
+      nodeList.forEach(function (element) {
+        element.classList.remove('show-content');
+        element.classList.add('hide-content');
+      });
+    });
+  }
+
   if (selectedValue === 'default') {
     nonSpecFormEl.classList.remove('show-content');
     nonSpecFormEl.classList.add('hide-content');
@@ -334,23 +333,35 @@ function updateApptVisibility() {
     });
   }
 
+  var selectedAssignedHwItems = null;
+
   if (selectedValue === '1st Appointment' && firstApptSpecEl) {
     firstApptSpecEl.forEach(function (element) {
       element.classList.remove('hide-content');
       element.classList.add('show-content');
     });
+    selectedAssignedHwItems = firstApptAssignedHwItems;
   } else if (selectedValue === '2nd Appointment' && secondApptSpecEl) {
     secondApptSpecEl.forEach(function (element) {
       element.classList.remove('hide-content');
       element.classList.add('show-content');
     });
+    selectedAssignedHwItems = secondApptAssignedHwItems;
   } else if (selectedValue === '3rd Appointment' && thirdApptSpecEl) {
     thirdApptSpecEl.forEach(function (element) {
       element.classList.remove('hide-content');
       element.classList.add('show-content');
     });
+    selectedAssignedHwItems = thirdApptAssignedHwItems;
   } else if (selectedValue === 'Post Appointment' && postApptSpecEl) {
     postApptSpecEl.forEach(function (element) {
+      element.classList.remove('hide-content');
+      element.classList.add('show-content');
+    });
+  }
+
+  if (selectedAssignedHwItems && !showAllAssignedHwEl.checked) {
+    selectedAssignedHwItems.forEach(function (element) {
       element.classList.remove('hide-content');
       element.classList.add('show-content');
     });
@@ -366,97 +377,6 @@ function handleApptSelection() {
     updateApptVisibility();
   });
 }
-
-// function handleApptSelection() {
-//   apptSelectEl.addEventListener('change', function (event) {
-//     resetHtmlNotes();
-//     setInitials();
-//     var selectedValue = event.target.value;
-//     var nextPrompts = [nextApptDatePromptEl, nextTopicPromptEl, additionalTrainingPromptEl];
-//     currentApptValue = selectedValue;
-
-//     var allForms = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl];
-
-//     allForms.forEach(function (nodeList) {
-//       nodeList.forEach(function (element) {
-//         element.setAttribute('class', 'hide-content');
-//       });
-//     }); // ... existing resetHtmlNotes() and selectedValue logic ...
-
-//     // Inside handleApptSelection function:
-//     // --- NEW LOGIC: Conditional Hiding ---
-//     if (showAllWorkedOnEl && !showAllWorkedOnEl.checked) {
-//       // Hide all general "Worked On" items first
-//       firstApptWorkedOnItems.forEach(function (element) {
-//         // Ensure the individual item is visible
-//         element.classList.remove('show-content');
-//         element.classList.add('hide-content');
-//       });
-//       secondApptWorkedOnItems.forEach(function (element) {
-//         // Ensure the individual item is visible
-//         element.classList.remove('show-content');
-//         element.classList.add('hide-content');
-//       });
-
-//       thirdApptWorkedOnItems.forEach(function (element) {
-//         // Ensure the individual item is visible
-//         element.classList.remove('show-content');
-//         element.classList.add('hide-content');
-//       });
-
-//       // Hide the Post-Appt Worked On/Reviewed container
-//       if (postApptWorkedOnReviewedEl) {
-//         postApptWorkedOnReviewedEl.classList.remove('show-content');
-//         postApptWorkedOnReviewedEl.classList.add('hide-content');
-//       }
-
-//       // Hide all Appointment-Specific content blocks (like Intro, Homework lists, etc.)
-//       var allForms = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl];
-//       allForms.forEach(function (nodeList) {
-//         nodeList.forEach(function (element) {
-//           element.classList.remove('show-content');
-//           element.classList.add('hide-content');
-//         });
-//       });
-//     } // ... rest of the function where you show the currently selected appointment (1st, 2nd, etc.) ...
-
-//     if (selectedValue === 'default') {
-//       nonSpecFormEl.setAttribute('class', 'hide-content');
-//     } else {
-//       nonSpecFormEl.setAttribute('class', 'show-content');
-//     }
-
-//     if (selectedValue === 'Post Appointment') {
-//       nextPrompts.forEach(function (element) {
-//         element.setAttribute('class', 'hide-content');
-//       });
-//     } else {
-//       nextPrompts.forEach(function (element) {
-//         element.setAttribute('class', 'show-content');
-//       });
-//     }
-
-//     if (selectedValue === '1st Appointment' && firstApptSpecEl) {
-//       firstApptSpecEl.forEach(function (element) {
-//         element.setAttribute('class', 'show-content');
-//       });
-//     } else if (selectedValue === '2nd Appointment' && secondApptSpecEl) {
-//       secondApptSpecEl.forEach(function (element) {
-//         element.setAttribute('class', 'show-content');
-//       });
-//     } else if (selectedValue === '3rd Appointment' && thirdApptSpecEl) {
-//       thirdApptSpecEl.forEach(function (element) {
-//         element.setAttribute('class', 'show-content');
-//       });
-//     } else if (selectedValue === 'Post Appointment' && postApptSpecEl) {
-//       postApptSpecEl.forEach(function (element) {
-//         element.setAttribute('class', 'show-content');
-//       });
-//     }
-
-//     updateHtmlNotes();
-//   });
-// }
 
 function setContAppt() {
   if (!contApptEl) {
@@ -598,7 +518,6 @@ function setPostApptWorkedOn() {
   });
 }
 
-// TODO: Add a "show all" option to allow any appointment worked on items to be selected on any appt value
 function updateWorkedOn() {
   dashNavText = dashNavEl && dashNavEl.checked ? `\n <li>Dashboard/Account Navigation</li>` : ``;
   extraPageText = extraPageEl && extraPageEl.checked ? `\n <li>Extra Pages</li>` : ``;
@@ -1064,6 +983,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   copyHtmlNotes();
   setShowAllWorkedOn();
+  setShowAllAssignedHw();
   handleApptSelection();
   setContAppt();
   setIntroCompleted();
