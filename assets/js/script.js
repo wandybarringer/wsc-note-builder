@@ -13,6 +13,8 @@ var hwNoEl = document.querySelector('#hw-no');
 var hwNoneEl = document.querySelector('#hw-none');
 var hwYesEl = document.querySelector('#hw-yes');
 var hwPercentEl = document.querySelector('#hw-percent');
+var workedOnEl = document.querySelector('#worked-on');
+var assignedHwEl = document.querySelector('#assigned-hw');
 
 var firstApptWorkedOnItems = document.querySelectorAll('div:has(> #dashboard-navigation), ' + 'div:has(> #extra-pages), ' + 'div:has(> #creating-categories), ' + 'div:has(> #organizing-categories), ' + 'div:has(> #creating-products), ' + 'div:has(> #products-grid), ' + 'div:has(> #categorizing-products) ');
 var secondApptWorkedOnItems = document.querySelectorAll('div:has(> #discounts), ' + 'div:has(> #checkout-sections), ' + 'div:has(> #paypal-apple-pay), ' + 'div:has(> #test-order), ' + 'div:has(> #process-order) ');
@@ -113,8 +115,12 @@ var nextAppointmentEl = document.querySelector('#next-appointment-date');
 var nextTopicEl = document.querySelector('#next-topic');
 var initialsEl = document.querySelector('#initials');
 var copyBtnEl = document.querySelector('#copy-btn');
+var showAllWorkedOnContEl = document.querySelector('#show-all-worked-on-container');
+var showAllAssignedHwContEl = document.querySelector('#show-all-assigned-hw-container');
 var showAllWorkedOnEl = document.querySelector('#show-all-worked-on');
 var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
+var customWorkedOnChecboxEl = document.querySelector('#custom-worked-on-checkbox');
+var customWorkedOnTextEl = document.querySelector('#custom-worked-on-text');
 
 var htmlNotes = '';
 var currentApptValue = '';
@@ -143,6 +149,7 @@ var unavailableProdText = '';
 var stripeText = '';
 var variantsText = '';
 var unavailableCjProdText = '';
+var customWorkedonText = '';
 
 var assignedHwText = '';
 var firstApptFinishVidText = '';
@@ -279,7 +286,7 @@ function resetHtmlNotes() {
 
 function updateApptVisibility() {
   var selectedValue = apptSelectEl.value;
-  var nextPrompts = [nextApptDatePromptEl, nextTopicPromptEl, additionalTrainingPromptEl];
+  var nextPrompts = [nextApptDatePromptEl, nextTopicPromptEl];
   currentApptValue = selectedValue;
 
   var allForms = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl];
@@ -335,25 +342,42 @@ function updateApptVisibility() {
 
   var selectedAssignedHwItems = null;
 
-  if (selectedValue === '1st Appointment' && firstApptSpecEl) {
+  if (selectedValue === '1st Appointment') {
+    workedOnEl.setAttribute('class', 'show-content');
+    assignedHwEl.setAttribute('class', 'show-content');
+    showAllWorkedOnContEl.setAttribute('class', 'show-content');
+    showAllAssignedHwContEl.setAttribute('class', 'show-content');
     firstApptSpecEl.forEach(function (element) {
-      element.classList.remove('hide-content');
+      element.classList.remove('show-content');
       element.classList.add('show-content');
     });
     selectedAssignedHwItems = firstApptAssignedHwItems;
-  } else if (selectedValue === '2nd Appointment' && secondApptSpecEl) {
+  } else if (selectedValue === '2nd Appointment') {
+    workedOnEl.setAttribute('class', 'show-content');
+    assignedHwEl.setAttribute('class', 'show-content');
+    showAllWorkedOnContEl.setAttribute('class', 'show-content');
+    showAllAssignedHwContEl.setAttribute('class', 'show-content');
     secondApptSpecEl.forEach(function (element) {
-      element.classList.remove('hide-content');
+      element.classList.remove('show-content');
       element.classList.add('show-content');
     });
     selectedAssignedHwItems = secondApptAssignedHwItems;
-  } else if (selectedValue === '3rd Appointment' && thirdApptSpecEl) {
+  } else if (selectedValue === '3rd Appointment') {
+    workedOnEl.setAttribute('class', 'show-content');
+    assignedHwEl.setAttribute('class', 'show-content');
+    showAllWorkedOnContEl.setAttribute('class', 'show-content');
+    showAllAssignedHwContEl.setAttribute('class', 'show-content');
     thirdApptSpecEl.forEach(function (element) {
       element.classList.remove('hide-content');
       element.classList.add('show-content');
     });
     selectedAssignedHwItems = thirdApptAssignedHwItems;
-  } else if (selectedValue === 'Post Appointment' && postApptSpecEl) {
+  } else if (selectedValue === 'Post Appointment') {
+    workedOnEl.setAttribute('class', 'hide-content');
+    assignedHwEl.setAttribute('class', 'hide-content');
+    showAllWorkedOnContEl.setAttribute('class', 'hide-content');
+    showAllAssignedHwContEl.setAttribute('class', 'hide-content');
+
     postApptSpecEl.forEach(function (element) {
       element.classList.remove('hide-content');
       element.classList.add('show-content');
@@ -505,6 +529,35 @@ function setThirdApptWorkedOn() {
   });
 }
 
+function setCustomWorkedOn() {
+  let customKeyupListener = null;
+
+  customWorkedOnChecboxEl.addEventListener('change', function () {
+    if (customWorkedOnChecboxEl.checked) {
+      if (customKeyupListener === null) {
+        customKeyupListener = function (event) {
+          const value = event.target.value.trim();
+          customWorkedonText = value !== '' ? `\n <li>${value}</li>` : '';
+          updateWorkedOn();
+          updateHtmlNotes();
+        };
+      }
+      customWorkedOnTextEl.addEventListener('keyup', customKeyupListener);
+      const value = customWorkedOnTextEl.value.trim();
+      customWorkedonText = value !== '' ? `\n <li>${value}</li>` : '';
+      updateWorkedOn();
+      updateHtmlNotes();
+    } else {
+      if (customKeyupListener) {
+        customWorkedOnTextEl.removeEventListener('keyup', customKeyupListener);
+      }
+      customWorkedonText = '';
+      updateWorkedOn();
+      updateHtmlNotes();
+    }
+  });
+}
+
 function setPostApptWorkedOn() {
   var postApptWorkedOnElements = [stripeEl, variantsEl, unavailableCjProdEl];
 
@@ -536,9 +589,9 @@ function updateWorkedOn() {
   updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
   unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products</li>` : '';
 
-  if (dashNavEl.checked || extraPageEl.checked || createCatEl.checked || organizeCatEl.checked || createProdEl.checked || prodGridEl.checked || catProdEl.checked || discountsEl.checked || checkoutSectionsEl.checked || payPalEl.checked || testOrderEl.checked || processOrderEl.checked || updatingProdEl.checked || unavailableProdEl.checked) {
+  if (dashNavEl.checked || extraPageEl.checked || createCatEl.checked || organizeCatEl.checked || createProdEl.checked || prodGridEl.checked || catProdEl.checked || discountsEl.checked || checkoutSectionsEl.checked || payPalEl.checked || testOrderEl.checked || processOrderEl.checked || updatingProdEl.checked || unavailableProdEl.checked || customWorkedOnChecboxEl.checked) {
     workedOnText = `Worked On: 
-<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}
+<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}${customWorkedonText}
 </ul>
 `;
   } else {
@@ -992,6 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setFirstApptWorkedOn();
   setSecondApptWorkedOn();
   setThirdApptWorkedOn();
+  setCustomWorkedOn();
   setPostApptWorkedOn();
   setFirstApptAssignedHw();
   setSecondApptAssignedHw();

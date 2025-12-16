@@ -92,9 +92,11 @@
               <div class="third-appt"><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
 
               <div class="third-appt"><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
+
+              <div><input type="checkbox" name="custom-worked-on" id="custom-worked-on-checkbox" /> <input type="text" name="custom-worked-on" id="custom-worked-on-text" placeholder="Custome text" /></div>
             </div>
 
-            <div>
+            <div id="show-all-worked-on-container">
               <input type="checkbox" id="show-all-worked-on" />
               <label for="show-all-worked-on">Show All Worked On Options</label>
             </div>
@@ -128,7 +130,7 @@
               <div class="third-appt"><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
             </div>
 
-            <div>
+            <div id="show-all-assigned-hw-container">
               <input type="checkbox" id="show-all-assigned-hw" />
               <label for="show-all-assigned-hw">Show All Assigned Homework Options</label>
             </div>
@@ -234,7 +236,7 @@
               <input type="radio" name="live" id="live-yes" value="Yes" />
             </div>
 
-            <div id="additional-training-prompt">
+            <div class="hide-content" id="additional-training-prompt">
               <label for="additional-training">Is client requesting additional WH training?</label>
               <input type="checkbox" name="additional-training" id="additional-training" />
             </div>
