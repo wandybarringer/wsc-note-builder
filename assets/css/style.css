@@ -1,9 +1,15 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html {
-  color-scheme: dark;
+:root {
+  --primary-bg: #fdfdff;
+  --primary-text: #393d3f;
+  --secondary-bg: #c6c5b9;
+  --blue-01: #62929e;
+  --blue-02: #546a7b;
 }
 
 .wrapper {
@@ -13,20 +19,28 @@ html {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background: var(--primary-bg);
+  color: var(--primary-text);
 }
 
 header ul {
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 0;
   padding: 0;
   font-size: 3rem;
 }
 
-.flexbox {
+.main-flexbox {
   display: flex;
   justify-content: space-between;
+}
+
+.panel-flex {
+  block-size: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .hide-content {
@@ -38,14 +52,13 @@ header ul {
 }
 
 #input-panel {
-  background: darkblue;
+  background: var(--secondary-bg);
   font-size: 1.2rem;
+  inline-size: 40vw;
 }
 
 #output-panel {
-  background: darkcyan;
-  inline-size: 50%;
-  block-size: 80vh;
+  inline-size: 40vw;
 }
 
 textarea {
@@ -53,6 +66,8 @@ textarea {
 }
 
 #html-notes {
+  background: var(--blue-02);
+  color: var(--primary-bg);
   inline-size: 100%;
   block-size: 100%;
 }
