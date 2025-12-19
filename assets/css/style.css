@@ -116,8 +116,9 @@ label {
 }
 
 textarea {
-  max-width: 100%;
-  min-width: 100%;
+  inline-size: 100%;
+  resize: vertical;
+  min-block-size: 30px;
   border: var(--input-border) solid 1px;
 }
 
@@ -172,6 +173,10 @@ textarea {
 .main-flexbox {
   display: flex;
   justify-content: space-between;
+
+  @media screen and (width < 950px) {
+    flex-direction: column;
+  }
 }
 
 .panel-flex {
@@ -191,7 +196,7 @@ textarea {
   background: var(--primary-bg);
   border: var(--input-border) solid 1px;
   font-size: 1.2rem;
-  inline-size: 45%;
+  min-inline-size: 45%;
   line-height: 1.2;
   padding: 1rem;
 }
@@ -206,7 +211,7 @@ textarea {
 
 #output-panel {
   block-size: 80vh;
-  inline-size: 45%;
+  min-inline-size: 45%;
 }
 
 #copy-btn {
