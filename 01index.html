@@ -18,257 +18,263 @@
       </header>
 
       <main class="main-flexbox">
-        <section id="input-panel">
-          <div class="panel-flex">
-            <form action="">
-              <label for="appointment">Appointment</label>
-              <select name="appointment" id="appointment">
-                <option value="default" selected>select appointment</option>
-                <option value="1st Appointment">1st Appointment</option>
-                <option value="2nd Appointment">2nd Appointment</option>
-                <option value="3rd Appointment">3rd Appointment</option>
-                <option value="Post Appointment">Post Appointment</option>
-              </select>
-            </form>
+        <section id="input-panel" class="panel-flex">
+          <form action="">
+            <label for="appointment"></label>
+            <select name="appointment" id="appointment">
+              <option value="default" selected>Select template</option>
+              <option value="1st Appointment">1st Appointment</option>
+              <option value="2nd Appointment">2nd Appointment</option>
+              <option value="3rd Appointment">3rd Appointment</option>
+              <option value="Post Appointment">Post Appointment</option>
+            </select>
+          </form>
 
-            <form action="" class="hide-content" id="non-specific-form">
-              <div>
-                <label for="continuation">Continuation appointment?</label>
-                <input type="checkbox" name="continuation" id="continuation" class="continuation" />
-              </div>
+          <form action="" class="hide-content" id="non-specific-form">
+            <div>
+              <label for="continuation">Continuation appointment?</label>
+              <input type="checkbox" name="continuation" id="continuation" class="continuation" />
+            </div>
 
-              <div class="first-appt hide-content">
-                <label>Intro to WH completed?</label>
-                <label for="intro-no">No</label>
+            <div class="first-appt hide-content">
+              <label>Intro to WH completed?</label>
+              <div class="toggle-switch">
                 <input type="radio" name="intro" id="intro-no" value="No" />
-                <label for="intro-none">-</label>
+                <label for="intro-no">No</label>
                 <input type="radio" name="intro" id="intro-none" value="None" checked />
-                <label for="intro-yes">Yes</label>
+                <label for="intro-none">-</label>
                 <input type="radio" name="intro" id="intro-yes" value="Yes" />
+                <label for="intro-yes">Yes</label>
               </div>
+            </div>
 
-              <div>
-                <label>Homework completed?</label>
-                <label for="hw-no">No</label>
+            <div>
+              <label>Homework completed?</label>
+              <div class="toggle-switch">
                 <input type="radio" name="hw" id="hw-no" value="No" />
-                <label for="hw-none">-</label>
+                <label for="hw-no">No</label>
                 <input type="radio" name="hw" id="hw-none" value="None" checked />
-                <label for="hw-yes">Yes</label>
+                <label for="hw-none">-</label>
                 <input type="radio" name="hw" id="hw-yes" value="Yes" />
+                <label for="hw-yes">Yes</label>
               </div>
+            </div>
 
-              <!-- TODO: Clear button that sets number to null and removes html notes -->
-              <div>
-                <label for="hw-percent">Homework %</label>
-                <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
-              </div>
+            <!-- TODO: Clear button that sets number to null and removes html notes -->
+            <div>
+              <label for="hw-percent">Homework %</label>
+              <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
+            </div>
 
-              <div id="worked-on">
-                <p>Worked on:</p>
-                <div class="first-appt"><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
+            <div id="worked-on" class="grey-bg">
+              <p>Worked on:</p>
+              <div class="first-appt"><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
+              <div class="first-appt"><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
+              <div class="first-appt"><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
+              <div class="first-appt"><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
+              <div class="first-appt"><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
+              <div class="first-appt"><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
+              <div class="first-appt"><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
 
-                <div class="second-appt"><input type="checkbox" name="discounts" id="discounts" /> <label for="discounts">Discounts</label></div>
+              <div class="second-appt"><input type="checkbox" name="discounts" id="discounts" /> <label for="discounts">Discounts</label></div>
 
-                <div class="second-appt"><input type="checkbox" name="checkout-sections" id="checkout-sections" /> <label for="checkout-sections">Checkout Sections</label></div>
+              <div class="second-appt"><input type="checkbox" name="checkout-sections" id="checkout-sections" /> <label for="checkout-sections">Checkout Sections</label></div>
 
-                <div class="second-appt"><input type="checkbox" name="paypal-apple-pay" id="paypal-apple-pay" /> <label for="paypal-apple-pay">Linked PayPal/Apple Pay</label></div>
+              <div class="second-appt"><input type="checkbox" name="paypal-apple-pay" id="paypal-apple-pay" /> <label for="paypal-apple-pay">Linked PayPal/Apple Pay</label></div>
 
-                <div class="second-appt"><input type="checkbox" name="test-order" id="test-order" /> <label for="test-order">Creating a Test Order</label></div>
+              <div class="second-appt"><input type="checkbox" name="test-order" id="test-order" /> <label for="test-order">Creating a Test Order</label></div>
 
-                <div class="second-appt"><input type="checkbox" name="process-order" id="process-order" /> <label for="process-order">Processing Test Order</label></div>
+              <div class="second-appt"><input type="checkbox" name="process-order" id="process-order" /> <label for="process-order">Processing Test Order</label></div>
 
-                <div class="third-appt"><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
+              <div class="third-appt"><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
 
-                <div class="third-appt"><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
+              <div class="third-appt"><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
 
-                <div><input type="checkbox" name="custom-worked-on" id="custom-worked-on-checkbox" /> <input type="text" name="custom-worked-on" id="custom-worked-on-text" placeholder="Custome text" /></div>
-              </div>
+              <div><input type="checkbox" name="custom-worked-on" id="custom-worked-on-checkbox" /> <input type="text" name="custom-worked-on" id="custom-worked-on-text" placeholder="Custom text" /></div>
+            </div>
 
-              <div id="show-all-worked-on-container">
-                <input type="checkbox" id="show-all-worked-on" />
-                <label for="show-all-worked-on">Show All Worked On Options</label>
-              </div>
+            <div id="show-all-worked-on-container">
+              <label for="show-all-worked-on" class="show-all-emphasis">Show All Worked On Options</label>
+              <input type="checkbox" id="show-all-worked-on" />
+            </div>
 
-              <div id="assigned-hw">
-                <p>Assigned homework:</p>
-                <div class="first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
+            <div id="assigned-hw" class="grey-bg">
+              <p>Assigned homework:</p>
+              <div class="first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
+              <div class="first-appt"><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
+              <div class="first-appt"><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
+              <div class="first-appt"><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
+              <div class="first-appt"><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
 
-                <div class="first-appt"><input type="checkbox" name="first-appt-continue-videos" id="first-appt-continue-videos" /> <label for="first-appt-continue-videos">Continue watching teachable videos</label></div>
+              <div class="first-appt"><input type="checkbox" name="first-appt-continue-videos" id="first-appt-continue-videos" /> <label for="first-appt-continue-videos">Continue watching teachable videos</label></div>
 
-                <div class="second-appt"><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
+              <div class="second-appt"><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
 
-                <div class="second-appt"><input type="checkbox" name="practice-discounts" id="practice-discounts" /> <label for="practice-discounts">Practice creating discounts</label></div>
+              <div class="second-appt"><input type="checkbox" name="practice-discounts" id="practice-discounts" /> <label for="practice-discounts">Practice creating discounts</label></div>
 
-                <div class="second-appt"><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
+              <div class="second-appt"><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
 
-                <div class="second-appt"><input type="checkbox" name="second-appt-continue-videos" id="second-appt-continue-videos" /> <label for="second-appt-continue-videos">Continue watching teachable videos</label></div>
+              <div class="second-appt"><input type="checkbox" name="second-appt-continue-videos" id="second-appt-continue-videos" /> <label for="second-appt-continue-videos">Continue watching teachable videos</label></div>
 
-                <div class="third-appt"><input type="checkbox" name="finish-videos" id="third-appt-finish-videos" /> <label for="finish-videos">Finish 3rd appointment teachable videos</label></div>
+              <div class="third-appt"><input type="checkbox" name="finish-videos" id="third-appt-finish-videos" /> <label for="finish-videos">Finish 3rd appointment teachable videos</label></div>
 
-                <div class="third-appt"><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating products using guide</label></div>
+              <div class="third-appt"><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating products using guide</label></div>
 
-                <div class="third-appt"><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
-              </div>
+              <div class="third-appt"><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
+            </div>
 
-              <div id="show-all-assigned-hw-container">
-                <input type="checkbox" id="show-all-assigned-hw" />
-                <label for="show-all-assigned-hw">Show All Assigned Homework Options</label>
-              </div>
+            <div id="show-all-assigned-hw-container">
+              <label for="show-all-assigned-hw" class="show-all-emphasis">Show All Assigned Homework Options</label>
+              <input type="checkbox" id="show-all-assigned-hw" />
+            </div>
 
-              <div class="post-appt hide-content">
-                <p>Worked on/Reviewed:</p>
-                <div><input type="checkbox" name="stripe" id="stripe" /> <label for="stripe">Linked Stripe</label></div>
+            <div class="post-appt hide-content grey-bg">
+              <p>Worked on/Reviewed:</p>
+              <div><input type="checkbox" name="stripe" id="stripe" /> <label for="stripe">Linked Stripe</label></div>
 
-                <div><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensed Variants</label></div>
+              <div><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensed Variants</label></div>
 
-                <div><input type="checkbox" name="unavailable-cj-products" id="unavailable-cj-products" /> <label for="unavailable-cj-products">Managing Unavailable Products from CJ</label></div>
-              </div>
+              <div><input type="checkbox" name="unavailable-cj-products" id="unavailable-cj-products" /> <label for="unavailable-cj-products">Managing Unavailable Products from CJ</label></div>
+            </div>
 
-              <div class="post-appt hide-content">
-                <p>Post Training Checklist:</p>
-                <div><input type="checkbox" name="business-email" id="business-email" /> <label for="business-email">Business email appears on Settings & Extra Forms</label></div>
+            <div class="post-appt hide-content grey-bg">
+              <p>Post Training Checklist:</p>
+              <div><input type="checkbox" name="business-email" id="business-email" /> <label for="business-email">Business email appears on Settings & Extra Forms</label></div>
 
-                <div><input type="checkbox" name="time-zone" id="time-zone" /> <label for="time-zone">Time-zone is set to client's</label></div>
+              <div><input type="checkbox" name="time-zone" id="time-zone" /> <label for="time-zone">Time-zone is set to client's</label></div>
 
-                <div><input type="checkbox" name="tax-group" id="tax-group" /> <label for="tax-group">Default Tax Group set</label></div>
+              <div><input type="checkbox" name="tax-group" id="tax-group" /> <label for="tax-group">Default Tax Group set</label></div>
 
-                <div><input type="checkbox" name="modules" id="modules" /> <label for="modules">Shipping & Payment Modules are set</label></div>
+              <div><input type="checkbox" name="modules" id="modules" /> <label for="modules">Shipping & Payment Modules are set</label></div>
 
-                <div><input type="checkbox" name="test-items" id="test-items" /> <label for="test-items">Test items removed</label></div>
+              <div><input type="checkbox" name="test-items" id="test-items" /> <label for="test-items">Test items removed</label></div>
 
-                <div><input type="checkbox" name="brands" id="brands" /> <label for="brands">Unrelated brands removed</label></div>
+              <div><input type="checkbox" name="brands" id="brands" /> <label for="brands">Unrelated brands removed</label></div>
 
-                <div><input type="checkbox" name="generic-categories" id="generic-categories" /> <label for="generic-categories">Generic categories removed</label></div>
+              <div><input type="checkbox" name="generic-categories" id="generic-categories" /> <label for="generic-categories">Generic categories removed</label></div>
 
-                <div><input type="checkbox" name="varients-condensed" id="varients-condensed" /> <label for="varients-condensed">Variants are condensed</label></div>
+              <div><input type="checkbox" name="varients-condensed" id="varients-condensed" /> <label for="varients-condensed">Variants are condensed</label></div>
 
-                <div><input type="checkbox" name="tagline" id="tagline" /> <label for="tagline">Removed tagline placeholder text</label></div>
-              </div>
+              <div><input type="checkbox" name="tagline" id="tagline" /> <label for="tagline">Removed tagline placeholder text</label></div>
+            </div>
 
-              <div>
-                <label for="additional-notes">Additional Notes:</label>
-                <textarea name="additional-notes" id="additional-notes"></textarea>
-              </div>
+            <div class="form-group">
+              <label for="additional-notes">Additional Notes:</label>
+              <textarea name="additional-notes" id="additional-notes"></textarea>
+            </div>
 
-              <div class="first-appt hide-content">
-                <label>Started registering business?</label>
-                <label for="registered-no">No</label>
+            <div class="first-appt hide-content">
+              <label>Started registering business?</label>
+              <div class="toggle-switch">
                 <input type="radio" name="registered" id="registered-no" value="No" />
-                <label for="registered-none">-</label>
+                <label for="registered-no">No</label>
                 <input type="radio" name="registered" id="registered-none" value="None" checked />
-                <label for="registered-yes">Yes</label>
+                <label for="registered-none">-</label>
                 <input type="radio" name="registered" id="registered-yes" value="Yes" />
+                <label for="registered-yes">Yes</label>
               </div>
+            </div>
 
-              <div class="third-appt hide-content">
-                <label for="completion-form-sent">Completion form sent?</label>
-                <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
-              </div>
+            <div class="third-appt hide-content">
+              <label for="completion-form-sent">Completion form sent?</label>
+              <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
+            </div>
 
-              <div id="completion-form-signed-prompt">
-                <label>Client signed completion form?</label>
-                <label for="cf-signed-no">No</label>
+            <div id="completion-form-signed-prompt">
+              <label>Client signed completion form?</label>
+              <div class="toggle-switch">
                 <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
-                <label for="cf-signed-none">-</label>
+                <label for="cf-signed-no">No</label>
                 <input type="radio" name="cf-signed" id="cf-signed-none" value="None" checked />
-                <label for="cf-signed-yes">Yes</label>
+                <label for="cf-signed-none">-</label>
                 <input type="radio" name="cf-signed" id="cf-signed-yes" value="Yes" />
+                <label for="cf-signed-yes">Yes</label>
               </div>
+            </div>
 
-              <div id="why-not-signed-prompt">
-                <label for="why-not-signed">Why didn't client sign?</label>
-                <textarea name="why-not-signed" id="why-not-signed"></textarea>
-              </div>
+            <div id="why-not-signed-prompt" class="form-group">
+              <label for="why-not-signed">Why didn't client sign?</label>
+              <textarea name="why-not-signed" id="why-not-signed"></textarea>
+            </div>
 
-              <div class="third-appt hide-content">
-                <label for="booked-sm">Supplier Management set up?</label>
-                <input type="checkbox" name="booked-sm" id="booked-sm" />
-              </div>
+            <div class="third-appt hide-content">
+              <label for="booked-sm">Supplier Management set up?</label>
+              <input type="checkbox" name="booked-sm" id="booked-sm" />
+            </div>
 
-              <div id="sent-sm-guide-prompt">
-                <label for="sent-sm-guide">Sent SM How to Guide</label>
-                <input type="checkbox" name="sent-sm-guide" id="sent-sm-guide" />
-              </div>
+            <div id="sent-sm-guide-prompt">
+              <label for="sent-sm-guide">Sent SM How to Guide</label>
+              <input type="checkbox" name="sent-sm-guide" id="sent-sm-guide" />
+            </div>
 
-              <div id="enrolled-sm-prompt">
-                <label for="enrolled-sm">Enrolled in SM training course</label>
-                <input type="checkbox" name="enrolled-sm" id="enrolled-sm" />
-              </div>
+            <div id="enrolled-sm-prompt">
+              <label for="enrolled-sm">Enrolled in SM training course</label>
+              <input type="checkbox" name="enrolled-sm" id="enrolled-sm" />
+            </div>
 
-              <div id="sm-tech-assigned-prompt">
-                <label for="sm-tech">SM Tech assigned</label>
-                <input type="text" name="sm-tech" id="sm-tech" />
-              </div>
+            <div id="sm-tech-assigned-prompt">
+              <label for="sm-tech">SM Tech assigned</label>
+              <input type="text" name="sm-tech" id="sm-tech" />
+            </div>
 
-              <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
-              <div id="sm-appointment-date-prompt">
-                <label for="sm-appointment-date">Booked SM appointment on:</label>
-                <input type="text" name="sm-appointment-date" id="sm-appointment-date" />
-              </div>
+            <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
+            <div id="sm-appointment-date-prompt">
+              <label for="sm-appointment-date">Booked SM appointment on:</label>
+              <input type="text" name="sm-appointment-date" id="sm-appointment-date" />
+            </div>
 
-              <div class="post-appt hide-content">
-                <label>Is client's website live?</label>
-                <label for="live-no">No</label>
+            <div class="post-appt hide-content">
+              <label>Is client's website live?</label>
+              <div class="toggle-switch">
                 <input type="radio" name="live" id="live-no" value="No" />
-                <label for="live-none">-</label>
+                <label for="live-no">No</label>
                 <input type="radio" name="live" id="live-none" value="None" checked />
-                <label for="live-yes">Yes</label>
+                <label for="live-none">-</label>
                 <input type="radio" name="live" id="live-yes" value="Yes" />
+                <label for="live-yes">Yes</label>
               </div>
+            </div>
 
-              <div class="hide-content" id="additional-training-prompt">
-                <label for="additional-training">Is client requesting additional WH training?</label>
-                <input type="checkbox" name="additional-training" id="additional-training" />
-              </div>
+            <div class="hide-content" id="additional-training-prompt">
+              <label for="additional-training">Is client requesting additional WH training?</label>
+              <input type="checkbox" name="additional-training" id="additional-training" />
+            </div>
 
-              <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
-              <div class="post-appt hide-content">
-                <label for="sm-reminder">Reminded client about next SM appointment on:</label>
-                <input type="text" name="sm-reminder" id="sm-reminder" />
-              </div>
+            <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
+            <div class="post-appt hide-content">
+              <label for="sm-reminder">Reminded client about next SM appointment on:</label>
+              <input type="text" name="sm-reminder" id="sm-reminder" />
+            </div>
 
-              <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
-              <div id="next-appt-date-prompt">
-                <label for="next-appointment-date">Set next appointment on:</label>
-                <input type="text" name="next-appointment-date" id="next-appointment-date" />
-              </div>
+            <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
+            <div id="next-appt-date-prompt">
+              <label for="next-appointment-date">Set next appointment on:</label>
+              <input type="text" name="next-appointment-date" id="next-appointment-date" />
+            </div>
 
-              <div id="next-topic-prompt">
-                <label for="next-topic">Next topic:</label>
-                <textarea name="next-topic" id="next-topic"></textarea>
-              </div>
+            <div id="next-topic-prompt" class="form-group">
+              <label for="next-topic">Next topic:</label>
+              <textarea name="next-topic" id="next-topic"></textarea>
+            </div>
 
-              <div><label for="initials">Initials</label> <input type="text" name="initials" id="initials" required /></div>
-            </form>
-          </div>
+            <div><label for="initials">Initials</label> <input type="text" name="initials" id="initials" required /></div>
+          </form>
         </section>
 
-        <section id="output-panel">
+        <section id="output-panel" class="panel-flex">
           <!-- Genterated HTML container goes here -->
-          <div class="panel-flex">
-            <button id="copy-btn">Copy</button>
-            <textarea name="html-notes" id="html-notes"></textarea>
-          </div>
+          <button id="copy-btn">Copy</button>
+          <textarea name="html-notes" id="html-notes"></textarea>
         </section>
       </main>
     </div>

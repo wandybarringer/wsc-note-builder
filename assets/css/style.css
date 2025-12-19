@@ -5,11 +5,14 @@
 }
 
 :root {
-  --primary-bg: #fdfdff;
-  --primary-text: #393d3f;
-  --secondary-bg: #c6c5b9;
-  --blue-01: #62929e;
-  --blue-02: #546a7b;
+  --primary-bg: #f8fafc;
+  --secondary-bg: #dddfe0;
+  --secondary-grey-bg: #dddfe0;
+  --secondary-blue-bg: #dee4e7;
+  --primary-text: #1e293b;
+  --input-border: #cbd5e1;
+  --primary-action: #2563eb;
+  --primary-emphasis: #770000;
 }
 
 .wrapper {
@@ -26,10 +29,90 @@ body {
 header ul {
   list-style: none;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 0;
   padding: 0;
   font-size: 3rem;
+  padding: 0.5rem;
+}
+
+select {
+  font: inherit;
+  padding: 0.3rem;
+  border: var(--input-border) solid 1px;
+  border-radius: 0.6rem;
+  text-align: center;
+}
+
+select:open {
+  background: var(--primary-bg);
+}
+
+option {
+  background: var(--primary-bg);
+}
+
+input {
+  border: var(--input-border) solid 1px;
+  padding: 0.15rem;
+  border-radius: 0.3rem;
+  font: inherit;
+  line-height: 0;
+}
+
+textarea {
+  max-width: 100%;
+  min-width: 100%;
+  border: var(--input-border) solid 1px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-switch {
+  display: inline-flex;
+  border: 1px solid var(--input-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: white;
+}
+
+/* Hide the actual radio circles */
+.toggle-switch input[type='radio'] {
+  display: none;
+}
+
+/* Style the labels to look like buttons */
+.toggle-switch label {
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  border-right: 1px solid var(--input-border);
+  text-align: center;
+  min-width: 50px;
+}
+
+/* Remove border from the last label */
+.toggle-switch label:last-of-type {
+  border-right: none;
+}
+
+/* Style for when a radio is CHECKED */
+.toggle-switch input[type='radio']:checked + label {
+  background-color: var(--primary-action);
+  color: white;
+}
+
+/* Hover effect for unselected options */
+.toggle-switch label:hover {
+  background-color: #f1f5f9;
+}
+
+.show-all-emphasis {
+  font-style: italic;
+  color: var(--primary-emphasis);
 }
 
 .main-flexbox {
@@ -38,7 +121,6 @@ header ul {
 }
 
 .panel-flex {
-  block-size: 80vh;
   display: flex;
   flex-direction: column;
 }
@@ -52,22 +134,30 @@ header ul {
 }
 
 #input-panel {
-  background: var(--secondary-bg);
+  background: var(--primary-bg);
+  border: var(--input-border) solid 1px;
   font-size: 1.2rem;
-  inline-size: 40vw;
+  inline-size: 45%;
+  line-height: 1.2;
+  padding: 1rem;
+}
+
+#non-specific-form > * {
+  padding-block: 0.15rem; /* Adds padding to the top and bottom */
+}
+
+.grey-bg {
+  background: var(--secondary-grey-bg);
 }
 
 #output-panel {
-  inline-size: 40vw;
-}
-
-textarea {
-  resize: none;
+  block-size: 80vh;
+  inline-size: 45%;
 }
 
 #html-notes {
-  background: var(--blue-02);
-  color: var(--primary-bg);
+  color: var(--primary-text);
   inline-size: 100%;
   block-size: 100%;
+  resize: none;
 }

@@ -343,8 +343,10 @@ function updateApptVisibility() {
   var selectedAssignedHwItems = null;
 
   if (selectedValue === '1st Appointment') {
-    workedOnEl.setAttribute('class', 'show-content');
-    assignedHwEl.setAttribute('class', 'show-content');
+    workedOnEl.classList.remove('hide-content');
+    workedOnEl.classList.add('show-content');
+    assignedHwEl.classList.remove('hide-content');
+    assignedHwEl.classList.add('show-content');
     showAllWorkedOnContEl.setAttribute('class', 'show-content');
     showAllAssignedHwContEl.setAttribute('class', 'show-content');
     firstApptSpecEl.forEach(function (element) {
@@ -353,8 +355,10 @@ function updateApptVisibility() {
     });
     selectedAssignedHwItems = firstApptAssignedHwItems;
   } else if (selectedValue === '2nd Appointment') {
-    workedOnEl.setAttribute('class', 'show-content');
-    assignedHwEl.setAttribute('class', 'show-content');
+    workedOnEl.classList.remove('hide-content');
+    workedOnEl.classList.add('show-content');
+    assignedHwEl.classList.remove('hide-content');
+    assignedHwEl.classList.add('show-content');
     showAllWorkedOnContEl.setAttribute('class', 'show-content');
     showAllAssignedHwContEl.setAttribute('class', 'show-content');
     secondApptSpecEl.forEach(function (element) {
@@ -363,8 +367,10 @@ function updateApptVisibility() {
     });
     selectedAssignedHwItems = secondApptAssignedHwItems;
   } else if (selectedValue === '3rd Appointment') {
-    workedOnEl.setAttribute('class', 'show-content');
-    assignedHwEl.setAttribute('class', 'show-content');
+    workedOnEl.classList.remove('hide-content');
+    workedOnEl.classList.add('show-content');
+    assignedHwEl.classList.remove('hide-content');
+    assignedHwEl.classList.add('show-content');
     showAllWorkedOnContEl.setAttribute('class', 'show-content');
     showAllAssignedHwContEl.setAttribute('class', 'show-content');
     thirdApptSpecEl.forEach(function (element) {
@@ -373,8 +379,10 @@ function updateApptVisibility() {
     });
     selectedAssignedHwItems = thirdApptAssignedHwItems;
   } else if (selectedValue === 'Post Appointment') {
-    workedOnEl.setAttribute('class', 'hide-content');
-    assignedHwEl.setAttribute('class', 'hide-content');
+    workedOnEl.classList.remove('show-content');
+    workedOnEl.classList.add('hide-content');
+    assignedHwEl.classList.remove('show-content');
+    assignedHwEl.classList.add('hide-content');
     showAllWorkedOnContEl.setAttribute('class', 'hide-content');
     showAllAssignedHwContEl.setAttribute('class', 'hide-content');
 
