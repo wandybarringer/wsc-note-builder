@@ -10,9 +10,10 @@
   --secondary-grey-bg: #dddfe0;
   --secondary-blue-bg: #dee4e7;
   --primary-text: #1e293b;
-  --input-border: #cbd5e1;
+  --input-border: #bdc6d1;
   --primary-action: #2563eb;
   --primary-emphasis: #770000;
+  --primary-hover: #dde8f3;
 }
 
 .wrapper {
@@ -37,19 +38,30 @@ header ul {
 }
 
 select {
+  cursor: pointer;
   font: inherit;
   padding: 0.3rem;
   border: var(--input-border) solid 1px;
   border-radius: 0.6rem;
   text-align: center;
+  cursor: pointer;
+}
+
+input:hover,
+input[type='checkbox']:hover,
+input[type='radio']:hover,
+select:hover {
+  background: var(--primary-hover);
 }
 
 select:open {
   background: var(--primary-bg);
+  cursor: pointer;
 }
 
 option {
   background: var(--primary-bg);
+  cursor: pointer;
 }
 
 input {
@@ -58,6 +70,49 @@ input {
   border-radius: 0.3rem;
   font: inherit;
   line-height: 0;
+  cursor: pointer;
+}
+
+input[type='text'],
+input[type='number'] {
+  cursor: text;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: var(--input-border) solid 1px;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+}
+
+input[type='checkbox']:checked {
+  background-color: var(--primary-action);
+}
+
+input[type='checkbox']::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  background-color: white;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); /* Checkmark shape */
+}
+
+input[type='checkbox']:checked::before {
+  transform: scale(1);
+}
+
+label {
+  cursor: pointer;
+}
+
+.default-pointer {
+  cursor: default;
 }
 
 textarea {
@@ -74,7 +129,7 @@ textarea {
 .toggle-switch {
   display: inline-flex;
   border: 1px solid var(--input-border);
-  border-radius: 0.5rem;
+  border-radius: 4px;
   overflow: hidden;
   background: white;
 }
@@ -87,11 +142,10 @@ textarea {
 /* Style the labels to look like buttons */
 .toggle-switch label {
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
+  font: inherit;
   border-right: 1px solid var(--input-border);
   text-align: center;
-  min-width: 50px;
+  min-width: 40px;
 }
 
 /* Remove border from the last label */
@@ -107,7 +161,7 @@ textarea {
 
 /* Hover effect for unselected options */
 .toggle-switch label:hover {
-  background-color: #f1f5f9;
+  background-color: var(--primary-hover);
 }
 
 .show-all-emphasis {
@@ -153,6 +207,24 @@ textarea {
 #output-panel {
   block-size: 80vh;
   inline-size: 45%;
+}
+
+#copy-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  color: var(--primary-text);
+  padding: 0.3rem;
+  border: var(--input-border) solid 1px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+}
+
+#copy-btn:hover {
+  background: var(--primary-hover);
 }
 
 #html-notes {
