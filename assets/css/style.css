@@ -6,14 +6,32 @@
 
 :root {
   --primary-bg: #f8fafc;
-  --secondary-bg: #dddfe0;
+  --secondary-bg: #f4f4f5;
   --secondary-grey-bg: #dddfe0;
-  --secondary-blue-bg: #dee4e7;
   --primary-text: #1e293b;
+  --secondary-text: #f8fafc;
   --input-border: #bdc6d1;
   --primary-action: #2563eb;
-  --primary-emphasis: #770000;
+  --primary-emphasis: #910202;
   --primary-hover: #dde8f3;
+  --dark-light-action: #e1e4eb;
+  --toggle-bg: #ccc;
+  --toggle-round: #fff;
+}
+
+[data-theme='dark'] {
+  --primary-bg: #353535;
+  --secondary-bg: #6e6e6e;
+  --secondary-grey-bg: #3f3f3f;
+  --primary-text: #f8fafc;
+  --secondary-text: #f8fafc;
+  --input-border: #53565a;
+  --primary-action: #4165b4;
+  --primary-emphasis: #b82d2d;
+  --primary-hover: #afb0b1;
+  --dark-light-action: #1b1b1b;
+  --toggle-bg: #2563eb;
+  --toggle-round: #fff;
 }
 
 .wrapper {
@@ -27,12 +45,14 @@ body {
   color: var(--primary-text);
 }
 
-header ul {
-  list-style: none;
+nav {
   display: flex;
   justify-content: center;
-  margin: 0;
-  padding: 0;
+  position: relative;
+}
+
+header ul {
+  list-style: none;
   font-size: 3rem;
   padding: 0.5rem;
 }
@@ -45,6 +65,8 @@ select {
   border-radius: 0.6rem;
   text-align: center;
   cursor: pointer;
+  color: var(--primary-text);
+  background: var(--secondary-bg);
 }
 
 input:hover,
@@ -55,11 +77,11 @@ select:hover {
 }
 
 select:open {
-  background: var(--primary-bg);
   cursor: pointer;
 }
 
 option {
+  color: var(--primary-text);
   background: var(--primary-bg);
   cursor: pointer;
 }
@@ -76,6 +98,9 @@ input {
 input[type='text'],
 input[type='number'] {
   cursor: text;
+  background: var(--secondary-bg);
+  color: var(--primary-text);
+  border: var(--input-border) solid 1px;
 }
 
 input[type='checkbox'] {
@@ -83,7 +108,7 @@ input[type='checkbox'] {
   width: 20px;
   height: 20px;
   border: var(--input-border) solid 1px;
-  background: white;
+  background: var(--primary-bg);
   border-radius: 4px;
   cursor: pointer;
   display: inline-grid;
@@ -99,7 +124,7 @@ input[type='checkbox']::before {
   width: 10px;
   height: 10px;
   transform: scale(0);
-  background-color: white;
+  background-color: var(--primary-bg);
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); /* Checkmark shape */
 }
 
@@ -119,6 +144,8 @@ textarea {
   inline-size: 100%;
   resize: vertical;
   min-block-size: 30px;
+  background: var(--secondary-bg);
+  color: var(--primary-text);
   border: var(--input-border) solid 1px;
 }
 
@@ -132,7 +159,7 @@ textarea {
   border: 1px solid var(--input-border);
   border-radius: 4px;
   overflow: hidden;
-  background: white;
+  background: var(--primary-bg);
 }
 
 /* Hide the actual radio circles */
@@ -157,12 +184,81 @@ textarea {
 /* Style for when a radio is CHECKED */
 .toggle-switch input[type='radio']:checked + label {
   background-color: var(--primary-action);
-  color: white;
+  color: var(--secondary-text);
 }
 
 /* Hover effect for unselected options */
 .toggle-switch label:hover {
   background-color: var(--primary-hover);
+}
+
+#dark-light-container {
+  position: absolute;
+  right: 0;
+  top: 25%;
+  border: none;
+  background: none;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  appearance: none; /* Add this to ensure it doesn't try to render your custom checkmark */
+  position: absolute; /* Keeps it from taking up space */
+  pointer-events: none; /* Let clicks pass through to the slider/label */
+  border: none;
+  background: none;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+/* Makes the sliding knob a perfect circle */
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider {
+  background-color: var(--toggle-bg);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  background-color: var(--toggle-round);
+  bottom: 4px;
+  content: '';
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+  border-radius: 50%;
+}
+
+/* Move the circle */
+#dark-light-toggle:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Change the track color */
+#dark-light-toggle:checked + .slider {
+  background-color: var(--primary-action);
 }
 
 .show-all-emphasis {
@@ -202,7 +298,7 @@ textarea {
 }
 
 #non-specific-form > * {
-  padding-block: 0.15rem; /* Adds padding to the top and bottom */
+  padding-block: 0.15rem;
 }
 
 .grey-bg {
@@ -221,6 +317,7 @@ textarea {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.2rem;
   color: var(--primary-text);
+  background: var(--secondary-grey-bg);
   padding: 0.3rem;
   border: var(--input-border) solid 1px;
   text-align: center;

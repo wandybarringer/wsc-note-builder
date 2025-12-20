@@ -122,6 +122,18 @@ var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
 var customWorkedOnChecboxEl = document.querySelector('#custom-worked-on-checkbox');
 var customWorkedOnTextEl = document.querySelector('#custom-worked-on-text');
 
+// * Dark/Light mode toggle elements
+
+var toggleSwitch = document.querySelector('#dark-light-toggle');
+// TODO: Put into function, call and make sure to reset position and theme to light - save theme to local storage
+toggleSwitch.addEventListener('change', function () {
+  if (toggleSwitch.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+});
+
 var htmlNotes = '';
 var currentApptValue = '';
 var contText = '';
