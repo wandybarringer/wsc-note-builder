@@ -123,16 +123,8 @@ var customWorkedOnChecboxEl = document.querySelector('#custom-worked-on-checkbox
 var customWorkedOnTextEl = document.querySelector('#custom-worked-on-text');
 
 // * Dark/Light mode toggle elements
-
 var toggleSwitch = document.querySelector('#dark-light-toggle');
-// TODO: Put into function, call and make sure to reset position and theme to light - save theme to local storage
-toggleSwitch.addEventListener('change', function () {
-  if (toggleSwitch.checked) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
-});
+var currentTheme = document.documentElement.getAttribute('data-theme');
 
 var htmlNotes = '';
 var currentApptValue = '';
@@ -211,6 +203,29 @@ var nextAppointmentText = '';
 var nextTopicText = '';
 var storedInitials = '';
 var initialsText = '';
+
+// TODO: save theme to local storage
+function setThemeToggle() {
+  document.addEventListener('DOMContentLoaded', function () {
+    var savedTheme = localStorage.getItem('theme'); // Look for a saved setting
+
+    // Apply the saved theme on load
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggleSwitch.checked = true;
+    }
+
+    toggleSwitch.addEventListener('change', function () {
+      if (toggleSwitch.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark'); // Save preference
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light'); // Save preference
+      }
+    });
+  });
+}
 
 function copyHtmlNotes() {
   copyBtnEl.addEventListener('click', function () {
@@ -1080,3 +1095,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setNextTopic();
   setInitials();
 });
+
+setThemeToggle();

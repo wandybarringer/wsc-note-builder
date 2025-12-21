@@ -187,11 +187,6 @@ textarea {
   color: var(--secondary-text);
 }
 
-/* Hover effect for unselected options */
-.toggle-switch label:hover {
-  background-color: var(--primary-hover);
-}
-
 #dark-light-container {
   position: absolute;
   right: 0;
@@ -258,6 +253,16 @@ textarea {
 
 /* Change the track color */
 #dark-light-toggle:checked + .slider {
+  background-color: var(--primary-action);
+}
+
+/* If the HTML has dark mode set, move the knob regardless of the checkbox state */
+[data-theme='dark'] #dark-light-toggle + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Ensure the track color updates too */
+[data-theme='dark'] #dark-light-toggle + .slider {
   background-color: var(--primary-action);
 }
 
