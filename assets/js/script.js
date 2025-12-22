@@ -204,7 +204,6 @@ var nextTopicText = '';
 var storedInitials = '';
 var initialsText = '';
 
-// TODO: save theme to local storage
 function setThemeToggle() {
   document.addEventListener('DOMContentLoaded', function () {
     var savedTheme = localStorage.getItem('theme'); // Look for a saved setting
@@ -742,7 +741,7 @@ function updatePostChecklist() {
   if (businessEmailText || timeZoneText || taxGroupText || modulesText || testItemsText || brandsText || genericCategoriesText || varientsCondensedText || taglineText) {
     postChecklistText = `Post Training Checklist:
 <ul>${businessEmailText}${timeZoneText}${taxGroupText}${modulesText}${testItemsText}${brandsText}${genericCategoriesText}${varientsCondensedText}${taglineText}
-<ul>
+</ul>
 `;
   } else {
     postChecklistText = '';

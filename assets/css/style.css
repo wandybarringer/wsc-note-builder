@@ -334,6 +334,10 @@ textarea {
   background: var(--primary-hover);
 }
 
+#copy-btn:active {
+  background: var(--secondary-grey-bg);
+}
+
 #html-notes {
   color: var(--primary-text);
   inline-size: 100%;
