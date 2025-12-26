@@ -11,6 +11,7 @@ var firstApptSpecEl = document.querySelectorAll('.first-appt');
 var secondApptSpecEl = document.querySelectorAll('.second-appt');
 var thirdApptSpecEl = document.querySelectorAll('.third-appt');
 var postApptSpecEl = document.querySelectorAll('.post-appt');
+var missedApptSpecEl = document.querySelectorAll('.missed-appt');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 var workedOnEl = document.querySelector('#worked-on');
@@ -106,6 +107,11 @@ var brandsEl = document.querySelector('#brands');
 var genericCategoriesEl = document.querySelector('#generic-categories');
 var varientsCondensedEl = document.querySelector('#varients-condensed');
 var taglineEl = document.querySelector('#tagline');
+
+// Missed Appointment Radio Elements
+var firstAttemptRadioEl = document.querySelector('#first-attempt');
+var secondAttemptRadioEl = document.querySelector('#second-attempt');
+var thirdAttemptRadioEl = document.querySelector('#third-attempt');
 
 // *COMPLETION FORM & SM (SUPPLIER MANAGEMENT) PROMPTS
 var completionFormSentEl = document.querySelector('#completion-form-sent');
@@ -227,6 +233,7 @@ var smReminderText = '';
 var nextAppointmentText = '';
 var nextTopicText = '';
 var storedInitials = '';
+var missedApptText = '';
 var initialsText = '';
 
 // *CORE UI & UTILITY FUNCTIONS
@@ -271,6 +278,9 @@ function updateApptVisibility() {
 
   var isShowAllWorkedOn = showAllWorkedOnEl.checked;
   var isShowAllHw = showAllAssignedHwEl.checked;
+  var isDefault = selectedValue === 'default';
+  var isPost = selectedValue === 'Post Appointment';
+  var isMissed = selectedValue === 'Missed Appointment';
 
   function setVisibility(item, show) {
     if (!item) return;
@@ -285,46 +295,54 @@ function updateApptVisibility() {
     }
   }
 
-  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems];
+  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl];
 
   allGroups.forEach(function (group) {
     setVisibility(group, false);
   });
 
-  setVisibility(nonSpecFormEl, selectedValue !== 'default');
+  setVisibility(nonSpecFormEl, !isDefault);
 
   setVisibility(firstApptSpecEl, selectedValue === '1st Appointment');
   setVisibility(secondApptSpecEl, selectedValue === '2nd Appointment');
   setVisibility(thirdApptSpecEl, selectedValue === '3rd Appointment');
-  setVisibility(postApptSpecEl, selectedValue === 'Post Appointment');
+  setVisibility(postApptSpecEl, isPost);
+  setVisibility(missedApptSpecEl, isMissed);
 
-  setVisibility(firstApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '1st Appointment');
-  setVisibility(secondApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '2nd Appointment');
-  setVisibility(thirdApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '3rd Appointment');
-  setVisibility(postApptWorkedOnItems, isShowAllWorkedOn || selectedValue === 'Post Appointment');
+  setVisibility(workedOnEl, !isDefault && !isMissed);
+  setVisibility(showAllWorkedOnContEl, !isDefault && !isMissed);
 
-  var isPost = selectedValue === 'Post Appointment';
+  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed);
+  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed);
 
-  setVisibility(firstApptAssignedHwItems, !isPost && (isShowAllHw || selectedValue === '1st Appointment'));
-  setVisibility(secondApptAssignedHwItems, !isPost && (isShowAllHw || selectedValue === '2nd Appointment'));
-  setVisibility(thirdApptAssignedHwItems, !isPost && (isShowAllHw || selectedValue === '3rd Appointment'));
+  setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed);
+  setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed);
 
-  if (isShowAllHw && !isPost) {
-    if (selectedValue === '1st Appointment') {
-      setVisibility(document.querySelectorAll('div:has(> #second-appt-continue-videos)'), false);
-    } else if (selectedValue === '2nd Appointment' || selectedValue === '3rd Appointment') {
-      setVisibility(document.querySelectorAll('div:has(> #first-appt-continue-videos)'), false);
+  var showGeneralInputs = !isDefault && !isMissed;
+
+  setVisibility(contApptEl.closest('div'), showGeneralInputs);
+  setVisibility(hwNoneEl.closest('.toggle-switch').parentElement, showGeneralInputs);
+  setVisibility(hwPercentEl.closest('div'), showGeneralInputs);
+  setVisibility(additionalNotesEl.closest('.form-group'), showGeneralInputs);
+
+  if (!isMissed) {
+    setVisibility(firstApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '1st Appointment');
+    setVisibility(secondApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '2nd Appointment');
+    setVisibility(thirdApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '3rd Appointment');
+    setVisibility(postApptWorkedOnItems, isShowAllWorkedOn || isPost);
+
+    if (isShowAllHw && !isPost) {
+      setVisibility(firstApptAssignedHwItems, isShowAllHw || selectedValue === '1st Appointment');
+      setVisibility(secondApptAssignedHwItems, isShowAllHw || selectedValue === '2nd Appointment');
+      setVisibility(thirdApptAssignedHwItems, isShowAllHw || selectedValue === '3rd Appointment');
+
+      if (selectedValue === '1st Appointment') {
+        setVisibility(document.querySelectorAll('div:has(> #second-appt-continue-videos)'), false);
+      } else if (selectedValue === '2nd Appointment' || selectedValue === '3rd Appointment') {
+        setVisibility(document.querySelectorAll('div:has(> #first-appt-continue-videos)'), false);
+      }
     }
   }
-
-  var isDefault = selectedValue === 'default';
-
-  setVisibility(workedOnEl, !isDefault);
-  setVisibility(assignedHwEl, !isDefault && !isPost);
-  setVisibility(showAllWorkedOnContEl, !isDefault);
-  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost);
-  setVisibility(nextApptDatePromptEl, !isDefault && !isPost);
-  setVisibility(nextTopicPromptEl, !isDefault && !isPost);
 
   updateHtmlNotes();
 }
@@ -361,12 +379,14 @@ function setShowAllAssignedHw() {
 // *NOTE GENERATION & RESET LOGIC
 
 function updateHtmlNotes() {
-  if (currentApptValue && currentApptValue !== 'default') {
+  if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment') {
     contactedClient = `<p>
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
     htmlNotes = contactedClient + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + nextTopicText + smReminderText + initialsText;
+  } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
+    htmlNotes = missedApptText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -1083,6 +1103,18 @@ function setInitials() {
       localStorage.setItem('initials', currentInitials);
     }
     updateHtmlNotes();
+  });
+}
+
+// *MISSED APPOINTMENT
+function setMissedAppointment() {
+  var missedApptRadioElements = [firstAttemptRadioEl, secondAttemptRadioEl, thirdAttemptRadioEl];
+
+  missedApptRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (firstAttemptRadioEl.checked) {
+      }
+    });
   });
 }
 

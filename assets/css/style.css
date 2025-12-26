@@ -71,6 +71,10 @@ section {
   flex-direction: column;
 }
 
+.input-spacing {
+  line-height: 1.6;
+}
+
 #input-panel {
   flex: 1 1 0;
   background: var(--input-panel-bg);

@@ -26,7 +26,7 @@
 
       <main class="main-flexbox">
         <section id="input-panel" class="panel-flex">
-          <!-- Note Template Selection -->
+          <!-- *Note Template Selection -->
           <form action="" id="template-selection">
             <label for="appointment"></label>
             <select name="appointment" id="appointment">
@@ -35,11 +35,12 @@
               <option value="2nd Appointment">2nd Appointment</option>
               <option value="3rd Appointment">3rd Appointment</option>
               <option value="Post Appointment">Post Appointment</option>
+              <option value="Missed Appointment">Missed Appointment</option>
             </select>
           </form>
 
-          <!-- Main input template -->
           <form action="" class="hide-content" id="non-specific-form">
+            <!-- *1st, 2nd, 3rd, Post & WH Assistance Inputs -->
             <div>
               <label for="continuation">Continuation appointment?</label>
               <input type="checkbox" name="continuation" id="continuation" class="continuation" />
@@ -232,7 +233,6 @@
               <input type="text" name="sm-tech" id="sm-tech" />
             </div>
 
-            <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
             <div id="sm-appointment-date-prompt">
               <label for="sm-appointment-date">Booked SM appointment on:</label>
               <input type="text" name="sm-appointment-date" id="sm-appointment-date" />
@@ -255,13 +255,11 @@
               <input type="checkbox" name="additional-training" id="additional-training" />
             </div>
 
-            <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
             <div class="post-appt hide-content">
               <label for="sm-reminder">Reminded client about next SM appointment on:</label>
               <input type="text" name="sm-reminder" id="sm-reminder" />
             </div>
 
-            <!-- TODO: Add date and time picker with correct format and reset button (MAYBE) -->
             <div id="next-appt-date-prompt">
               <label for="next-appointment-date">Set next appointment on:</label>
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
@@ -272,12 +270,70 @@
               <textarea name="next-topic" id="next-topic"></textarea>
             </div>
 
-            <div><label for="initials">Initials</label> <input type="text" name="initials" id="initials" required /></div>
+            <!-- *Missed Appointment Inputs -->
+            <div class="missed-appt panel-flex input-spacing">
+              <div class="panel-flex input-spacing">
+                <div>
+                  <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
+                  <label for="first-attempt">1st Attempt</label>
+                </div>
+                <div>
+                  <input type="radio" name="attempt" id="second-attempt" value="Second attempt" />
+                  <label for="second-attempt">2nd Attempt</label>
+                </div>
+                <div>
+                  <input type="radio" name="attempt" id="third-attempt" value="Third attempt" />
+                  <label for="third-attempt">3rd Attempt</label>
+                </div>
+
+                <div id="phone-number-prompt">
+                  <label for="phone-number">Phone number called:</label>
+                  <input type="text" name="phone-number" id="phone-number" />
+                </div>
+                <div id="additional-phone-number-prompt">
+                  <label for="secondary-phone-number">Secondary phone number:</label>
+                  <input type="text" name="secondary-phone-number" id="secondary phone-number" />
+                </div>
+                <div id="left-vm-prompt">
+                  <label class="default-pointer">Left voicemail?</label>
+                  <div class="toggle-switch">
+                    <input type="radio" name="vm" id="vm-no" value="No" />
+                    <label for="vm-no">No</label>
+                    <input type="radio" name="vm" id="vm-none" value="None" checked />
+                    <label for="vm-none">-</label>
+                    <input type="radio" name="vm" id="vm-yes" value="Yes" />
+                    <label for="vm-yes">Yes</label>
+                  </div>
+                </div>
+                <div id="no-vm-reason-prompt">
+                  <label for="no-vm-reason">Reason unable to leave voicemail:</label>
+                  <input type="text" id="no-vm-reason" />
+                </div>
+                <div id="email-sent-prompt">
+                  <input type="checkbox" name="email-sent" id="email-sent" />
+                  <label for="email-sent">Sent email to client</label>
+                </div>
+                <div id="sent-missed-email-promt">
+                  <input type="checkbox" name="sent-missed-email" id="sent-missed-email" />
+                  <label for="sent-missed-email">Sent missed appointment email</label>
+                </div>
+                <div id="marked-podio-prompt">
+                  <input type="checkbox" name="marked-podio" id="marked-podio" />
+                  <label for="marked-podio">Marked podio for missed appointment</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- *Signature/initials (On all) -->
+            <div>
+              <label for="initials">Initials</label>
+              <input type="text" name="initials" id="initials" required />
+            </div>
           </form>
         </section>
 
         <section id="output-panel" class="panel-flex">
-          <!-- Genterated HTML Notes -->
+          <!-- *Genterated HTML Notes -->
           <button id="copy-btn">Copy</button>
           <textarea name="html-notes" id="html-notes"></textarea>
         </section>
