@@ -1,11 +1,41 @@
+// *CORE UI & FORM CONTROL ELEMENTS
 var apptSelectEl = document.querySelector('#appointment');
 var nonSpecFormEl = document.querySelector('#non-specific-form');
+var htmlNotesEl = document.querySelector('#html-notes');
+var copyBtnEl = document.querySelector('#copy-btn');
+var copyDialogEl = document.querySelector('dialog');
+var initialsEl = document.querySelector('#initials');
+
+// *APPOINTMENT SPECIFIC CONTAINERS (NODELISTS)
 var firstApptSpecEl = document.querySelectorAll('.first-appt');
 var secondApptSpecEl = document.querySelectorAll('.second-appt');
 var thirdApptSpecEl = document.querySelectorAll('.third-appt');
 var postApptSpecEl = document.querySelectorAll('.post-appt');
-var htmlNotesEl = document.querySelector('#html-notes');
+
+// *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
+var workedOnEl = document.querySelector('#worked-on');
+var showAllWorkedOnContEl = document.querySelector('#show-all-worked-on-container');
+var showAllWorkedOnEl = document.querySelector('#show-all-worked-on');
+
+var firstApptWorkedOnItems = document.querySelectorAll('div:has(> #dashboard-navigation), ' + 'div:has(> #extra-pages), ' + 'div:has(> #creating-categories), ' + 'div:has(> #organizing-categories), ' + 'div:has(> #creating-products), ' + 'div:has(> #products-grid), ' + 'div:has(> #categorizing-products) ');
+var secondApptWorkedOnItems = document.querySelectorAll('div:has(> #discounts), ' + 'div:has(> #checkout-sections), ' + 'div:has(> #paypal-apple-pay), ' + 'div:has(> #test-order), ' + 'div:has(> #process-order) ');
+var thirdApptWorkedOnItems = document.querySelectorAll('div:has(> #updating-products), ' + 'div:has(> #unavailable-products)');
+var postApptWorkedOnItems = document.querySelectorAll('div:has(> #stripe),' + 'div:has(> #variants)');
+
+// *"ASSIGNED HOMEWORK" - PARENT CONTAINERS & SHOW ALL LOGIC
+var assignedHwEl = document.querySelector('#assigned-hw');
+var showAllAssignedHwContEl = document.querySelector('#show-all-assigned-hw-container');
+var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
+
+var firstApptAssignedHwItems = document.querySelectorAll('div:has(> #first-appt-finish-videos), ' + 'div:has(> #review-extra-pages), ' + 'div:has(> #remove-products), ' + 'div:has(> #practice-categorizing-products), ' + 'div:has(> #practice-creating-categories), ' + 'div:has(> #first-appt-continue-videos)');
+var secondApptAssignedHwItems = document.querySelectorAll('div:has(> #second-appt-finish-videos), ' + 'div:has(> #practice-discounts), ' + 'div:has(> #practice-orders), ' + 'div:has(> #second-appt-continue-videos)');
+var thirdApptAssignedHwItems = document.querySelectorAll('div:has(> #third-appt-finish-videos), ' + 'div:has(> #practice-updating), ' + 'div:has(> #all-videos)');
+
+// *INDIVIDUAL CHECKBOX/RADIO ELEMENTS
+
+// General Progress Elements
 var contApptEl = document.querySelector('#continuation');
+var introContEl = document.querySelector('#intro-container');
 var introNoEl = document.querySelector('#intro-no');
 var introNoneEl = document.querySelector('#intro-none');
 var introYesEl = document.querySelector('#intro-yes');
@@ -13,18 +43,8 @@ var hwNoEl = document.querySelector('#hw-no');
 var hwNoneEl = document.querySelector('#hw-none');
 var hwYesEl = document.querySelector('#hw-yes');
 var hwPercentEl = document.querySelector('#hw-percent');
-var workedOnEl = document.querySelector('#worked-on');
-var assignedHwEl = document.querySelector('#assigned-hw');
 
-var firstApptWorkedOnItems = document.querySelectorAll('div:has(> #dashboard-navigation), ' + 'div:has(> #extra-pages), ' + 'div:has(> #creating-categories), ' + 'div:has(> #organizing-categories), ' + 'div:has(> #creating-products), ' + 'div:has(> #products-grid), ' + 'div:has(> #categorizing-products) ');
-var secondApptWorkedOnItems = document.querySelectorAll('div:has(> #discounts), ' + 'div:has(> #checkout-sections), ' + 'div:has(> #paypal-apple-pay), ' + 'div:has(> #test-order), ' + 'div:has(> #process-order) ');
-var thirdApptWorkedOnItems = document.querySelectorAll('div:has(> #updating-products), ' + 'div:has(> #unavailable-products)');
-
-var firstApptAssignedHwItems = document.querySelectorAll('div:has(> #first-appt-finish-videos), ' + 'div:has(> #review-extra-pages), ' + 'div:has(> #remove-products), ' + 'div:has(> #practice-categorizing-products), ' + 'div:has(> #practice-creating-categories), ' + 'div:has(> #first-appt-continue-videos)');
-var secondApptAssignedHwItems = document.querySelectorAll('div:has(> #second-appt-finish-videos), ' + 'div:has(> #practice-discounts), ' + 'div:has(> #practice-orders), ' + 'div:has(> #second-appt-continue-videos)');
-var thirdApptAssignedHwItems = document.querySelectorAll('div:has(> #third-appt-finish-videos), ' + 'div:has(> #practice-updating), ' + 'div:has(> #all-videos)');
-
-// * "Worked On" checkbox elements (1st Appt)
+// "Worked On" Checklist (1st Appt)
 var dashNavEl = document.querySelector('#dashboard-navigation');
 var extraPageEl = document.querySelector('#extra-pages');
 var createCatEl = document.querySelector('#creating-categories');
@@ -33,23 +53,27 @@ var createProdEl = document.querySelector('#creating-products');
 var prodGridEl = document.querySelector('#products-grid');
 var catProdEl = document.querySelector('#categorizing-products');
 
-// * "Worked On" checkbox elements (2nd Appt)
+// "Worked On" Checklist (2nd Appt)
 var discountsEl = document.querySelector('#discounts');
 var checkoutSectionsEl = document.querySelector('#checkout-sections');
 var payPalEl = document.querySelector('#paypal-apple-pay');
 var testOrderEl = document.querySelector('#test-order');
 var processOrderEl = document.querySelector('#process-order');
 
-// * "Worked On" checkbox elements (3rd Appt)
+// "Worked On" Checklist (3rd Appt)
 var updatingProdEl = document.querySelector('#updating-products');
 var unavailableProdEl = document.querySelector('#unavailable-products');
 
-// * "Worked On" checkbox elements (Post Appt)
+// "Worked On" Checklist (Post Appt)
 var stripeEl = document.querySelector('#stripe');
 var variantsEl = document.querySelector('#variants');
 var unavailableCjProdEl = document.querySelector('#unavailable-cj-products');
 
-// * "Assigned Homework" checkbox elements (1st Appt)
+// Custom "Worked On" Checkbox & Text
+var customWorkedOnChecboxEl = document.querySelector('#custom-worked-on-checkbox');
+var customWorkedOnTextEl = document.querySelector('#custom-worked-on-text');
+
+// "Assigned Homework" Checklist (1st Appt)
 var firstApptFinishVidEl = document.querySelector('#first-appt-finish-videos');
 var reviewExtraPagesEl = document.querySelector('#review-extra-pages');
 var removeProdEl = document.querySelector('#remove-products');
@@ -57,18 +81,22 @@ var practiceCatProdEl = document.querySelector('#practice-categorizing-products'
 var practiceCreateCatdEl = document.querySelector('#practice-creating-categories');
 var firstApptContinueVidEl = document.querySelector('#first-appt-continue-videos');
 
-// * "Assigned Homework" checkbox elements (2nd Appt)
+// "Assigned Homework" Checklist (2nd Appt)
 var secondApptFinishVidEl = document.querySelector('#second-appt-finish-videos');
 var practiceDiscountsEl = document.querySelector('#practice-discounts');
 var practiceOrdersEl = document.querySelector('#practice-orders');
 var secondApptContinueVidEl = document.querySelector('#second-appt-continue-videos');
 
-// * "Assigned Homework" checkbox elements (3rd Appt)
+// "Assigned Homework" Checklist (3rd Appt)
 var thirdApptFinishVidEl = document.querySelector('#third-appt-finish-videos');
 var practiceUpdateEl = document.querySelector('#practice-updating');
 var allVidEl = document.querySelector('#all-videos');
 
-// * "Post Checklist" checkbox elements
+// Custom "Assigned Homework" Checkbox & Text
+var customAssignedHwChecboxEl = document.querySelector('#custom-assigned-hw-checkbox');
+var customAssignedHwTextEl = document.querySelector('#custom-assigned-hw-text');
+
+// Post Training Checklist Elements
 var businessEmailEl = document.querySelector('#business-email');
 var timeZoneEl = document.querySelector('#time-zone');
 var taxGroupEl = document.querySelector('#tax-group');
@@ -79,11 +107,7 @@ var genericCategoriesEl = document.querySelector('#generic-categories');
 var varientsCondensedEl = document.querySelector('#varients-condensed');
 var taglineEl = document.querySelector('#tagline');
 
-var additionalNotesEl = document.querySelector('#additional-notes');
-var registeredBusinessNoEl = document.querySelector('#registered-no');
-var registeredBusinessNoneEl = document.querySelector('#registered-none');
-var registeredBusinessYesEl = document.querySelector('#registered-yes');
-
+// *COMPLETION FORM & SM (SUPPLIER MANAGEMENT) PROMPTS
 var completionFormSentEl = document.querySelector('#completion-form-sent');
 var cfSignedElNo = document.querySelector('#cf-signed-no');
 var cfSignedElNone = document.querySelector('#cf-signed-none');
@@ -102,8 +126,13 @@ var smTechEl = document.querySelector('#sm-tech');
 var smApptPromptEl = document.querySelector('#sm-appointment-date-prompt');
 var smApptEl = document.querySelector('#sm-appointment-date');
 
-var nextApptDatePromptEl = document.querySelector('#next-appt-date-prompt');
-var nextTopicPromptEl = document.querySelector('#next-topic-prompt');
+// *POST-APPOINTMENT & NEXT STEPS
+var additionalNotesEl = document.querySelector('#additional-notes');
+var registeredContEl = document.querySelector('#registered-container');
+var registeredBusinessNoEl = document.querySelector('#registered-no');
+var registeredBusinessNoneEl = document.querySelector('#registered-none');
+var registeredBusinessYesEl = document.querySelector('#registered-yes');
+
 var liveNoEl = document.querySelector('#live-no');
 var liveNoneEl = document.querySelector('#live-none');
 var liveYesEl = document.querySelector('#live-yes');
@@ -111,21 +140,16 @@ var additionalTrainingPromptEl = document.querySelector('#additional-training-pr
 var additionalTrainingEl = document.querySelector('#additional-training');
 var smReminderEl = document.querySelector('#sm-reminder');
 
+var nextApptDatePromptEl = document.querySelector('#next-appt-date-prompt');
+var nextTopicPromptEl = document.querySelector('#next-topic-prompt');
 var nextAppointmentEl = document.querySelector('#next-appointment-date');
 var nextTopicEl = document.querySelector('#next-topic');
-var initialsEl = document.querySelector('#initials');
-var copyBtnEl = document.querySelector('#copy-btn');
-var showAllWorkedOnContEl = document.querySelector('#show-all-worked-on-container');
-var showAllAssignedHwContEl = document.querySelector('#show-all-assigned-hw-container');
-var showAllWorkedOnEl = document.querySelector('#show-all-worked-on');
-var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
-var customWorkedOnChecboxEl = document.querySelector('#custom-worked-on-checkbox');
-var customWorkedOnTextEl = document.querySelector('#custom-worked-on-text');
 
-// * Dark/Light mode toggle elements
+// *THEME & GLOBAL STATE VARIABLES
 var toggleSwitch = document.querySelector('#dark-light-toggle');
 var currentTheme = document.documentElement.getAttribute('data-theme');
 
+// *TEXT STRING VARIABLES (FOR NOTE GENERATION)
 var htmlNotes = '';
 var currentApptValue = '';
 var contText = '';
@@ -134,6 +158,7 @@ var hwCompletedText = '';
 var hwPercentText = '';
 var hwText = '';
 
+// Worked On Strings
 var workedOnText = '';
 var postWorkedOnText = '';
 var dashNavText = '';
@@ -155,6 +180,7 @@ var variantsText = '';
 var unavailableCjProdText = '';
 var customWorkedonText = '';
 
+// Assigned HW Strings
 var assignedHwText = '';
 var firstApptFinishVidText = '';
 var reviewExtraPagesText = '';
@@ -169,7 +195,9 @@ var secondApptContinueVidText = '';
 var thirdApptFinishVidText = '';
 var practiceUpdateText = '';
 var allVidText = '';
+var customAssignedHwText = '';
 
+// Post Checklist Strings
 var postChecklistText = '';
 var businessEmailText = '';
 var timeZoneText = '';
@@ -181,28 +209,27 @@ var genericCategoriesText = '';
 var varientsCondensedText = '';
 var taglineText = '';
 
+// Logic & Footer Strings
 var additionalNotesText = '';
 var registeredBusinessText = '';
-
 var completionFormSentText = '';
 var completionFormSignedText = '';
 var whyNotSignedText = '';
 var completionFormText = '';
-
 var sentSmGuideText = '';
 var enrolledSmText = '';
 var smTechText = '';
 var smApptText = '';
 var smText = '';
-
 var liveText = '';
 var additionalTrainingText = '';
 var smReminderText = '';
-
 var nextAppointmentText = '';
 var nextTopicText = '';
 var storedInitials = '';
 var initialsText = '';
+
+// *CORE UI & UTILITY FUNCTIONS
 
 function setThemeToggle() {
   document.addEventListener('DOMContentLoaded', function () {
@@ -229,6 +256,84 @@ function setThemeToggle() {
 function copyHtmlNotes() {
   copyBtnEl.addEventListener('click', function () {
     navigator.clipboard.writeText(htmlNotesEl.value);
+    copyDialogEl.showModal();
+    setTimeout(function () {
+      copyDialogEl.close();
+    }, 750);
+  });
+}
+
+// *VISIBILITY & TEMPLATE CONTROLS
+
+function updateApptVisibility() {
+  var selectedValue = apptSelectEl.value;
+  currentApptValue = selectedValue;
+
+  var isShowAllWorkedOn = showAllWorkedOnEl.checked;
+  var isShowAllHw = showAllAssignedHwEl.checked;
+
+  function setVisibility(item, show) {
+    if (!item) return;
+    if (item instanceof NodeList || Array.isArray(item)) {
+      item.forEach(function (el) {
+        el.classList.toggle('show-content', show);
+        el.classList.toggle('hide-content', !show);
+      });
+    } else {
+      item.classList.toggle('show-content', show);
+      item.classList.toggle('hide-content', !show);
+    }
+  }
+
+  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems];
+
+  allGroups.forEach(function (group) {
+    setVisibility(group, false);
+  });
+
+  setVisibility(nonSpecFormEl, selectedValue !== 'default');
+
+  setVisibility(firstApptSpecEl, selectedValue === '1st Appointment');
+  setVisibility(secondApptSpecEl, selectedValue === '2nd Appointment');
+  setVisibility(thirdApptSpecEl, selectedValue === '3rd Appointment');
+  setVisibility(postApptSpecEl, selectedValue === 'Post Appointment');
+
+  setVisibility(firstApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '1st Appointment');
+  setVisibility(secondApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '2nd Appointment');
+  setVisibility(thirdApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '3rd Appointment');
+  setVisibility(postApptWorkedOnItems, isShowAllWorkedOn || selectedValue === 'Post Appointment');
+
+  var isPost = selectedValue === 'Post Appointment';
+
+  setVisibility(firstApptAssignedHwItems, !isPost && (isShowAllHw || selectedValue === '1st Appointment'));
+  setVisibility(secondApptAssignedHwItems, !isPost && (isShowAllHw || selectedValue === '2nd Appointment'));
+  setVisibility(thirdApptAssignedHwItems, !isPost && (isShowAllHw || selectedValue === '3rd Appointment'));
+
+  if (isShowAllHw && !isPost) {
+    if (selectedValue === '1st Appointment') {
+      setVisibility(document.querySelectorAll('div:has(> #second-appt-continue-videos)'), false);
+    } else if (selectedValue === '2nd Appointment' || selectedValue === '3rd Appointment') {
+      setVisibility(document.querySelectorAll('div:has(> #first-appt-continue-videos)'), false);
+    }
+  }
+
+  var isDefault = selectedValue === 'default';
+
+  setVisibility(workedOnEl, !isDefault);
+  setVisibility(assignedHwEl, !isDefault && !isPost);
+  setVisibility(showAllWorkedOnContEl, !isDefault);
+  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost);
+  setVisibility(nextApptDatePromptEl, !isDefault && !isPost);
+  setVisibility(nextTopicPromptEl, !isDefault && !isPost);
+
+  updateHtmlNotes();
+}
+
+function handleApptSelection() {
+  apptSelectEl.addEventListener('change', function (event) {
+    resetHtmlNotes();
+    setInitials();
+    updateApptVisibility();
   });
 }
 
@@ -237,19 +342,8 @@ function setShowAllWorkedOn() {
     return;
   }
 
-  var allWorkedOnNodeLists = [firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems];
-
   showAllWorkedOnEl.addEventListener('change', function () {
-    if (showAllWorkedOnEl.checked) {
-      allWorkedOnNodeLists.forEach(function (nodeList) {
-        nodeList.forEach(function (element) {
-          element.classList.remove('hide-content');
-          element.classList.add('show-content');
-        });
-      });
-    } else {
-      updateApptVisibility();
-    }
+    updateApptVisibility();
   });
 }
 
@@ -258,21 +352,13 @@ function setShowAllAssignedHw() {
     return;
   }
 
-  var allAssignedHwNodeLists = [firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems];
-
   showAllAssignedHwEl.addEventListener('change', function () {
-    if (showAllAssignedHwEl.checked) {
-      allAssignedHwNodeLists.forEach(function (nodeList) {
-        nodeList.forEach(function (element) {
-          element.classList.remove('hide-content');
-          element.classList.add('show-content');
-        });
-      });
-    } else {
-      updateApptVisibility();
-    }
+    // This will correctly respect the "Worked On" state too
+    updateApptVisibility();
   });
 }
+
+// *NOTE GENERATION & RESET LOGIC
 
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default') {
@@ -310,131 +396,7 @@ function resetHtmlNotes() {
   });
 }
 
-function updateApptVisibility() {
-  var selectedValue = apptSelectEl.value;
-  var nextPrompts = [nextApptDatePromptEl, nextTopicPromptEl];
-  currentApptValue = selectedValue;
-
-  var allForms = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl];
-
-  allForms.forEach(function (nodeList) {
-    nodeList.forEach(function (element) {
-      element.classList.remove('show-content');
-      element.classList.add('hide-content');
-    });
-  });
-
-  if (!showAllWorkedOnEl.checked) {
-    var allWorkedOnNodeLists = [firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems];
-
-    allWorkedOnNodeLists.forEach(function (nodeList) {
-      nodeList.forEach(function (element) {
-        element.classList.remove('show-content');
-        element.classList.add('hide-content');
-      });
-    });
-  }
-
-  var allAssignedHwNodeLists = [firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems];
-
-  if (!showAllAssignedHwEl.checked) {
-    allAssignedHwNodeLists.forEach(function (nodeList) {
-      nodeList.forEach(function (element) {
-        element.classList.remove('show-content');
-        element.classList.add('hide-content');
-      });
-    });
-  }
-
-  if (selectedValue === 'default') {
-    nonSpecFormEl.classList.remove('show-content');
-    nonSpecFormEl.classList.add('hide-content');
-  } else {
-    nonSpecFormEl.classList.remove('hide-content');
-    nonSpecFormEl.classList.add('show-content');
-  }
-
-  if (selectedValue === 'Post Appointment') {
-    nextPrompts.forEach(function (element) {
-      element.classList.remove('show-content');
-      element.classList.add('hide-content');
-    });
-  } else {
-    nextPrompts.forEach(function (element) {
-      element.classList.remove('hide-content');
-      element.classList.add('show-content');
-    });
-  }
-
-  var selectedAssignedHwItems = null;
-
-  if (selectedValue === '1st Appointment') {
-    workedOnEl.classList.remove('hide-content');
-    workedOnEl.classList.add('show-content');
-    assignedHwEl.classList.remove('hide-content');
-    assignedHwEl.classList.add('show-content');
-    showAllWorkedOnContEl.setAttribute('class', 'show-content');
-    showAllAssignedHwContEl.setAttribute('class', 'show-content');
-    firstApptSpecEl.forEach(function (element) {
-      element.classList.remove('show-content');
-      element.classList.add('show-content');
-    });
-    selectedAssignedHwItems = firstApptAssignedHwItems;
-  } else if (selectedValue === '2nd Appointment') {
-    workedOnEl.classList.remove('hide-content');
-    workedOnEl.classList.add('show-content');
-    assignedHwEl.classList.remove('hide-content');
-    assignedHwEl.classList.add('show-content');
-    showAllWorkedOnContEl.setAttribute('class', 'show-content');
-    showAllAssignedHwContEl.setAttribute('class', 'show-content');
-    secondApptSpecEl.forEach(function (element) {
-      element.classList.remove('show-content');
-      element.classList.add('show-content');
-    });
-    selectedAssignedHwItems = secondApptAssignedHwItems;
-  } else if (selectedValue === '3rd Appointment') {
-    workedOnEl.classList.remove('hide-content');
-    workedOnEl.classList.add('show-content');
-    assignedHwEl.classList.remove('hide-content');
-    assignedHwEl.classList.add('show-content');
-    showAllWorkedOnContEl.setAttribute('class', 'show-content');
-    showAllAssignedHwContEl.setAttribute('class', 'show-content');
-    thirdApptSpecEl.forEach(function (element) {
-      element.classList.remove('hide-content');
-      element.classList.add('show-content');
-    });
-    selectedAssignedHwItems = thirdApptAssignedHwItems;
-  } else if (selectedValue === 'Post Appointment') {
-    workedOnEl.classList.remove('show-content');
-    workedOnEl.classList.add('hide-content');
-    assignedHwEl.classList.remove('show-content');
-    assignedHwEl.classList.add('hide-content');
-    showAllWorkedOnContEl.setAttribute('class', 'hide-content');
-    showAllAssignedHwContEl.setAttribute('class', 'hide-content');
-
-    postApptSpecEl.forEach(function (element) {
-      element.classList.remove('hide-content');
-      element.classList.add('show-content');
-    });
-  }
-
-  if (selectedAssignedHwItems && !showAllAssignedHwEl.checked) {
-    selectedAssignedHwItems.forEach(function (element) {
-      element.classList.remove('hide-content');
-      element.classList.add('show-content');
-    });
-  }
-
-  updateHtmlNotes();
-}
-
-function handleApptSelection() {
-  apptSelectEl.addEventListener('change', function (event) {
-    resetHtmlNotes();
-    setInitials();
-    updateApptVisibility();
-  });
-}
+// *APPOINTMENT DETAILS (Intro, HW, Progress)
 
 function setContAppt() {
   if (!contApptEl) {
@@ -443,8 +405,20 @@ function setContAppt() {
 
   contApptEl.addEventListener('change', function () {
     if (contApptEl.checked) {
+      introContEl.classList.remove('show-content');
+      introContEl.classList.add('hide-content');
+      registeredContEl.classList.remove('show-content');
+      registeredContEl.classList.add('hide-content');
+      introNoneEl.checked = true;
+      introText = '';
+      registeredBusinessNoneEl.checked = true;
+      registeredBusinessText = '';
       contText = ' continuation';
     } else {
+      introContEl.classList.remove('hide-content');
+      introContEl.classList.add('show-content');
+      registeredContEl.classList.remove('hide-content');
+      registeredContEl.classList.add('show-content');
       contText = '';
     }
     updateHtmlNotes();
@@ -507,7 +481,18 @@ function setHwPercent() {
   }
 
   hwPercentEl.addEventListener('input', function (event) {
-    hwPercentText = `${event.target.value}% of WH videos completed.`;
+    if (this.value > 100) {
+      this.value = 100;
+    }
+    if (this.value < 0 && this.value !== '') {
+      this.value = 0;
+    }
+
+    if (!event.target.value) {
+      hwPercentText = '';
+    } else {
+      hwPercentText = `${event.target.value}% of WH videos completed.`;
+    }
     updateHw();
     updateHtmlNotes();
   });
@@ -523,6 +508,8 @@ function updateHw() {
     hwText = '';
   }
 }
+
+// *WORKED ON & ASSIGNED HW HANDLERS
 
 function setFirstApptWorkedOn() {
   var firstApptWorkedOnElements = [dashNavEl, extraPageEl, createCatEl, organizeCatEl, createProdEl, prodGridEl, catProdEl];
@@ -623,7 +610,7 @@ function updateWorkedOn() {
   updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
   unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products</li>` : '';
 
-  if (dashNavEl.checked || extraPageEl.checked || createCatEl.checked || organizeCatEl.checked || createProdEl.checked || prodGridEl.checked || catProdEl.checked || discountsEl.checked || checkoutSectionsEl.checked || payPalEl.checked || testOrderEl.checked || processOrderEl.checked || updatingProdEl.checked || unavailableProdEl.checked || customWorkedOnChecboxEl.checked) {
+  if ((dashNavEl && dashNavEl.checked) || (extraPageEl && extraPageEl.checked) || (createCatEl && createCatEl.checked) || (organizeCatEl && organizeCatEl.checked) || (createProdEl && createProdEl.checked) || (prodGridEl && prodGridEl.checked) || (catProdEl && catProdEl.checked) || (discountsEl && discountsEl.checked) || (checkoutSectionsEl && checkoutSectionsEl.checked) || (payPalEl && payPalEl.checked) || (testOrderEl && testOrderEl.checked) || (processOrderEl && processOrderEl.checked) || (updatingProdEl && updatingProdEl.checked) || (unavailableProdEl && unavailableProdEl.checked) || (customWorkedOnChecboxEl && customWorkedOnChecboxEl.checked)) {
     workedOnText = `Worked On: 
 <ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}${customWorkedonText}
 </ul>
@@ -638,7 +625,7 @@ function updatePostWorkedOn() {
   variantsText = variantsEl && variantsEl.checked ? `\n <li>Condensing variants</li>` : ``;
   unavailableCjProdText = unavailableCjProdEl && unavailableCjProdEl.checked ? `\n <li>Managing unavailable products from CJ</li>` : ``;
 
-  if (stripeEl.checked || variantsEl.checked || unavailableCjProdEl.checked) {
+  if ((stripeEl && stripeEl.checked) || (variantsEl && variantsEl.checked) || (unavailableCjProdEl && unavailableCjProdEl.checked)) {
     postWorkedOnText = `Worked On/Reviewed:
 <ul>${stripeText}${variantsText}${unavailableCjProdText}
 </ul>
@@ -648,6 +635,7 @@ function updatePostWorkedOn() {
   }
 }
 
+// *HOMEWORK & CHECKLIST LOGIC
 function setFirstApptAssignedHw() {
   var firstApptAssignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, firstApptContinueVidEl];
 
@@ -687,15 +675,31 @@ function setThirdApptAssignedHw() {
   });
 }
 
-function setPostChecklist() {
-  var postChecklistsElements = [businessEmailEl, timeZoneEl, taxGroupEl, modulesEl, testItemsEl, brandsEl, genericCategoriesEl, varientsCondensedEl, taglineEl];
+function setCustomAssignedHw() {
+  let customKeyupListener = null;
 
-  postChecklistsElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updatePostChecklist();
-        updateHtmlNotes();
-      });
+  customAssignedHwChecboxEl.addEventListener('change', function () {
+    if (customAssignedHwChecboxEl.checked) {
+      if (customKeyupListener === null) {
+        customKeyupListener = function (event) {
+          const value = event.target.value.trim();
+          customAssignedHwText = value !== '' ? `\n <li>${value}</li>` : '';
+          updateAssignedHw();
+          updateHtmlNotes();
+        };
+      }
+      customAssignedHwTextEl.addEventListener('keyup', customKeyupListener);
+      const value = customAssignedHwTextEl.value.trim();
+      customAssignedHwText = value !== '' ? `\n <li>${value}</li>` : '';
+      updateAssignedHw();
+      updateHtmlNotes();
+    } else {
+      if (customKeyupListener) {
+        customAssignedHwTextEl.removeEventListener('keyup', customKeyupListener);
+      }
+      customAssignedHwText = '';
+      updateAssignedHw();
+      updateHtmlNotes();
     }
   });
 }
@@ -717,14 +721,27 @@ function updateAssignedHw() {
   practiceUpdateText = practiceUpdateEl && practiceUpdateEl.checked ? `\n <li>Practice updating products using guides</li>` : '';
   allVidText = allVidEl && allVidEl.checked ? `\n <li>Complete all videos</li>` : '';
 
-  if (firstApptFinishVidEl.checked || reviewExtraPagesEl.checked || removeProdEl.checked || practiceCatProdEl.checked || practiceCreateCatdEl.checked || firstApptContinueVidEl.checked || secondApptFinishVidEl.checked || practiceDiscountsEl.checked || practiceOrdersEl.checked || secondApptContinueVidEl.checked || thirdApptFinishVidEl.checked || practiceUpdateEl.checked || allVidEl.checked) {
+  if ((firstApptFinishVidEl && firstApptFinishVidEl.checked) || (reviewExtraPagesEl && reviewExtraPagesEl.checked) || (removeProdEl && removeProdEl.checked) || (practiceCatProdEl && practiceCatProdEl.checked) || (practiceCreateCatdEl && practiceCreateCatdEl.checked) || (firstApptContinueVidEl && firstApptContinueVidEl.checked) || (secondApptFinishVidEl && secondApptFinishVidEl.checked) || (practiceDiscountsEl && practiceDiscountsEl.checked) || (practiceOrdersEl && practiceOrdersEl.checked) || (secondApptContinueVidEl && secondApptContinueVidEl.checked) || (thirdApptFinishVidEl && thirdApptFinishVidEl.checked) || (practiceUpdateEl && practiceUpdateEl.checked) || (allVidEl && allVidEl.checked) || (customAssignedHwChecboxEl && customAssignedHwChecboxEl.checked)) {
     assignedHwText = `Assigned homework: 
-<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}
+<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${customAssignedHwText}
 </ul>
 `;
   } else {
     assignedHwText = '';
   }
+}
+
+function setPostChecklist() {
+  var postChecklistsElements = [businessEmailEl, timeZoneEl, taxGroupEl, modulesEl, testItemsEl, brandsEl, genericCategoriesEl, varientsCondensedEl, taglineEl];
+
+  postChecklistsElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updatePostChecklist();
+        updateHtmlNotes();
+      });
+    }
+  });
 }
 
 function updatePostChecklist() {
@@ -738,7 +755,7 @@ function updatePostChecklist() {
   varientsCondensedText = varientsCondensedEl && varientsCondensedEl.checked ? `\n <li>Variants are condensed</li>` : '';
   taglineText = taglineEl && taglineEl.checked ? `\n <li>Removed tagline placeholder text</li>` : '';
 
-  if (businessEmailText || timeZoneText || taxGroupText || modulesText || testItemsText || brandsText || genericCategoriesText || varientsCondensedText || taglineText) {
+  if ((businessEmailEl && businessEmailEl.checked) || (timeZoneEl && timeZoneEl.checked) || (taxGroupEl && taxGroupEl.checked) || (modulesEl && modulesEl.checked) || (testItemsEl && testItemsEl.checked) || (brandsEl && brandsEl.checked) || (genericCategoriesEl && genericCategoriesEl.checked) || (varientsCondensedEl && varientsCondensedEl.checked) || (taglineEl && taglineEl.checked)) {
     postChecklistText = `Post Training Checklist:
 <ul>${businessEmailText}${timeZoneText}${taxGroupText}${modulesText}${testItemsText}${brandsText}${genericCategoriesText}${varientsCondensedText}${taglineText}
 </ul>
@@ -748,46 +765,7 @@ function updatePostChecklist() {
   }
 }
 
-function setAdditionalNotes() {
-  additionalNotesEl.addEventListener('keyup', function (event) {
-    additionalNotesText = `<p>
-  Additional Notes: ${event.target.value}
-</p>
-`;
-    updateHtmlNotes();
-  });
-}
-
-function setRegisteredBusiness() {
-  var registeredRadioElements = [registeredBusinessNoEl, registeredBusinessNoneEl, registeredBusinessYesEl];
-
-  registeredRadioElements.forEach(function (element) {
-    element.addEventListener('change', function () {
-      if (currentApptValue !== '1st Appointment') {
-        registeredBusinessText = '';
-        updateHtmlNotes();
-        return;
-      }
-
-      if (registeredBusinessYesEl.checked) {
-        registeredBusinessText = `<p>
-  Client <b>has</b> started registering business.
-</p>`;
-      } else if (registeredBusinessNoEl.checked) {
-        registeredBusinessText = `<p>
-  Client <b>has not</b> started registering business.
-</p>`;
-      } else if (registeredBusinessNoneEl.checked) {
-        registeredBusinessText = '';
-      } else {
-        registeredBusinessText = '';
-      }
-
-      updateHtmlNotes();
-    });
-  });
-}
-
+// *COMPLETION FORMS & SUPPLIER MANAGEMENT (SM)
 function setCompletionForm() {
   var completionFormPrompts = [completionFormSignedPromptEl, whyNotSignedPromptEl];
 
@@ -922,7 +900,8 @@ function setSupplierManagement() {
   });
 
   smApptEl.addEventListener('keyup', function (event) {
-    smApptText = event.target.value;
+    var smApptOriginalStr = event.target.value;
+    smApptText = smApptOriginalStr.replace('⋅', ', ');
     updateSupplierManagement();
     updateHtmlNotes();
   });
@@ -935,6 +914,7 @@ function updateSupplierManagement() {
 `;
 }
 
+// *POST-APPOINTMENT EXTRAS & INITIALS
 function setPostApptExtras() {
   var liveRadioElements = [liveNoEl, liveNoneEl, liveYesEl];
 
@@ -988,11 +968,14 @@ function setPostApptExtras() {
   });
 
   smReminderEl.addEventListener('keyup', function (event) {
+    var smReminderOriginalStr = event.target.value;
+    var smReminderNewStr = smReminderOriginalStr.replace('⋅', ', ');
+
     if (!event.target.value) {
       smReminderText = '';
     } else {
       smReminderText = `<p>
-  Reminded client about Supplier Management Appointment on ${event.target.value}
+  Reminded client about Supplier Management Appointment on ${smReminderNewStr}
 <p>
 `;
     }
@@ -1032,6 +1015,50 @@ function setNextTopic() {
   });
 }
 
+function setAdditionalNotes() {
+  additionalNotesEl.addEventListener('keyup', function (event) {
+    if (!event.target.value) {
+      additionalNotesText = '';
+    } else {
+      additionalNotesText = `<p>
+  Additional Notes: ${event.target.value}
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setRegisteredBusiness() {
+  var registeredRadioElements = [registeredBusinessNoEl, registeredBusinessNoneEl, registeredBusinessYesEl];
+
+  registeredRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (currentApptValue !== '1st Appointment') {
+        registeredBusinessText = '';
+        updateHtmlNotes();
+        return;
+      }
+
+      if (registeredBusinessYesEl.checked) {
+        registeredBusinessText = `<p>
+  Client <b>has</b> started registering business.
+</p>`;
+      } else if (registeredBusinessNoEl.checked) {
+        registeredBusinessText = `<p>
+  Client <b>has not</b> started registering business.
+</p>`;
+      } else if (registeredBusinessNoneEl.checked) {
+        registeredBusinessText = '';
+      } else {
+        registeredBusinessText = '';
+      }
+
+      updateHtmlNotes();
+    });
+  });
+}
+
 function setInitials() {
   storedInitials = localStorage.getItem('initials');
 
@@ -1059,6 +1086,7 @@ function setInitials() {
   });
 }
 
+// *INITIALIZATION (DOM CONTENT LOADED)
 document.addEventListener('DOMContentLoaded', () => {
   htmlNotesEl.value = '';
 
@@ -1068,6 +1096,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.reset();
   });
 
+  // Initialization sequence
   copyHtmlNotes();
   setShowAllWorkedOn();
   setShowAllAssignedHw();
@@ -1084,6 +1113,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setFirstApptAssignedHw();
   setSecondApptAssignedHw();
   setThirdApptAssignedHw();
+  setCustomAssignedHw();
   setPostChecklist();
   setAdditionalNotes();
   setRegisteredBusiness();

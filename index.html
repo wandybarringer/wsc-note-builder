@@ -45,7 +45,7 @@
               <input type="checkbox" name="continuation" id="continuation" class="continuation" />
             </div>
 
-            <div class="first-appt hide-content">
+            <div class="first-appt hide-content" id="intro-container">
               <label class="default-pointer">Intro to WH completed?</label>
               <div class="toggle-switch">
                 <input type="radio" name="intro" id="intro-no" value="No" />
@@ -69,10 +69,9 @@
               </div>
             </div>
 
-            <!-- TODO: Clear button that sets number to null and removes html notes -->
             <div>
               <label for="hw-percent">Homework %</label>
-              <input type="number" name="hw-percent" id="hw-percent" min="0" max="100" />
+              <input type="number" name="hw-percent" id="hw-percent" />
             </div>
 
             <div id="worked-on" class="grey-bg">
@@ -104,6 +103,10 @@
               <div class="third-appt"><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
 
               <div class="third-appt"><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
+
+              <div class="post-appt"><input type="checkbox" name="stripe" id="stripe" /> <label for="stripe">Linked Stripe</label></div>
+
+              <div class="post-appt"><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensed Variants</label></div>
 
               <div><input type="checkbox" name="custom-worked-on" id="custom-worked-on-checkbox" /> <input type="text" name="custom-worked-on" id="custom-worked-on-text" placeholder="Custom text" /></div>
             </div>
@@ -140,20 +143,13 @@
               <div class="third-appt"><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating products using guide</label></div>
 
               <div class="third-appt"><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
+
+              <div><input type="checkbox" name="custom-assigned-hw" id="custom-assigned-hw-checkbox" /> <input type="text" name="custom-assigned-hw" id="custom-assigned-hw-text" placeholder="Custom text" /></div>
             </div>
 
             <div id="show-all-assigned-hw-container">
               <label for="show-all-assigned-hw" class="show-all-emphasis">Show All Assigned Homework Options</label>
               <input type="checkbox" id="show-all-assigned-hw" />
-            </div>
-
-            <div class="post-appt hide-content grey-bg">
-              <p class="default-pointer">Worked on/Reviewed:</p>
-              <div><input type="checkbox" name="stripe" id="stripe" /> <label for="stripe">Linked Stripe</label></div>
-
-              <div><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensed Variants</label></div>
-
-              <div><input type="checkbox" name="unavailable-cj-products" id="unavailable-cj-products" /> <label for="unavailable-cj-products">Managing Unavailable Products from CJ</label></div>
             </div>
 
             <div class="post-appt hide-content grey-bg">
@@ -182,7 +178,7 @@
               <textarea name="additional-notes" id="additional-notes"></textarea>
             </div>
 
-            <div class="first-appt hide-content">
+            <div class="first-appt hide-content" id="registered-container">
               <label class="default-pointer">Started registering business?</label>
               <div class="toggle-switch">
                 <input type="radio" name="registered" id="registered-no" value="No" />
@@ -285,6 +281,10 @@
           <button id="copy-btn">Copy</button>
           <textarea name="html-notes" id="html-notes"></textarea>
         </section>
+
+        <dialog>
+          <p>Notes Copied!</p>
+        </dialog>
       </main>
     </div>
     <script src="assets/js/script.js"></script>

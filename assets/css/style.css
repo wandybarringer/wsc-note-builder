@@ -1,3 +1,4 @@
+/* GLOBAL STYLES & VARIABLES */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,8 +6,9 @@
 }
 
 :root {
-  --primary-bg: #f8fafc;
+  --primary-bg: #eaeaf5;
   --secondary-bg: #f4f4f5;
+  --input-panel-bg: #f8fafc;
   --secondary-grey-bg: #dddfe0;
   --primary-text: #1e293b;
   --secondary-text: #f8fafc;
@@ -17,11 +19,14 @@
   --dark-light-action: #e1e4eb;
   --toggle-bg: #ccc;
   --toggle-round: #fff;
+  --dialog-bg: #ffffff70;
 }
 
+/* THEME OVERRIDES (DARK MODE) */
 [data-theme='dark'] {
   --primary-bg: #353535;
   --secondary-bg: #6e6e6e;
+  --input-panel-bg: #252525fb;
   --secondary-grey-bg: #3f3f3f;
   --primary-text: #f8fafc;
   --secondary-text: #f8fafc;
@@ -32,8 +37,10 @@
   --dark-light-action: #1b1b1b;
   --toggle-bg: #2563eb;
   --toggle-round: #fff;
+  --dialog-bg: #00000070;
 }
 
+/* LAYOUT & CONTAINERS */
 .wrapper {
   max-inline-size: 1200px;
   margin-inline: auto;
@@ -45,6 +52,51 @@ body {
   color: var(--primary-text);
 }
 
+section {
+  border: var(--input-border) solid 1px;
+  border-radius: 0.6rem;
+}
+
+.main-flexbox {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (width < 950px) {
+    flex-direction: column;
+  }
+}
+
+.panel-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+#input-panel {
+  flex: 1 1 0;
+  background: var(--input-panel-bg);
+  font-size: 1.2rem;
+  max-inline-size: 50%;
+  line-height: 1.2;
+  padding: 1rem;
+  word-wrap: break-word;
+}
+
+#output-panel {
+  block-size: 80vh;
+}
+
+#input-panel,
+#output-panel {
+  min-inline-size: 45%;
+
+  @media screen and (width < 950px) {
+    align-self: center;
+    min-inline-size: 95%;
+    margin: 10px;
+  }
+}
+
+/* NAVIGATION & HEADER */
 nav {
   display: flex;
   justify-content: center;
@@ -57,6 +109,7 @@ header ul {
   padding: 0.5rem;
 }
 
+/* FORM ELEMENTS (INPUTS, SELECT, TEXTAREA) */
 select {
   cursor: pointer;
   font: inherit;
@@ -64,20 +117,8 @@ select {
   border: var(--input-border) solid 1px;
   border-radius: 0.6rem;
   text-align: center;
-  cursor: pointer;
   color: var(--primary-text);
   background: var(--secondary-bg);
-}
-
-input:hover,
-input[type='checkbox']:hover,
-input[type='radio']:hover,
-select:hover {
-  background: var(--primary-hover);
-}
-
-select:open {
-  cursor: pointer;
 }
 
 option {
@@ -90,9 +131,13 @@ input {
   border: var(--input-border) solid 1px;
   padding: 0.15rem;
   border-radius: 0.3rem;
-  font: inherit;
   line-height: 0;
   cursor: pointer;
+}
+
+input::placeholder {
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 input[type='text'],
@@ -100,17 +145,38 @@ input[type='number'] {
   cursor: text;
   background: var(--secondary-bg);
   color: var(--primary-text);
+}
+
+textarea {
+  inline-size: 100%;
+  resize: vertical;
+  min-block-size: 30px;
+  background: var(--secondary-bg);
+  color: var(--primary-text);
   border: var(--input-border) solid 1px;
 }
 
+label {
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+#non-specific-form > * {
+  padding-block: 0.15rem;
+}
+
+/* CUSTOM CHECKBOXES & TOGGLES */
 input[type='checkbox'] {
   appearance: none;
   width: 20px;
   height: 20px;
   border: var(--input-border) solid 1px;
   background: var(--primary-bg);
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 0.6rem;
   display: inline-grid;
   place-content: center;
 }
@@ -125,49 +191,35 @@ input[type='checkbox']::before {
   height: 10px;
   transform: scale(0);
   background-color: var(--primary-bg);
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); /* Checkmark shape */
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
 input[type='checkbox']:checked::before {
   transform: scale(1);
 }
 
-label {
-  cursor: pointer;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.default-pointer {
-  cursor: default;
-}
-
-textarea {
-  inline-size: 100%;
-  resize: vertical;
-  min-block-size: 30px;
-  background: var(--secondary-bg);
-  color: var(--primary-text);
-  border: var(--input-border) solid 1px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 
 .toggle-switch {
   display: inline-flex;
   border: 1px solid var(--input-border);
-  border-radius: 4px;
+  border-radius: 0.6rem;
   overflow: hidden;
   background: var(--primary-bg);
 }
 
-/* Hide the actual radio circles */
 .toggle-switch input[type='radio'] {
   display: none;
 }
 
-/* Style the labels to look like buttons */
 .toggle-switch label {
   cursor: pointer;
   font: inherit;
@@ -176,17 +228,16 @@ textarea {
   min-width: 40px;
 }
 
-/* Remove border from the last label */
 .toggle-switch label:last-of-type {
   border-right: none;
 }
 
-/* Style for when a radio is CHECKED */
 .toggle-switch input[type='radio']:checked + label {
   background-color: var(--primary-action);
   color: var(--secondary-text);
 }
 
+/* THEME SWITCHER (DARK/LIGHT SLIDER) */
 #dark-light-container {
   position: absolute;
   right: 0;
@@ -206,20 +257,9 @@ textarea {
   opacity: 0;
   width: 0;
   height: 0;
-  appearance: none; /* Add this to ensure it doesn't try to render your custom checkmark */
-  position: absolute; /* Keeps it from taking up space */
-  pointer-events: none; /* Let clicks pass through to the slider/label */
-  border: none;
-  background: none;
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-/* Makes the sliding knob a perfect circle */
-.slider.round:before {
-  border-radius: 50%;
+  appearance: none;
+  position: absolute;
+  pointer-events: none;
 }
 
 .slider {
@@ -246,45 +286,23 @@ textarea {
   border-radius: 50%;
 }
 
-/* Move the circle */
 #dark-light-toggle:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Change the track color */
 #dark-light-toggle:checked + .slider {
   background-color: var(--primary-action);
 }
 
-/* If the HTML has dark mode set, move the knob regardless of the checkbox state */
 [data-theme='dark'] #dark-light-toggle + .slider:before {
   transform: translateX(26px);
 }
 
-/* Ensure the track color updates too */
 [data-theme='dark'] #dark-light-toggle + .slider {
   background-color: var(--primary-action);
 }
 
-.show-all-emphasis {
-  font-style: italic;
-  color: var(--primary-emphasis);
-}
-
-.main-flexbox {
-  display: flex;
-  justify-content: space-between;
-
-  @media screen and (width < 950px) {
-    flex-direction: column;
-  }
-}
-
-.panel-flex {
-  display: flex;
-  flex-direction: column;
-}
-
+/* UTILITY CLASSES & INTERACTION */
 .hide-content {
   display: none;
 }
@@ -293,49 +311,63 @@ textarea {
   display: block;
 }
 
-#input-panel {
-  background: var(--primary-bg);
-  border: var(--input-border) solid 1px;
-  font-size: 1.2rem;
-  min-inline-size: 45%;
-  line-height: 1.2;
-  padding: 1rem;
-}
-
-#non-specific-form > * {
-  padding-block: 0.15rem;
-}
-
 .grey-bg {
   background: var(--secondary-grey-bg);
+  padding: 3px;
 }
 
-#output-panel {
-  block-size: 80vh;
-  min-inline-size: 45%;
+.show-all-emphasis {
+  font-style: italic;
+  color: var(--primary-emphasis);
+}
+
+.default-pointer {
+  cursor: default;
+}
+
+input:hover,
+input[type='checkbox']:hover,
+input[type='radio']:hover,
+select:hover {
+  background: var(--primary-hover);
+}
+
+dialog {
+  padding: 1rem 2rem;
+  border: var(--input-border) solid 1px;
+  border-radius: 0.6rem;
+  background: var(--input-panel-bg);
+  color: var(--primary-text);
+  font: inherit;
+  font-weight: bold;
+  font-size: 1.6rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--dialog-bg);
+  backdrop-filter: blur(2px);
 }
 
 #copy-btn {
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.2rem;
   color: var(--primary-text);
   background: var(--secondary-grey-bg);
   padding: 0.3rem;
-  border: var(--input-border) solid 1px;
+  border: var(--input-border) solid 2px;
   text-align: center;
   cursor: pointer;
-  border-radius: 4px 4px 0 0;
-}
-
-#copy-btn:hover {
-  background: var(--primary-hover);
+  border-radius: 0.6rem 0.6rem 0 0;
+  transition: font-size 0.1s ease, box-shadow 0.1s ease;
 }
 
 #copy-btn:active {
   background: var(--secondary-grey-bg);
+  font-size: 1.15rem;
+  box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.25), inset -3px -3px 6px rgba(255, 255, 255, 0.15);
+  border-color: var(--input-border);
 }
 
 #html-notes {
@@ -343,4 +375,5 @@ textarea {
   inline-size: 100%;
   block-size: 100%;
   resize: none;
+  border-radius: 0 0 0.6rem 0.6rem;
 }
