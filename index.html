@@ -36,6 +36,7 @@
               <option value="3rd Appointment">3rd Appointment</option>
               <option value="Post Appointment">Post Appointment</option>
               <option value="Missed Appointment">Missed Appointment</option>
+              <option value="Missed Appointment">Contacted by Client</option>
             </select>
           </form>
 
@@ -323,6 +324,67 @@
                   <input type="checkbox" name="marked-podio" id="marked-podio" />
                   <label for="marked-podio">Marked podio for missed appointment</label>
                 </div>
+              </div>
+            </div>
+
+            <!-- *Contacted by Client Inputs -->
+            <div class="contacted-by-client">
+              <div>
+                <label class="default-pointer">Recieved message from client:</label>
+                <div class="toggle-switch">
+                  <input type="radio" name="message-types" id="none" value="none" />
+                  <label for="none">None (Direct Call)</label>
+                  <input type="radio" name="message-types" id="voicemail" value="voicemail" />
+                  <label for="voicemail">Voicemail</label>
+                  <input type="radio" name="message-types" id="email" value="email" checked />
+                  <label for="email">Email</label>
+                  <input type="radio" name="message-types" id="text" value="text" />
+                  <label for="text">Text</label>
+                </div>
+              </div>
+              <div>
+                <label for="reason-for-contact">Reason for contact:</label>
+                <textarea name="reason-for-contact" id="reason-for-contact"></textarea>
+              </div>
+              <div>
+                <div id="successful-contact-prompt">
+                  <label class="default-pointer">Successfully contacted client?</label>
+                  <div class="toggle-switch">
+                    <input type="radio" name="successful-contact" id="successful-contact-no" value="No" />
+                    <label for="successful-contact-no">No</label>
+                    <input type="radio" name="successful-contact" id="successful-contact-none" value="None" checked />
+                    <label for="successful-contact-none">-</label>
+                    <input type="radio" name="successful-contact" id="successful-contact-yes" value="Yes" />
+                    <label for="successful-contact-yes">Yes</label>
+                  </div>
+                </div>
+              </div>
+              <div id="contacted-phone-number-prompt">
+                <label for="phone-number">Phone number called:</label>
+                <input type="text" name="phone-number" id="phone-number" />
+              </div>
+              <div id="contacted-secondary-phone-number-prompt">
+                <label for="secondary-phone-number">Secondary phone number:</label>
+                <input type="text" name="secondary-phone-number" id="secondary-phone-number" />
+              </div>
+              <div id="contacted-left-vm-prompt">
+                <label class="default-pointer">Left voicemail?</label>
+                <div class="toggle-switch">
+                  <input type="radio" name="vm" id="vm-no" value="No" />
+                  <label for="vm-no">No</label>
+                  <input type="radio" name="vm" id="vm-none" value="None" checked />
+                  <label for="vm-none">-</label>
+                  <input type="radio" name="vm" id="vm-yes" value="Yes" />
+                  <label for="vm-yes">Yes</label>
+                </div>
+              </div>
+              <div id="contacted-email-sent-prompt">
+                <input type="checkbox" name="email-sent" id="email-sent" />
+                <label for="email-sent">Sent email to client</label>
+              </div>
+              <div id="advised-client-prompt">
+                <label for="advised-client">Advised client:</label>
+                <textarea name="advised-client" id="advised-client"></textarea>
               </div>
             </div>
 
