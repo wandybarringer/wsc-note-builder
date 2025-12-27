@@ -272,27 +272,29 @@
 
             <!-- *Missed Appointment Inputs -->
             <div class="missed-appt panel-flex input-spacing">
-              <div class="panel-flex input-spacing">
-                <div>
-                  <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
-                  <label for="first-attempt">1st Attempt</label>
-                </div>
-                <div>
-                  <input type="radio" name="attempt" id="second-attempt" value="Second attempt" />
-                  <label for="second-attempt">2nd Attempt</label>
-                </div>
-                <div>
-                  <input type="radio" name="attempt" id="third-attempt" value="Third attempt" />
-                  <label for="third-attempt">3rd Attempt</label>
+              <div class="input-spacing">
+                <div class="grey-bg">
+                  <div>
+                    <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
+                    <label for="first-attempt">1st Attempt</label>
+                  </div>
+                  <div>
+                    <input type="radio" name="attempt" id="second-attempt" value="Second attempt" />
+                    <label for="second-attempt">2nd Attempt</label>
+                  </div>
+                  <div>
+                    <input type="radio" name="attempt" id="third-attempt" value="Third attempt" />
+                    <label for="third-attempt">3rd Attempt</label>
+                  </div>
                 </div>
 
                 <div id="phone-number-prompt">
                   <label for="phone-number">Phone number called:</label>
                   <input type="text" name="phone-number" id="phone-number" />
                 </div>
-                <div id="additional-phone-number-prompt">
+                <div id="secondary-phone-number-prompt">
                   <label for="secondary-phone-number">Secondary phone number:</label>
-                  <input type="text" name="secondary-phone-number" id="secondary phone-number" />
+                  <input type="text" name="secondary-phone-number" id="secondary-phone-number" />
                 </div>
                 <div id="left-vm-prompt">
                   <label class="default-pointer">Left voicemail?</label>
@@ -307,7 +309,7 @@
                 </div>
                 <div id="no-vm-reason-prompt">
                   <label for="no-vm-reason">Reason unable to leave voicemail:</label>
-                  <input type="text" id="no-vm-reason" />
+                  <textarea name="no-vm-reason" id="no-vm-reason"></textarea>
                 </div>
                 <div id="email-sent-prompt">
                   <input type="checkbox" name="email-sent" id="email-sent" />
