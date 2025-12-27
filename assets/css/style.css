@@ -69,7 +69,6 @@ section {
 .panel-flex {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .input-spacing {
@@ -77,6 +76,7 @@ section {
 }
 
 #input-panel {
+  gap: 10px;
   flex: 1 1 0;
   background: var(--input-panel-bg);
   font-size: 1.2rem;
