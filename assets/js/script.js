@@ -12,6 +12,7 @@ var secondApptSpecEl = document.querySelectorAll('.second-appt');
 var thirdApptSpecEl = document.querySelectorAll('.third-appt');
 var postApptSpecEl = document.querySelectorAll('.post-appt');
 var missedApptSpecEl = document.querySelectorAll('.missed-appt');
+var contactedByClientSpecEl = document.querySelectorAll('.contacted-by-client');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 var workedOnEl = document.querySelector('#worked-on');
@@ -108,7 +109,7 @@ var genericCategoriesEl = document.querySelector('#generic-categories');
 var varientsCondensedEl = document.querySelector('#varients-condensed');
 var taglineEl = document.querySelector('#tagline');
 
-// Missed Appointment Radio Elements
+// Missed Appointment Elements
 var firstAttemptRadioEl = document.querySelector('#first-attempt');
 var secondAttemptRadioEl = document.querySelector('#second-attempt');
 var thirdAttemptRadioEl = document.querySelector('#third-attempt');
@@ -128,6 +129,8 @@ var sentMissedEmailPromptEl = document.querySelector('#sent-missed-email-promt')
 var sentMissedEmailEl = document.querySelector('#sent-missed-email');
 var markedPodioPromptEl = document.querySelector('#marked-podio-prompt');
 var markedPodioEl = document.querySelector('#marked-podio');
+
+// Contacted By Client Elements
 
 // *COMPLETION FORM & SM (SUPPLIER MANAGEMENT) PROMPTS
 var completionFormSentEl = document.querySelector('#completion-form-sent');
@@ -309,6 +312,7 @@ function updateApptVisibility() {
   var isDefault = selectedValue === 'default';
   var isPost = selectedValue === 'Post Appointment';
   var isMissed = selectedValue === 'Missed Appointment';
+  var isContactedByClient = selectedValue === 'Contacted by Client';
 
   function setVisibility(item, show) {
     if (!item) return;
@@ -323,7 +327,7 @@ function updateApptVisibility() {
     }
   }
 
-  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl];
+  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl];
 
   allGroups.forEach(function (group) {
     setVisibility(group, false);
@@ -336,17 +340,18 @@ function updateApptVisibility() {
   setVisibility(thirdApptSpecEl, selectedValue === '3rd Appointment');
   setVisibility(postApptSpecEl, isPost);
   setVisibility(missedApptSpecEl, isMissed);
+  setVisibility(contactedByClientSpecEl, isContactedByClient);
 
-  setVisibility(workedOnEl, !isDefault && !isMissed);
-  setVisibility(showAllWorkedOnContEl, !isDefault && !isMissed);
+  setVisibility(workedOnEl, !isDefault && !isMissed && !isContactedByClient);
+  setVisibility(showAllWorkedOnContEl, !isDefault && !isMissed && !isContactedByClient);
 
-  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed);
-  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed);
+  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed && !isContactedByClient);
+  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed && !isContactedByClient);
 
-  setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed);
-  setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed);
+  setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient);
+  setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient);
 
-  var showGeneralInputs = !isDefault && !isMissed;
+  var showGeneralInputs = !isDefault && !isMissed && !isContactedByClient;
 
   setVisibility(contApptEl.closest('div'), showGeneralInputs);
   setVisibility(hwNoneEl.closest('.toggle-switch').parentElement, showGeneralInputs);
@@ -415,6 +420,8 @@ function updateHtmlNotes() {
     htmlNotes = contactedClient + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + nextTopicText + smReminderText + initialsText;
   } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
+  } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
+    htmlNotes = contactedByClientText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;

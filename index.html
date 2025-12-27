@@ -36,7 +36,7 @@
               <option value="3rd Appointment">3rd Appointment</option>
               <option value="Post Appointment">Post Appointment</option>
               <option value="Missed Appointment">Missed Appointment</option>
-              <option value="Missed Appointment">Contacted by Client</option>
+              <option value="Contacted by Client">Contacted by Client</option>
             </select>
           </form>
 
@@ -331,15 +331,11 @@
             <div class="contacted-by-client">
               <div>
                 <label class="default-pointer">Recieved message from client:</label>
-                <div class="toggle-switch">
-                  <input type="radio" name="message-types" id="none" value="none" />
-                  <label for="none">None (Direct Call)</label>
-                  <input type="radio" name="message-types" id="voicemail" value="voicemail" />
-                  <label for="voicemail">Voicemail</label>
-                  <input type="radio" name="message-types" id="email" value="email" checked />
-                  <label for="email">Email</label>
-                  <input type="radio" name="message-types" id="text" value="text" />
-                  <label for="text">Text</label>
+                <div class="panel-flex">
+                  <div><input type="radio" name="message-types" id="message-type-none" value="message-type-none" /><label for="message-type-none">No (Direct Call)</label></div>
+                  <div><input type="radio" name="message-types" id="message-type-voicemail" value="message-type-voicemail" /><label for="message-type-voicemail">Voicemail</label></div>
+                  <div><input type="radio" name="message-types" id="message-type-email" value="message-type-email" checked /><label for="message-type-email">Email</label></div>
+                  <div><input type="radio" name="message-types" id="message-type-text" value="message-type-text" /><label for="message-type-text">Text</label></div>
                 </div>
               </div>
               <div>
@@ -348,7 +344,7 @@
               </div>
               <div>
                 <div id="successful-contact-prompt">
-                  <label class="default-pointer">Successfully contacted client?</label>
+                  <label class="default-pointer">If client called, successfully contacted?</label>
                   <div class="toggle-switch">
                     <input type="radio" name="successful-contact" id="successful-contact-no" value="No" />
                     <label for="successful-contact-no">No</label>
