@@ -1371,9 +1371,9 @@ function setMissedAppointment() {
 
   emailSentEl.addEventListener('change', function () {
     if (!emailSentEl.checked) {
-      emailSentText = ' Sent email to client.';
-    } else if (emailSentEl.checked) {
       emailSentText = '';
+    } else if (emailSentEl.checked) {
+      emailSentText = ' Sent email to client.';
     }
 
     updateMissedAppointment();
