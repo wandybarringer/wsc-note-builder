@@ -131,6 +131,32 @@ var markedPodioPromptEl = document.querySelector('#marked-podio-prompt');
 var markedPodioEl = document.querySelector('#marked-podio');
 
 // Contacted By Client Elements
+var messageTypeNoneRadioEl = document.querySelector('#message-type-none');
+var messageTypeVoicemailRadioEl = document.querySelector('#message-type-voicemail');
+var messageTypeEmailRadioEl = document.querySelector('#message-type-email');
+var messageTypeTextRadioEl = document.querySelector('#message-type-text');
+var reasonForContactEl = document.querySelector('#reason-for-contact');
+var successfulContactPromptEl = document.querySelector('#successful-contact-prompt');
+var successfulContactNoEl = document.querySelector('#successful-contact-no');
+var successfulContactNoneEl = document.querySelector('#successful-contact-none');
+var successfulContactYesEl = document.querySelector('#successful-contact-yes');
+var contactedPhoneNumberPromptEl = document.querySelector('#contacted-phone-number-prompt');
+var contactedPhoneNumberEl = document.querySelector('#contacted-phone-number');
+var contactedSecondaryPhoneNumberPromptEl = document.querySelector('#contacted-secondary-phone-number-prompt');
+var contactedSecondaryPhoneNumberEl = document.querySelector('#contacted-secondary-phone-number');
+var contactedLeftVmPromptEl = document.querySelector('#contacted-left-vm-prompt');
+var contactedVmNoEl = document.querySelector('#contacted-vm-no');
+var contactedVmNoneEl = document.querySelector('#contacted-vm-none');
+var contactedVmYesEl = document.querySelector('#contacted-vm-yes');
+var contactedNoVmReasonPromptEl = document.querySelector('#contacted-no-vm-reason-prompt');
+var contactedNoVmReasonEl = document.querySelector('#contacted-no-vm-reason');
+
+var contactedEmailSentPromptEl = document.querySelector('#contacted-email-sent-prompt');
+var contactedEmailSentEl = document.querySelector('#contacted-email-sent');
+var advisedClientEl = document.querySelector('#advised-client');
+var needsRescheduledEl = document.querySelector('#needs-reschedule');
+var contactedRescheduleDatePromptEl = document.querySelector('#contacted-reschedule-date-prompt');
+var contactedRescheduleDateEl = document.querySelector('#contacted-reschedule-date');
 
 // *COMPLETION FORM & SM (SUPPLIER MANAGEMENT) PROMPTS
 var completionFormSentEl = document.querySelector('#completion-form-sent');
@@ -177,6 +203,7 @@ var currentTheme = document.documentElement.getAttribute('data-theme');
 // *TEXT STRING VARIABLES (FOR NOTE GENERATION)
 var htmlNotes = '';
 var currentApptValue = '';
+var contactedClientText = '';
 var contText = '';
 var introText = '';
 var hwCompletedText = '';
@@ -247,6 +274,22 @@ var emailSentText = '';
 var sentMissedEmailText = '';
 var markedPodioText = '';
 
+// Contacted by Client Strings
+var contactedByClientText = '';
+var messageType = '';
+var reasonForContactText = '';
+var successfulContactText = '';
+var contactedPhoneNumberText = '';
+var contactedSecondaryPhoneNumberText = '';
+var updatedContactedPhoneNumberText = '';
+var contactedLeftVmText = '';
+var contactedNoVmReasonText = '';
+var contactedUpdatedVmText = '';
+var contactedEmailSentText = '';
+var advisedClientText = '';
+var returnContactText = '';
+var contactedRescheduleDateText = '';
+
 // Logic & Footer Strings
 var additionalNotesText = '';
 var registeredBusinessText = '';
@@ -299,6 +342,17 @@ function copyHtmlNotes() {
       copyDialogEl.close();
     }, 750);
   });
+}
+
+function formatPhone(value) {
+  let digits = value.replace(/\D/g, '');
+  if (digits.length > 10 && digits.startsWith('1')) {
+    digits = digits.substring(1);
+  }
+  if (digits.length === 0) return '';
+  if (digits.length <= 3) return `(${digits}`;
+  if (digits.length <= 6) return `(${digits.substring(0, 3)}) ${digits.substring(3)}`;
+  return `(${digits.substring(0, 3)}) ${digits.substring(3, 6)}-${digits.substring(6, 10)}`;
 }
 
 // *VISIBILITY & TEMPLATE CONTROLS
@@ -412,16 +466,16 @@ function setShowAllAssignedHw() {
 // *NOTE GENERATION & RESET LOGIC
 
 function updateHtmlNotes() {
-  if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment') {
-    contactedClient = `<p>
+  if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client') {
+    contactedClientText = `<p>
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
-    htmlNotes = contactedClient + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + nextTopicText + smReminderText + initialsText;
+    htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + nextTopicText + smReminderText + initialsText;
   } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
-    htmlNotes = contactedByClientText + initialsText;
+    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -442,6 +496,10 @@ function resetHtmlNotes() {
   nextAppointmentText = '';
   nextTopicText = '';
   missedApptText = '';
+  reasonForContactText = '';
+  returnContactText = '';
+  advisedClientText = '';
+  contactedRescheduleDateText = '';
 
   htmlNotesEl.value = '';
 
@@ -451,6 +509,12 @@ function resetHtmlNotes() {
 
   nonSpecForms.forEach((form) => {
     form.reset();
+  });
+
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl];
+
+  allPrompts.forEach(function (element) {
+    element.setAttribute('class', 'hide-content');
   });
 }
 
@@ -1179,8 +1243,6 @@ function setMissedAppointment() {
         emailSentPromptEl.setAttribute('class', 'show-content');
         sentMissedEmailPromptEl.setAttribute('class', 'hide-content');
         markedPodioPromptEl.setAttribute('class', 'hide-content');
-        updateMissedAppointment();
-        updateHtmlNotes();
       } else if (secondAttemptRadioEl.checked) {
         attemptText = `<b>2nd attempt</b>`;
         phoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -1190,8 +1252,6 @@ function setMissedAppointment() {
         emailSentPromptEl.setAttribute('class', 'hide-content');
         sentMissedEmailPromptEl.setAttribute('class', 'hide-content');
         markedPodioPromptEl.setAttribute('class', 'hide-content');
-        updateMissedAppointment();
-        updateHtmlNotes();
       } else if (thirdAttemptRadioEl.checked) {
         attemptText = `<b>3rd attempt</b>`;
         phoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -1201,8 +1261,6 @@ function setMissedAppointment() {
         emailSentPromptEl.setAttribute('class', 'hide-content');
         sentMissedEmailPromptEl.setAttribute('class', 'show-content');
         markedPodioPromptEl.setAttribute('class', 'show-content');
-        updateMissedAppointment();
-        updateHtmlNotes();
       } else {
         attemptText = ``;
         phoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -1212,22 +1270,11 @@ function setMissedAppointment() {
         emailSentPromptEl.setAttribute('class', 'hide-content');
         sentMissedEmailPromptEl.setAttribute('class', 'hide-content');
         markedPodioPromptEl.setAttribute('class', 'hide-content');
-        updateMissedAppointment();
-        updateHtmlNotes();
       }
+      updateMissedAppointment();
+      updateHtmlNotes();
     });
   });
-
-  function formatPhone(value) {
-    let digits = value.replace(/\D/g, '');
-    if (digits.length > 10 && digits.startsWith('1')) {
-      digits = digits.substring(1);
-    }
-    if (digits.length === 0) return '';
-    if (digits.length <= 3) return `(${digits}`;
-    if (digits.length <= 6) return `(${digits.substring(0, 3)}) ${digits.substring(3)}`;
-    return `(${digits.substring(0, 3)}) ${digits.substring(3, 6)}-${digits.substring(6, 10)}`;
-  }
 
   phoneNumberEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -1339,6 +1386,228 @@ function updateMissedAppointment() {
 `;
 }
 
+// *CONTACTED BY CLIENT
+function setContactedByClient() {
+  contactedByClientText = `<p>
+  Contacted by client.
+</p>
+`;
+
+  var contactedPrompts = [successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl];
+
+  contactedPrompts.forEach(function (element) {
+    element.setAttribute('class', 'hide-content');
+  });
+
+  var messageTypeRadioElements = [messageTypeNoneRadioEl, messageTypeVoicemailRadioEl, messageTypeEmailRadioEl, messageTypeTextRadioEl];
+
+  messageTypeRadioElements.forEach(function (element) {
+    var currentMsgType = element.value;
+
+    element.addEventListener('change', function () {
+      if (messageTypeNoneRadioEl.checked) {
+        contactedByClientText = `<p>
+  Contacted by client.
+</p>
+`;
+        contactedPrompts.forEach(function (element) {
+          element.setAttribute('class', 'hide-content');
+        });
+      } else if (messageTypeVoicemailRadioEl.checked || messageTypeEmailRadioEl.checked || messageTypeTextRadioEl.checked) {
+        contactedByClientText = `<p>
+  Contacted by client via ${currentMsgType}.
+</p>
+`;
+        successfulContactPromptEl.setAttribute('class', 'show-content');
+        contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
+        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
+        contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
+      }
+      updateHtmlNotes();
+    });
+  });
+
+  reasonForContactEl.addEventListener('keyup', function (event) {
+    if (!event.target.value) {
+      reasonForContactText = '';
+    } else {
+      reasonForContactText = `<p>
+  Reason: ${event.target.value}
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+
+  var successfulContactRadioElements = [successfulContactNoEl, successfulContactNoneEl, successfulContactYesEl];
+
+  successfulContactRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      updatedContactedPhoneNumberText = '';
+      contactedUpdatedVmText = '';
+      contactedVmNoneEl.checked = true;
+      contactedPhoneNumberEl.value = '';
+      contactedSecondaryPhoneNumberEl.value = '';
+      if (successfulContactNoEl.checked) {
+        successfulContactText = `Attempted to contact client but got no response.`;
+        contactedPhoneNumberPromptEl.setAttribute('class', 'show-content');
+        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'show-content');
+        contactedLeftVmPromptEl.setAttribute('class', 'show-content');
+      } else if (successfulContactYesEl.checked) {
+        successfulContactText = `Succesfully contacted client.`;
+        contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
+        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
+        contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
+      } else if (successfulContactNoneEl.checked) {
+        successfulContactText = '';
+        contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
+        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
+        contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
+      } else {
+        successfulContactText = '';
+        contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
+        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
+        contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
+      }
+      updateReturnContactText();
+      updateHtmlNotes();
+    });
+  });
+
+  contactedPhoneNumberEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      contactedPhoneNumberText = '';
+    } else {
+      event.target.value = formatPhone(event.target.value);
+      contactedPhoneNumberText = event.target.value;
+    }
+    updateContactedPhoneNumberText();
+    updateHtmlNotes();
+  });
+
+  contactedSecondaryPhoneNumberEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      contactedSecondaryPhoneNumberText = '';
+    } else {
+      event.target.value = formatPhone(event.target.value);
+      contactedSecondaryPhoneNumberText = event.target.value;
+    }
+    updateContactedPhoneNumberText();
+    updateHtmlNotes();
+  });
+
+  var contactedVmRadioElements = [contactedVmNoEl, contactedVmNoneEl, contactedVmYesEl];
+
+  contactedVmRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (contactedVmNoEl.checked) {
+        contactedNoVmReasonPromptEl.setAttribute('class', 'show-content');
+        contactedLeftVmText = `Did not leave voicemail`;
+      } else if (contactedVmYesEl.checked) {
+        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        contactedLeftVmText = `Left voicemail`;
+      } else if (contactedVmNoneEl.checked) {
+        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        contactedLeftVmText = ``;
+      } else {
+        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        contactedLeftVmText = ``;
+      }
+      updateContactedVmText();
+      updateHtmlNotes();
+    });
+  });
+
+  contactedNoVmReasonEl.addEventListener('keyup', function (event) {
+    contactedNoVmReasonText = event.target.value;
+    updateContactedVmText();
+    updateHtmlNotes();
+  });
+
+  contactedEmailSentEl.addEventListener('change', function () {
+    if (contactedEmailSentEl.checked) {
+      contactedEmailSentText = ` Sent email to client.`;
+    } else if (!contactedEmailSentEl.checked) {
+      contactedEmailSentText = ``;
+    }
+    updateReturnContactText();
+    updateHtmlNotes();
+  });
+
+  advisedClientEl.addEventListener('keyup', function (event) {
+    if (!event.target.value) {
+      advisedClientText = '';
+    } else {
+      advisedClientText = `<p>
+  <b>Advised client:</b> ${event.target.value}
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+
+  needsRescheduledEl.addEventListener('change', function () {
+    if (needsRescheduledEl.checked) {
+      contactedRescheduleDatePromptEl.setAttribute('class', 'show-content');
+    } else if (!needsRescheduledEl.checked) {
+      contactedRescheduleDatePromptEl.setAttribute('class', 'hide-content');
+      contactedRescheduleDateText = '';
+      contactedRescheduleDateEl.value = '';
+    } else {
+      contactedRescheduleDatePromptEl.setAttribute('class', 'hide-content');
+    }
+    updateHtmlNotes();
+  });
+
+  contactedRescheduleDateEl.addEventListener('input', function (event) {
+    var contactedRescheduleOriginalStr = event.target.value;
+    var newContactedRescheduleOriginalStr = contactedRescheduleOriginalStr.replace('⋅', ', ');
+
+    if (!event.target.value) {
+      contactedRescheduleDateText = '';
+    } else {
+      contactedRescheduleDateText = `<p>
+  Rescheduled Warhead appointment to ${newContactedRescheduleOriginalStr}.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function updateContactedPhoneNumberText() {
+  if (contactedPhoneNumberText && !contactedSecondaryPhoneNumberText) {
+    updatedContactedPhoneNumberText = ` Used phone number on file: ${contactedPhoneNumberText}.`;
+  } else if (contactedPhoneNumberText && contactedSecondaryPhoneNumberText) {
+    updatedContactedPhoneNumberText = ` Used phone numbers on file: ${contactedPhoneNumberText} & ${contactedSecondaryPhoneNumberText}.`;
+  } else if (!contactedPhoneNumberText && !contactedSecondaryPhoneNumberText) {
+    updatedContactedPhoneNumberText = '';
+  }
+  updateReturnContactText();
+}
+
+function updateContactedVmText() {
+  if (contactedLeftVmText && !contactedNoVmReasonText) {
+    contactedUpdatedVmText = ` ${contactedLeftVmText}.`;
+  } else if (contactedLeftVmText && contactedNoVmReasonText) {
+    contactedUpdatedVmText = ` ${contactedLeftVmText}, ${contactedNoVmReasonText}.`;
+  } else {
+    contactedUpdatedVmText = '';
+  }
+  updateReturnContactText();
+}
+
+function updateReturnContactText() {
+  if (!successfulContactText && !updatedContactedPhoneNumberText && !contactedUpdatedVmText && !contactedEmailSentText) {
+    returnContactText = '';
+  } else {
+    returnContactText = `<p>
+  ${successfulContactText}${updatedContactedPhoneNumberText}${contactedUpdatedVmText}${contactedEmailSentText}
+</p>  
+`;
+  }
+}
+
 // *INITIALIZATION (DOM CONTENT LOADED)
 document.addEventListener('DOMContentLoaded', () => {
   htmlNotesEl.value = '';
@@ -1376,6 +1645,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setNextAppointment();
   setNextTopic();
   setMissedAppointment();
+  setContactedByClient();
   setInitials();
 });
 
