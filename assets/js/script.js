@@ -584,7 +584,8 @@ function setIntroCompleted() {
       } else if (introNoEl.checked) {
         introText = `<p>
   Client didn't do an intro warhead call with onboarding.
-</p>`;
+</p>
+`;
       } else if (introNoneEl.checked) {
         introText = '';
       } else {
@@ -643,8 +644,8 @@ function updateHw() {
   if (hwCompletedText || hwPercentText) {
     hwText = `<p>
   ${hwCompletedText} ${hwPercentText}
-<p>
-  `;
+</p>
+`;
   } else {
     hwText = '';
   }
