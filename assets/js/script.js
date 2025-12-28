@@ -13,6 +13,7 @@ var thirdApptSpecEl = document.querySelectorAll('.third-appt');
 var postApptSpecEl = document.querySelectorAll('.post-appt');
 var missedApptSpecEl = document.querySelectorAll('.missed-appt');
 var contactedByClientSpecEl = document.querySelectorAll('.contacted-by-client');
+var rescheduleSpecEl = document.querySelectorAll('.reschedule');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 var workedOnEl = document.querySelector('#worked-on');
@@ -150,13 +151,16 @@ var contactedVmNoneEl = document.querySelector('#contacted-vm-none');
 var contactedVmYesEl = document.querySelector('#contacted-vm-yes');
 var contactedNoVmReasonPromptEl = document.querySelector('#contacted-no-vm-reason-prompt');
 var contactedNoVmReasonEl = document.querySelector('#contacted-no-vm-reason');
-
 var contactedEmailSentPromptEl = document.querySelector('#contacted-email-sent-prompt');
 var contactedEmailSentEl = document.querySelector('#contacted-email-sent');
 var advisedClientEl = document.querySelector('#advised-client');
 var needsRescheduledEl = document.querySelector('#needs-reschedule');
 var contactedRescheduleDatePromptEl = document.querySelector('#contacted-reschedule-date-prompt');
 var contactedRescheduleDateEl = document.querySelector('#contacted-reschedule-date');
+
+// Reschedule Elements
+var rescheduleReasonEl = document.querySelector('#reschedule-reason');
+var rescheduleDateEl = document.querySelector('#reschedule-date');
 
 // *COMPLETION FORM & SM (SUPPLIER MANAGEMENT) PROMPTS
 var completionFormSentEl = document.querySelector('#completion-form-sent');

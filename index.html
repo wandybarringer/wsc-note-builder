@@ -37,6 +37,7 @@
               <option value="Post Appointment">Post Appointment</option>
               <option value="Missed Appointment">Missed Appointment</option>
               <option value="Contacted by Client">Contacted by Client</option>
+              <option value="Reschedule">Reschedule</option>
             </select>
           </form>
 
@@ -393,6 +394,18 @@
               <div id="contacted-reschedule-date-prompt">
                 <label for="contacted-reschedule-date">Rescheduled appointment to:</label>
                 <input type="text" name="contacted-reschedule-date" id="contacted-reschedule-date" />
+              </div>
+            </div>
+
+            <!-- *Reschedule Inputs -->
+            <div class="reschedule">
+              <div>
+                <label for="reschedule-reason">Reason for reschedule:</label>
+                <textarea name="reschedule-reason" id="reschedule-reason"></textarea>
+              </div>
+              <div id="reschedule-date-prompt">
+                <label for="reschedule-date">Rescheduled appointment to:</label>
+                <input type="text" name="reschedule-date" id="reschedule-date" />
               </div>
             </div>
 
