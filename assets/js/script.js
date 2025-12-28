@@ -294,6 +294,10 @@ var advisedClientText = '';
 var returnContactText = '';
 var contactedRescheduleDateText = '';
 
+// Reschedule Strings
+var rescheduleReasonText = '';
+var rescheduleDateText = '';
+
 // Logic & Footer Strings
 var additionalNotesText = '';
 var registeredBusinessText = '';
@@ -371,6 +375,7 @@ function updateApptVisibility() {
   var isPost = selectedValue === 'Post Appointment';
   var isMissed = selectedValue === 'Missed Appointment';
   var isContactedByClient = selectedValue === 'Contacted by Client';
+  var isReschedule = selectedValue === 'Reschedule';
 
   function setVisibility(item, show) {
     if (!item) return;
@@ -385,7 +390,7 @@ function updateApptVisibility() {
     }
   }
 
-  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl];
+  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl, rescheduleSpecEl];
 
   allGroups.forEach(function (group) {
     setVisibility(group, false);
@@ -399,17 +404,18 @@ function updateApptVisibility() {
   setVisibility(postApptSpecEl, isPost);
   setVisibility(missedApptSpecEl, isMissed);
   setVisibility(contactedByClientSpecEl, isContactedByClient);
+  setVisibility(rescheduleSpecEl, isReschedule);
 
-  setVisibility(workedOnEl, !isDefault && !isMissed && !isContactedByClient);
-  setVisibility(showAllWorkedOnContEl, !isDefault && !isMissed && !isContactedByClient);
+  setVisibility(workedOnEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule);
+  setVisibility(showAllWorkedOnContEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule);
 
-  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed && !isContactedByClient);
-  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed && !isContactedByClient);
+  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule);
+  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule);
 
-  setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient);
-  setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient);
+  setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule);
+  setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule);
 
-  var showGeneralInputs = !isDefault && !isMissed && !isContactedByClient;
+  var showGeneralInputs = !isDefault && !isMissed && !isContactedByClient && !isReschedule;
 
   setVisibility(contApptEl.closest('div'), showGeneralInputs);
   setVisibility(hwNoneEl.closest('.toggle-switch').parentElement, showGeneralInputs);
@@ -470,7 +476,7 @@ function setShowAllAssignedHw() {
 // *NOTE GENERATION & RESET LOGIC
 
 function updateHtmlNotes() {
-  if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client') {
+  if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client' && currentApptValue !== 'Reschedule') {
     contactedClientText = `<p>
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
@@ -480,6 +486,12 @@ function updateHtmlNotes() {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
     htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + initialsText;
+  } else if (currentApptValue === 'Reschedule' && currentApptValue !== 'default') {
+    contactedClientText = `<p>
+  Contacted client but they are <b>unable to attend appointment.</b>
+</p>
+`;
+    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
