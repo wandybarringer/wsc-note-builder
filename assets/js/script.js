@@ -14,6 +14,7 @@ var postApptSpecEl = document.querySelectorAll('.post-appt');
 var missedApptSpecEl = document.querySelectorAll('.missed-appt');
 var contactedByClientSpecEl = document.querySelectorAll('.contacted-by-client');
 var rescheduleSpecEl = document.querySelectorAll('.reschedule');
+var podioLinkSpecEl = document.querySelectorAll('.podio');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 var workedOnEl = document.querySelector('#worked-on');
@@ -516,6 +517,8 @@ function resetHtmlNotes() {
   returnContactText = '';
   advisedClientText = '';
   contactedRescheduleDateText = '';
+  rescheduleReasonText = '';
+  rescheduleDateText = '';
 
   htmlNotesEl.value = '';
 
@@ -701,14 +704,14 @@ function setCustomWorkedOn() {
           updateHtmlNotes();
         };
       }
-      customWorkedOnTextEl.addEventListener('keyup', customKeyupListener);
+      customWorkedOnTextEl.addEventListener('input', customKeyupListener);
       const value = customWorkedOnTextEl.value.trim();
       customWorkedonText = value !== '' ? `\n <li>${value}</li>` : '';
       updateWorkedOn();
       updateHtmlNotes();
     } else {
       if (customKeyupListener) {
-        customWorkedOnTextEl.removeEventListener('keyup', customKeyupListener);
+        customWorkedOnTextEl.removeEventListener('input', customKeyupListener);
       }
       customWorkedonText = '';
       updateWorkedOn();
@@ -826,14 +829,14 @@ function setCustomAssignedHw() {
           updateHtmlNotes();
         };
       }
-      customAssignedHwTextEl.addEventListener('keyup', customKeyupListener);
+      customAssignedHwTextEl.addEventListener('input', customKeyupListener);
       const value = customAssignedHwTextEl.value.trim();
       customAssignedHwText = value !== '' ? `\n <li>${value}</li>` : '';
       updateAssignedHw();
       updateHtmlNotes();
     } else {
       if (customKeyupListener) {
-        customAssignedHwTextEl.removeEventListener('keyup', customKeyupListener);
+        customAssignedHwTextEl.removeEventListener('input', customKeyupListener);
       }
       customAssignedHwText = '';
       updateAssignedHw();
@@ -958,7 +961,7 @@ function setCompletionForm() {
     });
   });
 
-  whyNotSignedEl.addEventListener('keyup', function (event) {
+  whyNotSignedEl.addEventListener('input', function (event) {
     whyNotSignedText = event.target.value;
     updateCompletionForm();
     updateHtmlNotes();
@@ -1031,13 +1034,13 @@ function setSupplierManagement() {
     updateHtmlNotes();
   });
 
-  smTechEl.addEventListener('keyup', function (event) {
+  smTechEl.addEventListener('input', function (event) {
     smTechText = event.target.value;
     updateSupplierManagement();
     updateHtmlNotes();
   });
 
-  smApptEl.addEventListener('keyup', function (event) {
+  smApptEl.addEventListener('input', function (event) {
     var smApptOriginalStr = event.target.value;
     smApptText = smApptOriginalStr.replace('⋅', ', ');
     updateSupplierManagement();
@@ -1105,7 +1108,7 @@ function setPostApptExtras() {
     updateHtmlNotes();
   });
 
-  smReminderEl.addEventListener('keyup', function (event) {
+  smReminderEl.addEventListener('input', function (event) {
     var smReminderOriginalStr = event.target.value;
     var smReminderNewStr = smReminderOriginalStr.replace('⋅', ', ');
 
@@ -1154,7 +1157,7 @@ function setNextTopic() {
 }
 
 function setAdditionalNotes() {
-  additionalNotesEl.addEventListener('keyup', function (event) {
+  additionalNotesEl.addEventListener('input', function (event) {
     if (!event.target.value) {
       additionalNotesText = '';
     } else {
@@ -1207,7 +1210,7 @@ function setInitials() {
 </p>
 `;
   }
-  initialsEl.addEventListener('keyup', function (event) {
+  initialsEl.addEventListener('input', function (event) {
     var currentInitials = event.target.value;
 
     if (!event.target.value) {
@@ -1347,7 +1350,7 @@ function setMissedAppointment() {
     });
   });
 
-  noVmReasonEl.addEventListener('keyup', function (event) {
+  noVmReasonEl.addEventListener('input', function (event) {
     noVmReasonText = event.target.value;
     localStorage.setItem('noVmReason', noVmReasonText);
     updateVmText();
@@ -1443,7 +1446,7 @@ function setContactedByClient() {
     });
   });
 
-  reasonForContactEl.addEventListener('keyup', function (event) {
+  reasonForContactEl.addEventListener('input', function (event) {
     if (!event.target.value) {
       reasonForContactText = '';
     } else {
@@ -1534,7 +1537,7 @@ function setContactedByClient() {
     });
   });
 
-  contactedNoVmReasonEl.addEventListener('keyup', function (event) {
+  contactedNoVmReasonEl.addEventListener('input', function (event) {
     contactedNoVmReasonText = event.target.value;
     updateContactedVmText();
     updateHtmlNotes();
@@ -1550,7 +1553,7 @@ function setContactedByClient() {
     updateHtmlNotes();
   });
 
-  advisedClientEl.addEventListener('keyup', function (event) {
+  advisedClientEl.addEventListener('input', function (event) {
     if (!event.target.value) {
       advisedClientText = '';
     } else {
@@ -1624,6 +1627,36 @@ function updateReturnContactText() {
   }
 }
 
+// *RESCHEDULE
+function setReschedule() {
+  rescheduleReasonEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      rescheduleReasonText = '';
+    } else {
+      rescheduleReasonText = `<p>
+  Reason: ${event.target.value}
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+
+  rescheduleDateEl.addEventListener('input', function (event) {
+    var rescheduleDateOriginalStr = event.target.value;
+    var newRescheduleDateStr = rescheduleDateOriginalStr.replace('⋅', ', ');
+
+    if (!event.target.value) {
+      rescheduleDateText = '';
+    } else {
+      rescheduleDateText = `<p>
+  Rescheduled Warhead appointment to ${newRescheduleDateStr}.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
 // *INITIALIZATION (DOM CONTENT LOADED)
 document.addEventListener('DOMContentLoaded', () => {
   htmlNotesEl.value = '';
@@ -1662,6 +1695,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setNextTopic();
   setMissedAppointment();
   setContactedByClient();
+  setReschedule();
   setInitials();
 });
 
