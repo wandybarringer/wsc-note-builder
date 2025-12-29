@@ -1257,6 +1257,7 @@ function setMissedAppointment() {
       noVmReasonText = '';
       updatedPhoneNumberText = '';
       updatedVmText = '';
+      emailSentText = '';
       sentMissedEmailText = '';
       markedPodioText = '';
       phoneNumberEl.value = '';
@@ -1363,8 +1364,12 @@ function setMissedAppointment() {
   });
 
   noVmReasonEl.addEventListener('input', function (event) {
-    noVmReasonText = event.target.value;
-    localStorage.setItem('noVmReason', noVmReasonText);
+    if (!event.target.value) {
+      noVmReasonText = '';
+    } else if (event.target.value) {
+      noVmReasonText = event.target.value;
+      localStorage.setItem('noVmReason', noVmReasonText);
+    }
     updateVmText();
     updateHtmlNotes();
   });
@@ -1375,19 +1380,26 @@ function setMissedAppointment() {
     } else if (emailSentEl.checked) {
       emailSentText = ' Sent email to client.';
     }
-
     updateMissedAppointment();
     updateHtmlNotes();
   });
 
   sentMissedEmailEl.addEventListener('change', function () {
-    sentMissedEmailText = ' Sent <b>missed appointment</b> email to account manager and front-end.';
+    if (!sentMissedEmailEl.checked) {
+      sentMissedEmailText = '';
+    } else if (!sentMissedEmailEl.checked) {
+      sentMissedEmailText = ' Sent <b>missed appointment</b> email to account manager and front-end.';
+    }
     updateMissedAppointment();
     updateHtmlNotes();
   });
 
   markedPodioEl.addEventListener('change', function () {
-    markedPodioText = ' Marked Podio.';
+    if (!markedPodioEl.checked) {
+      markedPodioText = '';
+    } else if (markedPodioEl.checked) {
+      markedPodioText = ' Marked Podio.';
+    }
     updateMissedAppointment();
     updateHtmlNotes();
   });
