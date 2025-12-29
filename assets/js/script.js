@@ -25,6 +25,7 @@ var firstApptWorkedOnItems = document.querySelectorAll('div:has(> #dashboard-nav
 var secondApptWorkedOnItems = document.querySelectorAll('div:has(> #discounts), ' + 'div:has(> #checkout-sections), ' + 'div:has(> #paypal-apple-pay), ' + 'div:has(> #test-order), ' + 'div:has(> #process-order) ');
 var thirdApptWorkedOnItems = document.querySelectorAll('div:has(> #updating-products), ' + 'div:has(> #unavailable-products)');
 var postApptWorkedOnItems = document.querySelectorAll('div:has(> #stripe),' + 'div:has(> #variants)');
+var whAssistanceWorkedOnItems = document.querySelectorAll('div:has(> #new-updating-products),' + 'div:has(> #process-real-order),' + 'div:has(> #modify-variants)');
 
 // *"ASSIGNED HOMEWORK" - PARENT CONTAINERS & SHOW ALL LOGIC
 var assignedHwEl = document.querySelector('#assigned-hw');
@@ -38,14 +39,17 @@ var thirdApptAssignedHwItems = document.querySelectorAll('div:has(> #third-appt-
 // *INDIVIDUAL CHECKBOX/RADIO & PROMPT ELEMENTS
 
 // General Progress Elements
+var contApptPromptEl = document.querySelector('#continuation-prompt');
 var contApptEl = document.querySelector('#continuation');
 var introContEl = document.querySelector('#intro-container');
 var introNoEl = document.querySelector('#intro-no');
 var introNoneEl = document.querySelector('#intro-none');
 var introYesEl = document.querySelector('#intro-yes');
+var hwPromptEl = document.querySelector('#hw-prompt');
 var hwNoEl = document.querySelector('#hw-no');
 var hwNoneEl = document.querySelector('#hw-none');
 var hwYesEl = document.querySelector('#hw-yes');
+var hwPercentPromptEl = document.querySelector('#hw-percent-prompt');
 var hwPercentEl = document.querySelector('#hw-percent');
 var initialsPromptEl = document.querySelector('#initials-prompt');
 
@@ -73,6 +77,11 @@ var unavailableProdEl = document.querySelector('#unavailable-products');
 var stripeEl = document.querySelector('#stripe');
 var variantsEl = document.querySelector('#variants');
 var unavailableCjProdEl = document.querySelector('#unavailable-cj-products');
+
+// "Worked On" Checklist (WH Assistance)
+var updatingNewProdEl = document.querySelector('#new-updating-products');
+var processRealOrderEl = document.querySelector('#process-real-order');
+var modifyVariantsEl = document.querySelector('#modify-variants');
 
 // Custom "Worked On" Checkbox & Text
 var customWorkedOnChecboxEl = document.querySelector('#custom-worked-on-checkbox');
@@ -239,6 +248,9 @@ var unavailableProdText = '';
 var stripeText = '';
 var variantsText = '';
 var unavailableCjProdText = '';
+var updatingNewProdText = '';
+var processRealOrderText = '';
+var modifyVariantsText = '';
 var customWorkedonText = '';
 
 // Assigned HW Strings
@@ -381,6 +393,7 @@ function updateApptVisibility() {
   var isShowAllHw = showAllAssignedHwEl.checked;
   var isDefault = selectedValue === 'default';
   var isPost = selectedValue === 'Post Appointment';
+  var isWhAssistance = selectedValue === 'Warhead Assistance';
   var isMissed = selectedValue === 'Missed Appointment';
   var isContactedByClient = selectedValue === 'Contacted by Client';
   var isReschedule = selectedValue === 'Reschedule';
@@ -425,8 +438,8 @@ function updateApptVisibility() {
   setVisibility(workedOnEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
   setVisibility(showAllWorkedOnContEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
 
-  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
-  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
+  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink && !isWhAssistance);
+  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink && !isWhAssistance);
 
   setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
   setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
@@ -443,6 +456,7 @@ function updateApptVisibility() {
     setVisibility(secondApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '2nd Appointment');
     setVisibility(thirdApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '3rd Appointment');
     setVisibility(postApptWorkedOnItems, isShowAllWorkedOn || isPost);
+    setVisibility(whAssistanceWorkedOnItems, isShowAllWorkedOn || isWhAssistance);
 
     if (isShowAllHw && !isPost) {
       setVisibility(firstApptAssignedHwItems, isShowAllHw || selectedValue === '1st Appointment');
@@ -455,6 +469,13 @@ function updateApptVisibility() {
         setVisibility(document.querySelectorAll('div:has(> #first-appt-continue-videos)'), false);
       }
     }
+  }
+
+  var genApptPrompts = [contApptPromptEl, hwPromptEl, hwPercentPromptEl];
+  if (isWhAssistance) {
+    genApptPrompts.forEach(function (element) {
+      element.setAttribute('class', 'hide-content');
+    });
   }
 
   updateHtmlNotes();
@@ -492,7 +513,7 @@ function setShowAllAssignedHw() {
 // *NOTE GENERATION & RESET LOGIC
 
 function updateHtmlNotes() {
-  if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client' && currentApptValue !== 'Reschedule' && currentApptValue !== 'Podio Link') {
+  if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client' && currentApptValue !== 'Reschedule' && currentApptValue !== 'Podio Link' && currentApptValue !== 'Warhead Assistance') {
     contactedClientText = `<p>
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
@@ -510,6 +531,12 @@ function updateHtmlNotes() {
     htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + initialsText;
   } else if (currentApptValue === 'Podio Link' && currentApptValue !== 'default') {
     htmlNotes = podioLinkText;
+  } else if (currentApptValue === 'Warhead Assistance' && currentApptValue !== 'default') {
+    contactedClientText = `<p>
+  <b>Contacted client for ${currentApptValue} appointment</b>
+</p>
+`;
+    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -745,7 +772,20 @@ function setPostApptWorkedOn() {
   postApptWorkedOnElements.forEach(function (element) {
     if (element) {
       element.addEventListener('change', function () {
-        updatePostWorkedOn();
+        updateWorkedOn();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
+function setWhAssistanceWorkedOn() {
+  var whAssistanceWorkedOnElements = [updatingNewProdEl, processRealOrderEl, modifyVariantsEl];
+
+  whAssistanceWorkedOnElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updateWorkedOn();
         updateHtmlNotes();
       });
     }
@@ -770,28 +810,21 @@ function updateWorkedOn() {
   updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
   unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products</li>` : '';
 
-  if ((dashNavEl && dashNavEl.checked) || (extraPageEl && extraPageEl.checked) || (createCatEl && createCatEl.checked) || (organizeCatEl && organizeCatEl.checked) || (createProdEl && createProdEl.checked) || (prodGridEl && prodGridEl.checked) || (catProdEl && catProdEl.checked) || (discountsEl && discountsEl.checked) || (checkoutSectionsEl && checkoutSectionsEl.checked) || (payPalEl && payPalEl.checked) || (testOrderEl && testOrderEl.checked) || (processOrderEl && processOrderEl.checked) || (updatingProdEl && updatingProdEl.checked) || (unavailableProdEl && unavailableProdEl.checked) || (customWorkedOnChecboxEl && customWorkedOnChecboxEl.checked)) {
+  stripeText = stripeEl && stripeEl.checked ? `\n <li>Linked Stripe</li>` : ``;
+  variantsText = variantsEl && variantsEl.checked ? `\n <li>Condensing Variants</li>` : ``;
+  unavailableCjProdText = unavailableCjProdEl && unavailableCjProdEl.checked ? `\n <li>Managing Unavailable Products from CJ</li>` : ``;
+
+  updatingNewProdText = updatingNewProdEl && updatingNewProdEl.checked ? `\n <li>Updating Products from New Supplier</li>` : '';
+  processRealOrderText = processRealOrderEl && processRealOrderEl.checked ? `\n <li>Processing Real Customer Order</li>` : '';
+  modifyVariantsText = modifyVariantsEl && modifyVariantsEl.checked ? `\n <li>Modifying Singular Products to Variants</li>` : '';
+
+  if ((dashNavEl && dashNavEl.checked) || (extraPageEl && extraPageEl.checked) || (createCatEl && createCatEl.checked) || (organizeCatEl && organizeCatEl.checked) || (createProdEl && createProdEl.checked) || (prodGridEl && prodGridEl.checked) || (catProdEl && catProdEl.checked) || (discountsEl && discountsEl.checked) || (checkoutSectionsEl && checkoutSectionsEl.checked) || (payPalEl && payPalEl.checked) || (testOrderEl && testOrderEl.checked) || (processOrderEl && processOrderEl.checked) || (updatingProdEl && updatingProdEl.checked) || (unavailableProdEl && unavailableProdEl.checked) || (customWorkedOnChecboxEl && customWorkedOnChecboxEl.checked) || (stripeEl && stripeEl.checked) || (variantsEl && variantsEl.checked) || (unavailableCjProdEl && unavailableCjProdEl.checked) || (updatingNewProdEl && updatingNewProdEl.checked) || (processRealOrderEl && processRealOrderEl.checked) || (modifyVariantsEl && modifyVariantsEl.checked)) {
     workedOnText = `Worked On: 
-<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}${customWorkedonText}
+<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}${customWorkedonText}${stripeText}${variantsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}
 </ul>
 `;
   } else {
     workedOnText = '';
-  }
-}
-
-function updatePostWorkedOn() {
-  stripeText = stripeEl && stripeEl.checked ? `\n <li>Linked Stripe</li>` : ``;
-  variantsText = variantsEl && variantsEl.checked ? `\n <li>Condensing variants</li>` : ``;
-  unavailableCjProdText = unavailableCjProdEl && unavailableCjProdEl.checked ? `\n <li>Managing unavailable products from CJ</li>` : ``;
-
-  if ((stripeEl && stripeEl.checked) || (variantsEl && variantsEl.checked) || (unavailableCjProdEl && unavailableCjProdEl.checked)) {
-    postWorkedOnText = `Worked On/Reviewed:
-<ul>${stripeText}${variantsText}${unavailableCjProdText}
-</ul>
-`;
-  } else {
-    postWorkedOnText = '';
   }
 }
 
@@ -1729,6 +1762,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setThirdApptWorkedOn();
   setCustomWorkedOn();
   setPostApptWorkedOn();
+  setWhAssistanceWorkedOn();
   setFirstApptAssignedHw();
   setSecondApptAssignedHw();
   setThirdApptAssignedHw();

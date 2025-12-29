@@ -36,6 +36,7 @@
               <option value="2nd Appointment">2nd Appointment</option>
               <option value="3rd Appointment">3rd Appointment</option>
               <option value="Post Appointment">Post Appointment</option>
+              <option value="Warhead Assistance">Warhead Assistance</option>
               <option value="Missed Appointment">Missed Appointment</option>
               <option value="Contacted by Client">Contacted by Client</option>
               <option value="Reschedule">Reschedule</option>
@@ -45,7 +46,7 @@
 
           <form action="" class="hide-content" id="non-specific-form">
             <!-- *1st, 2nd, 3rd, Post & WH Assistance Inputs -->
-            <div>
+            <div id="continuation-prompt">
               <label for="continuation">Continuation appointment?</label>
               <input type="checkbox" name="continuation" id="continuation" class="continuation" />
             </div>
@@ -62,7 +63,7 @@
               </div>
             </div>
 
-            <div>
+            <div id="hw-prompt">
               <label class="default-pointer">Homework completed?</label>
               <div class="toggle-switch">
                 <input type="radio" name="hw" id="hw-no" value="No" />
@@ -74,7 +75,7 @@
               </div>
             </div>
 
-            <div>
+            <div id="hw-percent-prompt">
               <label for="hw-percent">Homework %</label>
               <input type="number" name="hw-percent" id="hw-percent" />
             </div>
@@ -111,7 +112,22 @@
 
               <div class="post-appt"><input type="checkbox" name="stripe" id="stripe" /> <label for="stripe">Linked Stripe</label></div>
 
-              <div class="post-appt"><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensed Variants</label></div>
+              <div class="post-appt"><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensing Variants</label></div>
+
+              <div class="wh-assistance">
+                <input type="checkbox" name="new-updating-products" id="new-updating-products" />
+                <label for="new-updating-products">Updated Products from New Supplier</label>
+              </div>
+
+              <div class="wh-assistance">
+                <input type="checkbox" name="process-real-order" id="process-real-order" />
+                <label for="process-real-order">Processing Real Order</label>
+              </div>
+
+              <div class="wh-assistance">
+                <input type="checkbox" name="modify-variants" id="modify-variants" />
+                <label for="modify-variants">Modifying Singular Products to Variants</label>
+              </div>
 
               <div><input type="checkbox" name="custom-worked-on" id="custom-worked-on-checkbox" /> <input type="text" name="custom-worked-on" id="custom-worked-on-text" placeholder="Custom text" /></div>
             </div>
