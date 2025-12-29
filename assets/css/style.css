@@ -13,7 +13,7 @@
   --primary-text: #1e293b;
   --secondary-text: #f8fafc;
   --input-border: #bdc6d1;
-  --primary-action: #2563eb;
+  --primary-action: #5181e9;
   --primary-emphasis: #910202;
   --primary-hover: #dde8f3;
   --dark-light-action: #e1e4eb;
@@ -181,7 +181,7 @@ input[type='checkbox'] {
   height: 20px;
   border: var(--input-border) solid 1px;
   background: var(--primary-bg);
-  border-radius: 0.6rem;
+  border-radius: 0.2rem;
   display: inline-grid;
   place-content: center;
 }
@@ -195,7 +195,7 @@ input[type='checkbox']::before {
   width: 10px;
   height: 10px;
   transform: scale(0);
-  background-color: var(--primary-bg);
+  background-color: var(--secondary-text);
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
@@ -331,10 +331,12 @@ input[type='number'] {
 }
 
 input:hover,
-input[type='checkbox']:hover,
-input[type='radio']:hover,
 select:hover {
   background: var(--primary-hover);
+}
+
+input[type='checkbox']:hover {
+  background: var(--primary-action);
 }
 
 dialog {
