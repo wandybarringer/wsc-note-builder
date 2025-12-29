@@ -35,7 +35,7 @@ var firstApptAssignedHwItems = document.querySelectorAll('div:has(> #first-appt-
 var secondApptAssignedHwItems = document.querySelectorAll('div:has(> #second-appt-finish-videos), ' + 'div:has(> #practice-discounts), ' + 'div:has(> #practice-orders), ' + 'div:has(> #second-appt-continue-videos)');
 var thirdApptAssignedHwItems = document.querySelectorAll('div:has(> #third-appt-finish-videos), ' + 'div:has(> #practice-updating), ' + 'div:has(> #all-videos)');
 
-// *INDIVIDUAL CHECKBOX/RADIO ELEMENTS
+// *INDIVIDUAL CHECKBOX/RADIO & PROMPT ELEMENTS
 
 // General Progress Elements
 var contApptEl = document.querySelector('#continuation');
@@ -47,6 +47,7 @@ var hwNoEl = document.querySelector('#hw-no');
 var hwNoneEl = document.querySelector('#hw-none');
 var hwYesEl = document.querySelector('#hw-yes');
 var hwPercentEl = document.querySelector('#hw-percent');
+var initialsPromptEl = document.querySelector('#initials-prompt');
 
 // "Worked On" Checklist (1st Appt)
 var dashNavEl = document.querySelector('#dashboard-navigation');
@@ -396,6 +397,12 @@ function updateApptVisibility() {
       item.classList.toggle('show-content', show);
       item.classList.toggle('hide-content', !show);
     }
+  }
+
+  if (selectedValue === 'Podio Link') {
+    initialsPromptEl.setAttribute('class', 'hide-content');
+  } else {
+    initialsPromptEl.setAttribute('class', 'show-content');
   }
 
   var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl, rescheduleSpecEl, podioLinkSpecEl];
