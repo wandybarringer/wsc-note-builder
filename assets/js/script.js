@@ -1427,7 +1427,7 @@ function setMissedAppointment() {
   sentMissedEmailEl.addEventListener('change', function () {
     if (!sentMissedEmailEl.checked) {
       sentMissedEmailText = '';
-    } else if (!sentMissedEmailEl.checked) {
+    } else if (sentMissedEmailEl.checked) {
       sentMissedEmailText = ' Sent <b>missed appointment</b> email to account manager and front-end.';
     }
     updateMissedAppointment();
