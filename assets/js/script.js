@@ -1030,8 +1030,8 @@ function updateCompletionForm() {
   if (completionFormSentText) {
     completionFormText = `<p>
   ${completionFormSentText}${completionFormSignedText}${whyNotSignedText}
-  <p>
-  `;
+<p>
+`;
   } else {
     completionFormText = '';
   }
