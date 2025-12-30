@@ -214,6 +214,28 @@ var nextTopicPromptEl = document.querySelector('#next-topic-prompt');
 var nextAppointmentEl = document.querySelector('#next-appointment-date');
 var nextTopicEl = document.querySelector('#next-topic');
 
+// *OTHER APPOINTMENT PROMPS & INPUTS
+var otherDeptApptPromptEl = document.querySelector('#other-dept-appt-prompt');
+var otherDeptApptEl = document.querySelector('#other-dept-appt');
+var whAssistanceApptPromptEl = document.querySelector('#wh-assistance-appt-prompt');
+var whAssistanceApptEl = document.querySelector('#wh-assistance-appt');
+var whAssistanceTechPromptEl = document.querySelector('#wh-assistance-tech-prompt');
+var whAssistanceTechEl = document.querySelector('#wh-assistance-tech');
+var whAssistanceDatePromptEl = document.querySelector('#wh-assistance-date-prompt');
+var whAssistanceDateEl = document.querySelector('#wh-assistance-date');
+var obAssistanceApptPromptEl = document.querySelector('#ob-assistance-appt-prompt');
+var obAssistanceApptEl = document.querySelector('#ob-assistance-appt');
+var obAssistanceTechPromptEl = document.querySelector('#ob-assistance-tech-prompt');
+var obAssistanceTechEl = document.querySelector('#ob-assistance-tech');
+var obAssistanceDatePromptEl = document.querySelector('#ob-assistance-date-prompt');
+var obAssistanceDateEl = document.querySelector('#ob-assistance-date');
+var nicheChangeApptPromptEl = document.querySelector('#niche-change-appt-prompt');
+var nicheChangeApptEl = document.querySelector('#niche-change-appt');
+var nicheChangeTechPromptEl = document.querySelector('#niche-change-tech-prompt');
+var nicheChangeTechEl = document.querySelector('#niche-change-tech');
+var nicheChangeDatePromptEl = document.querySelector('#niche-change-date-prompt');
+var nicheChangeDateEl = document.querySelector('#niche-change-date');
+
 // *THEME & GLOBAL STATE VARIABLES
 var toggleSwitch = document.querySelector('#dark-light-toggle');
 var currentTheme = document.documentElement.getAttribute('data-theme');
@@ -334,6 +356,12 @@ var liveText = '';
 var additionalTrainingText = '';
 var smReminderText = '';
 var nextAppointmentText = '';
+var whAssistanceTechText = '';
+var whAssistanceDateText = '';
+var obAssistanceTechText = '';
+var obAssistanceDateText = '';
+var nicheChangeTechText = '';
+var nicheChangeDateText = '';
 var nextTopicText = '';
 var storedInitials = '';
 var initialsText = '';
@@ -416,6 +444,12 @@ function updateApptVisibility() {
     initialsPromptEl.setAttribute('class', 'hide-content');
   } else {
     initialsPromptEl.setAttribute('class', 'show-content');
+  }
+
+  if (selectedValue === 'Podio Link' || selectedValue === 'Missed Appointment') {
+    otherDeptApptPromptEl.setAttribute('class', 'hide-content');
+  } else {
+    otherDeptApptPromptEl.setAttribute('class', 'show-content');
   }
 
   var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl, rescheduleSpecEl, podioLinkSpecEl];
@@ -581,7 +615,7 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, nextApptDatePromptEl, nextTopicPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, nextApptDatePromptEl, nextTopicPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl];
 
   allPrompts.forEach(function (element) {
     element.setAttribute('class', 'hide-content');
@@ -1200,6 +1234,65 @@ function setNextAppointment() {
   });
 }
 
+function setOtherAppointment() {
+  var otherApptPrompts = [whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl];
+
+  otherApptPrompts.forEach(function (element) {
+    element.setAttribute('class', 'hide-content');
+  });
+
+  otherDeptApptEl.addEventListener('change', function () {
+    if (otherDeptApptEl && otherDeptApptEl.checked) {
+      whAssistanceApptPromptEl.setAttribute('class', 'show-content');
+      obAssistanceApptPromptEl.setAttribute('class', 'show-content');
+      nicheChangeApptPromptEl.setAttribute('class', 'show-content');
+    } else if (!otherDeptApptEl.checked) {
+      whAssistanceApptPromptEl.setAttribute('class', 'hide-content');
+      obAssistanceApptPromptEl.setAttribute('class', 'hide-content');
+      nicheChangeApptPromptEl.setAttribute('class', 'hide-content');
+      obAssistanceDatePromptEl.setAttribute('class', 'hide-content');
+      obAssistanceTechPromptEl.setAttribute('class', 'hide-content');
+      whAssistanceDatePromptEl.setAttribute('class', 'hide-content');
+      whAssistanceTechPromptEl.setAttribute('class', 'hide-content');
+      nicheChangeDatePromptEl.setAttribute('class', 'hide-content');
+      nicheChangeTechPromptEl.setAttribute('class', 'hide-content');
+      whAssistanceApptEl.checked = false;
+      obAssistanceApptEl.checked = false;
+      nicheChangeApptEl.checked = false;
+    }
+  });
+
+  whAssistanceApptEl.addEventListener('change', function () {
+    if (whAssistanceApptEl && whAssistanceApptEl.checked) {
+      whAssistanceDatePromptEl.setAttribute('class', 'show-content');
+      whAssistanceTechPromptEl.setAttribute('class', 'show-content');
+    } else if (!whAssistanceApptEl.checked) {
+      whAssistanceDatePromptEl.setAttribute('class', 'hide-content');
+      whAssistanceTechPromptEl.setAttribute('class', 'hide-content');
+    }
+  });
+
+  obAssistanceApptEl.addEventListener('change', function () {
+    if (obAssistanceApptEl && obAssistanceApptEl.checked) {
+      obAssistanceDatePromptEl.setAttribute('class', 'show-content');
+      obAssistanceTechPromptEl.setAttribute('class', 'show-content');
+    } else if (!obAssistanceApptEl.checked) {
+      obAssistanceDatePromptEl.setAttribute('class', 'hide-content');
+      obAssistanceTechPromptEl.setAttribute('class', 'hide-content');
+    }
+  });
+
+  nicheChangeApptEl.addEventListener('change', function () {
+    if (nicheChangeApptEl && nicheChangeApptEl.checked) {
+      nicheChangeDatePromptEl.setAttribute('class', 'show-content');
+      nicheChangeTechPromptEl.setAttribute('class', 'show-content');
+    } else if (!nicheChangeApptEl.checked) {
+      nicheChangeDatePromptEl.setAttribute('class', 'hide-content');
+      nicheChangeTechPromptEl.setAttribute('class', 'hide-content');
+    }
+  });
+}
+
 function setNextTopic() {
   nextTopicEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -1780,6 +1873,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setSupplierManagement();
   setPostApptExtras();
   setNextAppointment();
+  setOtherAppointment();
   setNextTopic();
   setMissedAppointment();
   setContactedByClient();
