@@ -358,10 +358,13 @@ var smReminderText = '';
 var nextAppointmentText = '';
 var whAssistanceTechText = '';
 var whAssistanceDateText = '';
+var whAssistanceText = '';
 var obAssistanceTechText = '';
 var obAssistanceDateText = '';
+var obAssistanceText = '';
 var nicheChangeTechText = '';
 var nicheChangeDateText = '';
+var nicheChangeText = '';
 var nextTopicText = '';
 var storedInitials = '';
 var initialsText = '';
@@ -552,17 +555,17 @@ function updateHtmlNotes() {
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
-    htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + nextTopicText + smReminderText + initialsText;
+    htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + smReminderText + initialsText;
   } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
-    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + initialsText;
+    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
   } else if (currentApptValue === 'Reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client but they are <b>unable to attend appointment.</b>
 </p>
 `;
-    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + initialsText;
+    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
   } else if (currentApptValue === 'Podio Link' && currentApptValue !== 'default') {
     htmlNotes = podioLinkText;
   } else if (currentApptValue === 'Warhead Assistance' && currentApptValue !== 'default') {
@@ -570,7 +573,7 @@ function updateHtmlNotes() {
   <b>Contacted client for ${currentApptValue} appointment</b>
 </p>
 `;
-    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -604,6 +607,9 @@ function resetHtmlNotes() {
   rescheduleReasonText = '';
   rescheduleDateText = '';
   podioLinkText = '';
+  whAssistanceText = '';
+  obAssistanceText = '';
+  nicheChangeText = '';
 
   htmlNotesEl.value = '';
 
@@ -784,7 +790,7 @@ function setCustomWorkedOn() {
     if (customWorkedOnChecboxEl.checked) {
       if (customKeyupListener === null) {
         customKeyupListener = function (event) {
-          const value = event.target.value.trim();
+          var value = event.target.value.trim();
           customWorkedonText = value !== '' ? `\n <li>${value}</li>` : '';
           updateWorkedOn();
           updateHtmlNotes();
@@ -1259,6 +1265,14 @@ function setOtherAppointment() {
       whAssistanceApptEl.checked = false;
       obAssistanceApptEl.checked = false;
       nicheChangeApptEl.checked = false;
+      var inputsToClear = [whAssistanceDateEl, obAssistanceDateEl, nicheChangeDateEl, whAssistanceTechEl, obAssistanceTechEl, nicheChangeTechEl];
+      inputsToClear.forEach((input) => {
+        if (input) input.value = '';
+      });
+      whAssistanceDateText = '';
+      whAssistanceTechText = '';
+      whAssistanceText = '';
+      updateHtmlNotes();
     }
   });
 
@@ -1269,6 +1283,14 @@ function setOtherAppointment() {
     } else if (!whAssistanceApptEl.checked) {
       whAssistanceDatePromptEl.setAttribute('class', 'hide-content');
       whAssistanceTechPromptEl.setAttribute('class', 'hide-content');
+      whAssistanceDateText = '';
+      whAssistanceTechText = '';
+      whAssistanceText = '';
+      var inputsToClear = [whAssistanceDateEl, whAssistanceTechEl];
+      inputsToClear.forEach((input) => {
+        if (input) input.value = '';
+      });
+      updateHtmlNotes();
     }
   });
 
@@ -1279,6 +1301,14 @@ function setOtherAppointment() {
     } else if (!obAssistanceApptEl.checked) {
       obAssistanceDatePromptEl.setAttribute('class', 'hide-content');
       obAssistanceTechPromptEl.setAttribute('class', 'hide-content');
+      obAssistanceDateText = '';
+      obAssistanceTechText = '';
+      obAssistanceText = '';
+      var inputsToClear = [obAssistanceDateEl, obAssistanceTechEl];
+      inputsToClear.forEach((input) => {
+        if (input) input.value = '';
+      });
+      updateHtmlNotes();
     }
   });
 
@@ -1289,8 +1319,105 @@ function setOtherAppointment() {
     } else if (!nicheChangeApptEl.checked) {
       nicheChangeDatePromptEl.setAttribute('class', 'hide-content');
       nicheChangeTechPromptEl.setAttribute('class', 'hide-content');
+      nicheChangeDateText = '';
+      nicheChangeTechText = '';
+      nicheChangeText = '';
+      var inputsToClear = [nicheChangeDateEl, nicheChangeTechEl];
+      inputsToClear.forEach((input) => {
+        if (input) input.value = '';
+      });
+      updateHtmlNotes();
     }
   });
+
+  whAssistanceTechEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      whAssistanceTechText = '';
+    } else if (event.target.value) {
+      whAssistanceTechText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  whAssistanceDateEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      whAssistanceDateText = '';
+    } else if (event.target.value) {
+      whAssistanceDateText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  obAssistanceTechEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      obAssistanceTechText = '';
+    } else if (event.target.value) {
+      obAssistanceTechText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  obAssistanceDateEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      obAssistanceDateText = '';
+    } else if (event.target.value) {
+      obAssistanceDateText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  nicheChangeTechEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      nicheChangeTechText = '';
+    } else if (event.target.value) {
+      nicheChangeTechText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  nicheChangeDateEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      nicheChangeDateText = '';
+    } else if (event.target.value) {
+      nicheChangeDateText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+}
+
+function updateOtherAppointment() {
+  if (whAssistanceTechText || whAssistanceDateText) {
+    whAssistanceText = `<p>
+  Set Warhead Assistance appointment with ${whAssistanceTechText} for ${whAssistanceDateText}.
+</p>
+`;
+  } else {
+    whAssistanceText = '';
+  }
+
+  if (obAssistanceTechText || obAssistanceDateText) {
+    obAssistanceText = `<p>
+  Set Onboarding Assistance appointment with ${obAssistanceTechText} for ${obAssistanceDateText}.
+</p>
+`;
+  } else {
+    obAssistanceText = '';
+  }
+
+  if (nicheChangeTechText || nicheChangeDateText) {
+    nicheChangeText = `<p>
+  Set Niche Change appointment with ${nicheChangeTechText} for ${nicheChangeDateText}.
+</p>
+`;
+  } else {
+    nicheChangeText = '';
+  }
 }
 
 function setNextTopic() {
