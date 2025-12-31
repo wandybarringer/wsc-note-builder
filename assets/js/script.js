@@ -420,6 +420,7 @@ function clearInputs() {
     resetHtmlNotes();
     updateHtmlNotes();
     setInitials();
+    updateApptVisibility();
   });
 }
 
@@ -655,7 +656,7 @@ function setContAppt() {
       registeredBusinessNoneEl.checked = true;
       registeredBusinessText = '';
       contText = ' continuation';
-    } else {
+    } else if (!contApptEl.checked) {
       introContEl.classList.remove('hide-content');
       introContEl.classList.add('show-content');
       registeredContEl.classList.remove('hide-content');
