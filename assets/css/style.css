@@ -71,6 +71,11 @@ section {
   flex-direction: column;
 }
 
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+}
+
 .input-spacing {
   line-height: 1.6;
 }
@@ -115,7 +120,8 @@ header ul {
 }
 
 /* FORM ELEMENTS (INPUTS, SELECT, TEXTAREA) */
-select {
+select,
+#clear-btn {
   cursor: pointer;
   font: inherit;
   padding: 0.3rem;
@@ -124,6 +130,10 @@ select {
   text-align: center;
   color: var(--primary-text);
   background: var(--secondary-bg);
+}
+
+#clear-btn:hover {
+  background: var(--primary-hover);
 }
 
 option {
@@ -354,6 +364,18 @@ dialog {
   transform: translate(-50%, -50%);
   background: var(--dialog-bg);
   backdrop-filter: blur(2px);
+}
+
+#clear-btn {
+  inline-size: 20%;
+  block-size: 2.15rem;
+  transition: font-size 0.1s ease, box-shadow 0.1s ease;
+}
+
+#clear-btn:active {
+  font-size: 1.15rem;
+  box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.25), inset -3px -3px 6px rgba(255, 255, 255, 0.15);
+  border-color: var(--input-border);
 }
 
 #copy-btn {

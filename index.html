@@ -28,21 +28,24 @@
       <main class="main-flexbox">
         <section id="input-panel" class="panel-flex">
           <!-- *Note Template Selection -->
-          <form action="" id="template-selection">
-            <label for="appointment"></label>
-            <select name="appointment" id="appointment">
-              <option value="default" selected>Select template</option>
-              <option value="1st Appointment">1st Appointment</option>
-              <option value="2nd Appointment">2nd Appointment</option>
-              <option value="3rd Appointment">3rd Appointment</option>
-              <option value="Post Appointment">Post Appointment</option>
-              <option value="Warhead Assistance">Warhead Assistance</option>
-              <option value="Missed Appointment">Missed Appointment</option>
-              <option value="Contacted by Client">Contacted by Client</option>
-              <option value="Reschedule">Reschedule</option>
-              <option value="Podio Link">Podio Link</option>
-            </select>
-          </form>
+          <div class="flex-row">
+            <form action="" id="template-selection">
+              <label for="appointment"></label>
+              <select name="appointment" id="appointment">
+                <option value="default" selected>Select template</option>
+                <option value="1st Appointment">1st Appointment</option>
+                <option value="2nd Appointment">2nd Appointment</option>
+                <option value="3rd Appointment">3rd Appointment</option>
+                <option value="Post Appointment">Post Appointment</option>
+                <option value="Warhead Assistance">Warhead Assistance</option>
+                <option value="Missed Appointment">Missed Appointment</option>
+                <option value="Contacted by Client">Contacted by Client</option>
+                <option value="Reschedule">Reschedule</option>
+                <option value="Podio Link">Podio Link</option>
+              </select>
+            </form>
+            <button id="clear-btn">Reset</button>
+          </div>
 
           <form action="" class="hide-content" id="non-specific-form">
             <!-- *1st, 2nd, 3rd, Post & WH Assistance Inputs -->

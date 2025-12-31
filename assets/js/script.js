@@ -4,6 +4,7 @@ var nonSpecFormEl = document.querySelector('#non-specific-form');
 var htmlNotesEl = document.querySelector('#html-notes');
 var copyBtnEl = document.querySelector('#copy-btn');
 var copyDialogEl = document.querySelector('dialog');
+var clearBtnEl = document.querySelector('#clear-btn');
 var initialsEl = document.querySelector('#initials');
 
 // *APPOINTMENT SPECIFIC CONTAINERS (NODELISTS)
@@ -414,6 +415,14 @@ function formatPhone(value) {
   return `(${digits.substring(0, 3)}) ${digits.substring(3, 6)}-${digits.substring(6, 10)}`;
 }
 
+function clearInputs() {
+  clearBtnEl.addEventListener('click', function () {
+    resetHtmlNotes();
+    updateHtmlNotes();
+    setInitials();
+  });
+}
+
 // *VISIBILITY & TEMPLATE CONTROLS
 
 function updateApptVisibility() {
@@ -621,7 +630,7 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, nextApptDatePromptEl, nextTopicPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl];
 
   allPrompts.forEach(function (element) {
     element.setAttribute('class', 'hide-content');
@@ -1976,6 +1985,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialization sequence
   copyHtmlNotes();
+  clearInputs();
   setShowAllWorkedOn();
   setShowAllAssignedHw();
   handleApptSelection();
