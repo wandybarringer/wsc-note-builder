@@ -12,10 +12,10 @@ var firstApptSpecEl = document.querySelectorAll('.first-appt');
 var secondApptSpecEl = document.querySelectorAll('.second-appt');
 var thirdApptSpecEl = document.querySelectorAll('.third-appt');
 var postApptSpecEl = document.querySelectorAll('.post-appt');
-var missedApptSpecEl = document.querySelectorAll('.missed-appt');
-var contactedByClientSpecEl = document.querySelectorAll('.contacted-by-client');
-var rescheduleSpecEl = document.querySelectorAll('.reschedule');
-var podioLinkSpecEl = document.querySelectorAll('.podio');
+var missedApptSpecEl = document.querySelector('.missed-appt');
+var contactedByClientSpecEl = document.querySelector('.contacted-by-client');
+var rescheduleSpecEl = document.querySelector('.reschedule');
+var podioLinkSpecEl = document.querySelector('.podio');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 var workedOnEl = document.querySelector('#worked-on');
@@ -447,15 +447,13 @@ function updateApptVisibility() {
 
   function setVisibility(item, show) {
     if (!item) return;
-    if (item instanceof NodeList || Array.isArray(item)) {
-      item.forEach(function (el) {
-        el.classList.toggle('show-content', show);
-        el.classList.toggle('hide-content', !show);
-      });
-    } else {
-      item.classList.toggle('show-content', show);
-      item.classList.toggle('hide-content', !show);
-    }
+
+    var elements = item.length !== undefined && !(item instanceof HTMLElement) ? item : [item];
+
+    elements.forEach(function (el) {
+      el.classList.toggle('show-content', show);
+      el.classList.toggle('hide-content', !show);
+    });
   }
 
   if (selectedValue === 'Podio Link') {
@@ -498,12 +496,14 @@ function updateApptVisibility() {
 
   var showGeneralInputs = !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink;
 
+  var isNoteTemplateSelected = selectedValue !== 'default';
+  setVisibility(nonSpecFormEl, isNoteTemplateSelected);
   setVisibility(contApptEl.closest('div'), showGeneralInputs);
   setVisibility(hwNoneEl.closest('.toggle-switch').parentElement, showGeneralInputs);
   setVisibility(hwPercentEl.closest('div'), showGeneralInputs);
   setVisibility(additionalNotesEl.closest('.form-group'), showGeneralInputs);
 
-  if (!isMissed) {
+  if (!isMissed && !isContactedByClient && !isReschedule && !isPodioLink) {
     setVisibility(firstApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '1st Appointment');
     setVisibility(secondApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '2nd Appointment');
     setVisibility(thirdApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '3rd Appointment');

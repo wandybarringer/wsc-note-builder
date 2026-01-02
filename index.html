@@ -289,8 +289,7 @@
             </div>
 
             <!-- *Missed Appointment Inputs -->
-            <div class="missed-appt panel-flex input-spacing">
-              <div class="input-spacing">
+            <div class="missed-appt hide-content">
                 <div class="grey-bg">
                   <div>
                     <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
@@ -341,6 +340,7 @@
                         <input type="radio" name="no-vm-reason" id="custom-vm-no-reason-radio" />
                         <input type="text" name="no-vm-reason" id="custom-vm-no-reason-text" placeholder="Custom Text"></input>
                       </div>
+                    </div>
                   </div>
                 </div>
                 <div id="email-sent-prompt">
@@ -355,11 +355,10 @@
                   <input type="checkbox" name="marked-podio" id="marked-podio" />
                   <label for="marked-podio">Marked podio for missed appointment</label>
                 </div>
-              </div>
             </div>
 
             <!-- *Contacted by Client Inputs -->
-            <div class="contacted-by-client">
+            <div class="contacted-by-client hide-content">
               <div>
                 <label class="default-pointer">Recieved message from client:</label>
                 <div class="panel-flex">
@@ -428,7 +427,7 @@
             </div>
 
             <!-- *Reschedule Inputs -->
-            <div class="reschedule">
+            <div class="reschedule hide-content">
               <div>
                 <label for="reschedule-reason">Reason for reschedule:</label>
                 <textarea name="reschedule-reason" id="reschedule-reason"></textarea>
@@ -440,7 +439,8 @@
             </div>
 
             <!-- *Podio Link Input -->
-            <div class="podio">
+            <div class="podio hide-content">
+              <p>If Podio link is missing from SP, paste the Warhead Podio link here and copy to SP.</p>
               <div>
                 <label for="podio-link">Podio Link:</label>
                 <textarea name="podio-link" id="podio-link"></textarea>
