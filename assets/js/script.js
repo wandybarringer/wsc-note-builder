@@ -567,7 +567,7 @@ function setShowAllAssignedHw() {
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client' && currentApptValue !== 'Reschedule' && currentApptValue !== 'Podio Link' && currentApptValue !== 'Warhead Assistance') {
     contactedClientText = `<p>
-  <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
+  <b>Contacted client for${contText} ${currentApptValue} Warhead Training</b>
 </p>
 `;
     htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + smReminderText + initialsText;
@@ -585,7 +585,7 @@ function updateHtmlNotes() {
     htmlNotes = podioLinkText;
   } else if (currentApptValue === 'Warhead Assistance' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  <b>Contacted client for ${currentApptValue} appointment</b>
+  <b>Contacted client for ${currentApptValue}</b>
 </p>
 `;
     htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + initialsText;
