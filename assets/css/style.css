@@ -252,6 +252,18 @@ input[type='number'] {
   color: var(--secondary-text);
 }
 
+#continuation,
+#show-all-worked-on,
+#show-all-assigned-hw,
+#completion-form-sent,
+#booked-sm,
+#additional-training,
+#needs-reschedule,
+#other-dept-appt {
+  background: var(--secondary-bg);
+  border-radius: 1rem;
+}
+
 /* THEME SWITCHER (DARK/LIGHT SLIDER) */
 #dark-light-container {
   position: absolute;
