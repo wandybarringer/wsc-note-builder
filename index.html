@@ -289,71 +289,67 @@
 
             <!-- *Missed Appointment Inputs -->
             <div class="missed-appt hide-content">
-                <div class="grey-bg">
-                  <div>
-                    <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
-                    <label for="first-attempt">1st Attempt</label>
-                  </div>
-                  <div>
-                    <input type="radio" name="attempt" id="second-attempt" value="Second attempt" />
-                    <label for="second-attempt">2nd Attempt</label>
-                  </div>
-                  <div>
-                    <input type="radio" name="attempt" id="third-attempt" value="Third attempt" />
-                    <label for="third-attempt">3rd Attempt</label>
-                  </div>
+              <div class="grey-bg">
+                <div>
+                  <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
+                  <label for="first-attempt">1st Attempt</label>
                 </div>
+                <div>
+                  <input type="radio" name="attempt" id="second-attempt" value="Second attempt" />
+                  <label for="second-attempt">2nd Attempt</label>
+                </div>
+                <div>
+                  <input type="radio" name="attempt" id="third-attempt" value="Third attempt" />
+                  <label for="third-attempt">3rd Attempt</label>
+                </div>
+              </div>
 
-                <div id="phone-number-prompt">
-                  <label for="phone-number">Phone number called:</label>
-                  <input type="text" name="phone-number" id="phone-number" />
+              <div id="phone-number-prompt">
+                <label for="phone-number">Phone number called:</label>
+                <input type="text" name="phone-number" id="phone-number" />
+              </div>
+              <div id="secondary-phone-number-prompt">
+                <label for="secondary-phone-number">Secondary phone number:</label>
+                <input type="text" name="secondary-phone-number" id="secondary-phone-number" />
+              </div>
+              <div id="left-vm-prompt">
+                <label class="default-pointer">Left voicemail?</label>
+                <div class="toggle-switch">
+                  <input type="radio" name="vm" id="vm-no" value="No" />
+                  <label for="vm-no">No</label>
+                  <input type="radio" name="vm" id="vm-none" value="None" checked />
+                  <label for="vm-none">-</label>
+                  <input type="radio" name="vm" id="vm-yes" value="Yes" />
+                  <label for="vm-yes">Yes</label>
                 </div>
-                <div id="secondary-phone-number-prompt">
-                  <label for="secondary-phone-number">Secondary phone number:</label>
-                  <input type="text" name="secondary-phone-number" id="secondary-phone-number" />
-                </div>
-                <div id="left-vm-prompt">
-                  <label class="default-pointer">Left voicemail?</label>
-                  <div class="toggle-switch">
-                    <input type="radio" name="vm" id="vm-no" value="No" />
-                    <label for="vm-no">No</label>
-                    <input type="radio" name="vm" id="vm-none" value="None" checked />
-                    <label for="vm-none">-</label>
-                    <input type="radio" name="vm" id="vm-yes" value="Yes" />
-                    <label for="vm-yes">Yes</label>
-                  </div>
-                </div>
-                <div id="no-vm-reason-prompt">
-                  <label for="no-vm-reason">Reason unable to leave voicemail:</label>
+              </div>
+              <div id="no-vm-reason-prompt">
+                <label for="no-vm-reason">Reason unable to leave voicemail:</label>
+                <div>
                   <div>
                     <div>
-                      <div>
-                        <input type="radio" name="no-vm-reason" id="vm-box-full" />
-                        <label for="vm-box-full">Voicemail Box Full</label>
-                      </div>
-                      <div>
-                        <input type="radio" name="no-vm-reason" id="vm-not-setup" />
-                        <label for="vm-not-setup">Voicemail Not Set Up</label>
-                      </div>
-                      <div>
-                        <input type="radio" name="no-vm-reason" id="custom-vm-no-reason-radio" />
-                        <input type="text" name="no-vm-reason" id="custom-vm-no-reason-text" placeholder="Custom Text"></input>
-                      </div>
+                      <input type="radio" name="no-vm-reason" id="vm-box-full" />
+                      <label for="vm-box-full">Voicemail Box Full</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="no-vm-reason" id="vm-not-setup" />
+                      <label for="vm-not-setup">Voicemail Not Set Up</label>
                     </div>
                   </div>
                 </div>
-                <div id="email-sent-prompt">
-                  <input type="checkbox" name="email-sent" id="email-sent" />
-                  <label for="email-sent">Sent email to client</label>
-                </div>
-                <div id="sent-missed-email-promt">
-                  <input type="checkbox" name="sent-missed-email" id="sent-missed-email" />
-                  <label for="sent-missed-email">Sent missed appointment email</label>
-                </div>
-                <div id="marked-podio-prompt">
-                  <input type="checkbox" name="marked-podio" id="marked-podio" />
-                  <label for="marked-podio">Marked podio for missed appointment</label>
-                </div>
+              </div>
+              <div id="email-sent-prompt">
+                <input type="checkbox" name="email-sent" id="email-sent" />
+                <label for="email-sent">Sent email to client</label>
+              </div>
+              <div id="sent-missed-email-promt">
+                <input type="checkbox" name="sent-missed-email" id="sent-missed-email" />
+                <label for="sent-missed-email">Sent missed appointment email</label>
+              </div>
+              <div id="marked-podio-prompt">
+                <input type="checkbox" name="marked-podio" id="marked-podio" />
+                <label for="marked-podio">Marked podio for missed appointment</label>
+              </div>
             </div>
 
             <!-- *Contacted by Client Inputs -->
@@ -405,7 +401,18 @@
               </div>
               <div id="contacted-no-vm-reason-prompt">
                 <label for="contacted-no-vm-reason">Reason unable to leave voicemail:</label>
-                <textarea name="contacted-no-vm-reason" id="contacted-no-vm-reason"></textarea>
+                <div>
+                  <div>
+                    <div>
+                      <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-box-full" />
+                      <label for="contacted-vm-box-full">Voicemail Box Full</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-not-setup" />
+                      <label for="contacted-vm-not-setup">Voicemail Not Set Up</label>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div id="contacted-email-sent-prompt">
                 <input type="checkbox" name="contacted-email-sent" id="contacted-email-sent" />

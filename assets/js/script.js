@@ -137,8 +137,6 @@ var vmYesEl = document.querySelector('#vm-yes');
 var noVmReasonPromptEl = document.querySelector('#no-vm-reason-prompt');
 var vmBoxFullEl = document.querySelector('#vm-box-full');
 var vmNotSetupEl = document.querySelector('#vm-not-setup');
-var customNoVmReasonRadioEl = document.querySelector('#custom-vm-no-reason-radio');
-var customNoVmReasonTextEl = document.querySelector('#custom-vm-no-reason-text');
 var emailSentPromptEl = document.querySelector('#email-sent-prompt');
 var emailSentEl = document.querySelector('#email-sent');
 var sentMissedEmailPromptEl = document.querySelector('#sent-missed-email-promt');
@@ -164,8 +162,9 @@ var contactedLeftVmPromptEl = document.querySelector('#contacted-left-vm-prompt'
 var contactedVmNoEl = document.querySelector('#contacted-vm-no');
 var contactedVmNoneEl = document.querySelector('#contacted-vm-none');
 var contactedVmYesEl = document.querySelector('#contacted-vm-yes');
+var contactedVmBoxFullEl = document.querySelector('#contacted-vm-box-full');
+var contactedVmNotSetupEl = document.querySelector('#contacted-vm-not-setup');
 var contactedNoVmReasonPromptEl = document.querySelector('#contacted-no-vm-reason-prompt');
-var contactedNoVmReasonEl = document.querySelector('#contacted-no-vm-reason');
 var contactedEmailSentPromptEl = document.querySelector('#contacted-email-sent-prompt');
 var contactedEmailSentEl = document.querySelector('#contacted-email-sent');
 var advisedClientEl = document.querySelector('#advised-client');
@@ -1543,7 +1542,6 @@ function setMissedAppointment() {
       markedPodioText = '';
       phoneNumberEl.value = '';
       secondaryPhoneNumberEl.value = '';
-      customNoVmReasonTextEl.value = '';
       emailSentEl.checked = false;
       vmNoneEl.checked = true;
 
@@ -1622,20 +1620,12 @@ function setMissedAppointment() {
       if (vmNoEl.checked) {
         leftVmText = `Did not leave voicemail`;
         noVmReasonPromptEl.setAttribute('class', 'show-content');
-        var storedNoVmReason = localStorage.getItem('customNoVmReason');
-        if (storedNoVmReason) {
-          customNoVmReasonTextEl.value = storedNoVmReason;
-          noVmReasonText = storedNoVmReason;
-        }
       } else if (vmYesEl.checked) {
         leftVmText = `Left voicemail`;
         noVmReasonPromptEl.setAttribute('class', 'hide-content');
       } else if (vmNoneEl.checked) {
         leftVmText = ``;
         noVmReasonPromptEl.setAttribute('class', 'hide-content');
-        var currentStored = localStorage.getItem('customNoVmReason');
-        customNoVmReasonTextEl.value = currentStored ? currentStored : '';
-        noVmReasonText = customNoVmReasonTextEl.value;
       } else {
         leftVmText = ``;
       }
@@ -1649,7 +1639,6 @@ function setMissedAppointment() {
       noVmReasonText = '';
     } else if (vmBoxFullEl.checked) {
       noVmReasonText = `voicemail box is full`;
-      customNoVmReasonTextEl.value = '';
     }
     updateVmText();
     updateHtmlNotes();
@@ -1660,18 +1649,6 @@ function setMissedAppointment() {
       noVmReasonText = '';
     } else if (vmNotSetupEl.checked) {
       noVmReasonText = `voicemail is not set up`;
-      customNoVmReasonTextEl.value = '';
-    }
-    updateVmText();
-    updateHtmlNotes();
-  });
-
-  customNoVmReasonTextEl.addEventListener('input', function (event) {
-    if (!event.target.value) {
-      noVmReasonText = '';
-    } else if (event.target.value) {
-      noVmReasonText = event.target.value;
-      localStorage.setItem('customNoVmReason', noVmReasonText);
     }
     updateVmText();
     updateHtmlNotes();
@@ -1705,35 +1682,6 @@ function setMissedAppointment() {
     }
     updateMissedAppointment();
     updateHtmlNotes();
-  });
-}
-
-function setCustomNoVmReason() {
-  var customKeyupListener = null;
-
-  customNoVmReasonRadioEl.addEventListener('change', function () {
-    if (customNoVmReasonRadioEl.checked) {
-      if (customKeyupListener === null) {
-        customKeyupListener = function (event) {
-          var value = event.target.value.trim();
-          noVmReasonText = value !== '' ? `${value}` : '';
-          updateVmText();
-          updateHtmlNotes();
-        };
-      }
-      customNoVmReasonTextEl.addEventListener('input', customKeyupListener);
-      const value = customNoVmReasonTextEl.value.trim();
-      noVmReasonText = value !== '' ? `${value}` : '';
-      updateVmText();
-      updateHtmlNotes();
-    } else {
-      if (customKeyupListener) {
-        customNoVmReasonTextEl.removeEventListener('input', customKeyupListener);
-      }
-      noVmReasonText = '';
-      updateVmText();
-      updateHtmlNotes();
-    }
   });
 }
 
@@ -1816,6 +1764,7 @@ function setContactedByClient() {
 </p>
 `;
     }
+
     updateHtmlNotes();
   });
 
@@ -1898,8 +1847,22 @@ function setContactedByClient() {
     });
   });
 
-  contactedNoVmReasonEl.addEventListener('input', function (event) {
-    contactedNoVmReasonText = event.target.value;
+  contactedVmBoxFullEl.addEventListener('change', function () {
+    if (!contactedVmBoxFullEl.checked) {
+      contactedNoVmReasonText = '';
+    } else if (contactedVmBoxFullEl.checked) {
+      contactedNoVmReasonText = `voicemail box is full`;
+    }
+    updateContactedVmText();
+    updateHtmlNotes();
+  });
+
+  contactedVmNotSetupEl.addEventListener('change', function () {
+    if (!contactedVmNotSetupEl.checked) {
+      contactedNoVmReasonText = '';
+    } else if (contactedVmNotSetupEl.checked) {
+      contactedNoVmReasonText = `voicemail is not set up`;
+    }
     updateContactedVmText();
     updateHtmlNotes();
   });
@@ -1974,6 +1937,8 @@ function updateContactedVmText() {
   } else {
     contactedUpdatedVmText = '';
   }
+  console.log(contactedUpdatedVmText);
+
   updateReturnContactText();
 }
 
