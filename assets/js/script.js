@@ -42,7 +42,7 @@ var thirdApptAssignedHwItems = document.querySelectorAll('div:has(> #third-appt-
 // General Progress Elements
 var contApptPromptEl = document.querySelector('#continuation-prompt');
 var contApptEl = document.querySelector('#continuation');
-var introContEl = document.querySelector('#intro-container');
+var introPromptEl = document.querySelector('#intro-prompt');
 var introNoEl = document.querySelector('#intro-no');
 var introNoneEl = document.querySelector('#intro-none');
 var introYesEl = document.querySelector('#intro-yes');
@@ -651,9 +651,9 @@ function setContAppt() {
   }
 
   contApptEl.addEventListener('change', function () {
-    if (contApptEl.checked) {
-      introContEl.classList.remove('show-content');
-      introContEl.classList.add('hide-content');
+    if (contApptEl.checked && apptSelectEl.value === '1st Appointment') {
+      introPromptEl.classList.remove('show-content');
+      introPromptEl.classList.add('hide-content');
       registeredContEl.classList.remove('show-content');
       registeredContEl.classList.add('hide-content');
       introNoneEl.checked = true;
@@ -661,9 +661,9 @@ function setContAppt() {
       registeredBusinessNoneEl.checked = true;
       registeredBusinessText = '';
       contText = ' continuation';
-    } else if (!contApptEl.checked) {
-      introContEl.classList.remove('hide-content');
-      introContEl.classList.add('show-content');
+    } else if (!contApptEl.checked && apptSelectEl.value === '1st Appointment') {
+      introPromptEl.classList.remove('hide-content');
+      introPromptEl.classList.add('show-content');
       registeredContEl.classList.remove('hide-content');
       registeredContEl.classList.add('show-content');
       contText = '';
