@@ -327,7 +327,21 @@
                 </div>
                 <div id="no-vm-reason-prompt">
                   <label for="no-vm-reason">Reason unable to leave voicemail:</label>
-                  <textarea name="no-vm-reason" id="no-vm-reason"></textarea>
+                  <div>
+                    <div>
+                      <div>
+                        <input type="radio" name="no-vm-reason" id="vm-box-full" />
+                        <label for="vm-box-full">Voicemail Box Full</label>
+                      </div>
+                      <div>
+                        <input type="radio" name="no-vm-reason" id="vm-not-setup" />
+                        <label for="vm-not-setup">Voicemail Not Set Up</label>
+                      </div>
+                      <div>
+                        <input type="radio" name="no-vm-reason" id="custom-vm-no-reason-radio" />
+                        <input type="text" name="no-vm-reason" id="custom-vm-no-reason-text" placeholder="Custom Text"></input>
+                      </div>
+                  </div>
                 </div>
                 <div id="email-sent-prompt">
                   <input type="checkbox" name="email-sent" id="email-sent" />

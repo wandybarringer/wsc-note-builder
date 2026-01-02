@@ -135,7 +135,10 @@ var vmNoEl = document.querySelector('#vm-no');
 var vmNoneEl = document.querySelector('#vm-none');
 var vmYesEl = document.querySelector('#vm-yes');
 var noVmReasonPromptEl = document.querySelector('#no-vm-reason-prompt');
-var noVmReasonEl = document.querySelector('#no-vm-reason');
+var vmBoxFullEl = document.querySelector('#vm-box-full');
+var vmNotSetupEl = document.querySelector('#vm-not-setup');
+var customNoVmReasonRadioEl = document.querySelector('#custom-vm-no-reason-radio');
+var customNoVmReasonTextEl = document.querySelector('#custom-vm-no-reason-text');
 var emailSentPromptEl = document.querySelector('#email-sent-prompt');
 var emailSentEl = document.querySelector('#email-sent');
 var sentMissedEmailPromptEl = document.querySelector('#sent-missed-email-promt');
@@ -338,7 +341,7 @@ var contactedRescheduleDateText = '';
 var rescheduleReasonText = '';
 var rescheduleDateText = '';
 
-// Podio String
+// Podio Strings
 var podioLinkText = '';
 
 // Logic & Footer Strings
@@ -369,7 +372,6 @@ var nicheChangeText = '';
 var nextTopicText = '';
 var storedInitials = '';
 var initialsText = '';
-var manualAdjustment = '';
 
 // *CORE UI & UTILITY FUNCTIONS
 
@@ -563,43 +565,36 @@ function setShowAllAssignedHw() {
 // *NOTE GENERATION & RESET LOGIC
 
 function updateHtmlNotes() {
-  if (document.activeElement === htmlNotesEl) return;
-
-  var generatedContent = '';
-
   if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client' && currentApptValue !== 'Reschedule' && currentApptValue !== 'Podio Link' && currentApptValue !== 'Warhead Assistance') {
     contactedClientText = `<p>
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
-    generatedContent = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + smReminderText + initialsText;
+    htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + smReminderText + initialsText;
   } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
-    generatedContent = missedApptText + initialsText;
+    htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
-    generatedContent = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
+    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
   } else if (currentApptValue === 'Reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client but they are <b>unable to attend appointment.</b>
 </p>
 `;
-    generatedContent = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
+    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
   } else if (currentApptValue === 'Podio Link' && currentApptValue !== 'default') {
-    generatedContent = podioLinkText;
+    htmlNotes = podioLinkText;
   } else if (currentApptValue === 'Warhead Assistance' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   <b>Contacted client for ${currentApptValue} appointment</b>
 </p>
 `;
-    generatedContent = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + initialsText;
   }
 
-  if (document.activeElement !== htmlNotesEl) {
-    htmlNotesEl.value = generatedContent;
-  }
+  htmlNotesEl.value = htmlNotes;
 }
 
 function resetHtmlNotes() {
-  manualAdjustment = '';
   htmlNotes = '';
   contText = '';
   introText = '';
@@ -633,7 +628,7 @@ function resetHtmlNotes() {
 
   htmlNotesEl.value = '';
 
-  localStorage.removeItem('noVmReason');
+  localStorage.removeItem('customNoVmReason');
 
   var nonSpecForms = document.querySelectorAll('#non-specific-form');
 
@@ -648,7 +643,7 @@ function resetHtmlNotes() {
   });
 }
 
-// *APPOINTMENT DETAILS (Intro, HW, Progress)
+// *APPOINTMENT DETAILS (Continuation, Intro, & HW)
 
 function setContAppt() {
   if (!contApptEl) {
@@ -804,7 +799,7 @@ function setThirdApptWorkedOn() {
 }
 
 function setCustomWorkedOn() {
-  let customKeyupListener = null;
+  var customKeyupListener = null;
 
   customWorkedOnChecboxEl.addEventListener('change', function () {
     if (customWorkedOnChecboxEl.checked) {
@@ -1548,7 +1543,7 @@ function setMissedAppointment() {
       markedPodioText = '';
       phoneNumberEl.value = '';
       secondaryPhoneNumberEl.value = '';
-      noVmReasonEl.value = '';
+      customNoVmReasonTextEl.value = '';
       emailSentEl.checked = false;
       vmNoneEl.checked = true;
 
@@ -1627,9 +1622,9 @@ function setMissedAppointment() {
       if (vmNoEl.checked) {
         leftVmText = `Did not leave voicemail`;
         noVmReasonPromptEl.setAttribute('class', 'show-content');
-        var storedNoVmReason = localStorage.getItem('noVmReason');
+        var storedNoVmReason = localStorage.getItem('customNoVmReason');
         if (storedNoVmReason) {
-          noVmReasonEl.value = storedNoVmReason;
+          customNoVmReasonTextEl.value = storedNoVmReason;
           noVmReasonText = storedNoVmReason;
         }
       } else if (vmYesEl.checked) {
@@ -1638,9 +1633,9 @@ function setMissedAppointment() {
       } else if (vmNoneEl.checked) {
         leftVmText = ``;
         noVmReasonPromptEl.setAttribute('class', 'hide-content');
-        var currentStored = localStorage.getItem('noVmReason');
-        noVmReasonEl.value = currentStored ? currentStored : '';
-        noVmReasonText = noVmReasonEl.value;
+        var currentStored = localStorage.getItem('customNoVmReason');
+        customNoVmReasonTextEl.value = currentStored ? currentStored : '';
+        noVmReasonText = customNoVmReasonTextEl.value;
       } else {
         leftVmText = ``;
       }
@@ -1649,12 +1644,34 @@ function setMissedAppointment() {
     });
   });
 
-  noVmReasonEl.addEventListener('input', function (event) {
+  vmBoxFullEl.addEventListener('change', function () {
+    if (!vmBoxFullEl.checked) {
+      noVmReasonText = '';
+    } else if (vmBoxFullEl.checked) {
+      noVmReasonText = `voicemail box is full`;
+      customNoVmReasonTextEl.value = '';
+    }
+    updateVmText();
+    updateHtmlNotes();
+  });
+
+  vmNotSetupEl.addEventListener('change', function () {
+    if (!vmNotSetupEl.checked) {
+      noVmReasonText = '';
+    } else if (vmNotSetupEl.checked) {
+      noVmReasonText = `voicemail is not set up`;
+      customNoVmReasonTextEl.value = '';
+    }
+    updateVmText();
+    updateHtmlNotes();
+  });
+
+  customNoVmReasonTextEl.addEventListener('input', function (event) {
     if (!event.target.value) {
       noVmReasonText = '';
     } else if (event.target.value) {
       noVmReasonText = event.target.value;
-      localStorage.setItem('noVmReason', noVmReasonText);
+      localStorage.setItem('customNoVmReason', noVmReasonText);
     }
     updateVmText();
     updateHtmlNotes();
@@ -1688,6 +1705,35 @@ function setMissedAppointment() {
     }
     updateMissedAppointment();
     updateHtmlNotes();
+  });
+}
+
+function setCustomNoVmReason() {
+  var customKeyupListener = null;
+
+  customNoVmReasonRadioEl.addEventListener('change', function () {
+    if (customNoVmReasonRadioEl.checked) {
+      if (customKeyupListener === null) {
+        customKeyupListener = function (event) {
+          var value = event.target.value.trim();
+          noVmReasonText = value !== '' ? `${value}` : '';
+          updateVmText();
+          updateHtmlNotes();
+        };
+      }
+      customNoVmReasonTextEl.addEventListener('input', customKeyupListener);
+      const value = customNoVmReasonTextEl.value.trim();
+      noVmReasonText = value !== '' ? `${value}` : '';
+      updateVmText();
+      updateHtmlNotes();
+    } else {
+      if (customKeyupListener) {
+        customNoVmReasonTextEl.removeEventListener('input', customKeyupListener);
+      }
+      noVmReasonText = '';
+      updateVmText();
+      updateHtmlNotes();
+    }
   });
 }
 
@@ -1985,10 +2031,6 @@ function setPodioLink() {
 }
 
 // *INITIALIZATION (DOM CONTENT LOADED)
-
-htmlNotesEl.addEventListener('input', function () {
-  htmlNotes = htmlNotesEl.value;
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   htmlNotesEl.value = '';
