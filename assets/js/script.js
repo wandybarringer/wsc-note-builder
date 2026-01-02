@@ -338,7 +338,7 @@ var contactedRescheduleDateText = '';
 var rescheduleReasonText = '';
 var rescheduleDateText = '';
 
-// Podio Strings
+// Podio String
 var podioLinkText = '';
 
 // Logic & Footer Strings
@@ -369,6 +369,7 @@ var nicheChangeText = '';
 var nextTopicText = '';
 var storedInitials = '';
 var initialsText = '';
+var manualAdjustment = '';
 
 // *CORE UI & UTILITY FUNCTIONS
 
@@ -417,6 +418,8 @@ function formatPhone(value) {
 
 function clearInputs() {
   clearBtnEl.addEventListener('click', function () {
+    if (showAllWorkedOnEl) showAllWorkedOnEl.checked = false;
+    if (showAllAssignedHwEl) showAllAssignedHwEl.checked = false;
     resetHtmlNotes();
     updateHtmlNotes();
     setInitials();
@@ -560,36 +563,43 @@ function setShowAllAssignedHw() {
 // *NOTE GENERATION & RESET LOGIC
 
 function updateHtmlNotes() {
+  if (document.activeElement === htmlNotesEl) return;
+
+  var generatedContent = '';
+
   if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client' && currentApptValue !== 'Reschedule' && currentApptValue !== 'Podio Link' && currentApptValue !== 'Warhead Assistance') {
     contactedClientText = `<p>
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training appointment</b>
 </p>
 `;
-    htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + smReminderText + initialsText;
+    generatedContent = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + smReminderText + initialsText;
   } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
-    htmlNotes = missedApptText + initialsText;
+    generatedContent = missedApptText + initialsText;
   } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
-    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
+    generatedContent = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
   } else if (currentApptValue === 'Reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client but they are <b>unable to attend appointment.</b>
 </p>
 `;
-    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
+    generatedContent = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
   } else if (currentApptValue === 'Podio Link' && currentApptValue !== 'default') {
-    htmlNotes = podioLinkText;
+    generatedContent = podioLinkText;
   } else if (currentApptValue === 'Warhead Assistance' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   <b>Contacted client for ${currentApptValue} appointment</b>
 </p>
 `;
-    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + initialsText;
+    generatedContent = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + initialsText;
   }
 
-  htmlNotesEl.value = htmlNotes;
+  if (document.activeElement !== htmlNotesEl) {
+    htmlNotesEl.value = generatedContent;
+  }
 }
 
 function resetHtmlNotes() {
+  manualAdjustment = '';
   htmlNotes = '';
   contText = '';
   introText = '';
@@ -1975,6 +1985,11 @@ function setPodioLink() {
 }
 
 // *INITIALIZATION (DOM CONTENT LOADED)
+
+htmlNotesEl.addEventListener('input', function () {
+  htmlNotes = htmlNotesEl.value;
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   htmlNotesEl.value = '';
 
@@ -1984,7 +1999,6 @@ document.addEventListener('DOMContentLoaded', () => {
     form.reset();
   });
 
-  // Initialization sequence
   copyHtmlNotes();
   clearInputs();
   setShowAllWorkedOn();
