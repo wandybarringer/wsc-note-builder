@@ -238,6 +238,12 @@ var nicheChangeTechPromptEl = document.querySelector('#niche-change-tech-prompt'
 var nicheChangeTechEl = document.querySelector('#niche-change-tech');
 var nicheChangeDatePromptEl = document.querySelector('#niche-change-date-prompt');
 var nicheChangeDateEl = document.querySelector('#niche-change-date');
+var websiteAnalysisApptPromptEl = document.querySelector('#website-analysis-appt-prompt');
+var websiteAnalysisApptEl = document.querySelector('#website-analysis-appt');
+var websiteAnalysisTechPromptEl = document.querySelector('#website-analysis-tech-prompt');
+var websiteAnalysisTechEl = document.querySelector('#website-analysis-tech');
+var websiteAnalysisDatePromptEl = document.querySelector('#website-analysis-date-prompt');
+var websiteAnalysisDateEl = document.querySelector('#website-analysis-date');
 
 // *THEME & GLOBAL STATE VARIABLES
 var toggleSwitch = document.querySelector('#dark-light-toggle');
@@ -368,6 +374,9 @@ var obAssistanceText = '';
 var nicheChangeTechText = '';
 var nicheChangeDateText = '';
 var nicheChangeText = '';
+var websiteAnalysisTechText = '';
+var websiteAnalysisDateText = '';
+var websiteAnalysisText = '';
 var nextTopicText = '';
 var storedInitials = '';
 var initialsText = '';
@@ -569,17 +578,17 @@ function updateHtmlNotes() {
   <b>Contacted client for${contText} ${currentApptValue} Warhead Training</b>
 </p>
 `;
-    htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + smReminderText + initialsText;
+    htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + smReminderText + initialsText;
   } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
-    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
+    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'Reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client but they are <b>unable to attend appointment.</b>
 </p>
 `;
-    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + initialsText;
+    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'Podio Link' && currentApptValue !== 'default') {
     htmlNotes = podioLinkText;
   } else if (currentApptValue === 'Warhead Assistance' && currentApptValue !== 'default') {
@@ -587,7 +596,7 @@ function updateHtmlNotes() {
   <b>Contacted client for ${currentApptValue}</b>
 </p>
 `;
-    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -624,10 +633,9 @@ function resetHtmlNotes() {
   whAssistanceText = '';
   obAssistanceText = '';
   nicheChangeText = '';
+  websiteAnalysisText = '';
 
   htmlNotesEl.value = '';
-
-  localStorage.removeItem('customNoVmReason');
 
   var nonSpecForms = document.querySelectorAll('#non-specific-form');
 
@@ -635,7 +643,7 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl, websiteAnalysisApptPromptEl, websiteAnalysisDatePromptEl, websiteAnalysisTechPromptEl];
 
   allPrompts.forEach(function (element) {
     element.setAttribute('class', 'hide-content');
@@ -1266,26 +1274,40 @@ function setOtherAppointment() {
       whAssistanceApptPromptEl.setAttribute('class', 'show-content');
       obAssistanceApptPromptEl.setAttribute('class', 'show-content');
       nicheChangeApptPromptEl.setAttribute('class', 'show-content');
+      websiteAnalysisApptPromptEl.setAttribute('class', 'show-content');
     } else if (!otherDeptApptEl.checked) {
       whAssistanceApptPromptEl.setAttribute('class', 'hide-content');
       obAssistanceApptPromptEl.setAttribute('class', 'hide-content');
       nicheChangeApptPromptEl.setAttribute('class', 'hide-content');
+      websiteAnalysisApptPromptEl.setAttribute('class', 'hide-content');
       obAssistanceDatePromptEl.setAttribute('class', 'hide-content');
       obAssistanceTechPromptEl.setAttribute('class', 'hide-content');
       whAssistanceDatePromptEl.setAttribute('class', 'hide-content');
       whAssistanceTechPromptEl.setAttribute('class', 'hide-content');
       nicheChangeDatePromptEl.setAttribute('class', 'hide-content');
       nicheChangeTechPromptEl.setAttribute('class', 'hide-content');
+      websiteAnalysisDatePromptEl.setAttribute('class', 'hide-content');
+      websiteAnalysisTechPromptEl.setAttribute('class', 'hide-content');
       whAssistanceApptEl.checked = false;
       obAssistanceApptEl.checked = false;
       nicheChangeApptEl.checked = false;
-      var inputsToClear = [whAssistanceDateEl, obAssistanceDateEl, nicheChangeDateEl, whAssistanceTechEl, obAssistanceTechEl, nicheChangeTechEl];
+      websiteAnalysisApptEl.checked = false;
+      var inputsToClear = [whAssistanceDateEl, obAssistanceDateEl, nicheChangeDateEl, websiteAnalysisDateEl, whAssistanceTechEl, obAssistanceTechEl, nicheChangeTechEl, websiteAnalysisTechEl];
       inputsToClear.forEach((input) => {
         if (input) input.value = '';
       });
       whAssistanceDateText = '';
       whAssistanceTechText = '';
       whAssistanceText = '';
+      obAssistanceDateText = '';
+      obAssistanceTechText = '';
+      obAssistanceText = '';
+      nicheChangeDateText = '';
+      nicheChangeTechText = '';
+      nicheChangeText = '';
+      websiteAnalysisDateText = '';
+      websiteAnalysisTechText = '';
+      websiteAnalysisText = '';
       updateHtmlNotes();
     }
   });
@@ -1337,6 +1359,24 @@ function setOtherAppointment() {
       nicheChangeTechText = '';
       nicheChangeText = '';
       var inputsToClear = [nicheChangeDateEl, nicheChangeTechEl];
+      inputsToClear.forEach((input) => {
+        if (input) input.value = '';
+      });
+      updateHtmlNotes();
+    }
+  });
+
+  websiteAnalysisApptEl.addEventListener('change', function () {
+    if (websiteAnalysisApptEl && websiteAnalysisApptEl.checked) {
+      websiteAnalysisDatePromptEl.setAttribute('class', 'show-content');
+      websiteAnalysisTechPromptEl.setAttribute('class', 'show-content');
+    } else if (!websiteAnalysisApptEl.checked) {
+      websiteAnalysisDatePromptEl.setAttribute('class', 'hide-content');
+      websiteAnalysisTechPromptEl.setAttribute('class', 'hide-content');
+      websiteAnalysisDateText = '';
+      websiteAnalysisTechText = '';
+      websiteAnalysisText = '';
+      var inputsToClear = [websiteAnalysisDateEl, websiteAnalysisTechEl];
       inputsToClear.forEach((input) => {
         if (input) input.value = '';
       });
@@ -1403,6 +1443,26 @@ function setOtherAppointment() {
     updateOtherAppointment();
     updateHtmlNotes();
   });
+
+  websiteAnalysisTechEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      websiteAnalysisTechText = '';
+    } else if (event.target.value) {
+      websiteAnalysisTechText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  websiteAnalysisDateEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      websiteAnalysisDateText = '';
+    } else if (event.target.value) {
+      websiteAnalysisDateText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
 }
 
 function updateOtherAppointment() {
@@ -1431,6 +1491,15 @@ function updateOtherAppointment() {
 `;
   } else {
     nicheChangeText = '';
+  }
+
+  if (websiteAnalysisTechText || websiteAnalysisDateText) {
+    websiteAnalysisText = `<p>
+  Set Website Analysis appointment with ${websiteAnalysisTechText} for ${websiteAnalysisDateText}.
+</p>
+`;
+  } else {
+    websiteAnalysisText = '';
   }
 }
 
