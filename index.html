@@ -16,7 +16,7 @@
             <li>Note Builder</li>
           </ul>
 
-          <div id="dark-light-container" class="toggle-switch">
+          <div id="dark-light-container">
             <label class="theme-switch" for="dark-light-toggle">
               <input type="checkbox" id="dark-light-toggle" name="dark-light-toggle" />
               <div class="slider round">
@@ -74,9 +74,10 @@
                 <input type="radio" name="intro" id="intro-no" value="No" />
                 <label for="intro-no">No</label>
                 <input type="radio" name="intro" id="intro-none" value="None" checked />
-                <label for="intro-none">-</label>
+                <label for="intro-none"></label>
                 <input type="radio" name="intro" id="intro-yes" value="Yes" />
                 <label for="intro-yes">Yes</label>
+                <div class="selection-slider"></div>
               </div>
             </div>
 
@@ -86,9 +87,10 @@
                 <input type="radio" name="hw" id="hw-no" value="No" />
                 <label for="hw-no">No</label>
                 <input type="radio" name="hw" id="hw-none" value="None" checked />
-                <label for="hw-none">-</label>
+                <label for="hw-none"></label>
                 <input type="radio" name="hw" id="hw-yes" value="Yes" />
                 <label for="hw-yes">Yes</label>
+                <div class="selection-slider"></div>
               </div>
             </div>
 
@@ -222,9 +224,10 @@
                 <input type="radio" name="registered" id="registered-no" value="No" />
                 <label for="registered-no">No</label>
                 <input type="radio" name="registered" id="registered-none" value="None" checked />
-                <label for="registered-none">-</label>
+                <label for="registered-none"></label>
                 <input type="radio" name="registered" id="registered-yes" value="Yes" />
                 <label for="registered-yes">Yes</label>
+                <div class="selection-slider"></div>
               </div>
             </div>
 
@@ -239,9 +242,10 @@
                 <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
                 <label for="cf-signed-no">No</label>
                 <input type="radio" name="cf-signed" id="cf-signed-none" value="None" checked />
-                <label for="cf-signed-none">-</label>
+                <label for="cf-signed-none"></label>
                 <input type="radio" name="cf-signed" id="cf-signed-yes" value="Yes" />
                 <label for="cf-signed-yes">Yes</label>
+                <div class="selection-slider"></div>
               </div>
             </div>
             <div id="why-not-signed-prompt" class="form-group">
@@ -280,9 +284,10 @@
                 <input type="radio" name="live" id="live-no" value="No" />
                 <label for="live-no">No</label>
                 <input type="radio" name="live" id="live-none" value="None" checked />
-                <label for="live-none">-</label>
+                <label for="live-none"></label>
                 <input type="radio" name="live" id="live-yes" value="Yes" />
                 <label for="live-yes">Yes</label>
+                <div class="selection-slider"></div>
               </div>
             </div>
 
@@ -317,7 +322,6 @@
                   <label for="third-attempt">3rd Attempt</label>
                 </div>
               </div>
-
               <div id="phone-number-prompt">
                 <label for="phone-number">Phone number called:</label>
                 <input type="text" name="phone-number" id="phone-number" />
@@ -332,23 +336,22 @@
                   <input type="radio" name="vm" id="vm-no" value="No" />
                   <label for="vm-no">No</label>
                   <input type="radio" name="vm" id="vm-none" value="None" checked />
-                  <label for="vm-none">-</label>
+                  <label for="vm-none"></label>
                   <input type="radio" name="vm" id="vm-yes" value="Yes" />
                   <label for="vm-yes">Yes</label>
+                  <div class="selection-slider"></div>
                 </div>
               </div>
               <div id="no-vm-reason-prompt">
                 <label for="no-vm-reason">Reason unable to leave voicemail:</label>
-                <div>
+                <div class="grey-bg">
                   <div>
-                    <div>
-                      <input type="radio" name="no-vm-reason" id="vm-box-full" />
-                      <label for="vm-box-full">Voicemail Box Full</label>
-                    </div>
-                    <div>
-                      <input type="radio" name="no-vm-reason" id="vm-not-setup" />
-                      <label for="vm-not-setup">Voicemail Not Set Up</label>
-                    </div>
+                    <input type="radio" name="no-vm-reason" id="vm-box-full" />
+                    <label for="vm-box-full">Voicemail Box Full</label>
+                  </div>
+                  <div>
+                    <input type="radio" name="no-vm-reason" id="vm-not-setup" />
+                    <label for="vm-not-setup">Voicemail Not Set Up</label>
                   </div>
                 </div>
               </div>
@@ -370,11 +373,23 @@
             <div class="contacted-by-client hide-content">
               <div>
                 <label class="default-pointer">Recieved message from client:</label>
-                <div class="panel-flex">
-                  <div><input type="radio" name="message-types" id="message-type-none" value="none" checked /><label for="message-type-none">No (Direct Call)</label></div>
-                  <div><input type="radio" name="message-types" id="message-type-voicemail" value="voicemail" /><label for="message-type-voicemail">Voicemail</label></div>
-                  <div><input type="radio" name="message-types" id="message-type-email" value="email" /><label for="message-type-email">Email</label></div>
-                  <div><input type="radio" name="message-types" id="message-type-text" value="text" /><label for="message-type-text">Text</label></div>
+                <div class="panel-flex grey-bg">
+                  <div>
+                    <input type="radio" name="message-types" id="message-type-none" value="none" checked />
+                    <label for="message-type-none">No (Direct Call)</label>
+                  </div>
+                  <div>
+                    <input type="radio" name="message-types" id="message-type-voicemail" value="voicemail" />
+                    <label for="message-type-voicemail">Voicemail</label>
+                  </div>
+                  <div>
+                    <input type="radio" name="message-types" id="message-type-email" value="email" />
+                    <label for="message-type-email">Email</label>
+                  </div>
+                  <div>
+                    <input type="radio" name="message-types" id="message-type-text" value="text" />
+                    <label for="message-type-text">Text</label>
+                  </div>
                 </div>
               </div>
               <div>
@@ -388,9 +403,10 @@
                     <input type="radio" name="successful-contact" id="successful-contact-no" value="No" />
                     <label for="successful-contact-no">No</label>
                     <input type="radio" name="successful-contact" id="successful-contact-none" value="None" checked />
-                    <label for="successful-contact-none">-</label>
+                    <label for="successful-contact-none"></label>
                     <input type="radio" name="successful-contact" id="successful-contact-yes" value="Yes" />
                     <label for="successful-contact-yes">Yes</label>
+                    <div class="selection-slider"></div>
                   </div>
                 </div>
               </div>
@@ -402,29 +418,29 @@
                 <label for="contacted-secondary-phone-number">Secondary phone number:</label>
                 <input type="text" name="contacted-secondary-phone-number" id="contacted-secondary-phone-number" />
               </div>
+
               <div id="contacted-left-vm-prompt">
                 <label class="default-pointer">Left voicemail?</label>
                 <div class="toggle-switch">
                   <input type="radio" name="contacted-vm" id="contacted-vm-no" value="No" />
                   <label for="contacted-vm-no">No</label>
                   <input type="radio" name="contacted-vm" id="contacted-vm-none" value="None" checked />
-                  <label for="contacted-vm-none">-</label>
+                  <label for="contacted-vm-none"></label>
                   <input type="radio" name="contacted-vm" id="contacted-vm-yes" value="Yes" />
                   <label for="contacted-vm-yes">Yes</label>
+                  <div class="selection-slider"></div>
                 </div>
               </div>
               <div id="contacted-no-vm-reason-prompt">
                 <label for="contacted-no-vm-reason">Reason unable to leave voicemail:</label>
-                <div>
+                <div class="grey-bg">
                   <div>
-                    <div>
-                      <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-box-full" />
-                      <label for="contacted-vm-box-full">Voicemail Box Full</label>
-                    </div>
-                    <div>
-                      <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-not-setup" />
-                      <label for="contacted-vm-not-setup">Voicemail Not Set Up</label>
-                    </div>
+                    <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-box-full" />
+                    <label for="contacted-vm-box-full">Voicemail Box Full</label>
+                  </div>
+                  <div>
+                    <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-not-setup" />
+                    <label for="contacted-vm-not-setup">Voicemail Not Set Up</label>
                   </div>
                 </div>
               </div>

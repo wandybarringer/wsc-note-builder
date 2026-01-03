@@ -443,6 +443,16 @@ function clearInputs() {
   });
 }
 
+function handleDateFormat(date) {
+  var updatedDate = date.replace('⋅', ', ');
+
+  if (!date) {
+    return '';
+  } else {
+    return updatedDate;
+  }
+}
+
 // *VISIBILITY & TEMPLATE CONTROLS
 
 function updateApptVisibility() {
@@ -1175,8 +1185,14 @@ function setSupplierManagement() {
   });
 
   smApptEl.addEventListener('input', function (event) {
-    var smApptOriginalStr = event.target.value;
-    smApptText = smApptOriginalStr.replace('⋅', ', ');
+    var newSmApptStr = handleDateFormat(event.target.value);
+
+    if (!newSmApptStr) {
+      smApptText = '';
+    } else {
+      smApptText = newSmApptStr;
+    }
+
     updateSupplierManagement();
     updateHtmlNotes();
   });
@@ -1189,7 +1205,7 @@ function updateSupplierManagement() {
 `;
 }
 
-// *POST-APPOINTMENT EXTRAS & INITIALS
+// *END OF NOTE EXTRAS & INITIALS
 function setPostApptExtras() {
   var liveRadioElements = [liveNoEl, liveNoneEl, liveYesEl];
 
@@ -1243,10 +1259,9 @@ function setPostApptExtras() {
   });
 
   smReminderEl.addEventListener('input', function (event) {
-    var smReminderOriginalStr = event.target.value;
-    var smReminderNewStr = smReminderOriginalStr.replace('⋅', ', ');
+    var smReminderNewStr = handleDateFormat(event.target.value);
 
-    if (!event.target.value) {
+    if (!smReminderNewStr) {
       smReminderText = '';
     } else {
       smReminderText = `<p>
@@ -1261,14 +1276,13 @@ function setPostApptExtras() {
 
 function setNextAppointment() {
   nextAppointmentEl.addEventListener('input', function (event) {
-    var nextApptOriginalStr = event.target.value;
-    var nextApptNewStr = nextApptOriginalStr.replace('⋅', ', ');
+    var newNextApptStr = handleDateFormat(event.target.value);
 
-    if (!event.target.value) {
+    if (!newNextApptStr) {
       nextAppointmentText = '';
     } else {
       nextAppointmentText = `<p>
-  Set next Warhead appointment for ${nextApptNewStr}.
+  Set next Warhead appointment for ${newNextApptStr}.
 </p>
 `;
     }
@@ -1986,10 +2000,9 @@ function setContactedByClient() {
   });
 
   contactedRescheduleDateEl.addEventListener('input', function (event) {
-    var contactedRescheduleOriginalStr = event.target.value;
-    var newContactedRescheduleOriginalStr = contactedRescheduleOriginalStr.replace('⋅', ', ');
+    var newContactedRescheduleOriginalStr = handleDateFormat(event.target.value);
 
-    if (!event.target.value) {
+    if (!newContactedRescheduleOriginalStr) {
       contactedRescheduleDateText = '';
     } else {
       contactedRescheduleDateText = `<p>
@@ -2051,10 +2064,9 @@ function setReschedule() {
   });
 
   rescheduleDateEl.addEventListener('input', function (event) {
-    var rescheduleDateOriginalStr = event.target.value;
-    var newRescheduleDateStr = rescheduleDateOriginalStr.replace('⋅', ', ');
+    var newRescheduleDateStr = handleDateFormat(event.target.value);
 
-    if (!event.target.value) {
+    if (!newRescheduleDateStr) {
       rescheduleDateText = '';
     } else {
       rescheduleDateText = `<p>
