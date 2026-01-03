@@ -406,7 +406,13 @@ function setThemeToggle() {
 }
 
 function copyHtmlNotes() {
+  copyBtnEl.disabled = true;
+
   copyBtnEl.addEventListener('click', function () {
+    if (currentApptValue === 'default' || !currentApptValue) {
+      return;
+    }
+
     navigator.clipboard.writeText(htmlNotesEl.value);
     copyDialogEl.showModal();
     setTimeout(function () {
@@ -543,6 +549,14 @@ function updateApptVisibility() {
 
 function handleApptSelection() {
   apptSelectEl.addEventListener('change', function (event) {
+    currentApptValue = event.target.value;
+
+    if (currentApptValue === 'default') {
+      copyBtnEl.disabled = true;
+    } else {
+      copyBtnEl.disabled = false;
+    }
+
     resetHtmlNotes();
     setInitials();
     updateApptVisibility();
