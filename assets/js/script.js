@@ -584,6 +584,7 @@ function handleApptSelection() {
       clearBtnEl.disabled = false;
     }
 
+    resetHtmlNotes();
     setInitials();
     updateApptVisibility();
   });
@@ -703,16 +704,20 @@ function setContAppt() {
       introPromptEl.classList.add('hide-content');
       registeredContEl.classList.remove('show-content');
       registeredContEl.classList.add('hide-content');
-      introNoneEl.checked = true;
-      introText = '';
-      registeredBusinessNoneEl.checked = true;
-      registeredBusinessText = '';
-      contText = ' continuation';
     } else if (!contApptEl.checked && apptSelectEl.value === '1st Appointment') {
       introPromptEl.classList.remove('hide-content');
       introPromptEl.classList.add('show-content');
       registeredContEl.classList.remove('hide-content');
       registeredContEl.classList.add('show-content');
+    }
+
+    if ((contApptEl.checked && apptSelectEl.value === '1st Appointment') || (contApptEl.checked && apptSelectEl.value === '2nd Appointment') || (contApptEl.checked && apptSelectEl.value === '3rd Appointment') || (contApptEl.checked && apptSelectEl.value === 'Post Appointment')) {
+      introNoneEl.checked = true;
+      introText = '';
+      registeredBusinessNoneEl.checked = true;
+      registeredBusinessText = '';
+      contText = ' continuation';
+    } else if ((!contApptEl.checked && apptSelectEl.value === '1st Appointment') || (!contApptEl.checked && apptSelectEl.value === '2nd Appointment') || (!contApptEl.checked && apptSelectEl.value === '3rd Appointment') || (!contApptEl.checked && apptSelectEl.value === 'Post Appointment')) {
       contText = '';
     }
     updateHtmlNotes();
@@ -1736,11 +1741,17 @@ function setMissedAppointment() {
       } else if (vmYesEl.checked) {
         leftVmText = `Left voicemail`;
         noVmReasonPromptEl.setAttribute('class', 'hide-content');
+        vmBoxFullEl.checked = false;
+        vmNotSetupEl.checked = false;
       } else if (vmNoneEl.checked) {
         leftVmText = ``;
         noVmReasonPromptEl.setAttribute('class', 'hide-content');
+        vmBoxFullEl.checked = false;
+        vmNotSetupEl.checked = false;
       } else {
         leftVmText = ``;
+        vmBoxFullEl.checked = false;
+        vmNotSetupEl.checked = false;
       }
       updateVmText();
       updateHtmlNotes();
@@ -1900,16 +1911,25 @@ function setContactedByClient() {
         contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
+        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        contactedVmBoxFullEl.checked = false;
+        contactedVmNotSetupEl.checked = false;
       } else if (successfulContactNoneEl.checked) {
         successfulContactText = '';
         contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
+        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        contactedVmBoxFullEl.checked = false;
+        contactedVmNotSetupEl.checked = false;
       } else {
         successfulContactText = '';
         contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
+        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        contactedVmBoxFullEl.checked = false;
+        contactedVmNotSetupEl.checked = false;
       }
       updateReturnContactText();
       updateHtmlNotes();
@@ -1948,12 +1968,18 @@ function setContactedByClient() {
       } else if (contactedVmYesEl.checked) {
         contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmText = `Left voicemail`;
+        contactedVmBoxFullEl.checked = false;
+        contactedVmNotSetupEl.checked = false;
       } else if (contactedVmNoneEl.checked) {
         contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmText = ``;
+        contactedVmBoxFullEl.checked = false;
+        contactedVmNotSetupEl.checked = false;
       } else {
         contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmText = ``;
+        contactedVmBoxFullEl.checked = false;
+        contactedVmNotSetupEl.checked = false;
       }
       updateContactedVmText();
       updateHtmlNotes();
@@ -2049,7 +2075,6 @@ function updateContactedVmText() {
   } else {
     contactedUpdatedVmText = '';
   }
-  console.log(contactedUpdatedVmText);
 
   updateReturnContactText();
 }

@@ -56,6 +56,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background: var(--primary-bg);
   color: var(--primary-text);
+  transition: 0.4s;
 }
 
 header h1 {
@@ -205,6 +206,23 @@ label {
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   margin-block-end: 0.5rem;
+}
+
+#message-type-prompt label,
+#attempts-prompt label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02rem;
+}
+
+#attempts-prompt input[type='radio']:checked + label,
+#message-type-prompt input[type='radio']:checked + label {
+  color: var(--primary-action);
+  background-color: var(--primary-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 /* CUSTOM CHECKBOXES & TOGGLES */
@@ -537,6 +555,11 @@ input[type='number'] {
 input:hover,
 select:hover {
   background: var(--primary-hover);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
 }
 
 input[type='checkbox']:hover {
