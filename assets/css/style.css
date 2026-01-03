@@ -212,8 +212,8 @@ input[type='checkbox'],
 input[type='radio'] {
   display: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  inline-size: 20px;
+  block-size: 20px;
   border: var(--input-border) solid 1px;
   background: var(--primary-bg);
   border-radius: 0.2rem;
@@ -229,8 +229,8 @@ input[type='radio']:checked {
 input[type='checkbox']::before,
 input[type='radio']::before {
   content: '';
-  width: 10px;
-  height: 10px;
+  inline-size: 10px;
+  block-size: 10px;
   transform: scale(0);
   background-color: var(--secondary-text);
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
@@ -406,15 +406,15 @@ input[type='number'] {
 
 .theme-switch {
   display: inline-block;
-  height: 34px;
+  block-size: 34px;
   position: relative;
-  width: 60px;
+  inline-size: 60px;
 }
 
 .theme-switch input {
   opacity: 0;
-  width: 0;
-  height: 0;
+  inline-size: 0;
+  block-size: 0;
   appearance: none;
   position: absolute;
   pointer-events: none;
@@ -436,11 +436,11 @@ input[type='number'] {
   background-color: var(--toggle-round);
   bottom: 4px;
   content: '';
-  height: 26px;
+  block-size: 26px;
   left: 4px;
   position: absolute;
   transition: 0.4s;
-  width: 26px;
+  inline-size: 26px;
   border-radius: 50%;
 }
 
