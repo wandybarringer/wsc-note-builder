@@ -584,7 +584,6 @@ function handleApptSelection() {
       clearBtnEl.disabled = false;
     }
 
-    resetHtmlNotes();
     setInitials();
     updateApptVisibility();
   });
