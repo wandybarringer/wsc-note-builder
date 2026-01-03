@@ -177,6 +177,10 @@ textarea {
   border: var(--input-border) solid 1px;
 }
 
+textarea:hover {
+  background: var(--primary-hover);
+}
+
 label {
   cursor: pointer;
 }
@@ -356,6 +360,27 @@ input[type='number'] {
 #message-type-email:hover,
 #message-type-text:hover {
   background: var(--primary-hover);
+}
+
+#show-all-worked-on:checked,
+#show-all-assigned-hw:checked,
+#completion-form-sent:checked,
+#booked-sm:checked,
+#additional-training:checked,
+#needs-reschedule:checked,
+#other-dept-appt:checked,
+#first-attempt:checked,
+#second-attempt:checked,
+#third-attempt:checked,
+#message-type-none:checked,
+#message-type-voicemail:checked,
+#message-type-email:checked,
+#message-type-text:checked {
+  background: var(--primary-action);
+}
+
+#hw-percent {
+  inline-size: 50px;
 }
 
 /* THEME SWITCHER (DARK/LIGHT SLIDER) */
