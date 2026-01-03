@@ -561,11 +561,13 @@
 
         <section id="output-panel" class="panel-flex">
           <!-- *Genterated HTML Notes -->
-          <button id="copy-btn">Copy</button>
-          <textarea name="html-notes" id="html-notes" readonly></textarea>
+          <dialog id="copy-msg-dialog">
+            <p>Click to copy</p>
+          </dialog>
+          <textarea name="html-notes" id="html-notes"></textarea>
         </section>
 
-        <dialog>
+        <dialog id="copy-dialog">
           <p>Notes Copied!</p>
         </dialog>
       </main>

@@ -2,8 +2,8 @@
 var apptSelectEl = document.querySelector('#appointment');
 var nonSpecFormEl = document.querySelector('#non-specific-form');
 var htmlNotesEl = document.querySelector('#html-notes');
-var copyBtnEl = document.querySelector('#copy-btn');
-var copyDialogEl = document.querySelector('dialog');
+var copyMsgDialogEl = document.querySelector('#copy-msg-dialog');
+var copyDialogEl = document.querySelector('#copy-dialog');
 var clearBtnEl = document.querySelector('#clear-btn');
 var initialsEl = document.querySelector('#initials');
 
@@ -406,9 +406,19 @@ function setThemeToggle() {
 }
 
 function copyHtmlNotes() {
-  copyBtnEl.disabled = true;
+  htmlNotesEl.disabled = true;
 
-  copyBtnEl.addEventListener('click', function () {
+  htmlNotesEl.addEventListener('mouseenter', function () {
+    if (currentApptValue === 'default' || !currentApptValue) return;
+    copyMsgDialogEl.show();
+  });
+
+  htmlNotesEl.addEventListener('mouseleave', function () {
+    if (currentApptValue === 'default' || !currentApptValue) return;
+    copyMsgDialogEl.close();
+  });
+
+  htmlNotesEl.addEventListener('click', function () {
     if (currentApptValue === 'default' || !currentApptValue) {
       return;
     }
@@ -433,7 +443,12 @@ function formatPhone(value) {
 }
 
 function clearInputs() {
+  clearBtnEl.disabled = true;
+
   clearBtnEl.addEventListener('click', function () {
+    if (currentApptValue === 'default' || !currentApptValue) {
+      return;
+    }
     if (showAllWorkedOnEl) showAllWorkedOnEl.checked = false;
     if (showAllAssignedHwEl) showAllAssignedHwEl.checked = false;
     resetHtmlNotes();
@@ -562,9 +577,11 @@ function handleApptSelection() {
     currentApptValue = event.target.value;
 
     if (currentApptValue === 'default') {
-      copyBtnEl.disabled = true;
+      htmlNotesEl.disabled = true;
+      clearBtnEl.disabled = true;
     } else {
-      copyBtnEl.disabled = false;
+      htmlNotesEl.disabled = false;
+      clearBtnEl.disabled = false;
     }
 
     resetHtmlNotes();

@@ -97,6 +97,7 @@ section {
 
 #output-panel {
   block-size: 80vh;
+  position: relative;
 }
 
 #input-panel,
@@ -529,7 +530,10 @@ input[type='checkbox']:hover {
   background: var(--primary-action);
 }
 
-dialog {
+#copy-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
   padding: 1rem 2rem;
   border: var(--input-border) solid 1px;
   border-radius: 0.6rem;
@@ -538,12 +542,45 @@ dialog {
   font: inherit;
   font-weight: bold;
   font-size: 1.6rem;
-  position: fixed;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   background: var(--dialog-bg);
   backdrop-filter: blur(2px);
+  transition: opacity 0.2s ease, display 0.4s allow-discrete, overlay 0.4s allow-discrete;
+}
+
+#copy-msg-dialog {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  padding: 1rem 2rem;
+  border: var(--primary-text) solid 1px;
+  border-radius: 0.6rem;
+  background: var(--input-panel-bg);
+  color: var(--primary-text);
+  font: inherit;
+  font-weight: bold;
+  font-size: 1.6rem;
+  transform: translate(-50%, -50%);
+  background: var(--dialog-bg);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.2s ease, display 0.4s allow-discrete, overlay 0.4s allow-discrete;
+}
+
+#copy-msg-dialog[open],
+#copy-dialog[open] {
+  opacity: 1;
+}
+
+#copy-msg-dialog:not([open]),
+#copy-dialog:not([open]) {
+  opacity: 0;
+}
+
+@starting-style {
+  #copy-msg-dialog[open],
+  #copy-dialog[open] {
+    opacity: 0;
+  }
 }
 
 #clear-btn {
@@ -558,29 +595,7 @@ dialog {
   border-color: var(--input-border);
 }
 
-#copy-btn {
-  appearance: none;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.2rem;
-  block-size: 40px;
-  color: var(--primary-text);
-  background: var(--secondary-grey-bg);
-  padding: 0.3rem;
-  border: var(--input-border) solid 2px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 0.6rem 0.6rem 0 0;
-  transition: font-size 0.1s ease, box-shadow 0.1s ease;
-}
-
-#copy-btn:active {
-  background: var(--secondary-grey-bg);
-  font-size: 1.15rem;
-  box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.25), inset -3px -3px 6px rgba(255, 255, 255, 0.15);
-  border-color: var(--input-border);
-}
-
-#copy-btn:disabled {
+#clear-btn:disabled {
   cursor: not-allowed;
   opacity: 0.6;
   pointer-events: none;
@@ -592,6 +607,32 @@ dialog {
   inline-size: 100%;
   block-size: 100%;
   resize: none;
-  border-radius: 0 0 0.6rem 0.6rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: box-shadow 0.1s ease;
+}
+
+#html-notes:hover {
+  background: var(--secondary-bg);
+}
+
+#html-notes:active {
+  appearance: none;
+  box-shadow: inset 6px 6px 15px rgba(0, 0, 0, 0.25), inset -5px -5px 13px rgba(255, 255, 255, 0.18);
+  border-color: var(--input-border);
+  outline: none;
+  font-size: 0.75rem;
+  padding: 5px;
+}
+
+#html-notes:focus {
+  outline: none;
+  caret-color: transparent;
+}
+
+#html-notes:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
   pointer-events: none;
+  box-shadow: none;
 }
