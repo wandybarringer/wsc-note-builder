@@ -385,9 +385,8 @@ var initialsText = '';
 
 function setThemeToggle() {
   document.addEventListener('DOMContentLoaded', function () {
-    var savedTheme = localStorage.getItem('theme'); // Look for a saved setting
+    var savedTheme = localStorage.getItem('theme');
 
-    // Apply the saved theme on load
     if (savedTheme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
       toggleSwitch.checked = true;
@@ -396,10 +395,10 @@ function setThemeToggle() {
     toggleSwitch.addEventListener('change', function () {
       if (toggleSwitch.checked) {
         document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark'); // Save preference
+        localStorage.setItem('theme', 'dark');
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light'); // Save preference
+        localStorage.setItem('theme', 'light');
       }
     });
   });
@@ -466,6 +465,16 @@ function handleDateFormat(date) {
   } else {
     return updatedDate;
   }
+}
+
+function addNewRow(container) {
+  var newRow = document.createElement('div');
+  newRow.className = 'custom-row';
+  newRow.innerHTML = `
+    <input type="checkbox" class="custom-checkbox" /> 
+    <input type="text" class="custom-text" placeholder="Custom text" />
+  `;
+  container.appendChild(newRow);
 }
 
 // *VISIBILITY & TEMPLATE CONTROLS
@@ -606,7 +615,6 @@ function setShowAllAssignedHw() {
   }
 
   showAllAssignedHwEl.addEventListener('change', function () {
-    // This will correctly respect the "Worked On" state too
     updateApptVisibility();
   });
 }
@@ -644,6 +652,21 @@ function updateHtmlNotes() {
 }
 
 function resetHtmlNotes() {
+  var container = document.getElementById('custom-worked-on-container');
+  if (container) {
+    container.innerHTML = '';
+    addNewRow(container);
+  }
+
+  var container = document.getElementById('custom-assigned-hw-container');
+  if (container) {
+    container.innerHTML = '';
+    addNewRow(container);
+  }
+
+  refreshAllCustomWorkedOn();
+  refreshAllCustomAssignedHw();
+
   htmlNotes = '';
   contText = '';
   introText = '';
@@ -850,33 +873,56 @@ function setThirdApptWorkedOn() {
   });
 }
 
-function setCustomWorkedOn() {
-  var customKeyupListener = null;
+function initDynamicWorkedOn() {
+  var container = document.getElementById('custom-worked-on-container');
+  if (!container) return;
 
-  customWorkedOnChecboxEl.addEventListener('change', function () {
-    if (customWorkedOnChecboxEl.checked) {
-      if (customKeyupListener === null) {
-        customKeyupListener = function (event) {
-          var value = event.target.value.trim();
-          customWorkedonText = value !== '' ? `\n <li>${value}</li>` : '';
-          updateWorkedOn();
-          updateHtmlNotes();
-        };
+  container.addEventListener('input', function (event) {
+    var row = event.target.closest('.custom-row');
+    if (!row) return;
+
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (event.target.classList.contains('custom-checkbox') && !checkbox.checked) {
+      if (container.children.length > 1 && row !== container.lastElementChild) {
+        row.remove();
+        refreshAllCustomWorkedOn();
+        return;
       }
-      customWorkedOnTextEl.addEventListener('input', customKeyupListener);
-      const value = customWorkedOnTextEl.value.trim();
-      customWorkedonText = value !== '' ? `\n <li>${value}</li>` : '';
-      updateWorkedOn();
-      updateHtmlNotes();
-    } else {
-      if (customKeyupListener) {
-        customWorkedOnTextEl.removeEventListener('input', customKeyupListener);
+    }
+
+    if (row === container.lastElementChild) {
+      if (checkbox.checked || textInput.value.trim() !== '') {
+        addNewRow(container);
       }
-      customWorkedonText = '';
-      updateWorkedOn();
-      updateHtmlNotes();
+    }
+
+    refreshAllCustomWorkedOn();
+  });
+}
+
+function refreshAllCustomWorkedOn() {
+  var combinedHtml = '';
+
+  var rows = document.querySelectorAll('.custom-row');
+
+  rows.forEach((row) => {
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (checkbox && checkbox.checked) {
+      var value = textInput.value.trim();
+      if (value !== '') {
+        combinedHtml += `\n <li>${value}</li>`;
+      }
     }
   });
+
+  customWorkedonText = combinedHtml;
+
+  if (typeof updateWorkedOn === 'function') updateWorkedOn();
+  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
 }
 
 function setPostApptWorkedOn() {
@@ -931,7 +977,7 @@ function updateWorkedOn() {
   processRealOrderText = processRealOrderEl && processRealOrderEl.checked ? `\n <li>Processing Real Customer Order</li>` : '';
   modifyVariantsText = modifyVariantsEl && modifyVariantsEl.checked ? `\n <li>Modifying Singular Products to Variants</li>` : '';
 
-  if ((dashNavEl && dashNavEl.checked) || (extraPageEl && extraPageEl.checked) || (createCatEl && createCatEl.checked) || (organizeCatEl && organizeCatEl.checked) || (createProdEl && createProdEl.checked) || (prodGridEl && prodGridEl.checked) || (catProdEl && catProdEl.checked) || (discountsEl && discountsEl.checked) || (checkoutSectionsEl && checkoutSectionsEl.checked) || (payPalEl && payPalEl.checked) || (testOrderEl && testOrderEl.checked) || (processOrderEl && processOrderEl.checked) || (updatingProdEl && updatingProdEl.checked) || (unavailableProdEl && unavailableProdEl.checked) || (customWorkedOnChecboxEl && customWorkedOnChecboxEl.checked) || (stripeEl && stripeEl.checked) || (variantsEl && variantsEl.checked) || (unavailableCjProdEl && unavailableCjProdEl.checked) || (updatingNewProdEl && updatingNewProdEl.checked) || (processRealOrderEl && processRealOrderEl.checked) || (modifyVariantsEl && modifyVariantsEl.checked)) {
+  if ((dashNavEl && dashNavEl.checked) || (extraPageEl && extraPageEl.checked) || (createCatEl && createCatEl.checked) || (organizeCatEl && organizeCatEl.checked) || (createProdEl && createProdEl.checked) || (prodGridEl && prodGridEl.checked) || (catProdEl && catProdEl.checked) || (discountsEl && discountsEl.checked) || (checkoutSectionsEl && checkoutSectionsEl.checked) || (payPalEl && payPalEl.checked) || (testOrderEl && testOrderEl.checked) || (processOrderEl && processOrderEl.checked) || (updatingProdEl && updatingProdEl.checked) || (unavailableProdEl && unavailableProdEl.checked) || customWorkedonText !== '' || (stripeEl && stripeEl.checked) || (variantsEl && variantsEl.checked) || (unavailableCjProdEl && unavailableCjProdEl.checked) || (updatingNewProdEl && updatingNewProdEl.checked) || (processRealOrderEl && processRealOrderEl.checked) || (modifyVariantsEl && modifyVariantsEl.checked)) {
     workedOnText = `Worked On: 
 <ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}${customWorkedonText}${stripeText}${variantsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}
 </ul>
@@ -981,33 +1027,56 @@ function setThirdApptAssignedHw() {
   });
 }
 
-function setCustomAssignedHw() {
-  let customKeyupListener = null;
+function initDynamicAssignedHw() {
+  var container = document.getElementById('custom-assigned-hw-container');
+  if (!container) return;
 
-  customAssignedHwChecboxEl.addEventListener('change', function () {
-    if (customAssignedHwChecboxEl.checked) {
-      if (customKeyupListener === null) {
-        customKeyupListener = function (event) {
-          const value = event.target.value.trim();
-          customAssignedHwText = value !== '' ? `\n <li>${value}</li>` : '';
-          updateAssignedHw();
-          updateHtmlNotes();
-        };
+  container.addEventListener('input', function (event) {
+    var row = event.target.closest('.custom-row');
+    if (!row) return;
+
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (event.target.classList.contains('custom-checkbox') && !checkbox.checked) {
+      if (container.children.length > 1 && row !== container.lastElementChild) {
+        row.remove();
+        refreshAllCustomAssignedHw();
+        return;
       }
-      customAssignedHwTextEl.addEventListener('input', customKeyupListener);
-      const value = customAssignedHwTextEl.value.trim();
-      customAssignedHwText = value !== '' ? `\n <li>${value}</li>` : '';
-      updateAssignedHw();
-      updateHtmlNotes();
-    } else {
-      if (customKeyupListener) {
-        customAssignedHwTextEl.removeEventListener('input', customKeyupListener);
+    }
+
+    if (row === container.lastElementChild) {
+      if (checkbox.checked || textInput.value.trim() !== '') {
+        addNewRow(container);
       }
-      customAssignedHwText = '';
-      updateAssignedHw();
-      updateHtmlNotes();
+    }
+
+    refreshAllCustomAssignedHw();
+  });
+}
+
+function refreshAllCustomAssignedHw() {
+  var combinedHtml = '';
+
+  var rows = document.querySelectorAll('.custom-row');
+
+  rows.forEach((row) => {
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (checkbox && checkbox.checked) {
+      var value = textInput.value.trim();
+      if (value !== '') {
+        combinedHtml += `\n <li>${value}</li>`;
+      }
     }
   });
+
+  customAssignedHwText = combinedHtml;
+
+  if (typeof updateAssignedHw === 'function') updateAssignedHw();
+  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
 }
 
 function updateAssignedHw() {
@@ -1025,9 +1094,9 @@ function updateAssignedHw() {
 
   thirdApptFinishVidText = thirdApptFinishVidEl && thirdApptFinishVidEl.checked ? `\n <li>Finish 3rd appointment teachable videos</li>` : '';
   practiceUpdateText = practiceUpdateEl && practiceUpdateEl.checked ? `\n <li>Practice updating products using guides</li>` : '';
-  allVidText = allVidEl && allVidEl.checked ? `\n <li>Complete all videos</li>` : '';
+  allVidText = allVidEl && allVidEl.checked ? `\n <li>Compvare all videos</li>` : '';
 
-  if ((firstApptFinishVidEl && firstApptFinishVidEl.checked) || (reviewExtraPagesEl && reviewExtraPagesEl.checked) || (removeProdEl && removeProdEl.checked) || (practiceCatProdEl && practiceCatProdEl.checked) || (practiceCreateCatdEl && practiceCreateCatdEl.checked) || (firstApptContinueVidEl && firstApptContinueVidEl.checked) || (secondApptFinishVidEl && secondApptFinishVidEl.checked) || (practiceDiscountsEl && practiceDiscountsEl.checked) || (practiceOrdersEl && practiceOrdersEl.checked) || (secondApptContinueVidEl && secondApptContinueVidEl.checked) || (thirdApptFinishVidEl && thirdApptFinishVidEl.checked) || (practiceUpdateEl && practiceUpdateEl.checked) || (allVidEl && allVidEl.checked) || (customAssignedHwChecboxEl && customAssignedHwChecboxEl.checked)) {
+  if ((firstApptFinishVidEl && firstApptFinishVidEl.checked) || (reviewExtraPagesEl && reviewExtraPagesEl.checked) || (removeProdEl && removeProdEl.checked) || (practiceCatProdEl && practiceCatProdEl.checked) || (practiceCreateCatdEl && practiceCreateCatdEl.checked) || (firstApptContinueVidEl && firstApptContinueVidEl.checked) || (secondApptFinishVidEl && secondApptFinishVidEl.checked) || (practiceDiscountsEl && practiceDiscountsEl.checked) || (practiceOrdersEl && practiceOrdersEl.checked) || (secondApptContinueVidEl && secondApptContinueVidEl.checked) || (thirdApptFinishVidEl && thirdApptFinishVidEl.checked) || (practiceUpdateEl && practiceUpdateEl.checked) || (allVidEl && allVidEl.checked) || customAssignedHwText !== '') {
     assignedHwText = `Assigned homework: 
 <ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${customAssignedHwText}
 </ul>
@@ -2154,13 +2223,13 @@ document.addEventListener('DOMContentLoaded', () => {
   setFirstApptWorkedOn();
   setSecondApptWorkedOn();
   setThirdApptWorkedOn();
-  setCustomWorkedOn();
+  initDynamicWorkedOn();
   setPostApptWorkedOn();
   setWhAssistanceWorkedOn();
   setFirstApptAssignedHw();
   setSecondApptAssignedHw();
   setThirdApptAssignedHw();
-  setCustomAssignedHw();
+  initDynamicAssignedHw();
   setPostChecklist();
   setAdditionalNotes();
   setRegisteredBusiness();
