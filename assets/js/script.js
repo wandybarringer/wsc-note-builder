@@ -467,9 +467,9 @@ function handleDateFormat(date) {
   }
 }
 
-function addNewRow(container) {
+function addNewWorkedOnRow(container) {
   var newRow = document.createElement('div');
-  newRow.className = 'custom-row';
+  newRow.className = 'custom-worked-on-row';
   newRow.innerHTML = `
     <input type="checkbox" class="custom-checkbox" /> 
     <input type="text" class="custom-text" placeholder="Custom text" />
@@ -665,7 +665,7 @@ function resetHtmlNotes() {
   var container = document.getElementById('custom-worked-on-container');
   if (container) {
     container.innerHTML = '';
-    addNewRow(container);
+    addNewWorkedOnRow(container);
   }
 
   var container = document.getElementById('custom-assigned-hw-container');
@@ -888,7 +888,7 @@ function initDynamicWorkedOn() {
   if (!container) return;
 
   container.addEventListener('input', function (event) {
-    var row = event.target.closest('.custom-row');
+    var row = event.target.closest('.custom-worked-on-row');
     if (!row) return;
 
     var checkbox = row.querySelector('.custom-checkbox');
@@ -904,7 +904,7 @@ function initDynamicWorkedOn() {
 
     if (row === container.lastElementChild) {
       if (checkbox.checked || textInput.value.trim() !== '') {
-        addNewRow(container);
+        addNewWorkedOnRow(container);
       }
     }
 
@@ -915,7 +915,7 @@ function initDynamicWorkedOn() {
 function refreshAllCustomWorkedOn() {
   var combinedHtml = '';
 
-  var rows = document.querySelectorAll('.custom-row');
+  var rows = document.querySelectorAll('.custom-worked-on-row');
 
   rows.forEach((row) => {
     var checkbox = row.querySelector('.custom-checkbox');
