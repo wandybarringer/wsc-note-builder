@@ -477,6 +477,16 @@ function addNewRow(container) {
   container.appendChild(newRow);
 }
 
+function addNewAssignedHwRow(container) {
+  var newRow = document.createElement('div');
+  newRow.className = 'custom-assigned-hw-row';
+  newRow.innerHTML = `
+    <input type="checkbox" class="custom-checkbox" /> 
+    <input type="text" class="custom-text" placeholder="Custom text" />
+  `;
+  container.appendChild(newRow);
+}
+
 // *VISIBILITY & TEMPLATE CONTROLS
 
 function updateApptVisibility() {
@@ -661,7 +671,7 @@ function resetHtmlNotes() {
   var container = document.getElementById('custom-assigned-hw-container');
   if (container) {
     container.innerHTML = '';
-    addNewRow(container);
+    addNewAssignedHwRow(container);
   }
 
   refreshAllCustomWorkedOn();
@@ -1032,7 +1042,7 @@ function initDynamicAssignedHw() {
   if (!container) return;
 
   container.addEventListener('input', function (event) {
-    var row = event.target.closest('.custom-row');
+    var row = event.target.closest('.custom-assigned-hw-row');
     if (!row) return;
 
     var checkbox = row.querySelector('.custom-checkbox');
@@ -1048,7 +1058,7 @@ function initDynamicAssignedHw() {
 
     if (row === container.lastElementChild) {
       if (checkbox.checked || textInput.value.trim() !== '') {
-        addNewRow(container);
+        addNewAssignedHwRow(container);
       }
     }
 
@@ -1059,7 +1069,7 @@ function initDynamicAssignedHw() {
 function refreshAllCustomAssignedHw() {
   var combinedHtml = '';
 
-  var rows = document.querySelectorAll('.custom-row');
+  var rows = document.querySelectorAll('.custom-assigned-hw-row');
 
   rows.forEach((row) => {
     var checkbox = row.querySelector('.custom-checkbox');
