@@ -4,9 +4,9 @@ Standardizing communication for WSC.
 
 ## Overview
 
-The Warhead Note Builder is a specialized utility designed for Technicians to create clear, professional, and formatted notes for the Sales Panel.
+The Warhead Note Builder is a specialized utility designed for Technicians to create clear, professional, and formatted notes for Sales Panel.
 
-The Problem: The Sales Panel is the primary hub for client history, yet it lacks built-in formatting tools (no bolding, no bullet points, no headers). This leads to cluttered, hard-to-read text that can cause miscommunication between departments.
+The Problem: Sales Panel is the primary hub for client history, yet it lacks built-in formatting tools (no bolding, no bullet points, no headers). This leads to cluttered, hard-to-read text that can cause miscommunication between departments.
 
 The Solution: This tool provides a user-friendly interface that generates clean HTML code based on your inputs. By using this tool, you ensure that every note you leave is structured, readable, and professional, regardless of the Sales Panel’s limitations.
 
