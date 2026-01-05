@@ -2100,7 +2100,7 @@ function setContactedByClient() {
       advisedClientText = '';
     } else {
       advisedClientText = `<p>
-  <b>Advised client:</b> ${event.target.value}
+  Advised client: ${event.target.value}
 </p>
 `;
     }
