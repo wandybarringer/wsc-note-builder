@@ -12,7 +12,7 @@ The Solution: This tool provides a user-friendly interface that generates clean 
 
 ## Key Features
 
-- **Automated Formatting:** Automatically generates <p>, <b>, and <ul> tags so you don't have to write code. This makes your notes clean and easy to read.
+- **Automated Formatting:** Automatically generates notes wrapped in appropriate HTML tags so you don't have to write code. This makes your notes clean and easy to read.
 
 - **Dynamic Logic:** The interface changes based on your task. If you select "Missed Appointment," the tool shows fields for phone numbers and voicemail status; if you select "1st Appointment," it shows the training checklist.
 
