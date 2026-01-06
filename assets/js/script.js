@@ -677,7 +677,7 @@ function updateHtmlNotes() {
   <b>Contacted client for ${currentApptValue}</b> ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + movedUpText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
