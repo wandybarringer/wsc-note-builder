@@ -1173,7 +1173,7 @@ function updateAssignedHw() {
 
   thirdApptFinishVidText = thirdApptFinishVidEl && thirdApptFinishVidEl.checked ? `\n <li>Finish 3rd appointment teachable videos</li>` : '';
   practiceUpdateText = practiceUpdateEl && practiceUpdateEl.checked ? `\n <li>Practice updating products using guides</li>` : '';
-  allVidText = allVidEl && allVidEl.checked ? `\n <li>Compvare all videos</li>` : '';
+  allVidText = allVidEl && allVidEl.checked ? `\n <li>Complete all videos</li>` : '';
 
   if ((firstApptFinishVidEl && firstApptFinishVidEl.checked) || (reviewExtraPagesEl && reviewExtraPagesEl.checked) || (removeProdEl && removeProdEl.checked) || (practiceCatProdEl && practiceCatProdEl.checked) || (practiceCreateCatdEl && practiceCreateCatdEl.checked) || (registerBusinessEl && registerBusinessEl.checked) || (firstApptContinueVidEl && firstApptContinueVidEl.checked) || (secondApptFinishVidEl && secondApptFinishVidEl.checked) || (practiceDiscountsEl && practiceDiscountsEl.checked) || (practiceOrdersEl && practiceOrdersEl.checked) || (secondApptContinueVidEl && secondApptContinueVidEl.checked) || (thirdApptFinishVidEl && thirdApptFinishVidEl.checked) || (practiceUpdateEl && practiceUpdateEl.checked) || (allVidEl && allVidEl.checked) || customAssignedHwText !== '') {
     assignedHwText = `Assigned homework: 
