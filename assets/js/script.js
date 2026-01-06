@@ -26,7 +26,7 @@ var showAllWorkedOnEl = document.querySelector('#show-all-worked-on');
 var firstApptWorkedOnItems = document.querySelectorAll('div:has(> #dashboard-navigation), ' + 'div:has(> #extra-pages), ' + 'div:has(> #creating-categories), ' + 'div:has(> #organizing-categories), ' + 'div:has(> #creating-products), ' + 'div:has(> #products-grid), ' + 'div:has(> #categorizing-products) ');
 var secondApptWorkedOnItems = document.querySelectorAll('div:has(> #discounts), ' + 'div:has(> #checkout-sections), ' + 'div:has(> #paypal-apple-pay), ' + 'div:has(> #test-order), ' + 'div:has(> #process-order) ');
 var thirdApptWorkedOnItems = document.querySelectorAll('div:has(> #updating-products), ' + 'div:has(> #unavailable-products)');
-var postApptWorkedOnItems = document.querySelectorAll('div:has(> #stripe),' + 'div:has(> #variants)');
+var postApptWorkedOnItems = document.querySelectorAll('div:has(> #stripe),' + 'div:has(> #variants),' + 'div:has(> #google-analytics)');
 var whAssistanceWorkedOnItems = document.querySelectorAll('div:has(> #new-updating-products),' + 'div:has(> #process-real-order),' + 'div:has(> #modify-variants)');
 
 // *"ASSIGNED HOMEWORK" - PARENT CONTAINERS & SHOW ALL LOGIC
@@ -84,7 +84,7 @@ var unavailableProdEl = document.querySelector('#unavailable-products');
 // "Worked On" Checklist (Post Appt)
 var stripeEl = document.querySelector('#stripe');
 var variantsEl = document.querySelector('#variants');
-var unavailableCjProdEl = document.querySelector('#unavailable-cj-products');
+var googleAnalyticsEl = document.querySelector('#google-analytics');
 
 // "Worked On" Checklist (WH Assistance)
 var updatingNewProdEl = document.querySelector('#new-updating-products');
@@ -288,6 +288,7 @@ var updatingProdText = '';
 var unavailableProdText = '';
 var stripeText = '';
 var variantsText = '';
+var googleAnalyticsText = '';
 var unavailableCjProdText = '';
 var updatingNewProdText = '';
 var processRealOrderText = '';
@@ -1003,7 +1004,7 @@ function refreshAllCustomWorkedOn() {
 }
 
 function setPostApptWorkedOn() {
-  var postApptWorkedOnElements = [stripeEl, variantsEl, unavailableCjProdEl];
+  var postApptWorkedOnElements = [stripeEl, variantsEl, googleAnalyticsEl];
 
   postApptWorkedOnElements.forEach(function (element) {
     if (element) {
@@ -1048,15 +1049,15 @@ function updateWorkedOn() {
 
   stripeText = stripeEl && stripeEl.checked ? `\n <li>Linked Stripe</li>` : ``;
   variantsText = variantsEl && variantsEl.checked ? `\n <li>Condensing Variants</li>` : ``;
-  unavailableCjProdText = unavailableCjProdEl && unavailableCjProdEl.checked ? `\n <li>Managing Unavailable Products from CJ</li>` : ``;
+  googleAnalyticsText = googleAnalyticsEl && googleAnalyticsEl.checked ? `\n <li>Helped set up Google Analytics</li>` : ``;
 
   updatingNewProdText = updatingNewProdEl && updatingNewProdEl.checked ? `\n <li>Updating Products from New Supplier</li>` : '';
   processRealOrderText = processRealOrderEl && processRealOrderEl.checked ? `\n <li>Processing Real Customer Order</li>` : '';
   modifyVariantsText = modifyVariantsEl && modifyVariantsEl.checked ? `\n <li>Modifying Singular Products to Variants</li>` : '';
 
-  if ((dashNavEl && dashNavEl.checked) || (extraPageEl && extraPageEl.checked) || (createCatEl && createCatEl.checked) || (organizeCatEl && organizeCatEl.checked) || (createProdEl && createProdEl.checked) || (prodGridEl && prodGridEl.checked) || (catProdEl && catProdEl.checked) || (discountsEl && discountsEl.checked) || (checkoutSectionsEl && checkoutSectionsEl.checked) || (payPalEl && payPalEl.checked) || (testOrderEl && testOrderEl.checked) || (processOrderEl && processOrderEl.checked) || (updatingProdEl && updatingProdEl.checked) || (unavailableProdEl && unavailableProdEl.checked) || customWorkedonText !== '' || (stripeEl && stripeEl.checked) || (variantsEl && variantsEl.checked) || (unavailableCjProdEl && unavailableCjProdEl.checked) || (updatingNewProdEl && updatingNewProdEl.checked) || (processRealOrderEl && processRealOrderEl.checked) || (modifyVariantsEl && modifyVariantsEl.checked)) {
+  if ((dashNavEl && dashNavEl.checked) || (extraPageEl && extraPageEl.checked) || (createCatEl && createCatEl.checked) || (organizeCatEl && organizeCatEl.checked) || (createProdEl && createProdEl.checked) || (prodGridEl && prodGridEl.checked) || (catProdEl && catProdEl.checked) || (discountsEl && discountsEl.checked) || (checkoutSectionsEl && checkoutSectionsEl.checked) || (payPalEl && payPalEl.checked) || (testOrderEl && testOrderEl.checked) || (processOrderEl && processOrderEl.checked) || (updatingProdEl && updatingProdEl.checked) || (unavailableProdEl && unavailableProdEl.checked) || customWorkedonText !== '' || (stripeEl && stripeEl.checked) || (variantsEl && variantsEl.checked) || (googleAnalyticsEl && googleAnalyticsEl.checked) || (updatingNewProdEl && updatingNewProdEl.checked) || (processRealOrderEl && processRealOrderEl.checked) || (modifyVariantsEl && modifyVariantsEl.checked)) {
     workedOnText = `Worked On: 
-<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}${customWorkedonText}${stripeText}${variantsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}
+<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}${customWorkedonText}${stripeText}${variantsText}${googleAnalyticsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}
 </ul>
 `;
   } else {
