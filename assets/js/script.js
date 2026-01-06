@@ -44,6 +44,10 @@ var contApptPromptEl = document.querySelector('#continuation-prompt');
 var contApptEl = document.querySelector('#continuation');
 var movedUpPromptEl = document.querySelector('#moved-up-prompt');
 var movedUpEl = document.querySelector('#moved-up');
+var screenSharePromptEl = document.querySelector('#screen-share-prompt');
+var screenShareEl = document.querySelector('#screen-share');
+var screenShareOtherPromptEl = document.querySelector('#screen-share-other-prompt');
+var screenShareOtherEl = document.querySelector('#screen-share-other');
 var introPromptEl = document.querySelector('#intro-prompt');
 var introNoEl = document.querySelector('#intro-no');
 var introNoneEl = document.querySelector('#intro-none');
@@ -257,6 +261,7 @@ var currentApptValue = '';
 var contactedClientText = '';
 var contText = '';
 var movedUpText = '';
+var screenShareText = '';
 var introText = '';
 var hwCompletedText = '';
 var hwPercentText = '';
@@ -564,6 +569,7 @@ function updateApptVisibility() {
   setVisibility(hwPercentEl.closest('div'), showGeneralInputs);
   setVisibility(additionalNotesEl.closest('.form-group'), showGeneralInputs);
   setVisibility(movedUpPromptEl, showGeneralInputs);
+  setVisibility(screenSharePromptEl, showGeneralInputs);
 
   if (!isMissed && !isContactedByClient && !isReschedule && !isPodioLink) {
     setVisibility(firstApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '1st Appointment');
@@ -638,7 +644,7 @@ function setShowAllAssignedHw() {
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client' && currentApptValue !== 'Reschedule' && currentApptValue !== 'Podio Link' && currentApptValue !== 'Warhead Assistance') {
     contactedClientText = `<p>
-  <b>Contacted client${movedUpText} for${contText} ${currentApptValue} Warhead Training</b>
+  <b>Contacted client${movedUpText} for${contText} ${currentApptValue} Warhead Training</b> ${screenShareText}
 </p>
 `;
     htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + smReminderText + initialsText;
@@ -656,7 +662,7 @@ function updateHtmlNotes() {
     htmlNotes = podioLinkText;
   } else if (currentApptValue === 'Warhead Assistance' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  <b>Contacted client for ${currentApptValue}</b>
+  <b>Contacted client for ${currentApptValue}</b> ${screenShareText}
 </p>
 `;
     htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
@@ -683,6 +689,8 @@ function resetHtmlNotes() {
 
   htmlNotes = '';
   contText = '';
+  movedUpText = '';
+  screenShareText = '';
   introText = '';
   hwText = '';
   workedOnText = '';
@@ -767,6 +775,39 @@ function setMovedUp() {
       movedUpText = '';
     } else if (movedUpEl.checked) {
       movedUpText = ` early due to availability`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setScreenShare() {
+  screenShareOtherPromptEl.classList.add('hide-content');
+
+  screenShareEl.addEventListener('change', function (event) {
+    currentScreenShareValue = event.target.value;
+
+    if (currentScreenShareValue === 'default' || currentScreenShareValue === 'Other') {
+      screenShareText = '';
+    } else {
+      screenShareText = `Used ${currentScreenShareValue}.`;
+    }
+
+    if (currentScreenShareValue === 'Other') {
+      screenShareOtherPromptEl.classList.remove('hide-content');
+      screenShareOtherPromptEl.classList.add('show-content');
+    } else if (currentScreenShareValue !== 'Other') {
+      screenShareOtherPromptEl.classList.remove('show-content');
+      screenShareOtherPromptEl.classList.add('hide-content');
+    }
+
+    updateHtmlNotes();
+  });
+
+  screenShareOtherEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      screenShareText = '';
+    } else if (event.target.value) {
+      screenShareText = `Used ${event.target.value}.`;
     }
     updateHtmlNotes();
   });
@@ -2257,6 +2298,7 @@ document.addEventListener('DOMContentLoaded', () => {
   handleApptSelection();
   setContAppt();
   setMovedUp();
+  setScreenShare();
   setIntroCompleted();
   setHwCompleted();
   setHwPercent();

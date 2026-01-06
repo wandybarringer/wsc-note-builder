@@ -269,7 +269,8 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-.toggle-switch {
+.toggle-switch,
+#screen-share {
   display: inline-flex;
   position: relative;
   border: 1px solid var(--input-border);
@@ -277,8 +278,11 @@ input[type='number'] {
   overflow: hidden;
   background: var(--primary-bg);
   line-height: 1.2;
-  font-size: 1rem;
   padding: 2px;
+}
+
+.toggle-switch {
+  font-size: 1rem;
 }
 
 .toggle-switch input[type='radio'] {

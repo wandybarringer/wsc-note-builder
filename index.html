@@ -70,6 +70,24 @@
               <label for="continuation">Moved client up</label>
             </div>
 
+            <div action="" id="screen-share-prompt">
+              <label for="screen-share"></label>
+              <select name="screen-share" id="screen-share">
+                <option value="default" selected>Screen Share</option>
+                <option value="Google Meet">Google Meet</option>
+                <option value="Google Meet (CAIS)">Google Meet (CAIS)</option>
+                <option value="Anydesk">Anydesk</option>
+                <option value="Chrome Remote">Chrome Remote</option>
+                <option value="CRD">CRD</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div id="screen-share-other-prompt">
+              <label for="screen-share-other">Other Screen Share Platform:</label>
+              <input type="text" name="screen-share-other" id="screen-share-other" />
+            </div>
+
             <div class="first-appt hide-content" id="intro-prompt">
               <label class="default-pointer">Intro to WH completed?</label>
               <div class="toggle-switch">
