@@ -256,7 +256,7 @@ var htmlNotes = '';
 var currentApptValue = '';
 var contactedClientText = '';
 var contText = '';
-var moveUpText = '';
+var movedUpText = '';
 var introText = '';
 var hwCompletedText = '';
 var hwPercentText = '';
@@ -563,7 +563,7 @@ function updateApptVisibility() {
   setVisibility(hwNoneEl.closest('.toggle-switch').parentElement, showGeneralInputs);
   setVisibility(hwPercentEl.closest('div'), showGeneralInputs);
   setVisibility(additionalNotesEl.closest('.form-group'), showGeneralInputs);
-  setVisibility(movedUpEl.closest('div'), showGeneralInputs);
+  setVisibility(movedUpPromptEl, showGeneralInputs);
 
   if (!isMissed && !isContactedByClient && !isReschedule && !isPodioLink) {
     setVisibility(firstApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '1st Appointment');
@@ -638,7 +638,7 @@ function setShowAllAssignedHw() {
 function updateHtmlNotes() {
   if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client' && currentApptValue !== 'Reschedule' && currentApptValue !== 'Podio Link' && currentApptValue !== 'Warhead Assistance') {
     contactedClientText = `<p>
-  <b>Contacted client for${contText} ${currentApptValue} Warhead Training</b>
+  <b>Contacted client${movedUpText} for${contText} ${currentApptValue} Warhead Training</b>
 </p>
 `;
     htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + smReminderText + initialsText;
@@ -756,6 +756,17 @@ function setContAppt() {
       contText = ' continuation';
     } else if ((!contApptEl.checked && apptSelectEl.value === '1st Appointment') || (!contApptEl.checked && apptSelectEl.value === '2nd Appointment') || (!contApptEl.checked && apptSelectEl.value === '3rd Appointment') || (!contApptEl.checked && apptSelectEl.value === 'Post Appointment')) {
       contText = '';
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setMovedUp() {
+  movedUpEl.addEventListener('change', function () {
+    if (!movedUpEl.checked) {
+      movedUpText = '';
+    } else if (movedUpEl.checked) {
+      movedUpText = ` early due to availability`;
     }
     updateHtmlNotes();
   });
@@ -2245,6 +2256,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setShowAllAssignedHw();
   handleApptSelection();
   setContAppt();
+  setMovedUp();
   setIntroCompleted();
   setHwCompleted();
   setHwPercent();
