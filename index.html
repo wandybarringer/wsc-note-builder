@@ -193,6 +193,8 @@
 
               <div class="first-appt"><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
 
+              <div class="first-appt"><input type="checkbox" name="register-business" id="register-business" /> <label for="register-business">Register business</label></div>
+
               <div class="first-appt"><input type="checkbox" name="first-appt-continue-videos" id="first-appt-continue-videos" /> <label for="first-appt-continue-videos">Continue watching teachable videos</label></div>
 
               <div class="second-appt"><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
@@ -597,11 +599,15 @@
           <dialog id="copy-msg-dialog">
             <p>Click to copy</p>
           </dialog>
-          <textarea name="html-notes" id="html-notes"></textarea>
+          <textarea name="html-notes" id="html-notes" class="can-be-active"></textarea>
         </section>
 
         <dialog id="copy-dialog">
           <p>Notes Copied!</p>
+        </dialog>
+
+        <dialog id="initials-required-dialog">
+          <p>Initials Required</p>
         </dialog>
       </main>
     </div>

@@ -4,6 +4,7 @@ var nonSpecFormEl = document.querySelector('#non-specific-form');
 var htmlNotesEl = document.querySelector('#html-notes');
 var copyMsgDialogEl = document.querySelector('#copy-msg-dialog');
 var copyDialogEl = document.querySelector('#copy-dialog');
+var initialsReqDialogEl = document.querySelector('#initials-required-dialog');
 var clearBtnEl = document.querySelector('#clear-btn');
 var initialsEl = document.querySelector('#initials');
 
@@ -33,7 +34,7 @@ var assignedHwEl = document.querySelector('#assigned-hw');
 var showAllAssignedHwContEl = document.querySelector('#show-all-assigned-hw-container');
 var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
 
-var firstApptAssignedHwItems = document.querySelectorAll('div:has(> #first-appt-finish-videos), ' + 'div:has(> #review-extra-pages), ' + 'div:has(> #remove-products), ' + 'div:has(> #practice-categorizing-products), ' + 'div:has(> #practice-creating-categories), ' + 'div:has(> #first-appt-continue-videos)');
+var firstApptAssignedHwItems = document.querySelectorAll('div:has(> #first-appt-finish-videos), ' + 'div:has(> #review-extra-pages), ' + 'div:has(> #remove-products), ' + 'div:has(> #practice-categorizing-products), ' + 'div:has(> #practice-creating-categories), ' + 'div:has(> #register-business), ' + 'div:has(> #first-appt-continue-videos)');
 var secondApptAssignedHwItems = document.querySelectorAll('div:has(> #second-appt-finish-videos), ' + 'div:has(> #practice-discounts), ' + 'div:has(> #practice-orders), ' + 'div:has(> #second-appt-continue-videos)');
 var thirdApptAssignedHwItems = document.querySelectorAll('div:has(> #third-appt-finish-videos), ' + 'div:has(> #practice-updating), ' + 'div:has(> #all-videos)');
 
@@ -100,6 +101,7 @@ var reviewExtraPagesEl = document.querySelector('#review-extra-pages');
 var removeProdEl = document.querySelector('#remove-products');
 var practiceCatProdEl = document.querySelector('#practice-categorizing-products');
 var practiceCreateCatdEl = document.querySelector('#practice-creating-categories');
+var registerBusinessEl = document.querySelector('#register-business');
 var firstApptContinueVidEl = document.querySelector('#first-appt-continue-videos');
 
 // "Assigned Homework" Checklist (2nd Appt)
@@ -299,6 +301,7 @@ var reviewExtraPagesText = '';
 var removeProdText = '';
 var practiceCatProdText = '';
 var practiceCreateCatdText = '';
+var registerBusinessText = '';
 var firstApptContinueVidText = '';
 var secondApptFinishVidText = '';
 var practiceDiscountsText = '';
@@ -417,16 +420,24 @@ function copyHtmlNotes() {
 
   htmlNotesEl.addEventListener('mouseenter', function () {
     if (currentApptValue === 'default' || !currentApptValue) return;
-    copyMsgDialogEl.show();
+    if (initialsText === '') {
+      initialsReqDialogEl.show();
+    } else {
+      copyMsgDialogEl.show();
+    }
   });
 
   htmlNotesEl.addEventListener('mouseleave', function () {
     if (currentApptValue === 'default' || !currentApptValue) return;
-    copyMsgDialogEl.close();
+    if (initialsText === '') {
+      initialsReqDialogEl.close();
+    } else {
+      copyMsgDialogEl.close();
+    }
   });
 
   htmlNotesEl.addEventListener('click', function () {
-    if (currentApptValue === 'default' || !currentApptValue) {
+    if (currentApptValue === 'default' || !currentApptValue || initialsText === '') {
       return;
     }
 
@@ -1055,7 +1066,7 @@ function updateWorkedOn() {
 
 // *HOMEWORK & CHECKLIST LOGIC
 function setFirstApptAssignedHw() {
-  var firstApptAssignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, firstApptContinueVidEl];
+  var firstApptAssignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, firstApptContinueVidEl];
 
   firstApptAssignedHwElements.forEach(function (element) {
     if (element) {
@@ -1151,6 +1162,7 @@ function updateAssignedHw() {
   removeProdText = removeProdEl && removeProdEl.checked ? `\n <li>Remove unrelated products</li>` : '';
   practiceCatProdText = practiceCatProdEl && practiceCatProdEl.checked ? `\n <li>Practice categorizing products using guide</li>` : '';
   practiceCreateCatdText = practiceCreateCatdEl && practiceCreateCatdEl.checked ? `\n <li>Practice creating categories</li>` : '';
+  registerBusinessText = registerBusinessEl && registerBusinessEl.checked ? `\n <li>Register business</li>` : '';
   firstApptContinueVidText = firstApptContinueVidEl && firstApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos</li>` : '';
 
   secondApptFinishVidText = secondApptFinishVidEl && secondApptFinishVidEl.checked ? `\n <li>Finish 2nd appointment teachable videos</li>` : ``;
@@ -1162,9 +1174,9 @@ function updateAssignedHw() {
   practiceUpdateText = practiceUpdateEl && practiceUpdateEl.checked ? `\n <li>Practice updating products using guides</li>` : '';
   allVidText = allVidEl && allVidEl.checked ? `\n <li>Compvare all videos</li>` : '';
 
-  if ((firstApptFinishVidEl && firstApptFinishVidEl.checked) || (reviewExtraPagesEl && reviewExtraPagesEl.checked) || (removeProdEl && removeProdEl.checked) || (practiceCatProdEl && practiceCatProdEl.checked) || (practiceCreateCatdEl && practiceCreateCatdEl.checked) || (firstApptContinueVidEl && firstApptContinueVidEl.checked) || (secondApptFinishVidEl && secondApptFinishVidEl.checked) || (practiceDiscountsEl && practiceDiscountsEl.checked) || (practiceOrdersEl && practiceOrdersEl.checked) || (secondApptContinueVidEl && secondApptContinueVidEl.checked) || (thirdApptFinishVidEl && thirdApptFinishVidEl.checked) || (practiceUpdateEl && practiceUpdateEl.checked) || (allVidEl && allVidEl.checked) || customAssignedHwText !== '') {
+  if ((firstApptFinishVidEl && firstApptFinishVidEl.checked) || (reviewExtraPagesEl && reviewExtraPagesEl.checked) || (removeProdEl && removeProdEl.checked) || (practiceCatProdEl && practiceCatProdEl.checked) || (practiceCreateCatdEl && practiceCreateCatdEl.checked) || (registerBusinessEl && registerBusinessEl.checked) || (firstApptContinueVidEl && firstApptContinueVidEl.checked) || (secondApptFinishVidEl && secondApptFinishVidEl.checked) || (practiceDiscountsEl && practiceDiscountsEl.checked) || (practiceOrdersEl && practiceOrdersEl.checked) || (secondApptContinueVidEl && secondApptContinueVidEl.checked) || (thirdApptFinishVidEl && thirdApptFinishVidEl.checked) || (practiceUpdateEl && practiceUpdateEl.checked) || (allVidEl && allVidEl.checked) || customAssignedHwText !== '') {
     assignedHwText = `Assigned homework: 
-<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${customAssignedHwText}
+<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${customAssignedHwText}
 </ul>
 `;
   } else {
@@ -1768,6 +1780,13 @@ function setInitials() {
 
       localStorage.setItem('initials', currentInitials);
     }
+
+    if (initialsText === '') {
+      htmlNotesEl.classList.remove('can-be-active');
+    } else {
+      htmlNotesEl.classList.add('can-be-active');
+    }
+
     updateHtmlNotes();
   });
 }
@@ -2283,6 +2302,12 @@ function setPodioLink() {
 // *INITIALIZATION (DOM CONTENT LOADED)
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (initialsText === '') {
+    htmlNotesEl.classList.remove('can-be-active');
+  } else {
+    htmlNotesEl.classList.add('can-be-active');
+  }
+
   htmlNotesEl.value = '';
 
   var allForms = document.querySelectorAll('form');

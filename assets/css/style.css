@@ -17,6 +17,7 @@
   --input-border: #bdc6d1;
   --primary-action: #5181e9;
   --primary-emphasis: #910202;
+  --emphasis-bg: #e4a1a180;
   --primary-hover: #dde8f3;
   --dark-light-action: #e1e4eb;
   --toggle-bg: #ccc;
@@ -38,6 +39,7 @@
   --input-border: #53565a;
   --primary-action: #4165b4;
   --primary-emphasis: #b82d2d;
+  --emphasis-bg: #4e353580;
   --primary-hover: #afb0b1;
   --dark-light-action: #1b1b1b;
   --toggle-bg: #2563eb;
@@ -570,6 +572,23 @@ input[type='checkbox']:hover {
   background: var(--primary-action);
 }
 
+#initials-required-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 1rem 2rem;
+  border: var(--primary-emphasis) solid 1px;
+  border-radius: 0.6rem;
+  color: var(--primary-emphasis);
+  font: inherit;
+  font-weight: bold;
+  font-size: 1.6rem;
+  transform: translate(-50%, -50%);
+  background: var(--emphasis-bg);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.2s ease, display 0.4s allow-discrete, overlay 0.4s allow-discrete;
+}
+
 #copy-dialog {
   position: fixed;
   top: 50%;
@@ -577,7 +596,6 @@ input[type='checkbox']:hover {
   padding: 1rem 2rem;
   border: var(--input-border) solid 1px;
   border-radius: 0.6rem;
-  background: var(--input-panel-bg);
   color: var(--primary-text);
   font: inherit;
   font-weight: bold;
@@ -595,7 +613,6 @@ input[type='checkbox']:hover {
   padding: 1rem 2rem;
   border: var(--primary-text) solid 1px;
   border-radius: 0.6rem;
-  background: var(--input-panel-bg);
   color: var(--primary-text);
   font: inherit;
   font-weight: bold;
@@ -608,18 +625,21 @@ input[type='checkbox']:hover {
 }
 
 #copy-msg-dialog[open],
-#copy-dialog[open] {
+#copy-dialog[open],
+#initials-required-dialog[open] {
   opacity: 1;
 }
 
 #copy-msg-dialog:not([open]),
-#copy-dialog:not([open]) {
+#copy-dialog:not([open]),
+#initials-required-dialog:not([open]) {
   opacity: 0;
 }
 
 @starting-style {
   #copy-msg-dialog[open],
-  #copy-dialog[open] {
+  #copy-dialog[open],
+  #initials-required-dialog[open] {
     opacity: 0;
   }
 }
@@ -658,7 +678,7 @@ input[type='checkbox']:hover {
   background: var(--secondary-bg);
 }
 
-#html-notes:active {
+.can-be-active:active {
   appearance: none;
   box-shadow: inset 6px 6px 15px rgba(0, 0, 0, 0.25), inset -5px -5px 13px rgba(255, 255, 255, 0.18);
   border-color: var(--input-border);
