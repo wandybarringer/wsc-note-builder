@@ -674,10 +674,10 @@ function updateHtmlNotes() {
     htmlNotes = podioLinkText;
   } else if (currentApptValue === 'Warhead Assistance' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  <b>Contacted client for ${currentApptValue}</b> ${screenShareText}
+  <b>Contacted client${movedUpText} for ${currentApptValue}</b> ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + movedUpText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
