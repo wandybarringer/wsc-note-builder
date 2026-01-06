@@ -1236,7 +1236,7 @@ function setCompletionForm() {
 
     if (completionFormSentEl.checked) {
       completionFormSignedPromptEl.setAttribute('class', 'show-content');
-      completionFormSentText = `Sent completion form.`;
+      completionFormSentText = `Sent & explained completion form.`;
     } else {
       completionFormSignedPromptEl.setAttribute('class', 'hide-content');
       whyNotSignedPromptEl.setAttribute('class', 'hide-content');
