@@ -42,6 +42,8 @@ var thirdApptAssignedHwItems = document.querySelectorAll('div:has(> #third-appt-
 // General Progress Elements
 var contApptPromptEl = document.querySelector('#continuation-prompt');
 var contApptEl = document.querySelector('#continuation');
+var movedUpPromptEl = document.querySelector('#moved-up-prompt');
+var movedUpEl = document.querySelector('#moved-up');
 var introPromptEl = document.querySelector('#intro-prompt');
 var introNoEl = document.querySelector('#intro-no');
 var introNoneEl = document.querySelector('#intro-none');
@@ -254,6 +256,7 @@ var htmlNotes = '';
 var currentApptValue = '';
 var contactedClientText = '';
 var contText = '';
+var moveUpText = '';
 var introText = '';
 var hwCompletedText = '';
 var hwPercentText = '';
@@ -560,6 +563,7 @@ function updateApptVisibility() {
   setVisibility(hwNoneEl.closest('.toggle-switch').parentElement, showGeneralInputs);
   setVisibility(hwPercentEl.closest('div'), showGeneralInputs);
   setVisibility(additionalNotesEl.closest('.form-group'), showGeneralInputs);
+  setVisibility(movedUpEl.closest('div'), showGeneralInputs);
 
   if (!isMissed && !isContactedByClient && !isReschedule && !isPodioLink) {
     setVisibility(firstApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '1st Appointment');
