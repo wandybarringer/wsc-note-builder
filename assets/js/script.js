@@ -1751,6 +1751,8 @@ function setMissedAppointment() {
         emailSentPromptEl.setAttribute('class', 'show-content');
         sentMissedEmailPromptEl.setAttribute('class', 'hide-content');
         markedPodioPromptEl.setAttribute('class', 'hide-content');
+        vmBoxFullEl.checked = false;
+        vmNotSetupEl.checked = false;
       } else if (secondAttemptRadioEl.checked) {
         attemptText = `<b>2nd attempt</b>`;
         phoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -1760,6 +1762,8 @@ function setMissedAppointment() {
         emailSentPromptEl.setAttribute('class', 'hide-content');
         sentMissedEmailPromptEl.setAttribute('class', 'hide-content');
         markedPodioPromptEl.setAttribute('class', 'hide-content');
+        vmBoxFullEl.checked = false;
+        vmNotSetupEl.checked = false;
       } else if (thirdAttemptRadioEl.checked) {
         attemptText = `<b>3rd attempt</b>`;
         phoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -1769,6 +1773,8 @@ function setMissedAppointment() {
         emailSentPromptEl.setAttribute('class', 'hide-content');
         sentMissedEmailPromptEl.setAttribute('class', 'show-content');
         markedPodioPromptEl.setAttribute('class', 'show-content');
+        vmBoxFullEl.checked = false;
+        vmNotSetupEl.checked = false;
       } else {
         attemptText = ``;
         phoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -1778,6 +1784,8 @@ function setMissedAppointment() {
         emailSentPromptEl.setAttribute('class', 'hide-content');
         sentMissedEmailPromptEl.setAttribute('class', 'hide-content');
         markedPodioPromptEl.setAttribute('class', 'hide-content');
+        vmBoxFullEl.checked = false;
+        vmNotSetupEl.checked = false;
       }
       updateMissedAppointment();
       updateHtmlNotes();
@@ -1941,6 +1949,8 @@ function setContactedByClient() {
   Contacted by client.
 </p>
 `;
+        contactedVmBoxFullEl.checked = false;
+        contactedVmNotSetupEl.checked = false;
         contactedPrompts.forEach(function (element) {
           element.setAttribute('class', 'hide-content');
         });
@@ -1953,6 +1963,10 @@ function setContactedByClient() {
         contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
+        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        contactedVmBoxFullEl.checked = false;
+        contactedVmNotSetupEl.checked = false;
+        successfulContactNoneEl.checked = true;
       }
       updateHtmlNotes();
     });
