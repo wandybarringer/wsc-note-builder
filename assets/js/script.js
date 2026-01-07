@@ -679,7 +679,7 @@ function updateHtmlNotes() {
     htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'General' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  <b>Contacted client for ${generalContactPurposeText}</b>
+  <b>Contacted client${generalContactPurposeText}.</b>
 </p>
 `;
     htmlNotes = contactedClientText + generalContactNoteText + initialsText;
@@ -709,6 +709,7 @@ function resetHtmlNotes() {
   movedUpText = '';
   screenShareText = '';
   hwText = '';
+  hwPercentText = '';
   workedOnText = '';
   customWorkedonText = '';
   postWorkedOnText = '';
@@ -2229,7 +2230,7 @@ function setGeneralContact() {
     if (!event.target.value) {
       generalContactPurposeText = '';
     } else {
-      generalContactPurposeText = event.target.value;
+      generalContactPurposeText = ` for ${event.target.value}`;
     }
     updateHtmlNotes();
   });
