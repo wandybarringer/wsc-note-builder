@@ -11,6 +11,7 @@ var initialsEl = document.querySelector('#initials');
 // *APPOINTMENT SPECIFIC CONTAINERS (NODELISTS)
 var firstApptSpecEl = document.querySelectorAll('.first-appt');
 var secondApptSpecEl = document.querySelectorAll('.second-appt');
+var secondAndThirdApptSpecEl = document.querySelectorAll('.second-and-third-appt');
 var thirdApptSpecEl = document.querySelectorAll('.third-appt');
 var postApptSpecEl = document.querySelectorAll('.post-appt');
 var missedApptSpecEl = document.querySelector('.missed-appt');
@@ -50,10 +51,6 @@ var screenSharePromptEl = document.querySelector('#screen-share-prompt');
 var screenShareEl = document.querySelector('#screen-share');
 var screenShareOtherPromptEl = document.querySelector('#screen-share-other-prompt');
 var screenShareOtherEl = document.querySelector('#screen-share-other');
-var introPromptEl = document.querySelector('#intro-prompt');
-var introNoEl = document.querySelector('#intro-no');
-var introNoneEl = document.querySelector('#intro-none');
-var introYesEl = document.querySelector('#intro-yes');
 var hwPromptEl = document.querySelector('#hw-prompt');
 var hwNoEl = document.querySelector('#hw-no');
 var hwNoneEl = document.querySelector('#hw-none');
@@ -269,7 +266,6 @@ var contactedClientText = '';
 var contText = '';
 var movedUpText = '';
 var screenShareText = '';
-var introText = '';
 var hwCompletedText = '';
 var hwPercentText = '';
 var hwText = '';
@@ -544,7 +540,7 @@ function updateApptVisibility() {
     });
   }
 
-  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl, rescheduleSpecEl, generalContactSpecEl, podioLinkSpecEl];
+  var allGroups = [firstApptSpecEl, secondApptSpecEl, secondAndThirdApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl, rescheduleSpecEl, generalContactSpecEl, podioLinkSpecEl];
 
   allGroups.forEach(function (group) {
     setVisibility(group, false);
@@ -554,6 +550,7 @@ function updateApptVisibility() {
 
   setVisibility(firstApptSpecEl, selectedValue === '1st Appointment');
   setVisibility(secondApptSpecEl, selectedValue === '2nd Appointment');
+  setVisibility(secondAndThirdApptSpecEl, selectedValue === '2nd Appointment' || selectedValue === '3rd Appointment');
   setVisibility(thirdApptSpecEl, selectedValue === '3rd Appointment');
   setVisibility(postApptSpecEl, isPost);
   setVisibility(missedApptSpecEl, isMissed);
@@ -661,7 +658,7 @@ function updateHtmlNotes() {
   <b>Contacted client${movedUpText} for${contText} ${currentApptValue} Warhead Training</b> ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + introText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + smReminderText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + smReminderText + initialsText;
   } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
@@ -711,7 +708,6 @@ function resetHtmlNotes() {
   contText = '';
   movedUpText = '';
   screenShareText = '';
-  introText = '';
   hwText = '';
   workedOnText = '';
   customWorkedonText = '';
@@ -758,7 +754,7 @@ function resetHtmlNotes() {
   });
 }
 
-// *APPOINTMENT DETAILS (Continuation, Intro, & HW)
+// *APPOINTMENT DETAILS
 
 function setContAppt() {
   if (!contApptEl) {
@@ -767,20 +763,14 @@ function setContAppt() {
 
   contApptEl.addEventListener('change', function () {
     if (contApptEl.checked && apptSelectEl.value === '1st Appointment') {
-      introPromptEl.classList.remove('show-content');
-      introPromptEl.classList.add('hide-content');
       registeredContEl.classList.remove('show-content');
       registeredContEl.classList.add('hide-content');
     } else if (!contApptEl.checked && apptSelectEl.value === '1st Appointment') {
-      introPromptEl.classList.remove('hide-content');
-      introPromptEl.classList.add('show-content');
       registeredContEl.classList.remove('hide-content');
       registeredContEl.classList.add('show-content');
     }
 
     if ((contApptEl.checked && apptSelectEl.value === '1st Appointment') || (contApptEl.checked && apptSelectEl.value === '2nd Appointment') || (contApptEl.checked && apptSelectEl.value === '3rd Appointment') || (contApptEl.checked && apptSelectEl.value === 'Post Appointment')) {
-      introNoneEl.checked = true;
-      introText = '';
       registeredBusinessNoneEl.checked = true;
       registeredBusinessText = '';
       contText = ' continuation';
@@ -832,37 +822,6 @@ function setScreenShare() {
       screenShareText = `Used ${event.target.value}.`;
     }
     updateHtmlNotes();
-  });
-}
-
-function setIntroCompleted() {
-  var introRadioElements = [introNoEl, introNoneEl, introYesEl];
-
-  introRadioElements.forEach(function (element) {
-    element.addEventListener('change', function () {
-      if (currentApptValue !== '1st Appointment') {
-        introText = '';
-        updateHtmlNotes();
-        return;
-      }
-
-      if (introYesEl.checked) {
-        introText = `<p>
-  Client did an intro warhead call with onboarding.
-</p>`;
-      } else if (introNoEl.checked) {
-        introText = `<p>
-  Client didn't do an intro warhead call with onboarding.
-</p>
-`;
-      } else if (introNoneEl.checked) {
-        introText = '';
-      } else {
-        introText = '';
-      }
-
-      updateHtmlNotes();
-    });
   });
 }
 
@@ -1229,26 +1188,20 @@ function updatePostChecklist() {
   }
 }
 
-// *COMPLETION FORMS & SUPPLIER MANAGEMENT (SM)
+// *COMPLETION FORM & SUPPLIER MANAGEMENT
 function setCompletionForm() {
-  var completionFormPrompts = [completionFormSignedPromptEl, whyNotSignedPromptEl];
-
-  completionFormPrompts.forEach(function (element) {
-    element.setAttribute('class', 'hide-content');
-  });
+  whyNotSignedPromptEl.setAttribute('class', 'hide-content');
 
   completionFormSentEl.addEventListener('change', function () {
-    if (currentApptValue !== '3rd Appointment') {
+    if (currentApptValue !== '3rd Appointment' && currentApptValue !== '2nd Appointment') {
       completionFormSentText = '';
       updateHtmlNotes();
       return;
     }
 
     if (completionFormSentEl.checked) {
-      completionFormSignedPromptEl.setAttribute('class', 'show-content');
       completionFormSentText = `Sent & explained completion form.`;
     } else {
-      completionFormSignedPromptEl.setAttribute('class', 'hide-content');
       whyNotSignedPromptEl.setAttribute('class', 'hide-content');
       completionFormSentText = ``;
       completionFormSignedText = '';
@@ -1262,7 +1215,7 @@ function setCompletionForm() {
 
   cfSignedRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
-      if (currentApptValue !== '3rd Appointment') {
+      if (currentApptValue !== '3rd Appointment' && currentApptValue !== '2nd Appointment') {
         completionFormSignedText = '';
         updateHtmlNotes();
         return;
@@ -1270,11 +1223,12 @@ function setCompletionForm() {
 
       if (cfSignedElYes.checked) {
         whyNotSignedPromptEl.setAttribute('class', 'hide-content');
-        completionFormSignedText = ` <b>SIGNED</b> `;
+        completionFormSignedText = ` Client has <b>signed</b> completion form.`;
       } else if (cfSignedElNo.checked) {
         whyNotSignedPromptEl.setAttribute('class', 'show-content');
-        completionFormSignedText = ` <b>NOT SIGNED</b> `;
+        completionFormSignedText = ` Client has <b>not signed</b> completion form.`;
       } else if (cfSignedElNone.checked) {
+        whyNotSignedPromptEl.setAttribute('class', 'hide-content');
         completionFormSignedText = '';
       } else {
         completionFormSignedText = '';
@@ -1292,9 +1246,9 @@ function setCompletionForm() {
 }
 
 function updateCompletionForm() {
-  if (completionFormSentText) {
+  if (completionFormSentText || completionFormSignedText) {
     completionFormText = `<p>
-  ${completionFormSentText}${completionFormSignedText}${whyNotSignedText}
+  ${completionFormSentText}${completionFormSignedText} ${whyNotSignedText}
 <p>
 `;
   } else {
@@ -2359,7 +2313,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setContAppt();
   setMovedUp();
   setScreenShare();
-  setIntroCompleted();
   setHwCompleted();
   setHwPercent();
   setFirstApptWorkedOn();

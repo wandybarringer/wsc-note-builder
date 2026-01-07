@@ -88,19 +88,6 @@
               <input type="text" name="screen-share-other" id="screen-share-other" />
             </div>
 
-            <div class="first-appt hide-content" id="intro-prompt">
-              <label class="default-pointer">Intro to WH completed?</label>
-              <div class="toggle-switch">
-                <input type="radio" name="intro" id="intro-no" value="No" />
-                <label for="intro-no">No</label>
-                <input type="radio" name="intro" id="intro-none" value="None" checked />
-                <label for="intro-none"></label>
-                <input type="radio" name="intro" id="intro-yes" value="Yes" />
-                <label for="intro-yes">Yes</label>
-                <div class="selection-slider"></div>
-              </div>
-            </div>
-
             <div id="hw-prompt">
               <label class="default-pointer">Homework completed?</label>
               <div class="toggle-switch">
@@ -265,12 +252,12 @@
               </div>
             </div>
 
-            <div class="third-appt hide-content">
+            <div class="second-and-third-appt hide-content">
               <label for="completion-form-sent">Completion form sent?</label>
               <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
             </div>
 
-            <div id="completion-form-signed-prompt">
+            <div class="second-and-third-appt hide-content" id="completion-form-signed-prompt">
               <label class="default-pointer">Client signed completion form?</label>
               <div class="toggle-switch">
                 <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
@@ -282,6 +269,7 @@
                 <div class="selection-slider"></div>
               </div>
             </div>
+
             <div id="why-not-signed-prompt" class="form-group">
               <label for="why-not-signed">Why didn't client sign?</label>
               <textarea name="why-not-signed" id="why-not-signed"></textarea>
