@@ -17,6 +17,7 @@ var missedApptSpecEl = document.querySelector('.missed-appt');
 var contactedByClientSpecEl = document.querySelector('.contacted-by-client');
 var rescheduleSpecEl = document.querySelector('.reschedule');
 var podioLinkSpecEl = document.querySelector('.podio');
+var generalContactSpecEl = document.querySelector('.general-contact');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 var workedOnEl = document.querySelector('#worked-on');
@@ -183,6 +184,10 @@ var contactedRescheduleDateEl = document.querySelector('#contacted-reschedule-da
 // Reschedule Elements
 var rescheduleReasonEl = document.querySelector('#reschedule-reason');
 var rescheduleDateEl = document.querySelector('#reschedule-date');
+
+// General Contact Elements
+var generalContactPurposeEl = document.querySelector('#general-contact-purpose');
+var generalContactNoteEl = document.querySelector('#general-contact-note');
 
 // Podio Link Elements
 var podioLinkEl = document.querySelector('#podio-link');
@@ -358,6 +363,10 @@ var contactedRescheduleDateText = '';
 var rescheduleReasonText = '';
 var rescheduleDateText = '';
 
+// General Contact Strings
+var generalContactPurposeText = '';
+var generalContactNoteText = '';
+
 // Podio Strings
 var podioLinkText = '';
 
@@ -521,6 +530,7 @@ function updateApptVisibility() {
   var isMissed = selectedValue === 'Missed Appointment';
   var isContactedByClient = selectedValue === 'Contacted by Client';
   var isReschedule = selectedValue === 'Reschedule';
+  var isGeneralContact = selectedValue === 'General';
   var isPodioLink = selectedValue === 'Podio Link';
 
   function setVisibility(item, show) {
@@ -534,19 +544,7 @@ function updateApptVisibility() {
     });
   }
 
-  if (selectedValue === 'Podio Link') {
-    initialsPromptEl.setAttribute('class', 'hide-content');
-  } else {
-    initialsPromptEl.setAttribute('class', 'show-content');
-  }
-
-  if (selectedValue === 'Podio Link' || selectedValue === 'Missed Appointment') {
-    otherDeptApptPromptEl.setAttribute('class', 'hide-content');
-  } else {
-    otherDeptApptPromptEl.setAttribute('class', 'show-content');
-  }
-
-  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl, rescheduleSpecEl, podioLinkSpecEl];
+  var allGroups = [firstApptSpecEl, secondApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl, rescheduleSpecEl, generalContactSpecEl, podioLinkSpecEl];
 
   allGroups.forEach(function (group) {
     setVisibility(group, false);
@@ -561,18 +559,22 @@ function updateApptVisibility() {
   setVisibility(missedApptSpecEl, isMissed);
   setVisibility(contactedByClientSpecEl, isContactedByClient);
   setVisibility(rescheduleSpecEl, isReschedule);
+  setVisibility(generalContactSpecEl, isGeneralContact);
   setVisibility(podioLinkSpecEl, isPodioLink);
 
-  setVisibility(workedOnEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
-  setVisibility(showAllWorkedOnContEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
+  setVisibility(workedOnEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
+  setVisibility(showAllWorkedOnContEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
 
-  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink && !isWhAssistance);
-  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink && !isWhAssistance);
+  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink && !isWhAssistance);
+  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink && !isWhAssistance);
 
-  setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
-  setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink);
+  setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
+  setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
+  setVisibility(otherDeptApptPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
 
-  var showGeneralInputs = !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isPodioLink;
+  setVisibility(initialsPromptEl, !isPodioLink);
+
+  var showGeneralInputs = !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink;
 
   var isNoteTemplateSelected = selectedValue !== 'default';
   setVisibility(nonSpecFormEl, isNoteTemplateSelected);
@@ -583,7 +585,7 @@ function updateApptVisibility() {
   setVisibility(movedUpPromptEl, showGeneralInputs);
   setVisibility(screenSharePromptEl, showGeneralInputs);
 
-  if (!isMissed && !isContactedByClient && !isReschedule && !isPodioLink) {
+  if (!isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink) {
     setVisibility(firstApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '1st Appointment');
     setVisibility(secondApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '2nd Appointment');
     setVisibility(thirdApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '3rd Appointment');
@@ -654,7 +656,7 @@ function setShowAllAssignedHw() {
 // *NOTE GENERATION & RESET LOGIC
 
 function updateHtmlNotes() {
-  if (currentApptValue && currentApptValue !== 'default' && currentApptValue !== 'Missed Appointment' && currentApptValue !== 'Contacted by Client' && currentApptValue !== 'Reschedule' && currentApptValue !== 'Podio Link' && currentApptValue !== 'Warhead Assistance') {
+  if ((currentApptValue === '1st Appointment' && currentApptValue !== 'default') || (currentApptValue === '2nd Appointment' && currentApptValue !== 'default') || (currentApptValue === '3rd Appointment' && currentApptValue !== 'default') || (currentApptValue === 'Post Appointment' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   <b>Contacted client${movedUpText} for${contText} ${currentApptValue} Warhead Training</b> ${screenShareText}
 </p>
@@ -678,6 +680,12 @@ function updateHtmlNotes() {
 </p>
 `;
     htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+  } else if (currentApptValue === 'General' && currentApptValue !== 'default') {
+    contactedClientText = `<p>
+  <b>Contacted client for ${generalContactPurposeText}</b>
+</p>
+`;
+    htmlNotes = contactedClientText + generalContactNoteText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -727,6 +735,8 @@ function resetHtmlNotes() {
   contactedRescheduleDateText = '';
   rescheduleReasonText = '';
   rescheduleDateText = '';
+  generalContactPurposeText = '';
+  generalContactNoteText = '';
   podioLinkText = '';
   whAssistanceText = '';
   obAssistanceText = '';
@@ -2259,6 +2269,30 @@ function updateReturnContactText() {
   }
 }
 
+// *GENERAL CONTACT
+function setGeneralContact() {
+  generalContactPurposeEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      generalContactPurposeText = '';
+    } else {
+      generalContactPurposeText = event.target.value;
+    }
+    updateHtmlNotes();
+  });
+
+  generalContactNoteEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      generalContactNoteText = '';
+    } else {
+      generalContactNoteText = `<p>
+  ${event.target.value}
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
 // *RESCHEDULE
 function setReschedule() {
   rescheduleReasonEl.addEventListener('input', function (event) {
@@ -2350,6 +2384,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setMissedAppointment();
   setContactedByClient();
   setReschedule();
+  setGeneralContact();
   setPodioLink();
   setInitials();
 });
