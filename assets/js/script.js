@@ -86,6 +86,7 @@ var googleAnalyticsEl = document.querySelector('#google-analytics');
 
 // "Worked On" Checklist (WH Assistance)
 var updatingNewProdEl = document.querySelector('#new-updating-products');
+var updatingNewProdNameEl = document.querySelector('#new-updating-products-name');
 var processRealOrderEl = document.querySelector('#process-real-order');
 var modifyVariantsEl = document.querySelector('#modify-variants');
 
@@ -292,6 +293,7 @@ var variantsText = '';
 var googleAnalyticsText = '';
 var unavailableCjProdText = '';
 var updatingNewProdText = '';
+var updatingNewProdNameText = 'New Supplier(s)';
 var processRealOrderText = '';
 var modifyVariantsText = '';
 var customWorkedonText = '';
@@ -997,6 +999,16 @@ function setWhAssistanceWorkedOn() {
       });
     }
   });
+
+  updatingNewProdNameEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      updatingNewProdNameText = `New Supplier(s)`;
+    } else {
+      updatingNewProdNameText = event.target.value;
+    }
+    updateWorkedOn();
+    updateHtmlNotes();
+  });
 }
 
 function updateWorkedOn() {
@@ -1021,7 +1033,7 @@ function updateWorkedOn() {
   variantsText = variantsEl && variantsEl.checked ? `\n <li>Condensing Variants</li>` : ``;
   googleAnalyticsText = googleAnalyticsEl && googleAnalyticsEl.checked ? `\n <li>Helped set up Google Analytics</li>` : ``;
 
-  updatingNewProdText = updatingNewProdEl && updatingNewProdEl.checked ? `\n <li>Updating Products from New Supplier</li>` : '';
+  updatingNewProdText = updatingNewProdEl && updatingNewProdEl.checked ? `\n <li>Updating Products from ${updatingNewProdNameText}</li>` : '';
   processRealOrderText = processRealOrderEl && processRealOrderEl.checked ? `\n <li>Processing Real Customer Order</li>` : '';
   modifyVariantsText = modifyVariantsEl && modifyVariantsEl.checked ? `\n <li>Modifying Singular Products to Variants</li>` : '';
 
