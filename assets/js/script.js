@@ -569,7 +569,7 @@ function updateApptVisibility() {
 
   setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
   setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
-  setVisibility(otherDeptApptPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
+  setVisibility(otherDeptApptPromptEl, !isDefault && !isMissed && !isGeneralContact && !isPodioLink);
 
   setVisibility(initialsPromptEl, !isPodioLink);
 
@@ -1291,7 +1291,7 @@ function setSupplierManagement() {
   });
 
   sentSmGuideEl.addEventListener('change', function () {
-    if (currentApptValue !== '3rd Appointment') {
+    if (currentApptValue !== 'Post Appointment') {
       sentSmGuideText = '';
       updateHtmlNotes();
       return;
@@ -1308,7 +1308,7 @@ function setSupplierManagement() {
   });
 
   enrolledSmEl.addEventListener('change', function () {
-    if (currentApptValue !== '3rd Appointment') {
+    if (currentApptValue !== 'Post Appointment') {
       enrolledSmText = '';
       updateHtmlNotes();
       return;
