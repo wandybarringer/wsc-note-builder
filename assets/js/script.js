@@ -576,8 +576,8 @@ function updateApptVisibility() {
   setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink && !isWhAssistance);
   setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink && !isWhAssistance);
 
-  setVisibility(nextApptDatePromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
-  setVisibility(nextTopicPromptEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
+  setVisibility(nextApptDatePromptEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
+  setVisibility(nextTopicPromptEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
   setVisibility(otherDeptApptPromptEl, !isDefault && !isMissed && !isGeneralContact && !isPodioLink);
 
   setVisibility(initialsPromptEl, !isPodioLink);
@@ -1369,9 +1369,7 @@ function setPostApptExtras() {
 
   liveRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
-      setVisibility(additionalTrainingPromptEl, liveYesEl.checked);
-      setVisibility(nextApptDatePromptEl, liveNoEl.checked);
-      setVisibility(nextTopicPromptEl, liveNoEl.checked);
+      setVisibility(additionalTrainingPromptEl, registeredYesEl.checked && liveYesEl.checked && designFinishedYesEl.checked);
       if (liveYesEl.checked) {
         liveText = `Client's website is live.`;
       } else if (liveNoEl.checked) {
@@ -1390,9 +1388,7 @@ function setPostApptExtras() {
 
   registeredRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
-      setVisibility(additionalTrainingPromptEl, registeredYesEl.checked);
-      setVisibility(nextApptDatePromptEl, registeredNoEl.checked);
-      setVisibility(nextTopicPromptEl, registeredNoEl.checked);
+      setVisibility(additionalTrainingPromptEl, registeredYesEl.checked && liveYesEl.checked && designFinishedYesEl.checked);
       if (registeredYesEl.checked) {
         registeredText = `Client's business is registered.`;
       } else if (registeredNoEl.checked) {
@@ -1411,9 +1407,7 @@ function setPostApptExtras() {
 
   designFinishedRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
-      setVisibility(additionalTrainingPromptEl, designFinishedYesEl.checked);
-      setVisibility(nextApptDatePromptEl, designFinishedNoEl.checked);
-      setVisibility(nextTopicPromptEl, designFinishedNoEl.checked);
+      setVisibility(additionalTrainingPromptEl, registeredYesEl.checked && liveYesEl.checked && designFinishedYesEl.checked);
       if (designFinishedYesEl.checked) {
         designFinishedText = `Client's design is finished.`;
       } else if (designFinishedNoEl.checked) {
