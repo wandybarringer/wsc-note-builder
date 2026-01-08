@@ -731,6 +731,9 @@ function resetHtmlNotes() {
   startedRegText = '';
   completionFormText = '';
   smText = '';
+  liveText = '';
+  registeredText = '';
+  designFinishedText = '';
   smRequirementsText = '';
   additionalTrainingText = '';
   nextAppointmentText = '';
@@ -1411,11 +1414,11 @@ function setPostApptExtras() {
       setVisibility(additionalTrainingPromptEl, designFinishedYesEl.checked);
       setVisibility(nextApptDatePromptEl, designFinishedNoEl.checked);
       setVisibility(nextTopicPromptEl, designFinishedNoEl.checked);
-      if (registeredYesEl.checked) {
+      if (designFinishedYesEl.checked) {
         designFinishedText = `Client's design is finished.`;
-      } else if (registeredNoEl.checked) {
+      } else if (designFinishedNoEl.checked) {
         designFinishedText = `Client's design is <b>not finished</b>.`;
-      } else if (registeredNoneEl.checked) {
+      } else if (designFinishedNoneEl.checked) {
         designFinishedText = '';
       } else {
         designFinishedText = '';
