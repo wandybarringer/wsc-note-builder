@@ -211,17 +211,23 @@ var smApptEl = document.querySelector('#sm-appointment-date');
 
 // *POST-APPOINTMENT & NEXT STEPS
 var additionalNotesEl = document.querySelector('#additional-notes');
-var registeredContEl = document.querySelector('#registered-container');
-var registeredBusinessNoEl = document.querySelector('#registered-no');
-var registeredBusinessNoneEl = document.querySelector('#registered-none');
-var registeredBusinessYesEl = document.querySelector('#registered-yes');
+var startedRegPromptEl = document.querySelector('#started-registering-prompt');
+var startedRegNoEl = document.querySelector('#started-registering-no');
+var startedRegNoneEl = document.querySelector('#started-registering-none');
+var startedRegYesEl = document.querySelector('#started-registering-yes');
 
 var liveNoEl = document.querySelector('#live-no');
 var liveNoneEl = document.querySelector('#live-none');
 var liveYesEl = document.querySelector('#live-yes');
+var registeredNoEl = document.querySelector('#registered-no');
+var registeredNoneEl = document.querySelector('#registered-none');
+var registeredYesEl = document.querySelector('#registered-yes');
+var designFinishedNoEl = document.querySelector('#design-finished-no');
+var designFinishedNoneEl = document.querySelector('#design-finished-none');
+var designFinishedYesEl = document.querySelector('#design-finished-yes');
+
 var additionalTrainingPromptEl = document.querySelector('#additional-training-prompt');
 var additionalTrainingEl = document.querySelector('#additional-training');
-var smReminderEl = document.querySelector('#sm-reminder');
 
 var nextApptDatePromptEl = document.querySelector('#next-appt-date-prompt');
 var nextTopicPromptEl = document.querySelector('#next-topic-prompt');
@@ -370,7 +376,7 @@ var podioLinkText = '';
 
 // Logic & Footer Strings
 var additionalNotesText = '';
-var registeredBusinessText = '';
+var startedRegText = '';
 var completionFormSentText = '';
 var completionFormSignedText = '';
 var whyNotSignedText = '';
@@ -381,6 +387,9 @@ var smTechText = '';
 var smApptText = '';
 var smText = '';
 var liveText = '';
+var registeredText = '';
+var designFinishedText = '';
+var smRequirementsText = '';
 var additionalTrainingText = '';
 var smReminderText = '';
 var nextAppointmentText = '';
@@ -401,6 +410,17 @@ var storedInitials = '';
 var initialsText = '';
 
 // *CORE UI & UTILITY FUNCTIONS
+
+function setVisibility(item, show) {
+  if (!item) return;
+
+  var elements = item.length !== undefined && !(item instanceof HTMLElement) ? item : [item];
+
+  elements.forEach(function (el) {
+    el.classList.toggle('show-content', show);
+    el.classList.toggle('hide-content', !show);
+  });
+}
 
 function setThemeToggle() {
   document.addEventListener('DOMContentLoaded', function () {
@@ -531,17 +551,6 @@ function updateApptVisibility() {
   var isGeneralContact = selectedValue === 'General';
   var isPodioLink = selectedValue === 'Podio Link';
 
-  function setVisibility(item, show) {
-    if (!item) return;
-
-    var elements = item.length !== undefined && !(item instanceof HTMLElement) ? item : [item];
-
-    elements.forEach(function (el) {
-      el.classList.toggle('show-content', show);
-      el.classList.toggle('hide-content', !show);
-    });
-  }
-
   var allGroups = [firstApptSpecEl, secondApptSpecEl, secondAndThirdApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl, rescheduleSpecEl, generalContactSpecEl, podioLinkSpecEl];
 
   allGroups.forEach(function (group) {
@@ -660,7 +669,7 @@ function updateHtmlNotes() {
   <b>Contacted client${movedUpText} for${contText} ${currentApptValue} Warhead Training</b> ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + registeredBusinessText + completionFormText + smText + liveText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + smReminderText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + completionFormText + smText + smRequirementsText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + smReminderText + initialsText;
   } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
@@ -719,10 +728,10 @@ function resetHtmlNotes() {
   customAssignedHwText = '';
   postChecklistText = '';
   additionalNotesText = '';
-  registeredBusinessText = '';
+  startedRegText = '';
   completionFormText = '';
   smText = '';
-  liveText = '';
+  smRequirementsText = '';
   additionalTrainingText = '';
   nextAppointmentText = '';
   nextTopicText = '';
@@ -766,16 +775,16 @@ function setContAppt() {
 
   contApptEl.addEventListener('change', function () {
     if (contApptEl.checked && apptSelectEl.value === '1st Appointment') {
-      registeredContEl.classList.remove('show-content');
-      registeredContEl.classList.add('hide-content');
+      startedRegPromptEl.classList.remove('show-content');
+      startedRegPromptEl.classList.add('hide-content');
     } else if (!contApptEl.checked && apptSelectEl.value === '1st Appointment') {
-      registeredContEl.classList.remove('hide-content');
-      registeredContEl.classList.add('show-content');
+      startedRegPromptEl.classList.remove('hide-content');
+      startedRegPromptEl.classList.add('show-content');
     }
 
     if ((contApptEl.checked && apptSelectEl.value === '1st Appointment') || (contApptEl.checked && apptSelectEl.value === '2nd Appointment') || (contApptEl.checked && apptSelectEl.value === '3rd Appointment') || (contApptEl.checked && apptSelectEl.value === 'Post Appointment')) {
-      registeredBusinessNoneEl.checked = true;
-      registeredBusinessText = '';
+      startedRegNoneEl.checked = true;
+      startedRegText = '';
       contText = ' continuation';
     } else if ((!contApptEl.checked && apptSelectEl.value === '1st Appointment') || (!contApptEl.checked && apptSelectEl.value === '2nd Appointment') || (!contApptEl.checked && apptSelectEl.value === '3rd Appointment') || (!contApptEl.checked && apptSelectEl.value === 'Post Appointment')) {
       contText = '';
@@ -1357,33 +1366,61 @@ function setPostApptExtras() {
 
   liveRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
+      setVisibility(additionalTrainingPromptEl, liveYesEl.checked);
+      setVisibility(nextApptDatePromptEl, liveNoEl.checked);
+      setVisibility(nextTopicPromptEl, liveNoEl.checked);
       if (liveYesEl.checked) {
-        additionalTrainingPromptEl.setAttribute('class', 'show-content');
-        nextApptDatePromptEl.setAttribute('class', 'hide-content');
-        nextTopicPromptEl.setAttribute('class', 'hide-content');
-        liveText = `<p>
-  <b>Client's website is live.</b>
-<p>
-`;
+        liveText = `Client's website is live.`;
       } else if (liveNoEl.checked) {
-        additionalTrainingPromptEl.setAttribute('class', 'hide-content');
-        nextApptDatePromptEl.setAttribute('class', 'show-content');
-        nextTopicPromptEl.setAttribute('class', 'show-content');
-        liveText = `<p>
-  <b>Client's website is not live yet</b>
-<p>
-`;
+        liveText = `Client's website is <b>not live</b>.`;
       } else if (liveNoneEl.checked) {
-        additionalTrainingPromptEl.setAttribute('class', 'hide-content');
-        nextApptDatePromptEl.setAttribute('class', 'hide-content');
-        nextTopicPromptEl.setAttribute('class', 'hide-content');
         liveText = '';
       } else {
-        additionalTrainingPromptEl.setAttribute('class', 'hide-content');
-        nextApptDatePromptEl.setAttribute('class', 'hide-content');
-        nextTopicPromptEl.setAttribute('class', 'hide-content');
         liveText = '';
       }
+      updateSmRequirements();
+      updateHtmlNotes();
+    });
+  });
+
+  var registeredRadioElements = [registeredNoEl, registeredNoneEl, registeredYesEl];
+
+  registeredRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      setVisibility(additionalTrainingPromptEl, registeredYesEl.checked);
+      setVisibility(nextApptDatePromptEl, registeredNoEl.checked);
+      setVisibility(nextTopicPromptEl, registeredNoEl.checked);
+      if (registeredYesEl.checked) {
+        registeredText = `Client's business is registered.`;
+      } else if (registeredNoEl.checked) {
+        registeredText = `Client's business is <b>not registered</b>.`;
+      } else if (registeredNoneEl.checked) {
+        registeredText = '';
+      } else {
+        registeredText = '';
+      }
+      updateSmRequirements();
+      updateHtmlNotes();
+    });
+  });
+
+  var designFinishedRadioElements = [designFinishedNoEl, designFinishedNoneEl, designFinishedYesEl];
+
+  designFinishedRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      setVisibility(additionalTrainingPromptEl, designFinishedYesEl.checked);
+      setVisibility(nextApptDatePromptEl, designFinishedNoEl.checked);
+      setVisibility(nextTopicPromptEl, designFinishedNoEl.checked);
+      if (registeredYesEl.checked) {
+        designFinishedText = `Client's design is finished.`;
+      } else if (registeredNoEl.checked) {
+        designFinishedText = `Client's design is <b>not finished</b>.`;
+      } else if (registeredNoneEl.checked) {
+        designFinishedText = '';
+      } else {
+        designFinishedText = '';
+      }
+      updateSmRequirements();
       updateHtmlNotes();
     });
   });
@@ -1403,21 +1440,13 @@ function setPostApptExtras() {
     }
     updateHtmlNotes();
   });
+}
 
-  smReminderEl.addEventListener('input', function (event) {
-    var smReminderNewStr = handleDateFormat(event.target.value);
-
-    if (!smReminderNewStr) {
-      smReminderText = '';
-    } else {
-      smReminderText = `<p>
-  Reminded client about Supplier Management Appointment on ${smReminderNewStr}
-<p>
+function updateSmRequirements() {
+  smRequirementsText = `<p>
+  ${liveText} ${registeredText} ${designFinishedText}
+</p>
 `;
-    }
-
-    updateHtmlNotes();
-  });
 }
 
 function setNextAppointment() {
@@ -1705,29 +1734,29 @@ function setAdditionalNotes() {
   });
 }
 
-function setRegisteredBusiness() {
-  var registeredRadioElements = [registeredBusinessNoEl, registeredBusinessNoneEl, registeredBusinessYesEl];
+function setStartedRegistering() {
+  var startedRegRadioElements = [startedRegNoEl, startedRegNoneEl, startedRegYesEl];
 
-  registeredRadioElements.forEach(function (element) {
+  startedRegRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
       if (currentApptValue !== '1st Appointment') {
-        registeredBusinessText = '';
+        startedRegText = '';
         updateHtmlNotes();
         return;
       }
 
-      if (registeredBusinessYesEl.checked) {
-        registeredBusinessText = `<p>
+      if (startedRegYesEl.checked) {
+        startedRegText = `<p>
   Client <b>has</b> started registering business.
 </p>`;
-      } else if (registeredBusinessNoEl.checked) {
-        registeredBusinessText = `<p>
+      } else if (startedRegNoEl.checked) {
+        startedRegText = `<p>
   Client <b>has not</b> started registering business.
 </p>`;
-      } else if (registeredBusinessNoneEl.checked) {
-        registeredBusinessText = '';
+      } else if (startedRegNoneEl.checked) {
+        startedRegText = '';
       } else {
-        registeredBusinessText = '';
+        startedRegText = '';
       }
 
       updateHtmlNotes();
@@ -2340,7 +2369,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDynamicAssignedHw();
   setPostChecklist();
   setAdditionalNotes();
-  setRegisteredBusiness();
+  setStartedRegistering();
   setCompletionForm();
   setSupplierManagement();
   setPostApptExtras();

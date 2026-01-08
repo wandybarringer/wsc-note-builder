@@ -11,7 +11,7 @@
     <div class="wrapper">
       <header>
         <nav id="primary-nav" aria-label="Primary Navigation">
-          <h1>Note Builder</h1>
+          <h1>WSC Note Builder</h1>
 
           <div id="dark-light-container">
             <label class="theme-switch" for="dark-light-toggle">
@@ -239,15 +239,15 @@
               <textarea name="additional-notes" id="additional-notes"></textarea>
             </div>
 
-            <div class="first-appt hide-content" id="registered-container">
+            <div class="first-appt hide-content" id="started-registering-prompt">
               <label class="default-pointer">Started registering business?</label>
               <div class="toggle-switch">
-                <input type="radio" name="registered" id="registered-no" value="No" />
-                <label for="registered-no">No</label>
-                <input type="radio" name="registered" id="registered-none" value="None" checked />
-                <label for="registered-none"></label>
-                <input type="radio" name="registered" id="registered-yes" value="Yes" />
-                <label for="registered-yes">Yes</label>
+                <input type="radio" name="started-registering" id="started-registering-no" value="No" />
+                <label for="started-registering-no">No</label>
+                <input type="radio" name="started-registering" id="started-registering-none" value="None" checked />
+                <label for="started-registering-none"></label>
+                <input type="radio" name="started-registering" id="started-registering-yes" value="Yes" />
+                <label for="started-registering-yes">Yes</label>
                 <div class="selection-slider"></div>
               </div>
             </div>
@@ -276,6 +276,45 @@
             </div>
 
             <div class="post-appt hide-content">
+              <label class="default-pointer">Is client's website live?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="live" id="live-no" value="No" />
+                <label for="live-no">No</label>
+                <input type="radio" name="live" id="live-none" value="None" checked />
+                <label for="live-none"></label>
+                <input type="radio" name="live" id="live-yes" value="Yes" />
+                <label for="live-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div class="post-appt hide-content">
+              <label class="default-pointer">Is client's business registered?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="registered" id="registered-no" value="No" />
+                <label for="registered-no">No</label>
+                <input type="radio" name="registered" id="registered-none" value="None" checked />
+                <label for="registered-none"></label>
+                <input type="radio" name="registered" id="registered-yes" value="Yes" />
+                <label for="registered-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div class="post-appt hide-content">
+              <label class="default-pointer">Is client's design finished?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="design-finished" id="design-finished-no" value="No" />
+                <label for="design-finished-no">No</label>
+                <input type="radio" name="design-finished" id="design-finished-none" value="None" checked />
+                <label for="design-finished-none"></label>
+                <input type="radio" name="design-finished" id="design-finished-yes" value="Yes" />
+                <label for="design-finished-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div class="post-appt hide-content">
               <label for="booked-sm">Supplier Management set up?</label>
               <input type="checkbox" name="booked-sm" id="booked-sm" />
             </div>
@@ -300,27 +339,9 @@
               <input type="text" name="sm-appointment-date" id="sm-appointment-date" />
             </div>
 
-            <div class="post-appt hide-content">
-              <label class="default-pointer">Is client's website live?</label>
-              <div class="toggle-switch">
-                <input type="radio" name="live" id="live-no" value="No" />
-                <label for="live-no">No</label>
-                <input type="radio" name="live" id="live-none" value="None" checked />
-                <label for="live-none"></label>
-                <input type="radio" name="live" id="live-yes" value="Yes" />
-                <label for="live-yes">Yes</label>
-                <div class="selection-slider"></div>
-              </div>
-            </div>
-
             <div class="hide-content" id="additional-training-prompt">
               <label for="additional-training">Is client requesting additional WH training?</label>
               <input type="checkbox" name="additional-training" id="additional-training" />
-            </div>
-
-            <div class="post-appt hide-content">
-              <label for="sm-reminder">Reminded client about next SM appointment on:</label>
-              <input type="text" name="sm-reminder" id="sm-reminder" />
             </div>
 
             <div id="next-appt-date-prompt">

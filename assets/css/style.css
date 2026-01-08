@@ -319,36 +319,42 @@ input[type='number'] {
 #contacted-vm-no:checked ~ .selection-slider,
 #intro-no:checked ~ .selection-slider,
 #hw-no:checked ~ .selection-slider,
-#registered-no:checked ~ .selection-slider,
+#started-registering-no:checked ~ .selection-slider,
 #cf-signed-no:checked ~ .selection-slider,
 #live-no:checked ~ .selection-slider,
 #vm-no:checked ~ .selection-slider,
 #successful-contact-no:checked ~ .selection-slider,
-#contacted-vm-no:checked ~ .selection-slider {
+#contacted-vm-no:checked ~ .selection-slider,
+#registered-no:checked ~ .selection-slider,
+#design-finished-no:checked ~ .selection-slider {
   transform: translateX(0);
 }
 
 #contacted-vm-none:checked ~ .selection-slider,
 #intro-none:checked ~ .selection-slider,
 #hw-none:checked ~ .selection-slider,
-#registered-none:checked ~ .selection-slider,
+#started-registering-none:checked ~ .selection-slider,
 #cf-signed-none:checked ~ .selection-slider,
 #live-none:checked ~ .selection-slider,
 #vm-none:checked ~ .selection-slider,
 #successful-contact-none:checked ~ .selection-slider,
-#contacted-vm-none:checked ~ .selection-slider {
+#contacted-vm-none:checked ~ .selection-slider,
+#registered-none:checked ~ .selection-slider,
+#design-finished-none:checked ~ .selection-slider {
   transform: translateX(35px);
 }
 
 #contacted-vm-yes:checked ~ .selection-slider,
 #intro-yes:checked ~ .selection-slider,
 #hw-yes:checked ~ .selection-slider,
-#registered-yes:checked ~ .selection-slider,
+#started-registering-yes:checked ~ .selection-slider,
 #cf-signed-yes:checked ~ .selection-slider,
 #live-yes:checked ~ .selection-slider,
 #vm-yes:checked ~ .selection-slider,
 #successful-contact-yes:checked ~ .selection-slider,
-#contacted-vm-yes:checked ~ .selection-slider {
+#contacted-vm-yes:checked ~ .selection-slider,
+#registered-yes:checked ~ .selection-slider,
+#design-finished-yes:checked ~ .selection-slider {
   transform: translateX(70px);
 }
 
