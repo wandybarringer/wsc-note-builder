@@ -1440,10 +1440,14 @@ function setPostApptExtras() {
 }
 
 function updateSmRequirements() {
-  smRequirementsText = `<p>
+  if (liveText || registeredText || designFinishedText) {
+    smRequirementsText = `<p>
   ${liveText} ${registeredText} ${designFinishedText}
 </p>
 `;
+  } else {
+    smRequirementsText = '';
+  }
 }
 
 function setNextAppointment() {
