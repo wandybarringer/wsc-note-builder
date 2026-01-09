@@ -632,6 +632,13 @@ function updateDeptVisibility() {
   var isSupplierManagement = selectedValue === 'supplier-management';
   var isSoicalMedia = selectedValue === 'social-media';
 
+  if (isDefault) {
+    apptSelectEl.disabled = true;
+    clearBtnEl.disabled = true;
+  } else if (!isDefault) {
+    apptSelectEl.disabled = false;
+  }
+
   if (isSupplierManagement) {
     howManyProductsPromptEl.before(livePromptEl);
     howManyProductsPromptEl.before(registeredPromptEl);
