@@ -2069,7 +2069,7 @@ function updateVmText() {
 
 function updateMissedAppointment() {
   missedApptText = `<p>
-  ${attemptText} to reach out to client for Warhead Training.${updatedPhoneNumberText} Client didn't answer.${updatedVmText}${emailSentText}${sentMissedEmailText}${markedPodioText}
+  ${attemptText} to reach out to client.${updatedPhoneNumberText} Client didn't answer.${updatedVmText}${emailSentText}${sentMissedEmailText}${markedPodioText}
 </p>
 `;
 }
