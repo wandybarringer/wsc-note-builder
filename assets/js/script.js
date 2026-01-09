@@ -225,6 +225,7 @@ var startedRegYesEl = document.querySelector('#started-registering-yes');
 
 var livePromptEl = document.querySelector('#live-prompt');
 var registeredPromptEl = document.querySelector('#registered-prompt');
+var resaleCertPromptEl = document.querySelector('#resale-cert-prompt');
 var designFinishedPromptEl = document.querySelector('#design-finished-prompt');
 
 var liveNoEl = document.querySelector('#live-no');
@@ -233,6 +234,9 @@ var liveYesEl = document.querySelector('#live-yes');
 var registeredNoEl = document.querySelector('#registered-no');
 var registeredNoneEl = document.querySelector('#registered-none');
 var registeredYesEl = document.querySelector('#registered-yes');
+var resaleCertNoEl = document.querySelector('#resale-cert-no');
+var resaleCertNoneEl = document.querySelector('#resale-cert-none');
+var resaleCertYesEl = document.querySelector('#resale-cert-yes');
 var designFinishedNoEl = document.querySelector('#design-finished-no');
 var designFinishedNoneEl = document.querySelector('#design-finished-none');
 var designFinishedYesEl = document.querySelector('#design-finished-yes');
@@ -275,6 +279,32 @@ var websiteAnalysisDateEl = document.querySelector('#website-analysis-date');
 
 // *SUPPLIER MANAGEMENT
 var howManyProductsPromptEl = document.querySelector('#how-many-products-prompt');
+var howManyProductsEl = document.querySelector('#how-many-products');
+var howManySuppliersNumberEl = document.querySelector('#how-many-suppliers-number');
+var howManySuppliersNamesEl = document.querySelector('#how-many-suppliers-names');
+var applicationProcessEl = document.querySelector('#application-process');
+var dropshipDatabaseEl = document.querySelector('#dropship-database');
+var submittedApplicationEl = document.querySelector('#submitted-application');
+var submittedApplicationToEl = document.querySelector('#submitted-application-to');
+var assistedApplicationEl = document.querySelector('#assisted-application');
+var assistedApplicationToEl = document.querySelector('#assisted-application-to');
+var followUpEmailEl = document.querySelector('#follow-up-email');
+var followUpEmailToEl = document.querySelector('#follow-up-email-to');
+var applyAndEmailEl = document.querySelector('#apply-and-email');
+var contApplyAndEmailEl = document.querySelector('#cont-apply-and-email');
+var removeNonNicheEl = document.querySelector('#remove-non-niche');
+var completedSmEl = document.querySelector('#completed-supplier-management');
+var completedMarketingEl = document.querySelector('#completed-marketing');
+var marketingDateEl = document.querySelector('#marketing-date');
+var smWsTechEl = document.querySelector('#sm-ws-tech');
+var smWsDateEl = document.querySelector('#sm-ws-appointment-date');
+var seoBasicsEl = document.querySelector('#seo-basics');
+var catAndProdEl = document.querySelector('#cat-and-prod');
+var ensureProdCatEl = document.querySelector('#ensure-prod-cat');
+var metasReviewedEl = document.querySelector('#metas-review');
+var reviseTitlesDescEl = document.querySelector('#revise-titles-desc');
+var optimizeImagesEl = document.querySelector('#optimize-images');
+var reviewSocialMediaEl = document.querySelector('#review-social-media');
 
 // *THEME & GLOBAL STATE VARIABLES
 var toggleSwitch = document.querySelector('#dark-light-toggle');
@@ -350,6 +380,37 @@ var genericCategoriesText = '';
 var varientsCondensedText = '';
 var taglineText = '';
 
+// Supplier Management Strings
+var howManyProductsText = '';
+var howManySuppliersNumberText = '';
+var howManySuppliersNamesText = '';
+var updatedHowManySuppliersText = '';
+var applicationProcessText = '';
+var dropshipDatabaseText = '';
+var submittedApplicationText = '';
+var submittedApplicationToText = '';
+var assistedApplicationText = '';
+var assistedApplicationToText = '';
+var followUpEmailText = '';
+var followUpEmailToText = '';
+var applyAndEmailText = '';
+var contApplyAndEmailText = '';
+var removeNonNicheText = '';
+var completedSmText = '';
+var completedMarketingText = '';
+var marketingDateText = '';
+var smWsTechText = '';
+var smWsDateText = '';
+var updatedSmWsText = '';
+var seoBasicsText = '';
+var catAndProdText = '';
+var ensureProdCatText = '';
+var metasReviewedText = '';
+var reviseTitlesDescText = '';
+var optimizeImagesText = '';
+var reviewSocialMediaText = '';
+var marketingReviewedText = '';
+
 // Missed Appointment Strings
 var missedApptText = '';
 var attemptText = '';
@@ -404,6 +465,7 @@ var smApptText = '';
 var smText = '';
 var liveText = '';
 var registeredText = '';
+var resaleCertText = '';
 var designFinishedText = '';
 var smRequirementsText = '';
 var additionalTrainingText = '';
@@ -426,11 +488,16 @@ var storedInitials = '';
 var initialsText = '';
 
 var apptLabels = {
-  'wh-first-appt': '1st Appointment',
-  'wh-second-appt': '2nd Appointment',
-  'wh-third-appt': '3rd Appointment',
-  'wh-post-appt': 'Post Appointment',
+  'wh-first-appt': '1st',
+  'wh-second-appt': '2nd',
+  'wh-third-appt': '3rd',
+  'wh-post-appt': 'Post',
   'wh-assistance': 'Warhead Assistance',
+  'sm-first-appt': '1st',
+  'sm-follow-up': 'Follow Up',
+  'sm-final-upgraded': 'Final (Upgraded)',
+  'sm-final-non-upgraded': 'Final (Non-Upgraded)',
+  'sm-marketing': 'One-Time Marketing',
 };
 
 // *CORE UI & UTILITY FUNCTIONS
@@ -642,7 +709,9 @@ function updateDeptVisibility() {
   if (isSupplierManagement) {
     howManyProductsPromptEl.before(livePromptEl);
     howManyProductsPromptEl.before(registeredPromptEl);
+    howManyProductsPromptEl.before(resaleCertPromptEl);
   } else if (isWarhead) {
+    designFinishedPromptEl.after(resaleCertPromptEl);
     designFinishedPromptEl.after(registeredPromptEl);
     designFinishedPromptEl.after(livePromptEl);
   }
@@ -747,10 +816,10 @@ function updateHtmlNotes() {
 
   if ((currentApptValue === 'wh-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-post-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
-  <b>Contacted client${movedUpText} for${contText} ${displayApptName} Warhead Training</b> ${screenShareText}
+  Contacted client${movedUpText} for <b>${contText}${displayApptName} Warhead Training</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + completionFormText + smText + smRequirementsText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + smReminderText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + completionFormText + smText + smRequirementsText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'missed-appt' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'contacted-by-client' && currentApptValue !== 'default') {
@@ -765,16 +834,28 @@ function updateHtmlNotes() {
     htmlNotes = podioLinkText;
   } else if (currentApptValue === 'wh-assistance' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  <b>Contacted client${movedUpText} for ${displayApptName}</b> ${screenShareText}
+  Contacted client${movedUpText} for <b>${displayApptName}</b> appointment. ${screenShareText}
 </p>
 `;
     htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'general' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  <b>Contacted client${generalContactPurposeText}.</b>
+  Contacted client <b>${generalContactPurposeText}</b>
 </p>
 `;
     htmlNotes = contactedClientText + generalContactNoteText + initialsText;
+  } else if ((currentApptValue === 'sm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'sm-follow-up' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-upgraded' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-non-upgraded' && currentApptValue !== 'default')) {
+    contactedClientText = `<p>
+  Contacted client${movedUpText} for <b>${contText}${displayApptName} Supplier Management</b> appointment.
+</p>
+`;
+    htmlNotes = contactedClientText + smRequirementsText + howManyProductsText + updatedHowManySuppliersText + workedOnText + assignedHwText + removeNonNicheText + completedSmText + additionalNotesText + nextAppointmentText + updatedSmWsText + marketingDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
+  } else if (currentApptValue === 'sm-marketing' && currentApptValue !== 'default') {
+    contactedClientText = `<p>
+  Contacted client${movedUpText} for <b>${displayApptName}</b> appointment.
+</p>
+`;
+    htmlNotes = contactedClientText + movedUpText + marketingReviewedText + additionalNotesText + completedMarketingText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -803,6 +884,7 @@ function resetHtmlNotes() {
   hwText = '';
   hwPercentText = '';
   workedOnText = '';
+  updatingNewProdNameText = '';
   customWorkedonText = '';
   postWorkedOnText = '';
   assignedHwText = '';
@@ -834,24 +916,38 @@ function resetHtmlNotes() {
   obAssistanceText = '';
   nicheChangeText = '';
   websiteAnalysisText = '';
+  howManyProductsText = '';
+  howManySuppliersNumberText = '';
+  howManySuppliersNamesText = '';
+  updatedHowManySuppliersText = '';
+  removeNonNicheText = '';
+  completedSmText = '';
+  completedMarketingText = '';
+  marketingDateText = '';
+  smWsDateText = '';
+  smWsTechText = '';
+  updatedSmWsText = '';
+  marketingReviewedText = '';
+  submittedApplicationToText = '';
+  assistedApplicationToText = '';
+  followUpEmailToText = '';
 
   htmlNotesEl.value = '';
 
   var nonSpecForms = document.querySelectorAll('#non-specific-form');
 
-  nonSpecForms.forEach((form) => {
+  nonSpecForms.forEach(function (form) {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl, websiteAnalysisApptPromptEl, websiteAnalysisDatePromptEl, websiteAnalysisTechPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl, websiteAnalysisApptPromptEl, websiteAnalysisDatePromptEl, websiteAnalysisTechPromptEl, resaleCertPromptEl];
 
   allPrompts.forEach(function (element) {
     element.setAttribute('class', 'hide-content');
   });
 }
 
-// *APPOINTMENT DETAILS
-
+// *All DEPT STRING HANDLERS
 function setContAppt() {
   if (!contApptEl) {
     return;
@@ -866,11 +962,11 @@ function setContAppt() {
       startedRegPromptEl.classList.add('show-content');
     }
 
-    if ((contApptEl.checked && apptSelectEl.value === 'wh-first-appt') || (contApptEl.checked && apptSelectEl.value === 'wh-second-appt') || (contApptEl.checked && apptSelectEl.value === 'wh-third-appt') || (contApptEl.checked && apptSelectEl.value === 'wh-post-appt')) {
+    if (contApptEl.checked) {
       startedRegNoneEl.checked = true;
       startedRegText = '';
-      contText = ' continuation';
-    } else if ((!contApptEl.checked && apptSelectEl.value === 'wh-first-appt') || (!contApptEl.checked && apptSelectEl.value === 'wh-second-appt') || (!contApptEl.checked && apptSelectEl.value === 'wh-third-appt') || (!contApptEl.checked && apptSelectEl.value === 'wh-post-appt')) {
+      contText = 'continuation ';
+    } else {
       contText = '';
     }
     updateHtmlNotes();
@@ -888,563 +984,6 @@ function setMovedUp() {
   });
 }
 
-function setScreenShare() {
-  screenShareOtherPromptEl.classList.add('hide-content');
-
-  screenShareEl.addEventListener('change', function (event) {
-    currentScreenShareValue = event.target.value;
-
-    if (currentScreenShareValue === 'default' || currentScreenShareValue === 'Other') {
-      screenShareText = '';
-    } else {
-      screenShareText = `Used ${currentScreenShareValue}.`;
-    }
-
-    if (currentScreenShareValue === 'Other') {
-      screenShareOtherPromptEl.classList.remove('hide-content');
-      screenShareOtherPromptEl.classList.add('show-content');
-    } else if (currentScreenShareValue !== 'Other') {
-      screenShareOtherPromptEl.classList.remove('show-content');
-      screenShareOtherPromptEl.classList.add('hide-content');
-    }
-
-    updateHtmlNotes();
-  });
-
-  screenShareOtherEl.addEventListener('input', function (event) {
-    if (!event.target.value) {
-      screenShareText = '';
-    } else if (event.target.value) {
-      screenShareText = `Used ${event.target.value}.`;
-    }
-    updateHtmlNotes();
-  });
-}
-
-function setHwCompleted() {
-  var hwRadioElements = [hwNoEl, hwNoneEl, hwYesEl];
-
-  hwRadioElements.forEach(function (element) {
-    element.addEventListener('change', function () {
-      if (hwYesEl.checked) {
-        hwCompletedText = `Homework has been completed by client.`;
-      } else if (hwNoEl.checked) {
-        hwCompletedText = `Homework has not been completed by client.`;
-      } else if (hwNoneEl.checked) {
-        hwCompletedText = '';
-      } else {
-        hwCompletedText = '';
-      }
-      updateHw();
-      updateHtmlNotes();
-    });
-  });
-}
-
-function setHwPercent() {
-  if (!hwPercentEl) {
-    return;
-  }
-
-  hwPercentEl.addEventListener('input', function (event) {
-    if (this.value > 100) {
-      this.value = 100;
-    }
-    if (this.value < 0 && this.value !== '') {
-      this.value = 0;
-    }
-
-    if (!event.target.value) {
-      hwPercentText = '';
-    } else {
-      hwPercentText = `${event.target.value}% of WH videos completed.`;
-    }
-    updateHw();
-    updateHtmlNotes();
-  });
-}
-
-function updateHw() {
-  if (hwCompletedText || hwPercentText) {
-    hwText = `<p>
-  ${hwCompletedText} ${hwPercentText}
-</p>
-`;
-  } else {
-    hwText = '';
-  }
-}
-
-// *WORKED ON & ASSIGNED HW HANDLERS
-
-function setFirstApptWorkedOn() {
-  var firstApptWorkedOnElements = [dashNavEl, extraPageEl, createCatEl, organizeCatEl, createProdEl, prodGridEl, catProdEl];
-
-  firstApptWorkedOnElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updateWorkedOn();
-        updateHtmlNotes();
-      });
-    }
-  });
-}
-
-function setSecondApptWorkedOn() {
-  var secondApptWorkedOnElements = [discountsEl, checkoutSectionsEl, payPalEl, testOrderEl, processOrderEl];
-
-  secondApptWorkedOnElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updateWorkedOn();
-        updateHtmlNotes();
-      });
-    }
-  });
-}
-
-function setThirdApptWorkedOn() {
-  var thirdApptWorkedOnElements = [updatingProdEl, unavailableProdEl];
-
-  thirdApptWorkedOnElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updateWorkedOn();
-        updateHtmlNotes();
-      });
-    }
-  });
-}
-
-function initDynamicWorkedOn() {
-  var container = document.getElementById('custom-worked-on-container');
-  if (!container) return;
-
-  container.addEventListener('input', function (event) {
-    var row = event.target.closest('.custom-worked-on-row');
-    if (!row) return;
-
-    var checkbox = row.querySelector('.custom-checkbox');
-    var textInput = row.querySelector('.custom-text');
-
-    if (event.target.classList.contains('custom-checkbox') && !checkbox.checked) {
-      if (container.children.length > 1 && row !== container.lastElementChild) {
-        row.remove();
-        refreshAllCustomWorkedOn();
-        return;
-      }
-    }
-
-    if (row === container.lastElementChild) {
-      if (checkbox.checked || textInput.value.trim() !== '') {
-        addNewWorkedOnRow(container);
-      }
-    }
-
-    refreshAllCustomWorkedOn();
-  });
-}
-
-function refreshAllCustomWorkedOn() {
-  var combinedHtml = '';
-
-  var rows = document.querySelectorAll('.custom-worked-on-row');
-
-  rows.forEach((row) => {
-    var checkbox = row.querySelector('.custom-checkbox');
-    var textInput = row.querySelector('.custom-text');
-
-    if (checkbox && checkbox.checked) {
-      var value = textInput.value.trim();
-      if (value !== '') {
-        combinedHtml += `\n <li>${value}</li>`;
-      }
-    }
-  });
-
-  customWorkedonText = combinedHtml;
-
-  if (typeof updateWorkedOn === 'function') updateWorkedOn();
-  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
-}
-
-function setPostApptWorkedOn() {
-  var postApptWorkedOnElements = [stripeEl, variantsEl, googleAnalyticsEl];
-
-  postApptWorkedOnElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updateWorkedOn();
-        updateHtmlNotes();
-      });
-    }
-  });
-}
-
-function setWhAssistanceWorkedOn() {
-  var whAssistanceWorkedOnElements = [updatingNewProdEl, processRealOrderEl, modifyVariantsEl];
-
-  whAssistanceWorkedOnElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updateWorkedOn();
-        updateHtmlNotes();
-      });
-    }
-  });
-
-  updatingNewProdNameEl.addEventListener('input', function (event) {
-    if (!event.target.value) {
-      updatingNewProdNameText = `New Supplier(s)`;
-    } else {
-      updatingNewProdNameText = event.target.value;
-    }
-    updateWorkedOn();
-    updateHtmlNotes();
-  });
-}
-
-function updateWorkedOn() {
-  dashNavText = dashNavEl && dashNavEl.checked ? `\n <li>Dashboard/Account Navigation</li>` : ``;
-  extraPageText = extraPageEl && extraPageEl.checked ? `\n <li>Extra Pages</li>` : ``;
-  createCatText = createCatEl && createCatEl.checked ? `\n <li>Creating Categories</li>` : '';
-  organizeCatText = organizeCatEl && organizeCatEl.checked ? `\n <li>Organizing Categories</li>` : '';
-  createProdText = createProdEl && createProdEl.checked ? `\n <li>Creating Products</li>` : '';
-  prodGridText = prodGridEl && prodGridEl.checked ? `\n <li>Products Grid</li>` : '';
-  catProdText = catProdEl && catProdEl.checked ? `\n <li>Categorizing Products</li>` : '';
-
-  discountsText = discountsEl && discountsEl.checked ? `\n <li>Discounts</li>` : '';
-  checkoutSectionsText = checkoutSectionsEl && checkoutSectionsEl.checked ? `\n <li>Checkout Sections</li>` : '';
-  payPalText = payPalEl && payPalEl.checked ? `\n <li>Linked PayPal/Apple Pay</li>` : '';
-  testOrderText = testOrderEl && testOrderEl.checked ? `\n <li>Creating a Test Order</li>` : '';
-  processOrderText = processOrderEl && processOrderEl.checked ? `\n <li>Processing Test Order</li>` : '';
-
-  updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
-  unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products</li>` : '';
-
-  stripeText = stripeEl && stripeEl.checked ? `\n <li>Linked Stripe</li>` : ``;
-  variantsText = variantsEl && variantsEl.checked ? `\n <li>Condensing Variants</li>` : ``;
-  googleAnalyticsText = googleAnalyticsEl && googleAnalyticsEl.checked ? `\n <li>Helped set up Google Analytics</li>` : ``;
-
-  updatingNewProdText = updatingNewProdEl && updatingNewProdEl.checked ? `\n <li>Updating Products from ${updatingNewProdNameText}</li>` : '';
-  processRealOrderText = processRealOrderEl && processRealOrderEl.checked ? `\n <li>Processing Real Customer Order</li>` : '';
-  modifyVariantsText = modifyVariantsEl && modifyVariantsEl.checked ? `\n <li>Modifying Singular Products to Variants</li>` : '';
-
-  if ((dashNavEl && dashNavEl.checked) || (extraPageEl && extraPageEl.checked) || (createCatEl && createCatEl.checked) || (organizeCatEl && organizeCatEl.checked) || (createProdEl && createProdEl.checked) || (prodGridEl && prodGridEl.checked) || (catProdEl && catProdEl.checked) || (discountsEl && discountsEl.checked) || (checkoutSectionsEl && checkoutSectionsEl.checked) || (payPalEl && payPalEl.checked) || (testOrderEl && testOrderEl.checked) || (processOrderEl && processOrderEl.checked) || (updatingProdEl && updatingProdEl.checked) || (unavailableProdEl && unavailableProdEl.checked) || customWorkedonText !== '' || (stripeEl && stripeEl.checked) || (variantsEl && variantsEl.checked) || (googleAnalyticsEl && googleAnalyticsEl.checked) || (updatingNewProdEl && updatingNewProdEl.checked) || (processRealOrderEl && processRealOrderEl.checked) || (modifyVariantsEl && modifyVariantsEl.checked)) {
-    workedOnText = `Worked On: 
-<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}${customWorkedonText}${stripeText}${variantsText}${googleAnalyticsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}
-</ul>
-`;
-  } else {
-    workedOnText = '';
-  }
-}
-
-// *HOMEWORK & CHECKLIST LOGIC
-function setFirstApptAssignedHw() {
-  var firstApptAssignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, firstApptContinueVidEl];
-
-  firstApptAssignedHwElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updateAssignedHw();
-        updateHtmlNotes();
-      });
-    }
-  });
-}
-
-function setSecondApptAssignedHw() {
-  var secondApptAssignedHwElements = [secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, secondApptContinueVidEl];
-
-  secondApptAssignedHwElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updateAssignedHw();
-        updateHtmlNotes();
-      });
-    }
-  });
-}
-
-function setThirdApptAssignedHw() {
-  var thirdApptAssignedHwElements = [thirdApptFinishVidEl, practiceUpdateEl, allVidEl];
-
-  thirdApptAssignedHwElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updateAssignedHw();
-        updateHtmlNotes();
-      });
-    }
-  });
-}
-
-function initDynamicAssignedHw() {
-  var container = document.getElementById('custom-assigned-hw-container');
-  if (!container) return;
-
-  container.addEventListener('input', function (event) {
-    var row = event.target.closest('.custom-assigned-hw-row');
-    if (!row) return;
-
-    var checkbox = row.querySelector('.custom-checkbox');
-    var textInput = row.querySelector('.custom-text');
-
-    if (event.target.classList.contains('custom-checkbox') && !checkbox.checked) {
-      if (container.children.length > 1 && row !== container.lastElementChild) {
-        row.remove();
-        refreshAllCustomAssignedHw();
-        return;
-      }
-    }
-
-    if (row === container.lastElementChild) {
-      if (checkbox.checked || textInput.value.trim() !== '') {
-        addNewAssignedHwRow(container);
-      }
-    }
-
-    refreshAllCustomAssignedHw();
-  });
-}
-
-function refreshAllCustomAssignedHw() {
-  var combinedHtml = '';
-
-  var rows = document.querySelectorAll('.custom-assigned-hw-row');
-
-  rows.forEach((row) => {
-    var checkbox = row.querySelector('.custom-checkbox');
-    var textInput = row.querySelector('.custom-text');
-
-    if (checkbox && checkbox.checked) {
-      var value = textInput.value.trim();
-      if (value !== '') {
-        combinedHtml += `\n <li>${value}</li>`;
-      }
-    }
-  });
-
-  customAssignedHwText = combinedHtml;
-
-  if (typeof updateAssignedHw === 'function') updateAssignedHw();
-  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
-}
-
-function updateAssignedHw() {
-  firstApptFinishVidText = firstApptFinishVidEl && firstApptFinishVidEl.checked ? `\n <li>Finish 1st appointment teachable videos</li>` : ``;
-  reviewExtraPagesText = reviewExtraPagesEl && reviewExtraPagesEl.checked ? `\n <li>Review Extra Pages</li>` : ``;
-  removeProdText = removeProdEl && removeProdEl.checked ? `\n <li>Remove unrelated products</li>` : '';
-  practiceCatProdText = practiceCatProdEl && practiceCatProdEl.checked ? `\n <li>Practice categorizing products using guide</li>` : '';
-  practiceCreateCatdText = practiceCreateCatdEl && practiceCreateCatdEl.checked ? `\n <li>Practice creating categories</li>` : '';
-  registerBusinessText = registerBusinessEl && registerBusinessEl.checked ? `\n <li>Register business</li>` : '';
-  firstApptContinueVidText = firstApptContinueVidEl && firstApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos</li>` : '';
-
-  secondApptFinishVidText = secondApptFinishVidEl && secondApptFinishVidEl.checked ? `\n <li>Finish 2nd appointment teachable videos</li>` : ``;
-  practiceDiscountsText = practiceDiscountsEl && practiceDiscountsEl.checked ? `\n <li>Practice creating discounts</li>` : ``;
-  practiceOrdersText = practiceOrdersEl && practiceOrdersEl.checked ? `\n <li>Practice making & processing test orders using guides</li>` : '';
-  secondApptContinueVidText = secondApptContinueVidEl && secondApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos<</li>` : '';
-
-  thirdApptFinishVidText = thirdApptFinishVidEl && thirdApptFinishVidEl.checked ? `\n <li>Finish 3rd appointment teachable videos</li>` : '';
-  practiceUpdateText = practiceUpdateEl && practiceUpdateEl.checked ? `\n <li>Practice updating products using guides</li>` : '';
-  allVidText = allVidEl && allVidEl.checked ? `\n <li>Complete all videos</li>` : '';
-
-  if ((firstApptFinishVidEl && firstApptFinishVidEl.checked) || (reviewExtraPagesEl && reviewExtraPagesEl.checked) || (removeProdEl && removeProdEl.checked) || (practiceCatProdEl && practiceCatProdEl.checked) || (practiceCreateCatdEl && practiceCreateCatdEl.checked) || (registerBusinessEl && registerBusinessEl.checked) || (firstApptContinueVidEl && firstApptContinueVidEl.checked) || (secondApptFinishVidEl && secondApptFinishVidEl.checked) || (practiceDiscountsEl && practiceDiscountsEl.checked) || (practiceOrdersEl && practiceOrdersEl.checked) || (secondApptContinueVidEl && secondApptContinueVidEl.checked) || (thirdApptFinishVidEl && thirdApptFinishVidEl.checked) || (practiceUpdateEl && practiceUpdateEl.checked) || (allVidEl && allVidEl.checked) || customAssignedHwText !== '') {
-    assignedHwText = `Assigned homework: 
-<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${customAssignedHwText}
-</ul>
-`;
-  } else {
-    assignedHwText = '';
-  }
-}
-
-function setPostChecklist() {
-  var postChecklistsElements = [businessEmailEl, timeZoneEl, taxGroupEl, modulesEl, testItemsEl, brandsEl, genericCategoriesEl, varientsCondensedEl, taglineEl];
-
-  postChecklistsElements.forEach(function (element) {
-    if (element) {
-      element.addEventListener('change', function () {
-        updatePostChecklist();
-        updateHtmlNotes();
-      });
-    }
-  });
-}
-
-function updatePostChecklist() {
-  businessEmailText = businessEmailEl && businessEmailEl.checked ? `\n <li>Business email appears on Settings & Extra Forms</li>` : '';
-  timeZoneText = timeZoneEl && timeZoneEl.checked ? `\n <li>Time-zone is set to client's</li>` : '';
-  taxGroupText = taxGroupEl && taxGroupEl.checked ? `\n <li>Default Tax Group set</li>` : '';
-  modulesText = modulesEl && modulesEl.checked ? `\n <li>Shipping & Payment Modules are set</li>` : '';
-  testItemsText = testItemsEl && testItemsEl.checked ? `\n <li>Test items are removed</li>` : '';
-  brandsText = brandsEl && brandsEl.checked ? `\n <li>Unrelated brands removed</li>` : '';
-  genericCategoriesText = genericCategoriesEl && genericCategoriesEl.checked ? `\n <li>Generic categories removed</li>` : '';
-  varientsCondensedText = varientsCondensedEl && varientsCondensedEl.checked ? `\n <li>Variants are condensed</li>` : '';
-  taglineText = taglineEl && taglineEl.checked ? `\n <li>Removed tagline placeholder text</li>` : '';
-
-  if ((businessEmailEl && businessEmailEl.checked) || (timeZoneEl && timeZoneEl.checked) || (taxGroupEl && taxGroupEl.checked) || (modulesEl && modulesEl.checked) || (testItemsEl && testItemsEl.checked) || (brandsEl && brandsEl.checked) || (genericCategoriesEl && genericCategoriesEl.checked) || (varientsCondensedEl && varientsCondensedEl.checked) || (taglineEl && taglineEl.checked)) {
-    postChecklistText = `Post Training Checklist:
-<ul>${businessEmailText}${timeZoneText}${taxGroupText}${modulesText}${testItemsText}${brandsText}${genericCategoriesText}${varientsCondensedText}${taglineText}
-</ul>
-`;
-  } else {
-    postChecklistText = '';
-  }
-}
-
-// *COMPLETION FORM & SUPPLIER MANAGEMENT
-function setCompletionForm() {
-  whyNotSignedPromptEl.setAttribute('class', 'hide-content');
-
-  completionFormSentEl.addEventListener('change', function () {
-    if (currentApptValue !== 'wh-third-appt' && currentApptValue !== 'wh-second-appt') {
-      completionFormSignedText = '';
-      updateHtmlNotes();
-      return;
-    }
-
-    if (completionFormSentEl.checked) {
-      completionFormSentText = `Sent & explained completion form.`;
-    } else {
-      whyNotSignedPromptEl.setAttribute('class', 'hide-content');
-      completionFormSentText = ``;
-      completionFormSignedText = '';
-      whyNotSignedText = '';
-    }
-    updateCompletionForm();
-    updateHtmlNotes();
-  });
-
-  var cfSignedRadioElements = [cfSignedElNo, cfSignedElNone, cfSignedElYes];
-
-  cfSignedRadioElements.forEach(function (element) {
-    element.addEventListener('change', function () {
-      if (currentApptValue !== 'wh-third-appt' && currentApptValue !== 'wh-second-appt') {
-        completionFormSignedText = '';
-        updateHtmlNotes();
-        return;
-      }
-
-      if (cfSignedElYes.checked) {
-        whyNotSignedPromptEl.setAttribute('class', 'hide-content');
-        completionFormSignedText = ` Client has <b>signed</b> completion form.`;
-      } else if (cfSignedElNo.checked) {
-        whyNotSignedPromptEl.setAttribute('class', 'show-content');
-        completionFormSignedText = ` Client has <b>not signed</b> completion form.`;
-      } else if (cfSignedElNone.checked) {
-        whyNotSignedPromptEl.setAttribute('class', 'hide-content');
-        completionFormSignedText = '';
-      } else {
-        completionFormSignedText = '';
-      }
-      updateCompletionForm();
-      updateHtmlNotes();
-    });
-  });
-
-  whyNotSignedEl.addEventListener('input', function (event) {
-    whyNotSignedText = event.target.value;
-    updateCompletionForm();
-    updateHtmlNotes();
-  });
-}
-
-function updateCompletionForm() {
-  if (completionFormSentText || completionFormSignedText) {
-    completionFormText = `<p>
-  ${completionFormSentText}${completionFormSignedText} ${whyNotSignedText}
-<p>
-`;
-  } else {
-    completionFormText = '';
-  }
-}
-
-function setSupplierManagement() {
-  var smPrompts = [sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl];
-
-  smPrompts.forEach(function (element) {
-    element.setAttribute('class', 'hide-content');
-  });
-
-  bookedSmEl.addEventListener('change', function () {
-    if (bookedSmEl.checked) {
-      smPrompts.forEach(function (element) {
-        element.setAttribute('class', 'show-content');
-      });
-    } else {
-      smPrompts.forEach(function (element) {
-        element.setAttribute('class', 'hide-content');
-        smText = '';
-        updateHtmlNotes();
-      });
-    }
-  });
-
-  sentSmGuideEl.addEventListener('change', function () {
-    if (currentApptValue !== 'wh-post-appt') {
-      sentSmGuideText = '';
-      updateHtmlNotes();
-      return;
-    }
-
-    if (sentSmGuideEl.checked) {
-      sentSmGuideText = `Sent client SM How to Guide PDF.`;
-    } else {
-      sentSmGuideText = '';
-    }
-
-    updateSupplierManagement();
-    updateHtmlNotes();
-  });
-
-  enrolledSmEl.addEventListener('change', function () {
-    if (currentApptValue !== 'wh-post-appt') {
-      enrolledSmText = '';
-      updateHtmlNotes();
-      return;
-    }
-
-    if (enrolledSmEl.checked) {
-      enrolledSmText = `Enrolled client in SM Appointment Training course.`;
-    } else {
-      enrolledSmText = '';
-    }
-
-    updateSupplierManagement();
-    updateHtmlNotes();
-  });
-
-  smTechEl.addEventListener('input', function (event) {
-    smTechText = event.target.value;
-    updateSupplierManagement();
-    updateHtmlNotes();
-  });
-
-  smApptEl.addEventListener('input', function (event) {
-    var newSmApptStr = handleDateFormat(event.target.value);
-
-    if (!newSmApptStr) {
-      smApptText = '';
-    } else {
-      smApptText = newSmApptStr;
-    }
-
-    updateSupplierManagement();
-    updateHtmlNotes();
-  });
-}
-
-function updateSupplierManagement() {
-  smText = `<p>
-  ${sentSmGuideText} ${enrolledSmText} Booked SM Appointment with ${smTechText} on ${smApptText}.
-<p>
-`;
-}
-
-// *END OF NOTE EXTRAS & INITIALS
 function setLiveRegisteredDesign() {
   var liveRadioElements = [liveNoEl, liveNoneEl, liveYesEl];
 
@@ -1472,12 +1011,41 @@ function setLiveRegisteredDesign() {
       setVisibility(additionalTrainingPromptEl, registeredYesEl.checked && liveYesEl.checked && designFinishedYesEl.checked);
       if (registeredYesEl.checked) {
         registeredText = `Client's business is registered.`;
+        setVisibility(resaleCertPromptEl, true);
       } else if (registeredNoEl.checked) {
         registeredText = `Client's business is <b>not registered</b>.`;
+        resaleCertText = '';
+        setVisibility(resaleCertPromptEl, false);
+        resaleCertNoneEl.checked = true;
       } else if (registeredNoneEl.checked) {
         registeredText = '';
+        resaleCertText = '';
+        setVisibility(resaleCertPromptEl, false);
+        resaleCertNoneEl.checked = true;
       } else {
         registeredText = '';
+        resaleCertText = '';
+        setVisibility(resaleCertPromptEl, false);
+        resaleCertNoneEl.checked = true;
+      }
+      updateSmRequirements();
+      updateHtmlNotes();
+    });
+  });
+
+  var resaleCertRadioElements = [resaleCertNoEl, resaleCertNoneEl, resaleCertYesEl];
+
+  resaleCertRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      setVisibility(additionalTrainingPromptEl, registeredYesEl.checked && liveYesEl.checked && designFinishedYesEl.checked && resaleCertYesEl.checked);
+      if (resaleCertYesEl.checked) {
+        resaleCertText = `Client has obtained their resale certificate.`;
+      } else if (resaleCertNoEl.checked) {
+        resaleCertText = `Client <b>has not</b> obtained their resale certificate.`;
+      } else if (resaleCertNoneEl.checked) {
+        resaleCertText = '';
+      } else {
+        resaleCertText = '';
       }
       updateSmRequirements();
       updateHtmlNotes();
@@ -1521,9 +1089,9 @@ function setLiveRegisteredDesign() {
 }
 
 function updateSmRequirements() {
-  if (liveText || registeredText || designFinishedText) {
+  if (liveText || registeredText || designFinishedText || resaleCertText) {
     smRequirementsText = `<p>
-  ${liveText} ${registeredText} ${designFinishedText}
+  ${liveText} ${registeredText} ${resaleCertText} ${designFinishedText}
 </p>
 `;
   } else {
@@ -1816,36 +1384,6 @@ function setAdditionalNotes() {
   });
 }
 
-function setStartedRegistering() {
-  var startedRegRadioElements = [startedRegNoEl, startedRegNoneEl, startedRegYesEl];
-
-  startedRegRadioElements.forEach(function (element) {
-    element.addEventListener('change', function () {
-      if (currentApptValue !== 'wh-first-appt') {
-        startedRegText = '';
-        updateHtmlNotes();
-        return;
-      }
-
-      if (startedRegYesEl.checked) {
-        startedRegText = `<p>
-  Client <b>has</b> started registering business.
-</p>`;
-      } else if (startedRegNoEl.checked) {
-        startedRegText = `<p>
-  Client <b>has not</b> started registering business.
-</p>`;
-      } else if (startedRegNoneEl.checked) {
-        startedRegText = '';
-      } else {
-        startedRegText = '';
-      }
-
-      updateHtmlNotes();
-    });
-  });
-}
-
 function setInitials() {
   storedInitials = localStorage.getItem('initials');
 
@@ -1880,7 +1418,294 @@ function setInitials() {
   });
 }
 
-// *MISSED APPOINTMENT
+// "Worked On" String Handlers
+var workedOnElements = [dashNavEl, extraPageEl, createCatEl, organizeCatEl, createProdEl, prodGridEl, catProdEl, discountsEl, checkoutSectionsEl, payPalEl, testOrderEl, processOrderEl, updatingProdEl, unavailableProdEl, stripeEl, variantsEl, googleAnalyticsEl, updatingNewProdEl, processRealOrderEl, modifyVariantsEl, applicationProcessEl, dropshipDatabaseEl, submittedApplicationEl, assistedApplicationEl, followUpEmailEl];
+
+function setWorkedOn() {
+  updatingNewProdNameEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      updatingNewProdNameText = 'New Supplier(s)';
+    } else {
+      updatingNewProdNameText = event.target.value;
+    }
+    updateWorkedOn();
+    updateHtmlNotes();
+  });
+
+  submittedApplicationToEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      submittedApplicationToText = '';
+    } else {
+      submittedApplicationToText = event.target.value;
+    }
+    updateWorkedOn();
+    updateHtmlNotes();
+  });
+
+  assistedApplicationToEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      assistedApplicationToText = '';
+    } else {
+      assistedApplicationToText = event.target.value;
+    }
+    updateWorkedOn();
+    updateHtmlNotes();
+  });
+
+  followUpEmailToEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      followUpEmailToText = '';
+    } else {
+      followUpEmailToText = event.target.value;
+    }
+    updateWorkedOn();
+    updateHtmlNotes();
+  });
+
+  workedOnElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updateWorkedOn();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
+function initDynamicWorkedOn() {
+  var container = document.getElementById('custom-worked-on-container');
+  if (!container) return;
+
+  container.addEventListener('input', function (event) {
+    var row = event.target.closest('.custom-worked-on-row');
+    if (!row) return;
+
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (event.target.classList.contains('custom-checkbox') && !checkbox.checked) {
+      if (container.children.length > 1 && row !== container.lastElementChild) {
+        row.remove();
+        refreshAllCustomWorkedOn();
+        return;
+      }
+    }
+
+    if (row === container.lastElementChild) {
+      if (checkbox.checked || textInput.value.trim() !== '') {
+        addNewWorkedOnRow(container);
+      }
+    }
+
+    refreshAllCustomWorkedOn();
+  });
+}
+
+function refreshAllCustomWorkedOn() {
+  var combinedHtml = '';
+
+  var rows = document.querySelectorAll('.custom-worked-on-row');
+
+  rows.forEach((row) => {
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (checkbox && checkbox.checked) {
+      var value = textInput.value.trim();
+      if (value !== '') {
+        combinedHtml += `\n <li>${value}</li>`;
+      }
+    }
+  });
+
+  customWorkedonText = combinedHtml;
+
+  if (typeof updateWorkedOn === 'function') updateWorkedOn();
+  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
+}
+
+function updateWorkedOn() {
+  dashNavText = dashNavEl && dashNavEl.checked ? `\n <li>Dashboard/Account Navigation</li>` : ``;
+  extraPageText = extraPageEl && extraPageEl.checked ? `\n <li>Extra Pages</li>` : ``;
+  createCatText = createCatEl && createCatEl.checked ? `\n <li>Creating Categories</li>` : '';
+  organizeCatText = organizeCatEl && organizeCatEl.checked ? `\n <li>Organizing Categories</li>` : '';
+  createProdText = createProdEl && createProdEl.checked ? `\n <li>Creating Products</li>` : '';
+  prodGridText = prodGridEl && prodGridEl.checked ? `\n <li>Products Grid</li>` : '';
+  catProdText = catProdEl && catProdEl.checked ? `\n <li>Categorizing Products</li>` : '';
+
+  discountsText = discountsEl && discountsEl.checked ? `\n <li>Discounts</li>` : '';
+  checkoutSectionsText = checkoutSectionsEl && checkoutSectionsEl.checked ? `\n <li>Checkout Sections</li>` : '';
+  payPalText = payPalEl && payPalEl.checked ? `\n <li>Linked PayPal/Apple Pay</li>` : '';
+  testOrderText = testOrderEl && testOrderEl.checked ? `\n <li>Creating a Test Order</li>` : '';
+  processOrderText = processOrderEl && processOrderEl.checked ? `\n <li>Processing Test Order</li>` : '';
+
+  updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
+  unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products</li>` : '';
+
+  stripeText = stripeEl && stripeEl.checked ? `\n <li>Linked Stripe</li>` : ``;
+  variantsText = variantsEl && variantsEl.checked ? `\n <li>Condensing Variants</li>` : ``;
+  googleAnalyticsText = googleAnalyticsEl && googleAnalyticsEl.checked ? `\n <li>Helped set up Google Analytics</li>` : ``;
+
+  updatingNewProdText = updatingNewProdEl && updatingNewProdEl.checked ? `\n <li>Updating Products from ${updatingNewProdNameText}</li>` : '';
+  processRealOrderText = processRealOrderEl && processRealOrderEl.checked ? `\n <li>Processing Real Customer Order</li>` : '';
+  modifyVariantsText = modifyVariantsEl && modifyVariantsEl.checked ? `\n <li>Modifying Singular Products to Variants</li>` : '';
+
+  applicationProcessText = applicationProcessEl && applicationProcessEl.checked ? `\n <li>Covered the supplier application process</li>` : '';
+  dropshipDatabaseText = dropshipDatabaseEl && dropshipDatabaseEl.checked ? `\n <li>Introduction to dropship database</li>` : '';
+  submittedApplicationText = submittedApplicationEl && submittedApplicationEl.checked ? `\n <li>Submitted application to: ${submittedApplicationToText}</li>` : '';
+  assistedApplicationText = assistedApplicationEl && assistedApplicationEl.checked ? `\n <li>Assisted client in submitting applications to: ${assistedApplicationToText}</li>` : '';
+  followUpEmailText = followUpEmailEl && followUpEmailEl.checked ? `\n <li>Assisted client in sending follow up emails to: ${followUpEmailToText}</li>` : '';
+
+  var isAnythingChecked = workedOnElements.some(function (el) {
+    return el && el.checked;
+  });
+
+  if (isAnythingChecked || customWorkedonText !== '') {
+    workedOnText = `Worked On: 
+<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${processOrderText}${updatingProdText}${unavailableProdText}${stripeText}${variantsText}${googleAnalyticsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}${applicationProcessText}${dropshipDatabaseText}${submittedApplicationText}${assistedApplicationText}${followUpEmailText}${customWorkedonText}
+</ul>
+`;
+  } else {
+    workedOnText = '';
+  }
+}
+
+// "Assigned HW" String Handlers
+var assignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, firstApptContinueVidEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, secondApptContinueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl];
+
+function setAssignedHw() {
+  assignedHwElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updateAssignedHw();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
+function initDynamicAssignedHw() {
+  var container = document.getElementById('custom-assigned-hw-container');
+  if (!container) return;
+
+  container.addEventListener('input', function (event) {
+    var row = event.target.closest('.custom-assigned-hw-row');
+    if (!row) return;
+
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (event.target.classList.contains('custom-checkbox') && !checkbox.checked) {
+      if (container.children.length > 1 && row !== container.lastElementChild) {
+        row.remove();
+        refreshAllCustomAssignedHw();
+        return;
+      }
+    }
+
+    if (row === container.lastElementChild) {
+      if (checkbox.checked || textInput.value.trim() !== '') {
+        addNewAssignedHwRow(container);
+      }
+    }
+
+    refreshAllCustomAssignedHw();
+  });
+}
+
+function refreshAllCustomAssignedHw() {
+  var combinedHtml = '';
+
+  var rows = document.querySelectorAll('.custom-assigned-hw-row');
+
+  rows.forEach((row) => {
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (checkbox && checkbox.checked) {
+      var value = textInput.value.trim();
+      if (value !== '') {
+        combinedHtml += `\n <li>${value}</li>`;
+      }
+    }
+  });
+
+  customAssignedHwText = combinedHtml;
+
+  if (typeof updateAssignedHw === 'function') updateAssignedHw();
+  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
+}
+
+function updateAssignedHw() {
+  firstApptFinishVidText = firstApptFinishVidEl && firstApptFinishVidEl.checked ? `\n <li>Finish 1st appointment teachable videos</li>` : ``;
+  reviewExtraPagesText = reviewExtraPagesEl && reviewExtraPagesEl.checked ? `\n <li>Review Extra Pages</li>` : ``;
+  removeProdText = removeProdEl && removeProdEl.checked ? `\n <li>Remove unrelated products</li>` : '';
+  practiceCatProdText = practiceCatProdEl && practiceCatProdEl.checked ? `\n <li>Practice categorizing products using guide</li>` : '';
+  practiceCreateCatdText = practiceCreateCatdEl && practiceCreateCatdEl.checked ? `\n <li>Practice creating categories</li>` : '';
+  registerBusinessText = registerBusinessEl && registerBusinessEl.checked ? `\n <li>Register business</li>` : '';
+  firstApptContinueVidText = firstApptContinueVidEl && firstApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos</li>` : '';
+
+  secondApptFinishVidText = secondApptFinishVidEl && secondApptFinishVidEl.checked ? `\n <li>Finish 2nd appointment teachable videos</li>` : ``;
+  practiceDiscountsText = practiceDiscountsEl && practiceDiscountsEl.checked ? `\n <li>Practice creating discounts</li>` : ``;
+  practiceOrdersText = practiceOrdersEl && practiceOrdersEl.checked ? `\n <li>Practice making & processing test orders using guides</li>` : '';
+  secondApptContinueVidText = secondApptContinueVidEl && secondApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos<</li>` : '';
+
+  thirdApptFinishVidText = thirdApptFinishVidEl && thirdApptFinishVidEl.checked ? `\n <li>Finish 3rd appointment teachable videos</li>` : '';
+  practiceUpdateText = practiceUpdateEl && practiceUpdateEl.checked ? `\n <li>Practice updating products using guides</li>` : '';
+  allVidText = allVidEl && allVidEl.checked ? `\n <li>Complete all videos</li>` : '';
+
+  applyAndEmailText = applyAndEmailEl && applyAndEmailEl.checked ? `\n <li>Apply to a minimum of 2 new suppliers and send follow-up emails every 2-3 days before the next appointment</li>` : '';
+  contApplyAndEmailText = contApplyAndEmailEl && contApplyAndEmailEl.checked ? `\n <li>Continue working on sending applications and follow up emails</li>` : '';
+
+  var isAnythingChecked = assignedHwElements.some(function (el) {
+    return el && el.checked;
+  });
+
+  if (isAnythingChecked || customAssignedHwText !== '') {
+    assignedHwText = `Assigned homework: 
+<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${customAssignedHwText}
+</ul>
+`;
+  } else {
+    assignedHwText = '';
+  }
+}
+
+function setPostChecklist() {
+  var postChecklistsElements = [businessEmailEl, timeZoneEl, taxGroupEl, modulesEl, testItemsEl, brandsEl, genericCategoriesEl, varientsCondensedEl, taglineEl];
+
+  postChecklistsElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updatePostChecklist();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
+function updatePostChecklist() {
+  businessEmailText = businessEmailEl && businessEmailEl.checked ? `\n <li>Business email appears on Settings & Extra Forms</li>` : '';
+  timeZoneText = timeZoneEl && timeZoneEl.checked ? `\n <li>Time-zone is set to client's</li>` : '';
+  taxGroupText = taxGroupEl && taxGroupEl.checked ? `\n <li>Default Tax Group set</li>` : '';
+  modulesText = modulesEl && modulesEl.checked ? `\n <li>Shipping & Payment Modules are set</li>` : '';
+  testItemsText = testItemsEl && testItemsEl.checked ? `\n <li>Test items are removed</li>` : '';
+  brandsText = brandsEl && brandsEl.checked ? `\n <li>Unrelated brands removed</li>` : '';
+  genericCategoriesText = genericCategoriesEl && genericCategoriesEl.checked ? `\n <li>Generic categories removed</li>` : '';
+  varientsCondensedText = varientsCondensedEl && varientsCondensedEl.checked ? `\n <li>Variants are condensed</li>` : '';
+  taglineText = taglineEl && taglineEl.checked ? `\n <li>Removed tagline placeholder text</li>` : '';
+
+  if ((businessEmailEl && businessEmailEl.checked) || (timeZoneEl && timeZoneEl.checked) || (taxGroupEl && taxGroupEl.checked) || (modulesEl && modulesEl.checked) || (testItemsEl && testItemsEl.checked) || (brandsEl && brandsEl.checked) || (genericCategoriesEl && genericCategoriesEl.checked) || (varientsCondensedEl && varientsCondensedEl.checked) || (taglineEl && taglineEl.checked)) {
+    postChecklistText = `Post Training Checklist:
+<ul>${businessEmailText}${timeZoneText}${taxGroupText}${modulesText}${testItemsText}${brandsText}${genericCategoriesText}${varientsCondensedText}${taglineText}
+</ul>
+`;
+  } else {
+    postChecklistText = '';
+  }
+}
+
+// Missed Appointment String Handlers
 function setMissedAppointment() {
   var missedApptPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl];
 
@@ -2089,7 +1914,7 @@ function updateMissedAppointment() {
 `;
 }
 
-// *CONTACTED BY CLIENT
+// Contacted By Client String Handlers
 function setContactedByClient() {
   setVisibility(contactedEmailSentPromptEl, false);
   contactedByClientText = `<p>
@@ -2350,7 +2175,7 @@ function updateReturnContactText() {
   }
 }
 
-// *GENERAL CONTACT
+// General String Handler
 function setGeneralContact() {
   generalContactPurposeEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -2374,7 +2199,7 @@ function setGeneralContact() {
   });
 }
 
-// *RESCHEDULE
+// Reschedule String Handler
 function setReschedule() {
   rescheduleReasonEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -2403,7 +2228,7 @@ function setReschedule() {
   });
 }
 
-// *PODIO LINK
+// Podio Link String Handlers
 function setPodioLink() {
   podioLinkEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -2415,9 +2240,449 @@ function setPodioLink() {
   });
 }
 
+// *WARHEAD SPECIFIC STRING HANDLERS
+function setScreenShare() {
+  screenShareOtherPromptEl.classList.add('hide-content');
+
+  screenShareEl.addEventListener('change', function (event) {
+    currentScreenShareValue = event.target.value;
+
+    if (currentScreenShareValue === 'default' || currentScreenShareValue === 'Other') {
+      screenShareText = '';
+    } else {
+      screenShareText = `Used ${currentScreenShareValue}.`;
+    }
+
+    if (currentScreenShareValue === 'Other') {
+      screenShareOtherPromptEl.classList.remove('hide-content');
+      screenShareOtherPromptEl.classList.add('show-content');
+    } else if (currentScreenShareValue !== 'Other') {
+      screenShareOtherPromptEl.classList.remove('show-content');
+      screenShareOtherPromptEl.classList.add('hide-content');
+    }
+
+    updateHtmlNotes();
+  });
+
+  screenShareOtherEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      screenShareText = '';
+    } else if (event.target.value) {
+      screenShareText = `Used ${event.target.value}.`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setHwCompleted() {
+  var hwRadioElements = [hwNoEl, hwNoneEl, hwYesEl];
+
+  hwRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (hwYesEl.checked) {
+        hwCompletedText = `Homework has been completed by client.`;
+      } else if (hwNoEl.checked) {
+        hwCompletedText = `Homework has not been completed by client.`;
+      } else if (hwNoneEl.checked) {
+        hwCompletedText = '';
+      } else {
+        hwCompletedText = '';
+      }
+      updateHw();
+      updateHtmlNotes();
+    });
+  });
+}
+
+function setHwPercent() {
+  if (!hwPercentEl) {
+    return;
+  }
+
+  hwPercentEl.addEventListener('input', function (event) {
+    if (this.value > 100) {
+      this.value = 100;
+    }
+    if (this.value < 0 && this.value !== '') {
+      this.value = 0;
+    }
+
+    if (!event.target.value) {
+      hwPercentText = '';
+    } else {
+      hwPercentText = `${event.target.value}% of WH videos completed.`;
+    }
+    updateHw();
+    updateHtmlNotes();
+  });
+}
+
+function updateHw() {
+  if (hwCompletedText || hwPercentText) {
+    hwText = `<p>
+  ${hwCompletedText} ${hwPercentText}
+</p>
+`;
+  } else {
+    hwText = '';
+  }
+}
+
+function setStartedRegistering() {
+  var startedRegRadioElements = [startedRegNoEl, startedRegNoneEl, startedRegYesEl];
+
+  startedRegRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (currentApptValue !== 'wh-first-appt') {
+        startedRegText = '';
+        updateHtmlNotes();
+        return;
+      }
+
+      if (startedRegYesEl.checked) {
+        startedRegText = `<p>
+  Client <b>has</b> started registering business.
+</p>`;
+      } else if (startedRegNoEl.checked) {
+        startedRegText = `<p>
+  Client <b>has not</b> started registering business.
+</p>`;
+      } else if (startedRegNoneEl.checked) {
+        startedRegText = '';
+      } else {
+        startedRegText = '';
+      }
+
+      updateHtmlNotes();
+    });
+  });
+}
+
+function setCompletionForm() {
+  whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+
+  completionFormSentEl.addEventListener('change', function () {
+    if (currentApptValue !== 'wh-third-appt' && currentApptValue !== 'wh-second-appt') {
+      completionFormSignedText = '';
+      updateHtmlNotes();
+      return;
+    }
+
+    if (completionFormSentEl.checked) {
+      completionFormSentText = `Sent & explained completion form.`;
+    } else {
+      whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+      completionFormSentText = ``;
+      completionFormSignedText = '';
+      whyNotSignedText = '';
+    }
+    updateCompletionForm();
+    updateHtmlNotes();
+  });
+
+  var cfSignedRadioElements = [cfSignedElNo, cfSignedElNone, cfSignedElYes];
+
+  cfSignedRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (currentApptValue !== 'wh-third-appt' && currentApptValue !== 'wh-second-appt') {
+        completionFormSignedText = '';
+        updateHtmlNotes();
+        return;
+      }
+
+      if (cfSignedElYes.checked) {
+        whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+        completionFormSignedText = ` Client has <b>signed</b> completion form.`;
+      } else if (cfSignedElNo.checked) {
+        whyNotSignedPromptEl.setAttribute('class', 'show-content');
+        completionFormSignedText = ` Client has <b>not signed</b> completion form.`;
+      } else if (cfSignedElNone.checked) {
+        whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+        completionFormSignedText = '';
+      } else {
+        completionFormSignedText = '';
+      }
+      updateCompletionForm();
+      updateHtmlNotes();
+    });
+  });
+
+  whyNotSignedEl.addEventListener('input', function (event) {
+    whyNotSignedText = event.target.value;
+    updateCompletionForm();
+    updateHtmlNotes();
+  });
+}
+
+function updateCompletionForm() {
+  if (completionFormSentText || completionFormSignedText) {
+    completionFormText = `<p>
+  ${completionFormSentText}${completionFormSignedText} ${whyNotSignedText}
+<p>
+`;
+  } else {
+    completionFormText = '';
+  }
+}
+
+function setSupplierManagement() {
+  var smPrompts = [sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl];
+
+  smPrompts.forEach(function (element) {
+    element.setAttribute('class', 'hide-content');
+  });
+
+  bookedSmEl.addEventListener('change', function () {
+    if (bookedSmEl.checked) {
+      smPrompts.forEach(function (element) {
+        element.setAttribute('class', 'show-content');
+      });
+    } else {
+      smPrompts.forEach(function (element) {
+        element.setAttribute('class', 'hide-content');
+        smText = '';
+        updateHtmlNotes();
+      });
+    }
+  });
+
+  sentSmGuideEl.addEventListener('change', function () {
+    if (currentApptValue !== 'wh-post-appt') {
+      sentSmGuideText = '';
+      updateHtmlNotes();
+      return;
+    }
+
+    if (sentSmGuideEl.checked) {
+      sentSmGuideText = `Sent client SM How to Guide PDF.`;
+    } else {
+      sentSmGuideText = '';
+    }
+
+    updateSupplierManagement();
+    updateHtmlNotes();
+  });
+
+  enrolledSmEl.addEventListener('change', function () {
+    if (currentApptValue !== 'wh-post-appt') {
+      enrolledSmText = '';
+      updateHtmlNotes();
+      return;
+    }
+
+    if (enrolledSmEl.checked) {
+      enrolledSmText = `Enrolled client in SM Appointment Training course.`;
+    } else {
+      enrolledSmText = '';
+    }
+
+    updateSupplierManagement();
+    updateHtmlNotes();
+  });
+
+  smTechEl.addEventListener('input', function (event) {
+    smTechText = event.target.value;
+    updateSupplierManagement();
+    updateHtmlNotes();
+  });
+
+  smApptEl.addEventListener('input', function (event) {
+    var newSmApptStr = handleDateFormat(event.target.value);
+
+    if (!newSmApptStr) {
+      smApptText = '';
+    } else {
+      smApptText = newSmApptStr;
+    }
+
+    updateSupplierManagement();
+    updateHtmlNotes();
+  });
+}
+
+function updateSupplierManagement() {
+  smText = `<p>
+  ${sentSmGuideText} ${enrolledSmText} Booked SM Appointment with ${smTechText} on ${smApptText}.
+<p>
+`;
+}
+
+// *SUPPLIER MANAGEMENT SPECIFIC STRING HANDLERS
+function setHowManyProducts() {
+  howManyProductsEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      howManyProductsText = '';
+    } else {
+      howManyProductsText = `<p>
+  Client has ${event.target.value} products on their website.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setHowManySuppliers() {
+  howManySuppliersNumberEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      howManySuppliersNumberText = '';
+    } else {
+      howManySuppliersNumberText = event.target.value;
+    }
+    updatedHowManySuppliers();
+    updateHtmlNotes();
+  });
+
+  howManySuppliersNamesEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      howManySuppliersNamesText = '';
+    } else {
+      howManySuppliersNamesText = event.target.value;
+    }
+    updatedHowManySuppliers();
+    updateHtmlNotes();
+  });
+}
+
+function updatedHowManySuppliers() {
+  if (howManySuppliersNumberText || howManySuppliersNamesText) {
+    updatedHowManySuppliersText = `<p>
+  Client has ${howManySuppliersNumberText} suppliers: ${howManySuppliersNamesText}
+</p>
+`;
+  } else {
+    updatedHowManySuppliersText = '';
+  }
+}
+
+function setRemoveNonNiche() {
+  removeNonNicheEl.addEventListener('change', function () {
+    if (!removeNonNicheEl.checked) {
+      removeNonNicheText = '';
+    } else {
+      removeNonNicheText = `<p>
+  Advised client to remove any non-niche related items.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setCompletedSm() {
+  completedSmEl.addEventListener('change', function () {
+    if (!completedSmEl.checked) {
+      completedSmText = '';
+    } else {
+      completedSmText = `<p>
+  Client has <b>completed supplier management</b>.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setCompletedMarketing() {
+  completedMarketingEl.addEventListener('change', function () {
+    if (!completedMarketingEl.checked) {
+      completedMarketingText = '';
+    } else {
+      completedMarketingText = `<p>
+  Client has <b>completed supplier management and marketing appointment</b>.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setSmWsAppt() {
+  smWsDateEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      smWsDateText = '';
+    } else {
+      smWsDateText = event.target.value;
+    }
+    updatedSmWsAppt();
+    updateHtmlNotes();
+  });
+
+  smWsTechEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      smWsTechText = '';
+    } else {
+      smWsTechText = event.target.value;
+    }
+    updatedSmWsAppt();
+    updateHtmlNotes();
+  });
+}
+
+function updatedSmWsAppt() {
+  if (smWsDateText || smWsTechText) {
+    updatedSmWsText = `<p>
+  Booked Website Analysis appointment with ${smWsTechText} on ${smWsDateText}
+</p>
+`;
+  } else {
+    updatedSmWsText = '';
+  }
+}
+
+function setMarketingAppt() {
+  marketingDateEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      marketingDateText = '';
+    } else {
+      marketingDateText = `<p>
+  Set One-Time Marketing appointment on ${event.target.value}
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+var marketingReviewedElements = [seoBasicsEl, catAndProdEl, ensureProdCatEl, metasReviewedEl, reviseTitlesDescEl, optimizeImagesEl, reviewSocialMediaEl];
+
+function setMarketingReviewed() {
+  marketingReviewedElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      updateMarketingReviewed();
+      updateHtmlNotes();
+    });
+  });
+}
+
+function updateMarketingReviewed() {
+  seoBasicsText = seoBasicsEl && seoBasicsEl.checked ? '\n <li>The basics of SEO</li>' : '';
+  catAndProdText = catAndProdEl && catAndProdEl.checked ? '\n <li>Categories and products</li>' : '';
+  ensureProdCatText = ensureProdCatEl && ensureProdCatEl.checked ? '\n <li>Ensuring products are categorized</li>' : '';
+  metasReviewedText = metasReviewedEl && metasReviewedEl.checked ? '\n <li>Category keywords, meta titles, and meta descriptions</li>' : '';
+  reviseTitlesDescText = reviseTitlesDescEl && reviseTitlesDescEl.checked ? '\n <li>Revising product titles and product descriptions</li>' : '';
+  optimizeImagesText = optimizeImagesEl && optimizeImagesEl.checked ? '\n <li>Optimizing images</li>' : '';
+  reviewSocialMediaText = reviewSocialMediaEl && reviewSocialMediaEl.checked ? '\n <li>Social media</li>' : '';
+
+  var isAnythingChecked = marketingReviewedElements.some(function (el) {
+    return el && el.checked;
+  });
+
+  if (isAnythingChecked) {
+    marketingReviewedText = `Reviewed:
+<ul>${seoBasicsText}${catAndProdText}${ensureProdCatText}${metasReviewedText}${reviseTitlesDescText}${optimizeImagesText}${reviewSocialMediaText}
+</ul>
+`;
+  } else {
+    marketingReviewedText = '';
+  }
+}
+
 // *INITIALIZATION (DOM CONTENT LOADED)
 
 document.addEventListener('DOMContentLoaded', () => {
+  setVisibility(resaleCertPromptEl, false);
+
   if (initialsText === '') {
     htmlNotesEl.classList.remove('can-be-active');
   } else {
@@ -2444,17 +2709,15 @@ document.addEventListener('DOMContentLoaded', () => {
   setScreenShare();
   setHwCompleted();
   setHwPercent();
-  setFirstApptWorkedOn();
-  setSecondApptWorkedOn();
-  setThirdApptWorkedOn();
+
+  setWorkedOn();
   initDynamicWorkedOn();
-  setPostApptWorkedOn();
-  setWhAssistanceWorkedOn();
-  setFirstApptAssignedHw();
-  setSecondApptAssignedHw();
-  setThirdApptAssignedHw();
+
+  setAssignedHw();
   initDynamicAssignedHw();
+
   setPostChecklist();
+
   setAdditionalNotes();
   setStartedRegistering();
   setCompletionForm();
@@ -2463,6 +2726,16 @@ document.addEventListener('DOMContentLoaded', () => {
   setNextAppointment();
   setOtherAppointment();
   setNextTopic();
+
+  setHowManyProducts();
+  setHowManySuppliers();
+  setRemoveNonNiche();
+  setCompletedSm();
+  setCompletedMarketing();
+  setSmWsAppt();
+  setMarketingAppt();
+  setMarketingReviewed();
+
   setMissedAppointment();
   setContactedByClient();
   setReschedule();

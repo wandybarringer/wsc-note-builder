@@ -124,7 +124,7 @@
               <input type="number" name="how-many-products" id="how-many-products" />
             </div>
 
-            <div id="how-many-suppliers-prompt" data-dept="supplier-management" data-template='["sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
+            <div data-dept="supplier-management" data-template='["sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
               <label for="how-many-suppliers">How many suppliers does client have?</label>
               <input type="number" name="how-many-suppliers-number" id="how-many-suppliers-number" placeholder="#"/>
               <input type="text" name="how-many-suppliers-names" id="how-many-suppliers-names" placeholder="Supplier Names"/>
@@ -222,7 +222,7 @@
               <input type="checkbox" id="show-all-worked-on" />
             </div>
 
-            <div id="assigned-hw" class="grey-bg" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
+            <div id="assigned-hw" class="grey-bg" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up"]'>
               <p class="default-pointer">Assigned homework:</p>
               <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
 
@@ -262,7 +262,7 @@
                 <label for="cont-apply-and-email">Continue sending applications and follow-up emails</label>
               </div>
 
-              <div id="custom-assigned-hw-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <div id="custom-assigned-hw-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
                 <div class="custom-assigned-hw-row">
                   <input type="checkbox" name="custom-assigned-hw" id="custom-assigned-hw-checkbox" class="custom-checkbox" />
                   <input type="text" name="custom-assigned-hw" id="custom-assigned-hw-text" class="custom-text" placeholder="Custom text" />
@@ -270,12 +270,12 @@
               </div>
             </div>
 
-            <div id="show-all-assigned-hw-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
+            <div id="show-all-assigned-hw-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up"]'>
               <label for="show-all-assigned-hw" class="show-all-emphasis">Show All Assigned Homework Options</label>
               <input type="checkbox" id="show-all-assigned-hw" />
             </div>
 
-            <div class="post-appt hide-content grey-bg" data-dept="warhead" data-template="wh-post-appt">
+            <div class="grey-bg" data-dept="warhead" data-template="wh-post-appt">
               <p class="default-pointer">Post Training Checklist:</p>
               <div><input type="checkbox" name="business-email" id="business-email" /> <label for="business-email">Business email appears on Settings & Extra Forms</label></div>
 
@@ -340,22 +340,12 @@
               <label for="remove-non-niche">Advised client to remove any non-niche related items.</label>
             </div>
 
-            <div data-dept="supplier-management" data-template='["sm-final-upgraded", "sm-final-non-upgraded"]'>
-              <input type="checkbox" name="completed-supplier-management" id="completed-supplier-management">
-              <label for="completed-supplier-management">The client has <b>completed supplier management</b>.</label>
-            </div>
-
-             <div data-dept="supplier-management" data-template="sm-marketing">
-              <input type="checkbox" name="completed-marketing" id="completed-marketing">
-              <label for="completed-marketing">The client has <b>completed supplier management and marketing appointment</b>.</label>
-            </div>
-
             <div id="additional-notes-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing", "contacted-by-client"]'>
               <label for="additional-notes">Additional Notes:</label>
               <textarea name="additional-notes" id="additional-notes"></textarea>
             </div>
 
-            <div class="first-appt hide-content" id="started-registering-prompt" data-dept="warhead" data-template="wh-first-appt">
+            <div id="started-registering-prompt" data-dept="warhead" data-template="wh-first-appt">
               <label class="default-pointer">Started registering business?</label>
               <div class="toggle-switch">
                 <input type="radio" name="started-registering" id="started-registering-no" value="No" />
@@ -368,12 +358,22 @@
               </div>
             </div>
 
-            <div class="second-and-third-appt hide-content" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
+            <div data-dept="supplier-management" data-template='["sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <input type="checkbox" name="completed-supplier-management" id="completed-supplier-management">
+              <label for="completed-supplier-management">Client has completed supplier management.</label>
+            </div>
+
+             <div data-dept="supplier-management" data-template="sm-marketing">
+              <input type="checkbox" name="completed-marketing" id="completed-marketing">
+              <label for="completed-marketing">Client has completed supplier management and marketing appointment.</label>
+            </div>
+
+            <div data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
               <label for="completion-form-sent">Completion form sent?</label>
               <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
             </div>
 
-            <div class="second-and-third-appt hide-content" id="completion-form-signed-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
+            <div id="completion-form-signed-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
               <label class="default-pointer">Client signed completion form?</label>
               <div class="toggle-switch">
                 <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
@@ -386,12 +386,12 @@
               </div>
             </div>
 
-            <div id="why-not-signed-prompt" class="form-group">
+            <div id="why-not-signed-prompt">
               <label for="why-not-signed">Why didn't client sign?</label>
               <textarea name="why-not-signed" id="why-not-signed"></textarea>
             </div>
 
-            <div class="post-appt hide-content" id="live-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-post-appt", "sm-first-appt"]'>
+            <div id="live-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-post-appt", "sm-first-appt"]'>
               <label class="default-pointer">Is client's website live?</label>
               <div class="toggle-switch">
                 <input type="radio" name="live" id="live-no" value="No" />
@@ -404,8 +404,8 @@
               </div>
             </div>
 
-            <div class="post-appt hide-content" id="registered-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
-              <label class="default-pointer">Is client's business registered and resale obtained?</label>
+            <div id="registered-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <label class="default-pointer">Is client's business registered?</label>
               <div class="toggle-switch">
                 <input type="radio" name="registered" id="registered-no" value="No" />
                 <label for="registered-no">No</label>
@@ -417,7 +417,20 @@
               </div>
             </div>
 
-            <div class="post-appt hide-content" id="design-finished-prompt" data-dept="warhead" data-template="wh-post-appt">
+            <div id="resale-cert-prompt">
+              <label class="default-pointer">Does client have resale certificate?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="resale-cert" id="resale-cert-no" value="No" />
+                <label for="resale-cert-no">No</label>
+                <input type="radio" name="resale-cert" id="resale-cert-none" value="None" checked />
+                <label for="resale-cert-none"></label>
+                <input type="radio" name="resale-cert" id="resale-cert-yes" value="Yes" />
+                <label for="resale-cert-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div id="design-finished-prompt" data-dept="warhead" data-template="wh-post-appt">
               <label class="default-pointer">Is client's design finished?</label>
               <div class="toggle-switch">
                 <input type="radio" name="design-finished" id="design-finished-no" value="No" />
@@ -430,7 +443,7 @@
               </div>
             </div>
 
-            <div class="post-appt hide-content" data-dept="warhead" data-template="wh-post-appt">
+            <div data-dept="warhead" data-template="wh-post-appt">
               <label for="booked-sm">Supplier Management set up?</label>
               <input type="checkbox" name="booked-sm" id="booked-sm" />
             </div>
@@ -455,7 +468,7 @@
               <input type="text" name="sm-appointment-date" id="sm-appointment-date" />
             </div>
 
-            <div class="hide-content" id="additional-training-prompt">
+            <div id="additional-training-prompt">
               <label for="additional-training">Is client requesting additional WH training?</label>
               <input type="checkbox" name="additional-training" id="additional-training" />
             </div>
@@ -471,17 +484,17 @@
             </div>
 
              <div data-dept="supplier-management" data-template="sm-final-upgraded">
-              <label for="website-analysis-tech">Website Analysis Tech assigned:</label>
-              <input type="text" name="website-analysis-tech" id="website-analysis-tech" />
+              <label for="sm-ws-tech">Website Analysis Tech assigned:</label>
+              <input type="text" name="sm-ws-tech" id="sm-ws-tech" />
             </div>
 
             <div data-dept="supplier-management" data-template="sm-final-upgraded"> 
-              <label for="website-analysis-appointment-date">Booked Website Analysis appointment on:</label>
-              <input type="text" name="website-analysis-appointment-date" id="website-analysis-appointment-date" />
+              <label for="sm-ws-appointment-date">Booked Website Analysis appointment on:</label>
+              <input type="text" name="sm-ws-appointment-date" id="sm-ws-appointment-date" />
             </div>
 
             <!-- *Missed Appointment Inputs -->
-            <div class="missed-appt hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
+            <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
               <div class="grey-bg" id="attempts-prompt">
                 <div>
                   <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
@@ -544,7 +557,7 @@
             </div>
 
             <!-- *Contacted by Client Inputs -->
-            <div class="contacted-by-client hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
+            <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
               <div>
                 <label class="default-pointer">Recieved message from client:</label>
                 <div class="panel-flex grey-bg" id="message-type-prompt">
@@ -636,8 +649,9 @@
                 <input type="text" name="contacted-reschedule-date" id="contacted-reschedule-date" />
               </div>
 
-            <!-- *Reschedule Inputs -->
-            <div class="reschedule hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="reschedule">
+            
+              <!-- *Reschedule Inputs -->
+            <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="reschedule">
               <div>
                 <label for="reschedule-reason">Reason for reschedule:</label>
                 <textarea name="reschedule-reason" id="reschedule-reason"></textarea>
@@ -649,7 +663,7 @@
             </div>
 
             <!-- *General Inputs -->
-            <div class="general-contact hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="general">
+            <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="general">
               <div>
                 <label for="general-contact-purpose">Purpose of contact:</label>
                 <input type="text" name="general-contact-purpose" id="general-contact-purpose" />
@@ -661,7 +675,7 @@
             </div>
 
             <!-- *Podio Link Input -->
-            <div class="podio hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="podio-link">
+            <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="podio-link">
               <p class="show-all-emphasis" id="podio-link-explaination">If Podio link is missing from SP, paste the Warhead Podio link here and copy to SP.</p>
               <div>
                 <label for="podio-link">Podio Link:</label>

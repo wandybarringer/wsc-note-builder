@@ -326,6 +326,7 @@ input[type='number'] {
 #successful-contact-no:checked ~ .selection-slider,
 #contacted-vm-no:checked ~ .selection-slider,
 #registered-no:checked ~ .selection-slider,
+#resale-cert-no:checked ~ .selection-slider,
 #design-finished-no:checked ~ .selection-slider {
   transform: translateX(0);
 }
@@ -340,6 +341,7 @@ input[type='number'] {
 #successful-contact-none:checked ~ .selection-slider,
 #contacted-vm-none:checked ~ .selection-slider,
 #registered-none:checked ~ .selection-slider,
+#resale-cert-none:checked ~ .selection-slider,
 #design-finished-none:checked ~ .selection-slider {
   transform: translateX(35px);
 }
@@ -354,6 +356,7 @@ input[type='number'] {
 #successful-contact-yes:checked ~ .selection-slider,
 #contacted-vm-yes:checked ~ .selection-slider,
 #registered-yes:checked ~ .selection-slider,
+#resale-cert-yes:checked ~ .selection-slider,
 #design-finished-yes:checked ~ .selection-slider {
   transform: translateX(70px);
 }
