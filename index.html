@@ -40,38 +40,51 @@
         <section id="input-panel" class="panel-flex">
           <!-- *Note Template Selection -->
           <div class="flex-row">
-            <form action="" id="template-selection">
+            <form action="" id="department-selection">
+              <select name="department" id="department">
+                <option value="default" selected>Select department</option>
+                <option value="onboarding">Onboarding</option>
+                <option value="warhead">Warhead</option>
+                <option value="supplier-management">Supplier Management</option>
+                <option value="social-media">Social Media</option>
+              </select>
+            </form>
               <label for="appointment"></label>
               <select name="appointment" id="appointment">
                 <option value="default" selected>Select template</option>
-                <option value="1st Appointment">1st Appointment</option>
-                <option value="2nd Appointment">2nd Appointment</option>
-                <option value="3rd Appointment">3rd Appointment</option>
-                <option value="Post Appointment">Post Appointment</option>
-                <option value="Warhead Assistance">Warhead Assistance</option>
-                <option value="Missed Appointment">Missed Appointment</option>
-                <option value="Contacted by Client">Contacted by Client</option>
-                <option value="Reschedule">Reschedule</option>
-                <option value="General">General</option>
-                <option value="Podio Link">Podio Link</option>
+                <option value="wh-first-appt" data-dept="warhead">1st Appointment</option>
+                <option value="wh-second-appt" data-dept="warhead">2nd Appointment</option>
+                <option value="wh-third-appt" data-dept="warhead">3rd Appointment</option>
+                <option value="wh-post-appt" data-dept="warhead">Post Appointment</option>
+                <option value="wh-assistance" data-dept="warhead">Warhead Assistance</option>
+                <option value="sm-first-appt" data-dept="supplier-management">1st Appointment</option>
+                <option value="sm-follow-up" data-dept="supplier-management">Follow Up</option>
+                <option value="sm-final-upgraded" data-dept="supplier-management">Final (Upgraded)</option>
+                <option value="sm-final-non-upgraded" data-dept="supplier-management">Final (Non-Upgraded)</option>
+                <option value="sm-marketing" data-dept="supplier-management">Marketing</option>
+                <option value="missed-appt">Missed Appointment</option>
+                <option value="contacted-by-client">Contacted by Client</option>
+                <option value="reschedule">Reschedule</option>
+                <option value="general">General</option>
+                <option value="podio-link">Podio Link</option>
               </select>
             </form>
             <button id="clear-btn">Reset</button>
           </div>
 
           <form action="" class="hide-content" id="non-specific-form">
-            <!-- *1st, 2nd, 3rd, Post & WH Assistance Inputs -->
-            <div id="continuation-prompt">
+
+            <div id="continuation-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
               <input type="checkbox" name="continuation" id="continuation" class="continuation" />
               <label for="continuation">Continuation appointment</label>
             </div>
 
-            <div id="moved-up-prompt">
+            <div id="moved-up-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing"]'>
               <input type="checkbox" name="moved-up" id="moved-up" class="moved-up" />
               <label for="moved-up">Moved client up</label>
             </div>
 
-            <div action="" id="screen-share-prompt">
+            <div id="screen-share-prompt" data-dept="warhead" data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance"]'>
               <label for="screen-share"></label>
               <select name="screen-share" id="screen-share">
                 <option value="default" selected>Screen Share</option>
@@ -88,7 +101,7 @@
               <input type="text" name="screen-share-other" id="screen-share-other" />
             </div>
 
-            <div id="hw-prompt">
+            <div id="hw-prompt" data-dept="warhead" data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt"]'>
               <label class="default-pointer">Homework completed?</label>
               <div class="toggle-switch">
                 <input type="radio" name="hw" id="hw-no" value="No" />
@@ -101,63 +114,102 @@
               </div>
             </div>
 
-            <div id="hw-percent-prompt">
+            <div id="hw-percent-prompt" data-dept="warhead" data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt"]'>
               <label for="hw-percent">Homework %</label>
               <input type="number" name="hw-percent" id="hw-percent" />
             </div>
 
-            <div id="worked-on" class="grey-bg">
+            <div id="how-many-products-prompt" data-dept="supplier-management" data-template='["sm-first-appt","sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <label for="how-many-products">How many products does client have?</label>
+              <input type="number" name="how-many-products" id="how-many-products" />
+            </div>
+
+            <div id="how-many-suppliers-prompt" data-dept="supplier-management" data-template='["sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <label for="how-many-suppliers">How many suppliers does client have?</label>
+              <input type="number" name="how-many-suppliers-number" id="how-many-suppliers-number" placeholder="#"/>
+              <input type="text" name="how-many-suppliers-names" id="how-many-suppliers-names" placeholder="Supplier Names"/>
+            </div>
+
+            <div id="worked-on" class="grey-bg" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
               <p class="default-pointer">Worked on:</p>
-              <div class="first-appt"><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
 
-              <div class="second-appt"><input type="checkbox" name="discounts" id="discounts" /> <label for="discounts">Discounts</label></div>
+              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="discounts" id="discounts" /> <label for="discounts">Discounts</label></div>
 
-              <div class="second-appt"><input type="checkbox" name="checkout-sections" id="checkout-sections" /> <label for="checkout-sections">Checkout Sections</label></div>
+              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="checkout-sections" id="checkout-sections" /> <label for="checkout-sections">Checkout Sections</label></div>
 
-              <div class="second-appt"><input type="checkbox" name="paypal-apple-pay" id="paypal-apple-pay" /> <label for="paypal-apple-pay">Linked PayPal/Apple Pay</label></div>
+              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="paypal-apple-pay" id="paypal-apple-pay" /> <label for="paypal-apple-pay">Linked PayPal/Apple Pay</label></div>
 
-              <div class="second-appt"><input type="checkbox" name="test-order" id="test-order" /> <label for="test-order">Creating a Test Order</label></div>
+              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="test-order" id="test-order" /> <label for="test-order">Creating a Test Order</label></div>
 
-              <div class="second-appt"><input type="checkbox" name="process-order" id="process-order" /> <label for="process-order">Processing Test Order</label></div>
+              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="process-order" id="process-order" /> <label for="process-order">Processing Test Order</label></div>
 
-              <div class="third-appt"><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
+              <div class="third-appt" data-dept="warhead" data-template="wh-third-appt"><input type="checkbox" name="updating-products" id="updating-products" /> <label for="updating-products">Updating Doba Products</label></div>
 
-              <div class="third-appt"><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
+              <div class="third-appt" data-dept="warhead" data-template="wh-third-appt"><input type="checkbox" name="unavailable-products" id="unavailable-products" /> <label for="unavailable-products">Managing Unavailable Products</label></div>
 
-              <div class="post-appt"><input type="checkbox" name="stripe" id="stripe" /> <label for="stripe">Linked Stripe</label></div>
+              <div class="post-appt" data-dept="warhead" data-template="wh-post-appt"><input type="checkbox" name="stripe" id="stripe" /> <label for="stripe">Linked Stripe</label></div>
 
-              <div class="post-appt"><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensing Variants</label></div>
+              <div class="post-appt" data-dept="warhead" data-template="wh-post-appt"><input type="checkbox" name="variants" id="variants" /> <label for="variants">Condensing Variants</label></div>
 
-              <div class="post-appt"><input type="checkbox" name="google-analytics" id="google-analytics" /> <label for="google-analytics">Google Analytics</label></div>
+              <div class="post-appt" data-dept="warhead" data-template="wh-post-appt"><input type="checkbox" name="google-analytics" id="google-analytics" /> <label for="google-analytics">Google Analytics</label></div>
 
-              <div class="wh-assistance">
+              <div data-dept="warhead" data-template="wh-assistance">
                 <input type="checkbox" name="new-updating-products" id="new-updating-products" />
                 <label for="new-updating-products">Updated Products from </label><input type="text" name="new-updating-products-name" id="new-updating-products-name" placeholder="New Supplier(s)" />
               </div>
 
-              <div class="wh-assistance">
+              <div data-dept="warhead" data-template="wh-assistance">
                 <input type="checkbox" name="process-real-order" id="process-real-order" />
                 <label for="process-real-order">Processing Real Order</label>
               </div>
 
-              <div class="wh-assistance">
+              <div data-dept="warhead" data-template="wh-assistance">
                 <input type="checkbox" name="modify-variants" id="modify-variants" />
                 <label for="modify-variants">Modifying Singular Products to Variants</label>
               </div>
 
-              <div id="custom-worked-on-container">
+              <div data-dept="supplier-management" data-template="sm-first-appt">
+                <input type="checkbox" name="application-process" id="application-process" />
+                <label for="application-process">Covered the supplier application process</label>
+              </div>
+
+              <div data-dept="supplier-management" data-template="sm-first-appt">
+                <input type="checkbox" name="dropship-database" id="dropship-database" />
+                <label for="dropship-database">Introduction to dropship database</label>
+              </div>
+
+              <div data-dept="supplier-management" data-template="sm-first-appt">
+                <input type="checkbox" name="submitted-application" id="submitted-application" />
+                <label for="submitted-application">Submitted application to:</label>
+                <input type="text" name="submitted-application-to" id="submitted-application-to" placeholder="Supplier Name(s)"/>
+              </div>
+
+              <div data-dept="supplier-management" data-template="sm-follow-up">
+                <input type="checkbox" name="assisted-application" id="assisted-application" />
+                <label for="assisted-application">Assisted in submitting applications to:</label>
+                <input type="text" name="assisted-application-to" id="assisted-application-to" placeholder="Supplier Name(s)"/>
+              </div>
+
+              <div data-dept="supplier-management" data-template="sm-follow-up">
+                <input type="checkbox" name="follow-up-email" id="follow-up-email" />
+                <label for="follow-up-email">Assisted in sending follow up emails to:</label>
+                <input type="text" name="follow-up-email-to" id="follow-up-email-to" placeholder="Supplier Name(s)"/>
+              </div>
+
+              <div id="custom-worked-on-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
                 <div class="custom-worked-on-row">
                   <input type="checkbox" name="custom-worked-on" id="custom-worked-on-checkbox" class="custom-checkbox" />
                   <input type="text" name="custom-worked-on" id="custom-worked-on-text" class="custom-text" placeholder="Custom text" />
@@ -165,42 +217,52 @@
               </div>
             </div>
 
-            <div id="show-all-worked-on-container">
+            <div id="show-all-worked-on-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
               <label for="show-all-worked-on" class="show-all-emphasis">Show All Worked On Options</label>
               <input type="checkbox" id="show-all-worked-on" />
             </div>
 
-            <div id="assigned-hw" class="grey-bg">
+            <div id="assigned-hw" class="grey-bg" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
               <p class="default-pointer">Assigned homework:</p>
-              <div class="first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="register-business" id="register-business" /> <label for="register-business">Register business</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="register-business" id="register-business" /> <label for="register-business">Register business</label></div>
 
-              <div class="first-appt"><input type="checkbox" name="first-appt-continue-videos" id="first-appt-continue-videos" /> <label for="first-appt-continue-videos">Continue watching teachable videos</label></div>
+              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="first-appt-continue-videos" id="first-appt-continue-videos" /> <label for="first-appt-continue-videos">Continue watching teachable videos</label></div>
 
-              <div class="second-appt"><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
+              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
 
-              <div class="second-appt"><input type="checkbox" name="practice-discounts" id="practice-discounts" /> <label for="practice-discounts">Practice creating discounts</label></div>
+              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="practice-discounts" id="practice-discounts" /> <label for="practice-discounts">Practice creating discounts</label></div>
 
-              <div class="second-appt"><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
+              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
 
-              <div class="second-appt"><input type="checkbox" name="second-appt-continue-videos" id="second-appt-continue-videos" /> <label for="second-appt-continue-videos">Continue watching teachable videos</label></div>
+              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="second-appt-continue-videos" id="second-appt-continue-videos" /> <label for="second-appt-continue-videos">Continue watching teachable videos</label></div>
 
-              <div class="third-appt"><input type="checkbox" name="finish-videos" id="third-appt-finish-videos" /> <label for="finish-videos">Finish 3rd appointment teachable videos</label></div>
+              <div class="third-appt" data-dept="warhead" data-template="wh-third-appt"><input type="checkbox" name="finish-videos" id="third-appt-finish-videos" /> <label for="finish-videos">Finish 3rd appointment teachable videos</label></div>
 
-              <div class="third-appt"><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating products using guide</label></div>
+              <div class="third-appt" data-dept="warhead" data-template="wh-third-appt"><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating products using guide</label></div>
 
-              <div class="third-appt"><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
+              <div class="third-appt" data-dept="warhead" data-template="wh-third-appt"><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
 
-              <div id="custom-assigned-hw-container">
+              <div data-dept="supplier-management" data-template="sm-first-appt">
+                <input type="checkbox" name="apply-and-email" id="apply-and-email" />
+                <label for="apply-and-email">Apply to new suppliers and send follow-up emails</label>
+              </div>
+
+              <div data-dept="supplier-management" data-template="sm-follow-up">
+                <input type="checkbox" name="cont-apply-and-email" id="cont-apply-and-email" />
+                <label for="cont-apply-and-email">Continue sending applications and follow-up emails</label>
+              </div>
+
+              <div id="custom-assigned-hw-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
                 <div class="custom-assigned-hw-row">
                   <input type="checkbox" name="custom-assigned-hw" id="custom-assigned-hw-checkbox" class="custom-checkbox" />
                   <input type="text" name="custom-assigned-hw" id="custom-assigned-hw-text" class="custom-text" placeholder="Custom text" />
@@ -208,12 +270,12 @@
               </div>
             </div>
 
-            <div id="show-all-assigned-hw-container">
+            <div id="show-all-assigned-hw-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
               <label for="show-all-assigned-hw" class="show-all-emphasis">Show All Assigned Homework Options</label>
               <input type="checkbox" id="show-all-assigned-hw" />
             </div>
 
-            <div class="post-appt hide-content grey-bg">
+            <div class="post-appt hide-content grey-bg" data-dept="warhead" data-template="wh-post-appt">
               <p class="default-pointer">Post Training Checklist:</p>
               <div><input type="checkbox" name="business-email" id="business-email" /> <label for="business-email">Business email appears on Settings & Extra Forms</label></div>
 
@@ -234,12 +296,66 @@
               <div><input type="checkbox" name="tagline" id="tagline" /> <label for="tagline">Removed tagline placeholder text</label></div>
             </div>
 
-            <div class="form-group">
+            <div class="grey-bg" data-dept="supplier-management" data-template="sm-marketing">
+              <p class="default-pointer">Reviewed:</p>
+
+              <div>
+                <input type="checkbox" name="seo-basics" id="seo-basics" />
+                <label for="seo-basics">The basics of SEO</label>
+              </div>
+
+              <div>
+                <input type="checkbox" name="cat-and-prod" id="cat-and-prod" />
+                <label for="cat-and-prod">Reviewing categories and products</label>
+              </div>
+
+              <div>
+                <input type="checkbox" name="ensure-prod-cat" id="ensure-prod-cat" />
+                <label for="ensure-prod-cat">Ensuring products are categorized</label>
+              </div>
+
+              <div>
+                <input type="checkbox" name="metas-review" id="metas-review" />
+                <label for="metas-review">Category keywords, meta titles, and meta descriptions</label>
+              </div>
+
+               <div>
+                <input type="checkbox" name="revise-titles-desc" id="revise-titles-desc" />
+                <label for="revise-titles-desc">Revising product titles and product descriptions</label>
+              </div>
+
+               <div>
+                <input type="checkbox" name="optimize-images" id="optimize-images" />
+                <label for="optimize-images">Optimizing images</label>
+              </div>
+
+              <div>
+                <input type="checkbox" name="review-social-media" id="review-social-media" />
+                <label for="review-social-media">Social media</label>
+              </div>
+            </div>
+
+            <div data-dept="supplier-management" data-template='["sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <input type="checkbox" name="remove-non-niche" id="remove-non-niche">
+              <label for="remove-non-niche">Advised client to remove any non-niche related items.</label>
+            </div>
+
+            <div data-dept="supplier-management" data-template='["sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <input type="checkbox" name="completed-supplier-management" id="completed-supplier-management">
+              <label for="completed-supplier-management">The client has <b>completed supplier management</b>.</label>
+            </div>
+
+             <div data-dept="supplier-management" data-template="sm-marketing">
+              <input type="checkbox" name="completed-marketing" id="completed-marketing">
+              <label for="completed-marketing">The client has <b>completed supplier management and marketing appointment</b>.</label>
+            </div>
+
+            <div class="form-group" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing"]'>
               <label for="additional-notes">Additional Notes:</label>
               <textarea name="additional-notes" id="additional-notes"></textarea>
             </div>
 
-            <div class="first-appt hide-content" id="started-registering-prompt">
+            <div class="first-appt hide-content" id="started-registering-prompt" data-dept="warhead" data-template="wh-first-appt">
               <label class="default-pointer">Started registering business?</label>
               <div class="toggle-switch">
                 <input type="radio" name="started-registering" id="started-registering-no" value="No" />
@@ -252,12 +368,12 @@
               </div>
             </div>
 
-            <div class="second-and-third-appt hide-content">
+            <div class="second-and-third-appt hide-content" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
               <label for="completion-form-sent">Completion form sent?</label>
               <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
             </div>
 
-            <div class="second-and-third-appt hide-content" id="completion-form-signed-prompt">
+            <div class="second-and-third-appt hide-content" id="completion-form-signed-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
               <label class="default-pointer">Client signed completion form?</label>
               <div class="toggle-switch">
                 <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
@@ -275,7 +391,7 @@
               <textarea name="why-not-signed" id="why-not-signed"></textarea>
             </div>
 
-            <div class="post-appt hide-content">
+            <div class="post-appt hide-content" id="live-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-post-appt", "sm-first-appt"]'>
               <label class="default-pointer">Is client's website live?</label>
               <div class="toggle-switch">
                 <input type="radio" name="live" id="live-no" value="No" />
@@ -288,8 +404,8 @@
               </div>
             </div>
 
-            <div class="post-appt hide-content">
-              <label class="default-pointer">Is client's business registered?</label>
+            <div class="post-appt hide-content" id="registered-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <label class="default-pointer">Is client's business registered and resale obtained?</label>
               <div class="toggle-switch">
                 <input type="radio" name="registered" id="registered-no" value="No" />
                 <label for="registered-no">No</label>
@@ -301,7 +417,7 @@
               </div>
             </div>
 
-            <div class="post-appt hide-content">
+            <div class="post-appt hide-content" id="design-finished-prompt" data-dept="warhead" data-template="wh-post-appt">
               <label class="default-pointer">Is client's design finished?</label>
               <div class="toggle-switch">
                 <input type="radio" name="design-finished" id="design-finished-no" value="No" />
@@ -314,7 +430,7 @@
               </div>
             </div>
 
-            <div class="post-appt hide-content">
+            <div class="post-appt hide-content" data-dept="warhead" data-template="wh-post-appt">
               <label for="booked-sm">Supplier Management set up?</label>
               <input type="checkbox" name="booked-sm" id="booked-sm" />
             </div>
@@ -344,13 +460,28 @@
               <input type="checkbox" name="additional-training" id="additional-training" />
             </div>
 
-            <div id="next-appt-date-prompt">
+            <div id="next-appt-date-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
               <label for="next-appointment-date">Next appointment date:</label>
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
             </div>
 
+            <div data-dept="supplier-management" data-template="sm-final-non-upgraded">
+              <label for="marketing-date">Set one-time Marketing appointment date:</label>
+              <input type="text" name="marketing-date" id="marketing-date" />
+            </div>
+
+             <div data-dept="supplier-management" data-template="sm-final-upgraded">
+              <label for="website-analysis-tech">Website Analysis Tech assigned:</label>
+              <input type="text" name="website-analysis-tech" id="website-analysis-tech" />
+            </div>
+
+            <div data-dept="supplier-management" data-template="sm-final-upgraded"> 
+              <label for="website-analysis-appointment-date">Booked Website Analysis appointment on:</label>
+              <input type="text" name="website-analysis-appointment-date" id="website-analysis-appointment-date" />
+            </div>
+
             <!-- *Missed Appointment Inputs -->
-            <div class="missed-appt hide-content">
+            <div class="missed-appt hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
               <div class="grey-bg" id="attempts-prompt">
                 <div>
                   <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
@@ -413,7 +544,7 @@
             </div>
 
             <!-- *Contacted by Client Inputs -->
-            <div class="contacted-by-client hide-content">
+            <div class="contacted-by-client hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
               <div>
                 <label class="default-pointer">Recieved message from client:</label>
                 <div class="panel-flex grey-bg" id="message-type-prompt">
@@ -506,7 +637,7 @@
             </div>
 
             <!-- *Reschedule Inputs -->
-            <div class="reschedule hide-content">
+            <div class="reschedule hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="reschedule">
               <div>
                 <label for="reschedule-reason">Reason for reschedule:</label>
                 <textarea name="reschedule-reason" id="reschedule-reason"></textarea>
@@ -518,7 +649,7 @@
             </div>
 
             <!-- *General Inputs -->
-            <div class="general-contact hide-content">
+            <div class="general-contact hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="general">
               <div>
                 <label for="general-contact-purpose">Purpose of contact:</label>
                 <input type="text" name="general-contact-purpose" id="general-contact-purpose" />
@@ -530,7 +661,7 @@
             </div>
 
             <!-- *Podio Link Input -->
-            <div class="podio hide-content">
+            <div class="podio hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="podio-link">
               <p class="show-all-emphasis" id="podio-link-explaination">If Podio link is missing from SP, paste the Warhead Podio link here and copy to SP.</p>
               <div>
                 <label for="podio-link">Podio Link:</label>
@@ -539,8 +670,8 @@
             </div>
 
             <!-- *Other Appts -->
-            <div id="other-dept-appt-prompt">
-              <label for="other-dept-appt">Other appointment(s)?</label>
+            <div id="other-dept-appt-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "sm-marketing"]'>
+              <label for="other-dept-appt">Other department appointment(s)?</label>
               <input type="checkbox" name="other-dept-appt" id="other-dept-appt" />
             </div>
 
@@ -604,13 +735,13 @@
               <input type="text" name="website-analysis-date" id="website-analysis-date" />
             </div>
 
-            <div id="next-topic-prompt" class="form-group">
+            <div id="next-topic-prompt" class="form-group" data-dept="warhead" data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance"]'>
               <label for="next-topic">Next topic:</label>
               <textarea name="next-topic" id="next-topic"></textarea>
             </div>
 
-            <!-- *Signature/initials (On all) -->
-            <div id="initials-prompt">
+            <!-- *Signature/initials -->
+            <div id="initials-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "general", "missed-appt", "sm-marketing"]'>
               <label for="initials">Initials</label>
               <input type="text" name="initials" id="initials" required />
             </div>

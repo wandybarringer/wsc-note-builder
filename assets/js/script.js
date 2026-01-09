@@ -1,4 +1,5 @@
 // *CORE UI & FORM CONTROL ELEMENTS
+var deptSelectEl = document.querySelector('#department');
 var apptSelectEl = document.querySelector('#appointment');
 var nonSpecFormEl = document.querySelector('#non-specific-form');
 var htmlNotesEl = document.querySelector('#html-notes');
@@ -19,6 +20,10 @@ var contactedByClientSpecEl = document.querySelector('.contacted-by-client');
 var rescheduleSpecEl = document.querySelector('.reschedule');
 var podioLinkSpecEl = document.querySelector('.podio');
 var generalContactSpecEl = document.querySelector('.general-contact');
+
+// *DATA ATTRIBUTE SELECTORS FOR DEPT & TEMPLATE SPECIFIC ELEMENTS
+var warheadOptions = document.querySelectorAll('option[data-dept="warhead"]');
+var smOptions = document.querySelectorAll('option[data-dept="supplier-management"]');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 var workedOnEl = document.querySelector('#worked-on');
@@ -216,6 +221,10 @@ var startedRegNoEl = document.querySelector('#started-registering-no');
 var startedRegNoneEl = document.querySelector('#started-registering-none');
 var startedRegYesEl = document.querySelector('#started-registering-yes');
 
+var livePromptEl = document.querySelector('#live-prompt');
+var registeredPromptEl = document.querySelector('#registered-prompt');
+var designFinishedPromptEl = document.querySelector('#design-finished-prompt');
+
 var liveNoEl = document.querySelector('#live-no');
 var liveNoneEl = document.querySelector('#live-none');
 var liveYesEl = document.querySelector('#live-yes');
@@ -262,13 +271,18 @@ var websiteAnalysisTechEl = document.querySelector('#website-analysis-tech');
 var websiteAnalysisDatePromptEl = document.querySelector('#website-analysis-date-prompt');
 var websiteAnalysisDateEl = document.querySelector('#website-analysis-date');
 
+// *SUPPLIER MANAGEMENT
+var howManyProductsPromptEl = document.querySelector('#how-many-products-prompt');
+
 // *THEME & GLOBAL STATE VARIABLES
 var toggleSwitch = document.querySelector('#dark-light-toggle');
 var currentTheme = document.documentElement.getAttribute('data-theme');
+var currentDeptValue = '';
+var savedDept = '';
+var currentApptValue = '';
 
 // *TEXT STRING VARIABLES (FOR NOTE GENERATION)
 var htmlNotes = '';
-var currentApptValue = '';
 var contactedClientText = '';
 var contText = '';
 var movedUpText = '';
@@ -409,6 +423,14 @@ var nextTopicText = '';
 var storedInitials = '';
 var initialsText = '';
 
+var apptLabels = {
+  'wh-first-appt': '1st Appointment',
+  'wh-second-appt': '2nd Appointment',
+  'wh-third-appt': '3rd Appointment',
+  'wh-post-appt': 'Post Appointment',
+  'wh-assistance': 'Warhead Assistance',
+};
+
 // *CORE UI & UTILITY FUNCTIONS
 
 function setVisibility(item, show) {
@@ -420,6 +442,15 @@ function setVisibility(item, show) {
     el.classList.toggle('show-content', show);
     el.classList.toggle('hide-content', !show);
   });
+}
+
+function setSavedDepartment() {
+  savedDept = localStorage.getItem('savedDept');
+
+  if (savedDept) {
+    deptSelectEl.value = savedDept;
+    updateDeptVisibility();
+  }
 }
 
 function setThemeToggle() {
@@ -478,7 +509,7 @@ function copyHtmlNotes() {
 }
 
 function formatPhone(value) {
-  let digits = value.replace(/\D/g, '');
+  var digits = value.replace(/\D/g, '');
   if (digits.length > 10 && digits.startsWith('1')) {
     digits = digits.substring(1);
   }
@@ -536,91 +567,84 @@ function addNewAssignedHwRow(container) {
 
 // *VISIBILITY & TEMPLATE CONTROLS
 
-function updateApptVisibility() {
-  var selectedValue = apptSelectEl.value;
-  currentApptValue = selectedValue;
+function parseDataAttributes(el) {
+  if (!el) return;
 
-  var isShowAllWorkedOn = showAllWorkedOnEl.checked;
-  var isShowAllHw = showAllAssignedHwEl.checked;
+  var currentDept = deptSelectEl.value;
+  var currentAppt = apptSelectEl.value;
+
+  var allowedDepts = [];
+  var allowedTemplates = [];
+
+  try {
+    var deptAttr = el.getAttribute('data-dept');
+    var tempAttr = el.getAttribute('data-template');
+
+    allowedDepts = deptAttr ? (deptAttr.startsWith('[') ? JSON.parse(deptAttr) : [deptAttr]) : [];
+    allowedTemplates = tempAttr ? (tempAttr.startsWith('[') ? JSON.parse(tempAttr) : [tempAttr]) : [];
+  } catch (e) {
+    console.error('Error parsing data attributes for element:', el, e);
+  }
+
+  var deptMatch = allowedDepts.length === 0 || allowedDepts.includes(currentDept);
+  var apptMatch = allowedTemplates.length === 0 || allowedTemplates.includes(currentAppt);
+
+  setVisibility(el, deptMatch && apptMatch);
+}
+
+function matchesDept(el, currentDept) {
+  var deptAttr = el.getAttribute('data-dept');
+
+  if (!deptAttr) return true;
+
+  try {
+    var allowedDepts = deptAttr.startsWith('[') ? JSON.parse(deptAttr) : [deptAttr];
+    return allowedDepts.includes(currentDept);
+  } catch (e) {
+    console.error('Error parsing data-dept for matchesDept:', e);
+    return false;
+  }
+}
+
+function handleDeptSelection() {
+  deptSelectEl.addEventListener('change', function (event) {
+    currentDeptValue = event.target.value;
+    apptSelectEl.value = 'default';
+
+    localStorage.setItem('savedDept', currentDeptValue);
+
+    setVisibility(nonSpecFormEl, false);
+
+    resetHtmlNotes();
+    updateDeptVisibility();
+  });
+}
+
+function updateDeptVisibility() {
+  var selectedValue = deptSelectEl.value;
+  currentDeptValue = selectedValue;
+
   var isDefault = selectedValue === 'default';
-  var isPost = selectedValue === 'Post Appointment';
-  var isWhAssistance = selectedValue === 'Warhead Assistance';
-  var isMissed = selectedValue === 'Missed Appointment';
-  var isContactedByClient = selectedValue === 'Contacted by Client';
-  var isReschedule = selectedValue === 'Reschedule';
-  var isGeneralContact = selectedValue === 'General';
-  var isPodioLink = selectedValue === 'Podio Link';
+  var isOnboarding = selectedValue === 'onboarding';
+  var isWarhead = selectedValue === 'warhead';
+  var isSupplierManagement = selectedValue === 'supplier-management';
+  var isSoicalMedia = selectedValue === 'social-media';
 
-  var allGroups = [firstApptSpecEl, secondApptSpecEl, secondAndThirdApptSpecEl, thirdApptSpecEl, postApptSpecEl, firstApptWorkedOnItems, secondApptWorkedOnItems, thirdApptWorkedOnItems, postApptWorkedOnItems, firstApptAssignedHwItems, secondApptAssignedHwItems, thirdApptAssignedHwItems, missedApptSpecEl, contactedByClientSpecEl, rescheduleSpecEl, generalContactSpecEl, podioLinkSpecEl];
+  if (isSupplierManagement) {
+    howManyProductsPromptEl.before(livePromptEl);
+    howManyProductsPromptEl.before(registeredPromptEl);
+  } else if (isWarhead) {
+    designFinishedPromptEl.after(registeredPromptEl);
+    designFinishedPromptEl.after(livePromptEl);
+  }
 
-  allGroups.forEach(function (group) {
-    setVisibility(group, false);
+  warheadOptions.forEach(function (option) {
+    setVisibility(option, isWarhead && !isDefault && !isOnboarding && !isSupplierManagement && !isSoicalMedia);
   });
 
-  setVisibility(nonSpecFormEl, !isDefault);
-
-  setVisibility(firstApptSpecEl, selectedValue === '1st Appointment');
-  setVisibility(secondApptSpecEl, selectedValue === '2nd Appointment');
-  setVisibility(secondAndThirdApptSpecEl, selectedValue === '2nd Appointment' || selectedValue === '3rd Appointment');
-  setVisibility(thirdApptSpecEl, selectedValue === '3rd Appointment');
-  setVisibility(postApptSpecEl, isPost);
-  setVisibility(missedApptSpecEl, isMissed);
-  setVisibility(contactedByClientSpecEl, isContactedByClient);
-  setVisibility(rescheduleSpecEl, isReschedule);
-  setVisibility(generalContactSpecEl, isGeneralContact);
-  setVisibility(podioLinkSpecEl, isPodioLink);
-
-  setVisibility(workedOnEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
-  setVisibility(showAllWorkedOnContEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
-
-  setVisibility(assignedHwEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink && !isWhAssistance);
-  setVisibility(showAllAssignedHwContEl, !isDefault && !isPost && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink && !isWhAssistance);
-
-  setVisibility(nextApptDatePromptEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
-  setVisibility(nextTopicPromptEl, !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink);
-  setVisibility(otherDeptApptPromptEl, !isDefault && !isMissed && !isGeneralContact && !isPodioLink);
-
-  setVisibility(initialsPromptEl, !isPodioLink);
-
-  var showGeneralInputs = !isDefault && !isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink;
-
-  var isNoteTemplateSelected = selectedValue !== 'default';
-  setVisibility(nonSpecFormEl, isNoteTemplateSelected);
-  setVisibility(contApptEl.closest('div'), showGeneralInputs);
-  setVisibility(hwNoneEl.closest('.toggle-switch').parentElement, showGeneralInputs);
-  setVisibility(hwPercentEl.closest('div'), showGeneralInputs);
-  setVisibility(additionalNotesEl.closest('.form-group'), showGeneralInputs);
-  setVisibility(movedUpPromptEl, showGeneralInputs);
-  setVisibility(screenSharePromptEl, showGeneralInputs);
-
-  if (!isMissed && !isContactedByClient && !isReschedule && !isGeneralContact && !isPodioLink) {
-    setVisibility(firstApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '1st Appointment');
-    setVisibility(secondApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '2nd Appointment');
-    setVisibility(thirdApptWorkedOnItems, isShowAllWorkedOn || selectedValue === '3rd Appointment');
-    setVisibility(postApptWorkedOnItems, isShowAllWorkedOn || isPost);
-    setVisibility(whAssistanceWorkedOnItems, isShowAllWorkedOn || isWhAssistance);
-
-    if (isShowAllHw && !isPost) {
-      setVisibility(firstApptAssignedHwItems, isShowAllHw || selectedValue === '1st Appointment');
-      setVisibility(secondApptAssignedHwItems, isShowAllHw || selectedValue === '2nd Appointment');
-      setVisibility(thirdApptAssignedHwItems, isShowAllHw || selectedValue === '3rd Appointment');
-
-      if (selectedValue === '1st Appointment') {
-        setVisibility(document.querySelectorAll('div:has(> #second-appt-continue-videos)'), false);
-      } else if (selectedValue === '2nd Appointment' || selectedValue === '3rd Appointment') {
-        setVisibility(document.querySelectorAll('div:has(> #first-appt-continue-videos)'), false);
-      }
-    }
-  }
-
-  var genApptPrompts = [contApptPromptEl, hwPromptEl, hwPercentPromptEl];
-  if (isWhAssistance) {
-    genApptPrompts.forEach(function (element) {
-      element.setAttribute('class', 'hide-content');
-    });
-  }
-
-  updateHtmlNotes();
+  smOptions.forEach(function (option) {
+    setVisibility(option, isSupplierManagement && !isDefault && !isOnboarding && !isWarhead && !isSoicalMedia);
+  });
 }
 
 function handleApptSelection() {
@@ -639,6 +663,46 @@ function handleApptSelection() {
     setInitials();
     updateApptVisibility();
   });
+}
+
+function updateApptVisibility() {
+  var selectedValue = apptSelectEl.value;
+  currentApptValue = selectedValue;
+  var selectedDept = deptSelectEl.value;
+  currentDeptValue = selectedDept;
+
+  var isDefault = selectedValue === 'default';
+  var isShowAllWorkedOn = showAllWorkedOnEl.checked;
+  var isShowAllHw = showAllAssignedHwEl.checked;
+
+  setVisibility(nonSpecFormEl, !isDefault);
+
+  var conditionalElements = document.querySelectorAll('[data-dept], [data-template]');
+  conditionalElements.forEach(parseDataAttributes);
+
+  if (selectedValue === 'wh-assistance') {
+    [contApptPromptEl, hwPromptEl, hwPercentPromptEl].forEach((el) => setVisibility(el, false));
+  }
+
+  if (isShowAllWorkedOn) {
+    var allWorkedOnItems = workedOnEl.querySelectorAll('div[data-dept]');
+    allWorkedOnItems.forEach((el) => {
+      if (matchesDept(el, selectedDept)) {
+        setVisibility(el, true);
+      }
+    });
+  }
+
+  if (isShowAllHw && selectedValue !== 'wh-post-appt') {
+    var allHwItems = assignedHwEl.querySelectorAll('div[data-dept]');
+    allHwItems.forEach((el) => {
+      if (matchesDept(el, selectedDept)) {
+        setVisibility(el, true);
+      }
+    });
+  }
+
+  updateHtmlNotes();
 }
 
 function setShowAllWorkedOn() {
@@ -664,31 +728,33 @@ function setShowAllAssignedHw() {
 // *NOTE GENERATION & RESET LOGIC
 
 function updateHtmlNotes() {
-  if ((currentApptValue === '1st Appointment' && currentApptValue !== 'default') || (currentApptValue === '2nd Appointment' && currentApptValue !== 'default') || (currentApptValue === '3rd Appointment' && currentApptValue !== 'default') || (currentApptValue === 'Post Appointment' && currentApptValue !== 'default')) {
+  var displayApptName = apptLabels[currentApptValue] || currentApptValue;
+
+  if ((currentApptValue === 'wh-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-post-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
-  <b>Contacted client${movedUpText} for${contText} ${currentApptValue} Warhead Training</b> ${screenShareText}
+  <b>Contacted client${movedUpText} for${contText} ${displayApptName} Warhead Training</b> ${screenShareText}
 </p>
 `;
     htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + completionFormText + smText + smRequirementsText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + smReminderText + initialsText;
-  } else if (currentApptValue === 'Missed Appointment' && currentApptValue !== 'default') {
+  } else if (currentApptValue === 'missed-appt' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
-  } else if (currentApptValue === 'Contacted by Client' && currentApptValue !== 'default') {
+  } else if (currentApptValue === 'contacted-by-client' && currentApptValue !== 'default') {
     htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
-  } else if (currentApptValue === 'Reschedule' && currentApptValue !== 'default') {
+  } else if (currentApptValue === 'reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client but they are <b>unable to attend appointment.</b>
 </p>
 `;
     htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
-  } else if (currentApptValue === 'Podio Link' && currentApptValue !== 'default') {
+  } else if (currentApptValue === 'podio-link' && currentApptValue !== 'default') {
     htmlNotes = podioLinkText;
-  } else if (currentApptValue === 'Warhead Assistance' && currentApptValue !== 'default') {
+  } else if (currentApptValue === 'wh-assistance' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  <b>Contacted client${movedUpText} for ${currentApptValue}</b> ${screenShareText}
+  <b>Contacted client${movedUpText} for ${displayApptName}</b> ${screenShareText}
 </p>
 `;
     htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
-  } else if (currentApptValue === 'General' && currentApptValue !== 'default') {
+  } else if (currentApptValue === 'general' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   <b>Contacted client${generalContactPurposeText}.</b>
 </p>
@@ -777,19 +843,19 @@ function setContAppt() {
   }
 
   contApptEl.addEventListener('change', function () {
-    if (contApptEl.checked && apptSelectEl.value === '1st Appointment') {
+    if (contApptEl.checked && apptSelectEl.value === 'wh-first-appt') {
       startedRegPromptEl.classList.remove('show-content');
       startedRegPromptEl.classList.add('hide-content');
-    } else if (!contApptEl.checked && apptSelectEl.value === '1st Appointment') {
+    } else if (!contApptEl.checked && apptSelectEl.value === 'wh-first-appt') {
       startedRegPromptEl.classList.remove('hide-content');
       startedRegPromptEl.classList.add('show-content');
     }
 
-    if ((contApptEl.checked && apptSelectEl.value === '1st Appointment') || (contApptEl.checked && apptSelectEl.value === '2nd Appointment') || (contApptEl.checked && apptSelectEl.value === '3rd Appointment') || (contApptEl.checked && apptSelectEl.value === 'Post Appointment')) {
+    if ((contApptEl.checked && apptSelectEl.value === 'wh-first-appt') || (contApptEl.checked && apptSelectEl.value === 'wh-second-appt') || (contApptEl.checked && apptSelectEl.value === 'wh-third-appt') || (contApptEl.checked && apptSelectEl.value === 'wh-post-appt')) {
       startedRegNoneEl.checked = true;
       startedRegText = '';
       contText = ' continuation';
-    } else if ((!contApptEl.checked && apptSelectEl.value === '1st Appointment') || (!contApptEl.checked && apptSelectEl.value === '2nd Appointment') || (!contApptEl.checked && apptSelectEl.value === '3rd Appointment') || (!contApptEl.checked && apptSelectEl.value === 'Post Appointment')) {
+    } else if ((!contApptEl.checked && apptSelectEl.value === 'wh-first-appt') || (!contApptEl.checked && apptSelectEl.value === 'wh-second-appt') || (!contApptEl.checked && apptSelectEl.value === 'wh-third-appt') || (!contApptEl.checked && apptSelectEl.value === 'wh-post-appt')) {
       contText = '';
     }
     updateHtmlNotes();
@@ -1218,8 +1284,8 @@ function setCompletionForm() {
   whyNotSignedPromptEl.setAttribute('class', 'hide-content');
 
   completionFormSentEl.addEventListener('change', function () {
-    if (currentApptValue !== '3rd Appointment' && currentApptValue !== '2nd Appointment') {
-      completionFormSentText = '';
+    if (currentApptValue !== 'wh-third-appt' && currentApptValue !== 'wh-second-appt') {
+      completionFormSignedText = '';
       updateHtmlNotes();
       return;
     }
@@ -1240,7 +1306,7 @@ function setCompletionForm() {
 
   cfSignedRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
-      if (currentApptValue !== '3rd Appointment' && currentApptValue !== '2nd Appointment') {
+      if (currentApptValue !== 'wh-third-appt' && currentApptValue !== 'wh-second-appt') {
         completionFormSignedText = '';
         updateHtmlNotes();
         return;
@@ -1303,7 +1369,7 @@ function setSupplierManagement() {
   });
 
   sentSmGuideEl.addEventListener('change', function () {
-    if (currentApptValue !== 'Post Appointment') {
+    if (currentApptValue !== 'wh-post-appt') {
       sentSmGuideText = '';
       updateHtmlNotes();
       return;
@@ -1320,7 +1386,7 @@ function setSupplierManagement() {
   });
 
   enrolledSmEl.addEventListener('change', function () {
-    if (currentApptValue !== 'Post Appointment') {
+    if (currentApptValue !== 'wh-post-appt') {
       enrolledSmText = '';
       updateHtmlNotes();
       return;
@@ -1364,7 +1430,7 @@ function updateSupplierManagement() {
 }
 
 // *END OF NOTE EXTRAS & INITIALS
-function setPostApptExtras() {
+function setLiveRegisteredDesign() {
   var liveRadioElements = [liveNoEl, liveNoneEl, liveYesEl];
 
   liveRadioElements.forEach(function (element) {
@@ -1740,7 +1806,7 @@ function setStartedRegistering() {
 
   startedRegRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
-      if (currentApptValue !== '1st Appointment') {
+      if (currentApptValue !== 'wh-first-appt') {
         startedRegText = '';
         updateHtmlNotes();
         return;
@@ -2352,6 +2418,8 @@ document.addEventListener('DOMContentLoaded', () => {
   clearInputs();
   setShowAllWorkedOn();
   setShowAllAssignedHw();
+  setSavedDepartment();
+  handleDeptSelection();
   handleApptSelection();
   setContAppt();
   setMovedUp();
@@ -2373,7 +2441,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setStartedRegistering();
   setCompletionForm();
   setSupplierManagement();
-  setPostApptExtras();
+  setLiveRegisteredDesign();
   setNextAppointment();
   setOtherAppointment();
   setNextTopic();

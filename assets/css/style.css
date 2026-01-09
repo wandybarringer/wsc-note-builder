@@ -424,6 +424,8 @@ input[type='number'] {
 }
 
 #hw-percent,
+#how-many-products,
+#how-many-suppliers-number,
 #initials {
   inline-size: 50px;
 }
