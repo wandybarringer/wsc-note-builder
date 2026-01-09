@@ -1524,7 +1524,7 @@ function setNextAppointment() {
       nextAppointmentText = '';
     } else {
       nextAppointmentText = `<p>
-  Set next Warhead appointment for ${newNextApptStr}.
+  Set our next appointment for ${newNextApptStr}.
 </p>
 `;
     }
