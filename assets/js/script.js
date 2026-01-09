@@ -181,6 +181,7 @@ var contactedEmailSentPromptEl = document.querySelector('#contacted-email-sent-p
 var contactedEmailSentEl = document.querySelector('#contacted-email-sent');
 var advisedClientEl = document.querySelector('#advised-client');
 var needsRescheduledEl = document.querySelector('#needs-reschedule');
+var contactedNeedsReschedulePromptEl = document.querySelector('#contacted-needs-reschedule-prompt');
 var contactedRescheduleDatePromptEl = document.querySelector('#contacted-reschedule-date-prompt');
 var contactedRescheduleDateEl = document.querySelector('#contacted-reschedule-date');
 
@@ -215,6 +216,7 @@ var smApptPromptEl = document.querySelector('#sm-appointment-date-prompt');
 var smApptEl = document.querySelector('#sm-appointment-date');
 
 // *POST-APPOINTMENT & NEXT STEPS
+var additionalNotesPromptEl = document.querySelector('#additional-notes-prompt');
 var additionalNotesEl = document.querySelector('#additional-notes');
 var startedRegPromptEl = document.querySelector('#started-registering-prompt');
 var startedRegNoEl = document.querySelector('#started-registering-no');
@@ -659,6 +661,12 @@ function handleApptSelection() {
       clearBtnEl.disabled = false;
     }
 
+    if (currentApptValue === 'contacted-by-client') {
+      contactedNeedsReschedulePromptEl.before(additionalNotesPromptEl);
+    } else if (currentApptValue !== 'contacted-by-client') {
+      startedRegPromptEl.before(additionalNotesPromptEl);
+    }
+
     resetHtmlNotes();
     setInitials();
     updateApptVisibility();
@@ -739,7 +747,7 @@ function updateHtmlNotes() {
   } else if (currentApptValue === 'missed-appt' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'contacted-by-client' && currentApptValue !== 'default') {
-    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
+    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + additionalNotesText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client but they are <b>unable to attend appointment.</b>
@@ -2076,6 +2084,7 @@ function updateMissedAppointment() {
 
 // *CONTACTED BY CLIENT
 function setContactedByClient() {
+  setVisibility(contactedEmailSentPromptEl, false);
   contactedByClientText = `<p>
   Contacted by client.
 </p>
@@ -2100,6 +2109,7 @@ function setContactedByClient() {
 `;
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
+        setVisibility(contactedEmailSentPromptEl, false);
         contactedPrompts.forEach(function (element) {
           element.setAttribute('class', 'hide-content');
         });
@@ -2113,6 +2123,7 @@ function setContactedByClient() {
         contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
         contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(contactedEmailSentPromptEl, true);
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
         successfulContactNoneEl.checked = true;
@@ -2290,7 +2301,7 @@ function setContactedByClient() {
       contactedRescheduleDateText = '';
     } else {
       contactedRescheduleDateText = `<p>
-  Rescheduled Warhead appointment to ${newContactedRescheduleOriginalStr}.
+  Rescheduled our appointment to ${newContactedRescheduleOriginalStr}.
 </p>
 `;
     }

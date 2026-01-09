@@ -350,7 +350,7 @@
               <label for="completed-marketing">The client has <b>completed supplier management and marketing appointment</b>.</label>
             </div>
 
-            <div class="form-group" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing"]'>
+            <div id="additional-notes-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing", "contacted-by-client"]'>
               <label for="additional-notes">Additional Notes:</label>
               <textarea name="additional-notes" id="additional-notes"></textarea>
             </div>
@@ -626,15 +626,15 @@
                 <label for="advised-client">Advised client:</label>
                 <textarea name="advised-client" id="advised-client"></textarea>
               </div>
-              <div>
+            </div>
+            <div id="contacted-needs-reschedule-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
                 <label for="needs-reschedule">Client needs rescheduled?</label>
                 <input type="checkbox" name="needs-reschedule" id="needs-reschedule" />
               </div>
-              <div id="contacted-reschedule-date-prompt">
+            <div id="contacted-reschedule-date-prompt" >
                 <label for="contacted-reschedule-date">Rescheduled appointment to:</label>
                 <input type="text" name="contacted-reschedule-date" id="contacted-reschedule-date" />
               </div>
-            </div>
 
             <!-- *Reschedule Inputs -->
             <div class="reschedule hide-content" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="reschedule">
