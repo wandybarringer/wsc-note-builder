@@ -931,6 +931,8 @@ function resetHtmlNotes() {
   submittedApplicationToText = '';
   assistedApplicationToText = '';
   followUpEmailToText = '';
+  completionFormSignedText = '';
+  whyNotSignedText = '';
 
   htmlNotesEl.value = '';
 
@@ -1010,10 +1012,10 @@ function setLiveRegisteredDesign() {
     element.addEventListener('change', function () {
       setVisibility(additionalTrainingPromptEl, registeredYesEl.checked && liveYesEl.checked && designFinishedYesEl.checked);
       if (registeredYesEl.checked) {
-        registeredText = `Client's business is registered.`;
+        registeredText = ` Client's business is registered.`;
         setVisibility(resaleCertPromptEl, true);
       } else if (registeredNoEl.checked) {
-        registeredText = `Client's business is <b>not registered</b>.`;
+        registeredText = ` Client's business is <b>not registered</b>.`;
         resaleCertText = '';
         setVisibility(resaleCertPromptEl, false);
         resaleCertNoneEl.checked = true;
@@ -1039,9 +1041,9 @@ function setLiveRegisteredDesign() {
     element.addEventListener('change', function () {
       setVisibility(additionalTrainingPromptEl, registeredYesEl.checked && liveYesEl.checked && designFinishedYesEl.checked && resaleCertYesEl.checked);
       if (resaleCertYesEl.checked) {
-        resaleCertText = `Client has obtained their resale certificate.`;
+        resaleCertText = ` Client has obtained their resale certificate.`;
       } else if (resaleCertNoEl.checked) {
-        resaleCertText = `Client <b>has not</b> obtained their resale certificate.`;
+        resaleCertText = ` Client <b>has not</b> obtained their resale certificate.`;
       } else if (resaleCertNoneEl.checked) {
         resaleCertText = '';
       } else {
@@ -1058,9 +1060,9 @@ function setLiveRegisteredDesign() {
     element.addEventListener('change', function () {
       setVisibility(additionalTrainingPromptEl, registeredYesEl.checked && liveYesEl.checked && designFinishedYesEl.checked);
       if (designFinishedYesEl.checked) {
-        designFinishedText = `Client's design is finished.`;
+        designFinishedText = ` Client's design is finished.`;
       } else if (designFinishedNoEl.checked) {
-        designFinishedText = `Client's design is <b>not finished</b>.`;
+        designFinishedText = ` Client's design is <b>not finished</b>.`;
       } else if (designFinishedNoneEl.checked) {
         designFinishedText = '';
       } else {
@@ -1091,7 +1093,7 @@ function setLiveRegisteredDesign() {
 function updateSmRequirements() {
   if (liveText || registeredText || designFinishedText || resaleCertText) {
     smRequirementsText = `<p>
-  ${liveText} ${registeredText} ${resaleCertText} ${designFinishedText}
+  ${liveText}${registeredText}${resaleCertText}${designFinishedText}
 </p>
 `;
   } else {
@@ -2362,12 +2364,6 @@ function setCompletionForm() {
   whyNotSignedPromptEl.setAttribute('class', 'hide-content');
 
   completionFormSentEl.addEventListener('change', function () {
-    if (currentApptValue !== 'wh-third-appt' && currentApptValue !== 'wh-second-appt') {
-      completionFormSignedText = '';
-      updateHtmlNotes();
-      return;
-    }
-
     if (completionFormSentEl.checked) {
       completionFormSentText = `Sent & explained completion form.`;
     } else {
@@ -2384,12 +2380,6 @@ function setCompletionForm() {
 
   cfSignedRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
-      if (currentApptValue !== 'wh-third-appt' && currentApptValue !== 'wh-second-appt') {
-        completionFormSignedText = '';
-        updateHtmlNotes();
-        return;
-      }
-
       if (cfSignedElYes.checked) {
         whyNotSignedPromptEl.setAttribute('class', 'hide-content');
         completionFormSignedText = ` Client has <b>signed</b> completion form.`;
@@ -2408,7 +2398,12 @@ function setCompletionForm() {
   });
 
   whyNotSignedEl.addEventListener('input', function (event) {
-    whyNotSignedText = event.target.value;
+    if (!event.target.value) {
+      whyNotSignedText = '';
+    } else {
+      whyNotSignedText = event.target.value;
+    }
+
     updateCompletionForm();
     updateHtmlNotes();
   });

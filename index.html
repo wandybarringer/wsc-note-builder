@@ -368,12 +368,12 @@
               <label for="completed-marketing">Client has completed supplier management and marketing appointment.</label>
             </div>
 
-            <div data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
+            <div data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt", "wh-post-appt"]'>
               <label for="completion-form-sent">Completion form sent?</label>
               <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
             </div>
 
-            <div id="completion-form-signed-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
+            <div id="completion-form-signed-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt",  "wh-post-appt"]'>
               <label class="default-pointer">Client signed completion form?</label>
               <div class="toggle-switch">
                 <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
@@ -430,7 +430,7 @@
               </div>
             </div>
 
-            <div id="design-finished-prompt" data-dept="warhead" data-template="wh-post-appt">
+            <div id="design-finished-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt","wh-post-appt"]'>
               <label class="default-pointer">Is client's design finished?</label>
               <div class="toggle-switch">
                 <input type="radio" name="design-finished" id="design-finished-no" value="No" />
