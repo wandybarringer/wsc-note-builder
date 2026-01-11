@@ -40,40 +40,67 @@
         <section id="input-panel" class="panel-flex">
           <!-- *Note Template Selection -->
           <div class="flex-row">
-            <form action="" id="department-selection">
-              <select name="department" id="department">
-                <option value="default" selected>Select department</option>
-                <option value="onboarding">Onboarding</option>
-                <option value="warhead">Warhead</option>
-                <option value="supplier-management">Supplier Management</option>
-                <option value="social-media">Social Media</option>
-              </select>
-            </form>
-              <label for="appointment"></label>
-              <select name="appointment" id="appointment">
-                <option value="default" selected>Select template</option>
-                <option value="wh-first-appt" data-dept="warhead">1st Appointment</option>
-                <option value="wh-second-appt" data-dept="warhead">2nd Appointment</option>
-                <option value="wh-third-appt" data-dept="warhead">3rd Appointment</option>
-                <option value="wh-post-appt" data-dept="warhead">Post Appointment</option>
-                <option value="wh-assistance" data-dept="warhead">Warhead Assistance</option>
-                <option value="sm-first-appt" data-dept="supplier-management">1st Appointment</option>
-                <option value="sm-follow-up" data-dept="supplier-management">Follow Up</option>
-                <option value="sm-final-upgraded" data-dept="supplier-management">Final (Upgraded)</option>
-                <option value="sm-final-non-upgraded" data-dept="supplier-management">Final (Non-Upgraded)</option>
-                <option value="sm-marketing" data-dept="supplier-management">Marketing</option>
-                <option value="missed-appt">Missed Appointment</option>
-                <option value="contacted-by-client">Contacted by Client</option>
-                <option value="reschedule">Reschedule</option>
-                <option value="general">General</option>
-                <option value="podio-link">Podio Link</option>
-              </select>
-            </form>
-            <button id="clear-btn">Reset</button>
+            <div class="flex-row">
+              <form action="" id="department-selection">
+                <select name="department" id="department">
+                  <option value="default" selected>Select department</option>
+                  <option value="onboarding">Onboarding</option>
+                  <option value="warhead">Warhead</option>
+                  <option value="supplier-management">Supplier Management</option>
+                  <option value="social-media">Social Media</option>
+                </select>
+              </form>
+              <form action="" id="template-selection">
+                <select name="appointment" id="appointment">
+                  <option value="default" selected>Select template</option>
+                  <option value="wh-first-appt" data-dept="warhead">1st Appointment</option>
+                  <option value="wh-second-appt" data-dept="warhead">2nd Appointment</option>
+                  <option value="wh-third-appt" data-dept="warhead">3rd Appointment</option>
+                  <option value="wh-post-appt" data-dept="warhead">Post Appointment</option>
+                  <option value="wh-assistance" data-dept="warhead">Warhead Assistance</option>
+                  <option value="sm-first-appt" data-dept="supplier-management">1st Appointment</option>
+                  <option value="sm-follow-up" data-dept="supplier-management">Follow Up</option>
+                  <option value="sm-final-upgraded" data-dept="supplier-management">Final (Upgraded)</option>
+                  <option value="sm-final-non-upgraded" data-dept="supplier-management">Final (Non-Upgraded)</option>
+                  <option value="sm-marketing" data-dept="supplier-management">Marketing</option>
+                  <option value="missed-appt">Missed Appointment</option>
+                  <option value="contacted-by-client">Contacted by Client</option>
+                  <option value="reschedule">Reschedule</option>
+                  <option value="general">General</option>
+                  <option value="podio-link">Podio Link</option>
+                </select>
+              </form>
+            </div>
+
+            <div class="flex-row-buttons">
+              <label for="show-all-dept-inputs" class="eye-toggle" title="Show All Options">
+                <input type="checkbox" id="show-all-dept-inputs" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-on">
+                  <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-off">
+                  <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                  <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                  <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                  <path d="m2 2 20 20" />
+                </svg>
+              </label>
+
+              <button id="clear-btn" title="Reset Template">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="reset-icon">
+                  <path d="M21 5H3" />
+                  <path d="M7 12H3" />
+                  <path d="M7 19H3" />
+                  <path d="M12 18a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L11 14" />
+                  <path d="M11 10v4h4" />
+                </svg>
+              </button>
+            </div>
           </div>
 
           <form action="" class="hide-content" id="non-specific-form">
-
             <div id="continuation-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
               <input type="checkbox" name="continuation" id="continuation" class="continuation" />
               <label for="continuation">Continuation appointment</label>
@@ -126,8 +153,8 @@
 
             <div data-dept="supplier-management" data-template='["sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
               <label for="how-many-suppliers">How many suppliers does client have?</label>
-              <input type="number" name="how-many-suppliers-number" id="how-many-suppliers-number" placeholder="#"/>
-              <input type="text" name="how-many-suppliers-names" id="how-many-suppliers-names" placeholder="Supplier Names"/>
+              <input type="number" name="how-many-suppliers-number" id="how-many-suppliers-number" placeholder="#" />
+              <input type="text" name="how-many-suppliers-names" id="how-many-suppliers-names" placeholder="Supplier Names" />
             </div>
 
             <div id="worked-on" class="grey-bg" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
@@ -194,19 +221,19 @@
               <div data-dept="supplier-management" data-template="sm-first-appt">
                 <input type="checkbox" name="submitted-application" id="submitted-application" />
                 <label for="submitted-application">Submitted application to:</label>
-                <input type="text" name="submitted-application-to" id="submitted-application-to" placeholder="Supplier Name(s)"/>
+                <input type="text" name="submitted-application-to" id="submitted-application-to" placeholder="Supplier Name(s)" />
               </div>
 
               <div data-dept="supplier-management" data-template="sm-follow-up">
                 <input type="checkbox" name="assisted-application" id="assisted-application" />
                 <label for="assisted-application">Assisted in submitting applications to:</label>
-                <input type="text" name="assisted-application-to" id="assisted-application-to" placeholder="Supplier Name(s)"/>
+                <input type="text" name="assisted-application-to" id="assisted-application-to" placeholder="Supplier Name(s)" />
               </div>
 
               <div data-dept="supplier-management" data-template="sm-follow-up">
                 <input type="checkbox" name="follow-up-email" id="follow-up-email" />
                 <label for="follow-up-email">Assisted in sending follow up emails to:</label>
-                <input type="text" name="follow-up-email-to" id="follow-up-email-to" placeholder="Supplier Name(s)"/>
+                <input type="text" name="follow-up-email-to" id="follow-up-email-to" placeholder="Supplier Name(s)" />
               </div>
 
               <div id="custom-worked-on-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
@@ -275,7 +302,7 @@
               <input type="checkbox" id="show-all-assigned-hw" />
             </div>
 
-            <div class="grey-bg" data-dept="warhead" data-template="wh-post-appt">
+            <div id="post-checklist-prompt" class="grey-bg" data-dept="warhead" data-template="wh-post-appt">
               <p class="default-pointer">Post Training Checklist:</p>
               <div><input type="checkbox" name="business-email" id="business-email" /> <label for="business-email">Business email appears on Settings & Extra Forms</label></div>
 
@@ -319,12 +346,12 @@
                 <label for="metas-review">Category keywords, meta titles, and meta descriptions</label>
               </div>
 
-               <div>
+              <div>
                 <input type="checkbox" name="revise-titles-desc" id="revise-titles-desc" />
                 <label for="revise-titles-desc">Revising product titles and product descriptions</label>
               </div>
 
-               <div>
+              <div>
                 <input type="checkbox" name="optimize-images" id="optimize-images" />
                 <label for="optimize-images">Optimizing images</label>
               </div>
@@ -336,7 +363,7 @@
             </div>
 
             <div data-dept="supplier-management" data-template='["sm-final-upgraded", "sm-final-non-upgraded"]'>
-              <input type="checkbox" name="remove-non-niche" id="remove-non-niche">
+              <input type="checkbox" name="remove-non-niche" id="remove-non-niche" />
               <label for="remove-non-niche">Advised client to remove any non-niche related items.</label>
             </div>
 
@@ -359,21 +386,21 @@
             </div>
 
             <div data-dept="supplier-management" data-template='["sm-final-upgraded", "sm-final-non-upgraded"]'>
-              <input type="checkbox" name="completed-supplier-management" id="completed-supplier-management">
+              <input type="checkbox" name="completed-supplier-management" id="completed-supplier-management" />
               <label for="completed-supplier-management">Client has completed supplier management.</label>
             </div>
 
-             <div data-dept="supplier-management" data-template="sm-marketing">
-              <input type="checkbox" name="completed-marketing" id="completed-marketing">
+            <div data-dept="supplier-management" data-template="sm-marketing">
+              <input type="checkbox" name="completed-marketing" id="completed-marketing" />
               <label for="completed-marketing">Client has completed supplier management and marketing appointment.</label>
             </div>
 
-            <div data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt", "wh-post-appt"]'>
+            <div data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
               <label for="completion-form-sent">Completion form sent?</label>
               <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
             </div>
 
-            <div id="completion-form-signed-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt",  "wh-post-appt"]'>
+            <div id="completion-form-signed-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
               <label class="default-pointer">Client signed completion form?</label>
               <div class="toggle-switch">
                 <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
@@ -483,12 +510,12 @@
               <input type="text" name="marketing-date" id="marketing-date" />
             </div>
 
-             <div data-dept="supplier-management" data-template="sm-final-upgraded">
+            <div data-dept="supplier-management" data-template="sm-final-upgraded">
               <label for="sm-ws-tech">Website Analysis Tech assigned:</label>
               <input type="text" name="sm-ws-tech" id="sm-ws-tech" />
             </div>
 
-            <div data-dept="supplier-management" data-template="sm-final-upgraded"> 
+            <div data-dept="supplier-management" data-template="sm-final-upgraded">
               <label for="sm-ws-appointment-date">Booked Website Analysis appointment on:</label>
               <input type="text" name="sm-ws-appointment-date" id="sm-ws-appointment-date" />
             </div>
@@ -641,16 +668,15 @@
               </div>
             </div>
             <div id="contacted-needs-reschedule-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
-                <label for="needs-reschedule">Client needs rescheduled?</label>
-                <input type="checkbox" name="needs-reschedule" id="needs-reschedule" />
-              </div>
-            <div id="contacted-reschedule-date-prompt" >
-                <label for="contacted-reschedule-date">Rescheduled appointment to:</label>
-                <input type="text" name="contacted-reschedule-date" id="contacted-reschedule-date" />
-              </div>
+              <label for="needs-reschedule">Client needs rescheduled?</label>
+              <input type="checkbox" name="needs-reschedule" id="needs-reschedule" />
+            </div>
+            <div id="contacted-reschedule-date-prompt">
+              <label for="contacted-reschedule-date">Rescheduled appointment to:</label>
+              <input type="text" name="contacted-reschedule-date" id="contacted-reschedule-date" />
+            </div>
 
-            
-              <!-- *Reschedule Inputs -->
+            <!-- *Reschedule Inputs -->
             <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="reschedule">
               <div>
                 <label for="reschedule-reason">Reason for reschedule:</label>
@@ -767,7 +793,7 @@
           <dialog id="copy-msg-dialog">
             <p>Click to copy</p>
           </dialog>
-          <textarea name="html-notes" id="html-notes" class="can-be-active"></textarea>
+          <textarea name="html-notes" id="html-notes"></textarea>
         </section>
 
         <dialog id="copy-dialog">

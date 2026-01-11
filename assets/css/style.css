@@ -88,6 +88,13 @@ section {
 .flex-row {
   display: flex;
   justify-content: space-between;
+  gap: 1%;
+}
+
+.flex-row-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
 }
 
 #input-panel {
@@ -135,7 +142,8 @@ header ul {
 
 /* FORM ELEMENTS (INPUTS, SELECT, TEXTAREA) */
 select,
-#clear-btn {
+#clear-btn,
+.eye-toggle {
   cursor: pointer;
   font: inherit;
   padding: 0.3rem;
@@ -146,7 +154,9 @@ select,
   background: var(--secondary-bg);
 }
 
-#clear-btn:hover {
+#clear-btn:hover,
+.eye-toggle:hover,
+#screen-share:hover {
   background: var(--primary-hover);
 }
 
@@ -439,6 +449,7 @@ input[type='number'] {
   right: 0;
   border: none;
   background: none;
+  margin-inline-end: 2%;
 }
 
 .theme-switch {
@@ -656,23 +667,42 @@ input[type='checkbox']:hover {
   }
 }
 
-#clear-btn {
-  inline-size: 20%;
+#clear-btn,
+.eye-toggle {
+  inline-size: 2.15rem;
   block-size: 2.15rem;
   transition: font-size 0.1s ease, box-shadow 0.1s ease;
 }
 
-#clear-btn:active {
+#clear-btn:active,
+.eye-toggle:active {
   font-size: 1.15rem;
   box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.25), inset -3px -3px 6px rgba(255, 255, 255, 0.15);
   border-color: var(--input-border);
 }
 
-#clear-btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-  pointer-events: none;
-  box-shadow: none;
+#show-all-dept-inputs {
+  display: none;
+}
+
+.eye-toggle {
+  cursor: pointer;
+}
+
+.eye-off {
+  display: none;
+}
+
+.eye-on {
+  display: block;
+}
+
+#show-all-dept-inputs:checked ~ .eye-on {
+  display: none;
+}
+
+#show-all-dept-inputs:checked ~ .eye-off {
+  display: block;
 }
 
 #html-notes {
@@ -690,7 +720,7 @@ input[type='checkbox']:hover {
   background: var(--secondary-bg);
 }
 
-.can-be-active:active {
+#html-notes:active {
   appearance: none;
   box-shadow: inset 6px 6px 15px rgba(0, 0, 0, 0.25), inset -5px -5px 13px rgba(255, 255, 255, 0.18);
   border-color: var(--input-border);
@@ -704,14 +734,11 @@ input[type='checkbox']:hover {
   caret-color: transparent;
 }
 
-#html-notes:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-  pointer-events: none;
-  box-shadow: none;
-}
-
-#appointment:disabled {
+#html-notes:disabled,
+#appointment:disabled,
+#clear-btn:disabled,
+#show-all-dept-inputs:disabled ~ svg,
+.eye-toggle:has(#show-all-dept-inputs:disabled) {
   cursor: not-allowed;
   opacity: 0.6;
   pointer-events: none;

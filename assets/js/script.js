@@ -8,6 +8,7 @@ var copyDialogEl = document.querySelector('#copy-dialog');
 var initialsReqDialogEl = document.querySelector('#initials-required-dialog');
 var clearBtnEl = document.querySelector('#clear-btn');
 var initialsEl = document.querySelector('#initials');
+var showAllDeptInputsEl = document.querySelector('#show-all-dept-inputs');
 
 // *APPOINTMENT SPECIFIC CONTAINERS (NODELISTS)
 var firstApptSpecEl = document.querySelectorAll('.first-appt');
@@ -604,6 +605,23 @@ function clearInputs() {
   });
 }
 
+function showAllInputs() {
+  showAllDeptInputsEl.disabled = true;
+
+  showAllDeptInputsEl.addEventListener('change', function () {
+    var selector = `[data-dept]:not(#worked-on *):not(#assigned-hw *):not([data-template="missed-appt"]):not([data-template="contacted-by-client"]):not([data-template="reschedule"]):not([data-template="general"]):not([data-template="podio-link"]):not(#show-all-assigned-hw-container):not(#assigned-hw):not(#post-checklist-prompt)`;
+    var allDeptValues = document.querySelectorAll(selector);
+
+    allDeptValues.forEach(function (el) {
+      if (showAllDeptInputsEl.checked) {
+        setVisibility(el, matchesDept(el, currentDeptValue));
+      } else {
+        updateApptVisibility();
+      }
+    });
+  });
+}
+
 function handleDateFormat(date) {
   var updatedDate = date.replace('⋅', ', ');
 
@@ -700,8 +718,10 @@ function updateDeptVisibility() {
   var isSoicalMedia = selectedValue === 'social-media';
 
   if (isDefault) {
+    htmlNotesEl.disabled = true;
     apptSelectEl.disabled = true;
     clearBtnEl.disabled = true;
+    showAllDeptInputsEl.disabled = true;
   } else if (!isDefault) {
     apptSelectEl.disabled = false;
   }
@@ -732,9 +752,11 @@ function handleApptSelection() {
     if (currentApptValue === 'default') {
       htmlNotesEl.disabled = true;
       clearBtnEl.disabled = true;
+      showAllDeptInputsEl.disabled = true;
     } else {
       htmlNotesEl.disabled = false;
       clearBtnEl.disabled = false;
+      showAllDeptInputsEl.disabled = false;
     }
 
     if (currentApptValue === 'contacted-by-client') {
@@ -765,12 +787,14 @@ function updateApptVisibility() {
   conditionalElements.forEach(parseDataAttributes);
 
   if (selectedValue === 'wh-assistance') {
-    [contApptPromptEl, hwPromptEl, hwPercentPromptEl].forEach((el) => setVisibility(el, false));
+    [contApptPromptEl, hwPromptEl, hwPercentPromptEl].forEach(function (el) {
+      setVisibility(el, false);
+    });
   }
 
   if (isShowAllWorkedOn) {
     var allWorkedOnItems = workedOnEl.querySelectorAll('div[data-dept]');
-    allWorkedOnItems.forEach((el) => {
+    allWorkedOnItems.forEach(function (el) {
       if (matchesDept(el, selectedDept)) {
         setVisibility(el, true);
       }
@@ -779,7 +803,7 @@ function updateApptVisibility() {
 
   if (isShowAllHw && selectedValue !== 'wh-post-appt') {
     var allHwItems = assignedHwEl.querySelectorAll('div[data-dept]');
-    allHwItems.forEach((el) => {
+    allHwItems.forEach(function (el) {
       if (matchesDept(el, selectedDept)) {
         setVisibility(el, true);
       }
@@ -937,6 +961,7 @@ function resetHtmlNotes() {
   htmlNotesEl.value = '';
 
   var nonSpecForms = document.querySelectorAll('#non-specific-form');
+  showAllDeptInputsEl.checked = false;
 
   nonSpecForms.forEach(function (form) {
     form.reset();
@@ -2684,6 +2709,8 @@ document.addEventListener('DOMContentLoaded', () => {
     htmlNotesEl.classList.add('can-be-active');
   }
 
+  showAllDeptInputsEl.checked = false;
+
   htmlNotesEl.value = '';
 
   var allForms = document.querySelectorAll('form');
@@ -2694,6 +2721,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   copyHtmlNotes();
   clearInputs();
+  showAllInputs();
   setShowAllWorkedOn();
   setShowAllAssignedHw();
   setSavedDepartment();
