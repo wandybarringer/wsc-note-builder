@@ -864,7 +864,7 @@ function updateHtmlNotes() {
     htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'general' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  Contacted client <b>${generalContactPurposeText}</b>
+  Contacted client${generalContactPurposeText}.
 </p>
 `;
     htmlNotes = contactedClientText + generalContactNoteText + initialsText;
@@ -2208,7 +2208,7 @@ function setGeneralContact() {
     if (!event.target.value) {
       generalContactPurposeText = '';
     } else {
-      generalContactPurposeText = ` for ${event.target.value}`;
+      generalContactPurposeText = ` for <b>${event.target.value}</b>`;
     }
     updateHtmlNotes();
   });
