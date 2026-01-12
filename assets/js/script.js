@@ -10,50 +10,25 @@ var clearBtnEl = document.querySelector('#clear-btn');
 var initialsEl = document.querySelector('#initials');
 var showAllDeptInputsEl = document.querySelector('#show-all-dept-inputs');
 
-// *APPOINTMENT SPECIFIC CONTAINERS (NODELISTS)
-var firstApptSpecEl = document.querySelectorAll('.first-appt');
-var secondApptSpecEl = document.querySelectorAll('.second-appt');
-var secondAndThirdApptSpecEl = document.querySelectorAll('.second-and-third-appt');
-var thirdApptSpecEl = document.querySelectorAll('.third-appt');
-var postApptSpecEl = document.querySelectorAll('.post-appt');
-var missedApptSpecEl = document.querySelector('.missed-appt');
-var contactedByClientSpecEl = document.querySelector('.contacted-by-client');
-var rescheduleSpecEl = document.querySelector('.reschedule');
-var podioLinkSpecEl = document.querySelector('.podio');
-var generalContactSpecEl = document.querySelector('.general-contact');
-
 // *DATA ATTRIBUTE SELECTORS FOR DEPT & TEMPLATE SPECIFIC ELEMENTS
 var warheadOptions = document.querySelectorAll('option[data-dept="warhead"]');
 var smOptions = document.querySelectorAll('option[data-dept="supplier-management"]');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 var workedOnEl = document.querySelector('#worked-on');
-var showAllWorkedOnContEl = document.querySelector('#show-all-worked-on-container');
 var showAllWorkedOnEl = document.querySelector('#show-all-worked-on');
-
-var firstApptWorkedOnItems = document.querySelectorAll('div:has(> #dashboard-navigation), ' + 'div:has(> #extra-pages), ' + 'div:has(> #creating-categories), ' + 'div:has(> #organizing-categories), ' + 'div:has(> #creating-products), ' + 'div:has(> #products-grid), ' + 'div:has(> #categorizing-products) ');
-var secondApptWorkedOnItems = document.querySelectorAll('div:has(> #discounts), ' + 'div:has(> #checkout-sections), ' + 'div:has(> #paypal-apple-pay), ' + 'div:has(> #test-order), ' + 'div:has(> #process-order) ');
-var thirdApptWorkedOnItems = document.querySelectorAll('div:has(> #updating-products), ' + 'div:has(> #unavailable-products)');
-var postApptWorkedOnItems = document.querySelectorAll('div:has(> #stripe),' + 'div:has(> #variants),' + 'div:has(> #google-analytics)');
-var whAssistanceWorkedOnItems = document.querySelectorAll('div:has(> #new-updating-products),' + 'div:has(> #process-real-order),' + 'div:has(> #modify-variants)');
 
 // *"ASSIGNED HOMEWORK" - PARENT CONTAINERS & SHOW ALL LOGIC
 var assignedHwEl = document.querySelector('#assigned-hw');
 var showAllAssignedHwContEl = document.querySelector('#show-all-assigned-hw-container');
 var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
 
-var firstApptAssignedHwItems = document.querySelectorAll('div:has(> #first-appt-finish-videos), ' + 'div:has(> #review-extra-pages), ' + 'div:has(> #remove-products), ' + 'div:has(> #practice-categorizing-products), ' + 'div:has(> #practice-creating-categories), ' + 'div:has(> #register-business), ' + 'div:has(> #first-appt-continue-videos)');
-var secondApptAssignedHwItems = document.querySelectorAll('div:has(> #second-appt-finish-videos), ' + 'div:has(> #practice-discounts), ' + 'div:has(> #practice-orders), ' + 'div:has(> #second-appt-continue-videos)');
-var thirdApptAssignedHwItems = document.querySelectorAll('div:has(> #third-appt-finish-videos), ' + 'div:has(> #practice-updating), ' + 'div:has(> #all-videos)');
-
 // *INDIVIDUAL CHECKBOX/RADIO & PROMPT ELEMENTS
 
 // General Progress Elements
 var contApptPromptEl = document.querySelector('#continuation-prompt');
 var contApptEl = document.querySelector('#continuation');
-var movedUpPromptEl = document.querySelector('#moved-up-prompt');
 var movedUpEl = document.querySelector('#moved-up');
-var screenSharePromptEl = document.querySelector('#screen-share-prompt');
 var screenShareEl = document.querySelector('#screen-share');
 var screenShareOtherPromptEl = document.querySelector('#screen-share-other-prompt');
 var screenShareOtherEl = document.querySelector('#screen-share-other');
@@ -63,7 +38,6 @@ var hwNoneEl = document.querySelector('#hw-none');
 var hwYesEl = document.querySelector('#hw-yes');
 var hwPercentPromptEl = document.querySelector('#hw-percent-prompt');
 var hwPercentEl = document.querySelector('#hw-percent');
-var initialsPromptEl = document.querySelector('#initials-prompt');
 
 // "Worked On" Checklist (1st Appt)
 var dashNavEl = document.querySelector('#dashboard-navigation');
@@ -605,20 +579,24 @@ function clearInputs() {
   });
 }
 
-function showAllInputs() {
+function setShowAllInputs() {
+  var selector = `[data-dept]:not(#worked-on *):not(#assigned-hw *):not([data-template="missed-appt"]):not([data-template="contacted-by-client"]):not([data-template="reschedule"]):not([data-template="general"]):not([data-template="podio-link"]):not(#show-all-assigned-hw-container):not(#assigned-hw):not(#post-checklist-prompt)`;
+  var allDeptValues = document.querySelectorAll(selector);
+
+  allDeptValues.forEach(function (el) {
+    if (showAllDeptInputsEl.checked) {
+      setVisibility(el, matchesDept(el, currentDeptValue));
+    } else {
+      updateApptVisibility();
+    }
+  });
+}
+
+function handleShowAllInputs() {
   showAllDeptInputsEl.disabled = true;
 
   showAllDeptInputsEl.addEventListener('change', function () {
-    var selector = `[data-dept]:not(#worked-on *):not(#assigned-hw *):not([data-template="missed-appt"]):not([data-template="contacted-by-client"]):not([data-template="reschedule"]):not([data-template="general"]):not([data-template="podio-link"]):not(#show-all-assigned-hw-container):not(#assigned-hw):not(#post-checklist-prompt)`;
-    var allDeptValues = document.querySelectorAll(selector);
-
-    allDeptValues.forEach(function (el) {
-      if (showAllDeptInputsEl.checked) {
-        setVisibility(el, matchesDept(el, currentDeptValue));
-      } else {
-        updateApptVisibility();
-      }
-    });
+    setShowAllInputs();
   });
 }
 
@@ -759,6 +737,12 @@ function handleApptSelection() {
       showAllDeptInputsEl.disabled = false;
     }
 
+    if (currentApptValue === 'missed-appt' || currentApptValue === 'contacted-by-client' || currentApptValue === 'reschedule' || currentApptValue === 'general' || currentApptValue === 'podio-link') {
+      showAllDeptInputsEl.disabled = true;
+    } else {
+      showAllDeptInputsEl.disabled = false;
+    }
+
     if (currentApptValue === 'contacted-by-client') {
       contactedNeedsReschedulePromptEl.before(additionalNotesPromptEl);
     } else if (currentApptValue !== 'contacted-by-client') {
@@ -780,6 +764,7 @@ function updateApptVisibility() {
   var isDefault = selectedValue === 'default';
   var isShowAllWorkedOn = showAllWorkedOnEl.checked;
   var isShowAllHw = showAllAssignedHwEl.checked;
+  var isShowAllInputs = showAllDeptInputsEl.checked;
 
   setVisibility(nonSpecFormEl, !isDefault);
 
@@ -792,8 +777,18 @@ function updateApptVisibility() {
     });
   }
 
-  if (isShowAllWorkedOn) {
-    var allWorkedOnItems = workedOnEl.querySelectorAll('div[data-dept]');
+  var allWorkedOnItems = workedOnEl.querySelectorAll('div[data-dept]');
+
+  if (isShowAllWorkedOn && isShowAllInputs) {
+    allWorkedOnItems.forEach(function (el) {
+      if (matchesDept(el, selectedDept)) {
+        setShowAllInputs();
+        setVisibility(el, true);
+      }
+    });
+  } else if (!isShowAllWorkedOn && isShowAllInputs) {
+    setShowAllInputs();
+  } else if (isShowAllWorkedOn && !isShowAllInputs) {
     allWorkedOnItems.forEach(function (el) {
       if (matchesDept(el, selectedDept)) {
         setVisibility(el, true);
@@ -1961,6 +1956,11 @@ function setContactedByClient() {
     var currentMsgType = element.value;
 
     element.addEventListener('change', function () {
+      returnContactText = '';
+      advisedClientText = '';
+      additionalNotesText = '';
+      advisedClientEl.value = '';
+      additionalNotesEl.value = '';
       if (messageTypeNoneRadioEl.checked) {
         contactedByClientText = `<p>
   Contacted by client.
@@ -2360,12 +2360,6 @@ function setStartedRegistering() {
 
   startedRegRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
-      if (currentApptValue !== 'wh-first-appt') {
-        startedRegText = '';
-        updateHtmlNotes();
-        return;
-      }
-
       if (startedRegYesEl.checked) {
         startedRegText = `<p>
   Client <b>has</b> started registering business.
@@ -2721,7 +2715,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   copyHtmlNotes();
   clearInputs();
-  showAllInputs();
+  handleShowAllInputs();
   setShowAllWorkedOn();
   setShowAllAssignedHw();
   setSavedDepartment();

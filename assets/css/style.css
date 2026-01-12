@@ -16,6 +16,7 @@
   --secondary-text: #f8fafc;
   --input-border: #bdc6d1;
   --primary-action: #5181e9;
+  --secondary-action: #1753d4;
   --primary-emphasis: #910202;
   --primary-warning: #ff0000;
   --emphasis-bg: #cac4c480;
@@ -39,9 +40,10 @@
   --secondary-text: #f8fafc;
   --input-border: #53565a;
   --primary-action: #4165b4;
+  --secondary-action: #4873cf;
   --primary-emphasis: #b82d2d;
   --emphasis-bg: #4d484880;
-  --primary-hover: #afb0b1;
+  --primary-hover: #555555;
   --dark-light-action: #1b1b1b;
   --toggle-bg: #2563eb;
   --toggle-round: #fff;
