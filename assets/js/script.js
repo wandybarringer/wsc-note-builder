@@ -978,7 +978,7 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptWhPromptEl];
 
   allPrompts.forEach(function (element) {
     element.setAttribute('class', 'hide-content');
