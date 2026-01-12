@@ -227,30 +227,42 @@ var nextTopicEl = document.querySelector('#next-topic');
 // *OTHER APPOINTMENT PROMPS & INPUTS
 var otherDeptApptPromptEl = document.querySelector('#other-dept-appt-prompt');
 var otherDeptApptEl = document.querySelector('#other-dept-appt');
+
 var whAssistanceApptPromptEl = document.querySelector('#wh-assistance-appt-prompt');
+var otherDeptApptWhPromptEl = document.querySelector('#other-dept-appt-wh-prompt');
 var whAssistanceApptEl = document.querySelector('#wh-assistance-appt');
-var whAssistanceTechPromptEl = document.querySelector('#wh-assistance-tech-prompt');
+var reminderWhAssistanceEl = document.querySelector('#reminder-wh-assistance');
 var whAssistanceTechEl = document.querySelector('#wh-assistance-tech');
-var whAssistanceDatePromptEl = document.querySelector('#wh-assistance-date-prompt');
+var whAssistanceBookingIdEl = document.querySelector('#wh-assistance-booking-id');
 var whAssistanceDateEl = document.querySelector('#wh-assistance-date');
+var whBookingIdPrompt = document.querySelector('#wh-booking-id-prompt');
+
 var obAssistanceApptPromptEl = document.querySelector('#ob-assistance-appt-prompt');
+var otherDeptApptObPromptEl = document.querySelector('#other-dept-appt-ob-prompt');
 var obAssistanceApptEl = document.querySelector('#ob-assistance-appt');
-var obAssistanceTechPromptEl = document.querySelector('#ob-assistance-tech-prompt');
+var reminderObAssistanceEl = document.querySelector('#reminder-ob-assistance');
 var obAssistanceTechEl = document.querySelector('#ob-assistance-tech');
-var obAssistanceDatePromptEl = document.querySelector('#ob-assistance-date-prompt');
+var obAssistanceBookingIdEl = document.querySelector('#ob-assistance-booking-id');
 var obAssistanceDateEl = document.querySelector('#ob-assistance-date');
+var obBookingIdPrompt = document.querySelector('#ob-booking-id-prompt');
+
 var nicheChangeApptPromptEl = document.querySelector('#niche-change-appt-prompt');
+var otherDeptApptNcPromptEl = document.querySelector('#other-dept-appt-nc-prompt');
 var nicheChangeApptEl = document.querySelector('#niche-change-appt');
-var nicheChangeTechPromptEl = document.querySelector('#niche-change-tech-prompt');
+var reminderNcEl = document.querySelector('#reminder-nc');
 var nicheChangeTechEl = document.querySelector('#niche-change-tech');
-var nicheChangeDatePromptEl = document.querySelector('#niche-change-date-prompt');
+var ncBookingIdEl = document.querySelector('#nc-booking-id');
 var nicheChangeDateEl = document.querySelector('#niche-change-date');
+var ncBookingIdPrompt = document.querySelector('#nc-booking-id-prompt');
+
 var websiteAnalysisApptPromptEl = document.querySelector('#website-analysis-appt-prompt');
+var otherDeptApptWaPromptEl = document.querySelector('#other-dept-appt-wa-prompt');
 var websiteAnalysisApptEl = document.querySelector('#website-analysis-appt');
-var websiteAnalysisTechPromptEl = document.querySelector('#website-analysis-tech-prompt');
+var reminderWaEl = document.querySelector('#reminder-wa');
 var websiteAnalysisTechEl = document.querySelector('#website-analysis-tech');
-var websiteAnalysisDatePromptEl = document.querySelector('#website-analysis-date-prompt');
+var waBookingIdEl = document.querySelector('#wa-booking-id');
 var websiteAnalysisDateEl = document.querySelector('#website-analysis-date');
+var waBookingIdPrompt = document.querySelector('#wa-booking-id-prompt');
 
 // *SUPPLIER MANAGEMENT
 var howManyProductsPromptEl = document.querySelector('#how-many-products-prompt');
@@ -448,15 +460,19 @@ var smReminderText = '';
 var nextAppointmentText = '';
 var whAssistanceTechText = '';
 var whAssistanceDateText = '';
+var whAssistanceBookingIdText = '';
 var whAssistanceText = '';
 var obAssistanceTechText = '';
 var obAssistanceDateText = '';
+var obAssistanceBookingIdText = '';
 var obAssistanceText = '';
 var nicheChangeTechText = '';
 var nicheChangeDateText = '';
+var ncBookingIdText = '';
 var nicheChangeText = '';
 var websiteAnalysisTechText = '';
 var websiteAnalysisDateText = '';
+var waBookingIdText = '';
 var websiteAnalysisText = '';
 var nextTopicText = '';
 var storedInitials = '';
@@ -962,7 +978,7 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl, websiteAnalysisApptPromptEl, websiteAnalysisDatePromptEl, websiteAnalysisTechPromptEl, resaleCertPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl];
 
   allPrompts.forEach(function (element) {
     element.setAttribute('class', 'hide-content');
@@ -1138,37 +1154,29 @@ function setNextAppointment() {
 }
 
 function setOtherAppointment() {
-  var otherApptPrompts = [whAssistanceApptPromptEl, whAssistanceDatePromptEl, whAssistanceTechPromptEl, obAssistanceApptPromptEl, obAssistanceDatePromptEl, obAssistanceTechPromptEl, nicheChangeApptPromptEl, nicheChangeDatePromptEl, nicheChangeTechPromptEl];
+  var otherApptPrompts = [whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl];
+  var otherApptInputs = [otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptWhPromptEl];
 
   otherApptPrompts.forEach(function (element) {
-    element.setAttribute('class', 'hide-content');
+    setVisibility(element, false);
+  });
+
+  otherApptInputs.forEach(function (element) {
+    setVisibility(element, false);
   });
 
   otherDeptApptEl.addEventListener('change', function () {
     if (otherDeptApptEl && otherDeptApptEl.checked) {
-      whAssistanceApptPromptEl.setAttribute('class', 'show-content');
-      obAssistanceApptPromptEl.setAttribute('class', 'show-content');
-      nicheChangeApptPromptEl.setAttribute('class', 'show-content');
-      websiteAnalysisApptPromptEl.setAttribute('class', 'show-content');
+      setVisibility(otherApptPrompts, true);
     } else if (!otherDeptApptEl.checked) {
-      whAssistanceApptPromptEl.setAttribute('class', 'hide-content');
-      obAssistanceApptPromptEl.setAttribute('class', 'hide-content');
-      nicheChangeApptPromptEl.setAttribute('class', 'hide-content');
-      websiteAnalysisApptPromptEl.setAttribute('class', 'hide-content');
-      obAssistanceDatePromptEl.setAttribute('class', 'hide-content');
-      obAssistanceTechPromptEl.setAttribute('class', 'hide-content');
-      whAssistanceDatePromptEl.setAttribute('class', 'hide-content');
-      whAssistanceTechPromptEl.setAttribute('class', 'hide-content');
-      nicheChangeDatePromptEl.setAttribute('class', 'hide-content');
-      nicheChangeTechPromptEl.setAttribute('class', 'hide-content');
-      websiteAnalysisDatePromptEl.setAttribute('class', 'hide-content');
-      websiteAnalysisTechPromptEl.setAttribute('class', 'hide-content');
+      setVisibility(otherApptPrompts, false);
+      setVisibility(otherApptInputs, false);
       whAssistanceApptEl.checked = false;
       obAssistanceApptEl.checked = false;
       nicheChangeApptEl.checked = false;
       websiteAnalysisApptEl.checked = false;
-      var inputsToClear = [whAssistanceDateEl, obAssistanceDateEl, nicheChangeDateEl, websiteAnalysisDateEl, whAssistanceTechEl, obAssistanceTechEl, nicheChangeTechEl, websiteAnalysisTechEl];
-      inputsToClear.forEach((input) => {
+      var inputsToClear = [whAssistanceDateEl, obAssistanceDateEl, nicheChangeDateEl, websiteAnalysisDateEl, whAssistanceTechEl, obAssistanceTechEl, nicheChangeTechEl, websiteAnalysisTechEl, ncBookingIdEl, waBookingIdEl, obAssistanceBookingIdEl, whAssistanceBookingIdEl];
+      inputsToClear.forEach(function (input) {
         if (input) input.value = '';
       });
       whAssistanceDateText = '';
@@ -1189,15 +1197,16 @@ function setOtherAppointment() {
 
   whAssistanceApptEl.addEventListener('change', function () {
     if (whAssistanceApptEl && whAssistanceApptEl.checked) {
-      whAssistanceDatePromptEl.setAttribute('class', 'show-content');
-      whAssistanceTechPromptEl.setAttribute('class', 'show-content');
+      setVisibility(otherDeptApptWhPromptEl, true);
     } else if (!whAssistanceApptEl.checked) {
-      whAssistanceDatePromptEl.setAttribute('class', 'hide-content');
-      whAssistanceTechPromptEl.setAttribute('class', 'hide-content');
+      setVisibility(otherDeptApptWhPromptEl, false);
+      setVisibility(whBookingIdPrompt, true);
       whAssistanceDateText = '';
       whAssistanceTechText = '';
+      whAssistanceBookingIdText = '';
       whAssistanceText = '';
-      var inputsToClear = [whAssistanceDateEl, whAssistanceTechEl];
+      reminderWhAssistanceEl.checked = false;
+      var inputsToClear = [whAssistanceDateEl, whAssistanceTechEl, whAssistanceBookingIdEl];
       inputsToClear.forEach((input) => {
         if (input) input.value = '';
       });
@@ -1207,15 +1216,16 @@ function setOtherAppointment() {
 
   obAssistanceApptEl.addEventListener('change', function () {
     if (obAssistanceApptEl && obAssistanceApptEl.checked) {
-      obAssistanceDatePromptEl.setAttribute('class', 'show-content');
-      obAssistanceTechPromptEl.setAttribute('class', 'show-content');
+      setVisibility(otherDeptApptObPromptEl, true);
     } else if (!obAssistanceApptEl.checked) {
-      obAssistanceDatePromptEl.setAttribute('class', 'hide-content');
-      obAssistanceTechPromptEl.setAttribute('class', 'hide-content');
+      setVisibility(otherDeptApptObPromptEl, false);
+      setVisibility(obBookingIdPrompt, true);
       obAssistanceDateText = '';
       obAssistanceTechText = '';
+      obAssistanceBookingIdText = '';
       obAssistanceText = '';
-      var inputsToClear = [obAssistanceDateEl, obAssistanceTechEl];
+      reminderObAssistanceEl.checked = false;
+      var inputsToClear = [obAssistanceDateEl, obAssistanceTechEl, obAssistanceBookingIdEl];
       inputsToClear.forEach((input) => {
         if (input) input.value = '';
       });
@@ -1225,15 +1235,16 @@ function setOtherAppointment() {
 
   nicheChangeApptEl.addEventListener('change', function () {
     if (nicheChangeApptEl && nicheChangeApptEl.checked) {
-      nicheChangeDatePromptEl.setAttribute('class', 'show-content');
-      nicheChangeTechPromptEl.setAttribute('class', 'show-content');
+      setVisibility(otherDeptApptNcPromptEl, true);
     } else if (!nicheChangeApptEl.checked) {
-      nicheChangeDatePromptEl.setAttribute('class', 'hide-content');
-      nicheChangeTechPromptEl.setAttribute('class', 'hide-content');
+      setVisibility(otherDeptApptNcPromptEl, false);
+      setVisibility(ncBookingIdPrompt, true);
       nicheChangeDateText = '';
       nicheChangeTechText = '';
+      ncBookingIdText = '';
       nicheChangeText = '';
-      var inputsToClear = [nicheChangeDateEl, nicheChangeTechEl];
+      reminderNcEl.checked = false;
+      var inputsToClear = [nicheChangeDateEl, nicheChangeTechEl, ncBookingIdEl];
       inputsToClear.forEach((input) => {
         if (input) input.value = '';
       });
@@ -1243,15 +1254,16 @@ function setOtherAppointment() {
 
   websiteAnalysisApptEl.addEventListener('change', function () {
     if (websiteAnalysisApptEl && websiteAnalysisApptEl.checked) {
-      websiteAnalysisDatePromptEl.setAttribute('class', 'show-content');
-      websiteAnalysisTechPromptEl.setAttribute('class', 'show-content');
+      setVisibility(otherDeptApptWaPromptEl, true);
     } else if (!websiteAnalysisApptEl.checked) {
-      websiteAnalysisDatePromptEl.setAttribute('class', 'hide-content');
-      websiteAnalysisTechPromptEl.setAttribute('class', 'hide-content');
+      setVisibility(otherDeptApptWaPromptEl, false);
+      setVisibility(waBookingIdPrompt, true);
       websiteAnalysisDateText = '';
       websiteAnalysisTechText = '';
+      waBookingIdText = '';
       websiteAnalysisText = '';
-      var inputsToClear = [websiteAnalysisDateEl, websiteAnalysisTechEl];
+      reminderWaEl.checked = false;
+      var inputsToClear = [websiteAnalysisDateEl, websiteAnalysisTechEl, waBookingIdEl];
       inputsToClear.forEach((input) => {
         if (input) input.value = '';
       });
@@ -1264,6 +1276,26 @@ function setOtherAppointment() {
       whAssistanceTechText = '';
     } else if (event.target.value) {
       whAssistanceTechText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  whAssistanceBookingIdEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      whAssistanceBookingIdText = '';
+    } else {
+      whAssistanceBookingIdText = `Booking ID: ${event.target.value}`;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  reminderWhAssistanceEl.addEventListener('change', function () {
+    if (reminderWhAssistanceEl.checked) {
+      setVisibility(whBookingIdPrompt, false);
+    } else {
+      setVisibility(whBookingIdPrompt, true);
     }
     updateOtherAppointment();
     updateHtmlNotes();
@@ -1289,6 +1321,26 @@ function setOtherAppointment() {
     updateHtmlNotes();
   });
 
+  obAssistanceBookingIdEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      obAssistanceBookingIdText = '';
+    } else {
+      obAssistanceBookingIdText = `Booking ID: ${event.target.value}`;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  reminderObAssistanceEl.addEventListener('change', function () {
+    if (reminderObAssistanceEl.checked) {
+      setVisibility(obBookingIdPrompt, false);
+    } else {
+      setVisibility(obBookingIdPrompt, true);
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
   obAssistanceDateEl.addEventListener('input', function (event) {
     if (!event.target.value) {
       obAssistanceDateText = '';
@@ -1304,6 +1356,26 @@ function setOtherAppointment() {
       nicheChangeTechText = '';
     } else if (event.target.value) {
       nicheChangeTechText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  ncBookingIdEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      ncBookingIdText = '';
+    } else {
+      ncBookingIdText = `Booking ID: ${event.target.value}`;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  reminderNcEl.addEventListener('change', function () {
+    if (reminderNcEl.checked) {
+      setVisibility(ncBookingIdPrompt, false);
+    } else {
+      setVisibility(ncBookingIdPrompt, true);
     }
     updateOtherAppointment();
     updateHtmlNotes();
@@ -1338,39 +1410,79 @@ function setOtherAppointment() {
     updateOtherAppointment();
     updateHtmlNotes();
   });
+
+  waBookingIdEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      waBookingIdText = '';
+    } else {
+      waBookingIdText = `Booking ID: ${event.target.value}`;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  reminderWaEl.addEventListener('change', function () {
+    if (reminderWaEl.checked) {
+      setVisibility(waBookingIdPrompt, false);
+    } else {
+      setVisibility(waBookingIdPrompt, true);
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
 }
 
 function updateOtherAppointment() {
-  if (whAssistanceTechText || whAssistanceDateText) {
+  if (reminderWhAssistanceEl.checked) {
     whAssistanceText = `<p>
-  Set Warhead Assistance appointment with ${whAssistanceTechText} for ${whAssistanceDateText}.
+  Reminded client about Warhead appointment with ${whAssistanceTechText} for ${whAssistanceDateText}.
+</p>
+`;
+  } else if (!reminderWhAssistanceEl.checked && (whAssistanceTechText || whAssistanceDateText)) {
+    whAssistanceText = `<p>
+  Booked Warhead appointment with ${whAssistanceTechText} for ${whAssistanceDateText}. ${whAssistanceBookingIdText}
 </p>
 `;
   } else {
     whAssistanceText = '';
   }
 
-  if (obAssistanceTechText || obAssistanceDateText) {
+  if (reminderObAssistanceEl.checked) {
     obAssistanceText = `<p>
-  Set Onboarding Assistance appointment with ${obAssistanceTechText} for ${obAssistanceDateText}.
+  Reminded client about Onboarding appointment with ${obAssistanceTechText} for ${obAssistanceDateText}.
+</p>
+`;
+  } else if (!reminderObAssistanceEl.checked && (obAssistanceTechText || obAssistanceDateText)) {
+    obAssistanceText = `<p>
+  Booked Onboarding appointment with ${obAssistanceTechText} for ${obAssistanceDateText}. ${obAssistanceBookingIdText}
 </p>
 `;
   } else {
     obAssistanceText = '';
   }
 
-  if (nicheChangeTechText || nicheChangeDateText) {
+  if (reminderNcEl.checked) {
     nicheChangeText = `<p>
-  Set Niche Change appointment with ${nicheChangeTechText} for ${nicheChangeDateText}.
+  Reminded client about Onboarding appointment with ${nicheChangeTechText} for ${nicheChangeDateText}.
+</p>
+`;
+  } else if (!reminderNcEl.checked && (nicheChangeTechText || nicheChangeDateText)) {
+    nicheChangeText = `<p>
+  Booked Onboarding appointment with ${nicheChangeTechText} for ${nicheChangeDateText}. ${ncBookingIdText}
 </p>
 `;
   } else {
     nicheChangeText = '';
   }
 
-  if (websiteAnalysisTechText || websiteAnalysisDateText) {
+  if (reminderWaEl.checked) {
     websiteAnalysisText = `<p>
-  Set Website Analysis appointment with ${websiteAnalysisTechText} for ${websiteAnalysisDateText}.
+  Reminded client about Onboarding appointment with ${websiteAnalysisTechText} for ${websiteAnalysisDateText}.
+</p>
+`;
+  } else if (!reminderWaEl.checked && (websiteAnalysisTechText || websiteAnalysisDateText)) {
+    websiteAnalysisText = `<p>
+  Booked Onboarding appointment with ${websiteAnalysisTechText} for ${websiteAnalysisDateText}. ${waBookingIdText}
 </p>
 `;
   } else {

@@ -398,7 +398,8 @@ input[type='number'] {
 #message-type-none,
 #message-type-voicemail,
 #message-type-email,
-#message-type-text {
+#message-type-text,
+input[type='checkbox'].round-checkbox {
   background: var(--secondary-bg);
   border-radius: 1rem;
   border: 1px solid var(--primary-text);

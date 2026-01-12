@@ -710,69 +710,121 @@
             </div>
 
             <!-- *Other Appts -->
+            <!-- TODO: Attach to select options to their prompts and append new select option for additional appointments -->
+            <!-- <div id="other-dept-appt-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "sm-marketing"]'>
+              <select name="other-dept-appt" id="other-dept-appt">
+                <option value="default" selected>Other Dept Appt</option>
+                <option value="other-dept-ob" data-other-dept="ob">Onboarding</option>
+                <option value="other-dept-wh" data-other-dept="wh">Warhead</option>
+                <option value="other-dept-sm" data-other-dept="sm">Supplier Management</option>
+                <option value="other-dept-wa" data-other-dept="wa">Website Analysis</option>
+                <option value="other-dept-nc" data-other-dept="nc">Niche Change</option>
+              </select>
+            </div> -->
+
             <div id="other-dept-appt-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "sm-marketing"]'>
               <label for="other-dept-appt">Other department appointment(s)?</label>
               <input type="checkbox" name="other-dept-appt" id="other-dept-appt" />
             </div>
 
+            <!-- OTHER WH ASSISTANCE -->
             <div id="wh-assistance-appt-prompt">
               <input type="checkbox" name="wh-assistance-appt" id="wh-assistance-appt" />
-              <label for="wh-assistance-appt">Warhead Assistance</label>
+              <label for="wh-assistance-appt">Warhead</label>
             </div>
 
-            <div id="wh-assistance-tech-prompt">
-              <label for="wh-assistance-tech">WH Assistance Tech assigned:</label>
-              <input type="text" name="wh-assistance-tech" id="wh-assistance-tech" />
+            <div class="grey-bg" id="other-dept-appt-wh-prompt">
+              <div>
+                <label for="reminder-wh-assistance">Reminder?</label>
+                <input class="round-checkbox" type="checkbox" name="reminder-wh-assistance" id="reminder-wh-assistance" />
+              </div>
+              <div>
+                <label for="wh-assistance-tech">Warhead Tech assigned:</label>
+                <input type="text" name="wh-assistance-tech" id="wh-assistance-tech" />
+              </div>
+              <div>
+                <label for="wh-assistance-date">Booked Warhead appointment on:</label>
+                <input type="text" name="wh-assistance-date" id="wh-assistance-date" />
+              </div>
+              <div id="wh-booking-id-prompt">
+                <label for="wh-assistance-booking-id">Booking ID:</label>
+                <input type="text" name="wh-assistance-booking-id" id="wh-assistance-booking-id" />
+              </div>
             </div>
 
-            <div id="wh-assistance-date-prompt">
-              <label for="wh-assistance-date">Booked WH Assistance appointment on:</label>
-              <input type="text" name="wh-assistance-date" id="wh-assistance-date" />
-            </div>
-
+            <!-- OTHER OB ASSISTANCE -->
             <div id="ob-assistance-appt-prompt">
               <input type="checkbox" name="ob-assistance-appt" id="ob-assistance-appt" />
-              <label for="ob-assistance-appt">Onboarding Assistance</label>
+              <label for="ob-assistance-appt">Onboarding</label>
             </div>
 
-            <div id="ob-assistance-tech-prompt">
-              <label for="ob-assistance-tech">OB Assistance Tech assigned:</label>
-              <input type="text" name="ob-assistance-tech" id="ob-assistance-tech" />
+            <div class="grey-bg" id="other-dept-appt-ob-prompt">
+              <div>
+                <label for="reminder--assistance">Reminder?</label>
+                <input class="round-checkbox" type="checkbox" name="reminder-ob-assistance" id="reminder-ob-assistance" />
+              </div>
+              <div>
+                <label for="ob-assistance-tech">Onboarding Tech assigned:</label>
+                <input type="text" name="ob-assistance-tech" id="ob-assistance-tech" />
+              </div>
+              <div>
+                <label for="ob-assistance-date">Booked Onboarding appointment on:</label>
+                <input type="text" name="ob-assistance-date" id="ob-assistance-date" />
+              </div>
+              <div id="ob-booking-id-prompt">
+                <label for="ob-assistance-booking-id">Booking ID:</label>
+                <input type="text" name="ob-assistance-booking-id" id="ob-assistance-booking-id" />
+              </div>
             </div>
 
-            <div id="ob-assistance-date-prompt">
-              <label for="ob-assistance-date">Booked OB Assistance appointment on:</label>
-              <input type="text" name="ob-assistance-date" id="ob-assistance-date" />
-            </div>
-
+            <!-- OTHER NICHE CHANGE -->
             <div id="niche-change-appt-prompt">
               <input type="checkbox" name="niche-change-appt" id="niche-change-appt" />
               <label for="niche-change-appt">Niche Change</label>
             </div>
 
-            <div id="niche-change-tech-prompt">
-              <label for="niche-change-tech">Niche Change Tech assigned:</label>
-              <input type="text" name="niche-change-tech" id="niche-change-tech" />
+            <div class="grey-bg" id="other-dept-appt-nc-prompt">
+              <div>
+                <label for="reminder-nc">Reminder?</label>
+                <input class="round-checkbox" type="checkbox" name="reminder-nc" id="reminder-nc" />
+              </div>
+              <div>
+                <label for="niche-change-tech">Niche Change Tech assigned:</label>
+                <input type="text" name="niche-change-tech" id="niche-change-tech" />
+              </div>
+              <div>
+                <label for="niche-change-date">Booked Niche Change appointment on:</label>
+                <input type="text" name="niche-change-date" id="niche-change-date" />
+              </div>
+              <div id="nc-booking-id-prompt">
+                <label for="nc-booking-id">Booking ID:</label>
+                <input type="text" name="nc-booking-id" id="nc-booking-id" />
+              </div>
             </div>
 
-            <div id="niche-change-date-prompt">
-              <label for="niche-change-date">Booked Niche Change appointment on:</label>
-              <input type="text" name="niche-change-date" id="niche-change-date" />
-            </div>
-
+            <!-- OTHER WEBSITE ANALYSIS -->
             <div id="website-analysis-appt-prompt">
               <input type="checkbox" name="website-analysis-appt" id="website-analysis-appt" />
               <label for="website-analysis-appt">Website Analysis</label>
             </div>
 
-            <div id="website-analysis-tech-prompt">
-              <label for="website-analysis-tech">Website Analysis Tech assigned:</label>
-              <input type="text" name="website-analysis-tech" id="website-analysis-tech" />
-            </div>
-
-            <div id="website-analysis-date-prompt">
-              <label for="website-analysis-date">Booked Website Analysis appointment on:</label>
-              <input type="text" name="website-analysis-date" id="website-analysis-date" />
+            <div class="grey-bg" id="other-dept-appt-wa-prompt">
+              <div>
+                <label for="reminder-wa">Reminder?</label>
+                <input type="checkbox" name="reminder-wa" class="round-checkbox" id="reminder-wa" />
+              </div>
+              <div>
+                <label for="website-analysis-tech">Website Analysis Tech assigned:</label>
+                <input type="text" name="website-analysis-tech" id="website-analysis-tech" />
+              </div>
+              <div>
+                <label for="website-analysis-date">Booked Website Analysis appointment on:</label>
+                <input type="text" name="website-analysis-date" id="website-analysis-date" />
+              </div>
+              <div id="wa-booking-id-prompt">
+                <label for="wa-booking-id">Booking ID:</label>
+                <input type="text" name="wa-booking-id" id="wa-booking-id" />
+              </div>
             </div>
 
             <div id="next-topic-prompt" class="form-group" data-dept="warhead" data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance"]'>
