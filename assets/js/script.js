@@ -2140,7 +2140,7 @@ function setContactedByClient() {
         contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'show-content');
         contactedLeftVmPromptEl.setAttribute('class', 'show-content');
       } else if (successfulContactYesEl.checked) {
-        successfulContactText = `Succesfully contacted client.`;
+        successfulContactText = `Successfully contacted client.`;
         contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
