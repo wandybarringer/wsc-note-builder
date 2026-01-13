@@ -854,7 +854,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Warhead Training</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + completionFormText + smText + smRequirementsText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + smText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'missed-appt' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'contacted-by-client' && currentApptValue !== 'default') {
@@ -872,7 +872,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${displayApptName}</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + workedOnText + additionalNotesText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + smText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'general' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client${generalContactPurposeText}.
@@ -2573,12 +2573,6 @@ function setSupplierManagement() {
   });
 
   sentSmGuideEl.addEventListener('change', function () {
-    if (currentApptValue !== 'wh-post-appt') {
-      sentSmGuideText = '';
-      updateHtmlNotes();
-      return;
-    }
-
     if (sentSmGuideEl.checked) {
       sentSmGuideText = `Sent client SM How to Guide PDF.`;
     } else {
@@ -2590,12 +2584,6 @@ function setSupplierManagement() {
   });
 
   enrolledSmEl.addEventListener('change', function () {
-    if (currentApptValue !== 'wh-post-appt') {
-      enrolledSmText = '';
-      updateHtmlNotes();
-      return;
-    }
-
     if (enrolledSmEl.checked) {
       enrolledSmText = `Enrolled client in SM Appointment Training course.`;
     } else {

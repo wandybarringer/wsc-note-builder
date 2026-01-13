@@ -395,29 +395,6 @@
               <label for="completed-marketing">Client has completed supplier management and marketing appointment.</label>
             </div>
 
-            <div data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
-              <label for="completion-form-sent">Completion form sent?</label>
-              <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
-            </div>
-
-            <div id="completion-form-signed-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
-              <label class="default-pointer">Client signed completion form?</label>
-              <div class="toggle-switch">
-                <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
-                <label for="cf-signed-no">No</label>
-                <input type="radio" name="cf-signed" id="cf-signed-none" value="None" checked />
-                <label for="cf-signed-none"></label>
-                <input type="radio" name="cf-signed" id="cf-signed-yes" value="Yes" />
-                <label for="cf-signed-yes">Yes</label>
-                <div class="selection-slider"></div>
-              </div>
-            </div>
-
-            <div id="why-not-signed-prompt">
-              <label for="why-not-signed">Why didn't client sign?</label>
-              <textarea name="why-not-signed" id="why-not-signed"></textarea>
-            </div>
-
             <div id="live-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-post-appt", "sm-first-appt"]'>
               <label class="default-pointer">Is client's website live?</label>
               <div class="toggle-switch">
@@ -468,6 +445,29 @@
                 <label for="design-finished-yes">Yes</label>
                 <div class="selection-slider"></div>
               </div>
+            </div>
+
+            <div data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
+              <label for="completion-form-sent">Completion form sent?</label>
+              <input type="checkbox" name="completion-form-sent" id="completion-form-sent" />
+            </div>
+
+            <div id="completion-form-signed-prompt" data-dept="warhead" data-template='["wh-second-appt", "wh-third-appt"]'>
+              <label class="default-pointer">Client signed completion form?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="cf-signed" id="cf-signed-no" value="No" />
+                <label for="cf-signed-no">No</label>
+                <input type="radio" name="cf-signed" id="cf-signed-none" value="None" checked />
+                <label for="cf-signed-none"></label>
+                <input type="radio" name="cf-signed" id="cf-signed-yes" value="Yes" />
+                <label for="cf-signed-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div id="why-not-signed-prompt">
+              <label for="why-not-signed">Why didn't client sign?</label>
+              <textarea name="why-not-signed" id="why-not-signed"></textarea>
             </div>
 
             <div data-dept="warhead" data-template="wh-post-appt">
