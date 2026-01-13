@@ -1207,6 +1207,7 @@ function setOtherAppointment() {
   whAssistanceApptEl.addEventListener('change', function () {
     if (whAssistanceApptEl && whAssistanceApptEl.checked) {
       setVisibility(otherDeptApptWhPromptEl, true);
+      setVisibility(whBookingIdPrompt, true);
       otherDeptApptWhPromptEl.classList.add('grey-bg');
     } else if (!whAssistanceApptEl.checked) {
       setVisibility(otherDeptApptWhPromptEl, false);
@@ -1227,6 +1228,7 @@ function setOtherAppointment() {
   obAssistanceApptEl.addEventListener('change', function () {
     if (obAssistanceApptEl && obAssistanceApptEl.checked) {
       setVisibility(otherDeptApptObPromptEl, true);
+      setVisibility(obBookingIdPrompt, true);
       otherDeptApptObPromptEl.classList.add('grey-bg');
     } else if (!obAssistanceApptEl.checked) {
       setVisibility(otherDeptApptObPromptEl, false);
@@ -1247,10 +1249,10 @@ function setOtherAppointment() {
   nicheChangeApptEl.addEventListener('change', function () {
     if (nicheChangeApptEl && nicheChangeApptEl.checked) {
       setVisibility(otherDeptApptNcPromptEl, true);
+      setVisibility(ncBookingIdPrompt, true);
       otherDeptApptNcPromptEl.classList.add('grey-bg');
     } else if (!nicheChangeApptEl.checked) {
       setVisibility(otherDeptApptNcPromptEl, false);
-      setVisibility(ncBookingIdPrompt, true);
       nicheChangeDateText = '';
       nicheChangeTechText = '';
       ncBookingIdText = '';
@@ -1267,6 +1269,7 @@ function setOtherAppointment() {
   websiteAnalysisApptEl.addEventListener('change', function () {
     if (websiteAnalysisApptEl && websiteAnalysisApptEl.checked) {
       setVisibility(otherDeptApptWaPromptEl, true);
+      setVisibility(waBookingIdPrompt, true);
       otherDeptApptWaPromptEl.classList.add('grey-bg');
     } else if (!websiteAnalysisApptEl.checked) {
       setVisibility(otherDeptApptWaPromptEl, false);
