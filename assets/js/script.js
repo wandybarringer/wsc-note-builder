@@ -997,14 +997,6 @@ function setContAppt() {
   }
 
   contApptEl.addEventListener('change', function () {
-    if (contApptEl.checked && apptSelectEl.value === 'wh-first-appt') {
-      startedRegPromptEl.classList.remove('show-content');
-      startedRegPromptEl.classList.add('hide-content');
-    } else if (!contApptEl.checked && apptSelectEl.value === 'wh-first-appt') {
-      startedRegPromptEl.classList.remove('hide-content');
-      startedRegPromptEl.classList.add('show-content');
-    }
-
     if (contApptEl.checked) {
       startedRegNoneEl.checked = true;
       startedRegText = '';
