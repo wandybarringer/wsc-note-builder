@@ -111,7 +111,7 @@
           </div>
 
           <form action="" class="hide-content" id="non-specific-form">
-            <div id="continuation-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
+            <div id="continuation-prompt" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-tenth-appt"]'>
               <input type="checkbox" name="continuation" id="continuation" class="continuation" />
               <label for="continuation">Continuation appointment</label>
             </div>
@@ -138,7 +138,7 @@
               <input type="text" name="screen-share-other" id="screen-share-other" />
             </div>
 
-            <div id="hw-prompt" data-dept="warhead" data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt"]'>
+            <div id="hw-prompt" data-dept='["warhead", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label class="default-pointer">Homework completed?</label>
               <div class="toggle-switch">
                 <input type="radio" name="hw" id="hw-no" value="No" />
@@ -259,7 +259,134 @@
               <input type="checkbox" id="show-all-worked-on" />
             </div>
 
-            <div id="assigned-hw" class="grey-bg" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up"]'>
+            <div id="social-media-reviewed" class="grey-bg" data-dept="social-media" data-template='["socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+              <p class="default-pointer">Reviewed:</p>
+              <div data-dept="social-media" data-template="socm-first-appt">
+                <input type="checkbox" id="completed-design-questionnaire" />
+                <label for="completed-design-questionnaire">Completed Design Questionnaire (Ruby/Diamond ONLY)</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-first-appt">
+                <input type="checkbox" id="access-all-social-media" />
+                <label for="access-all-social-media">Client can access all existing social media accounts</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-first-appt">
+                <input type="checkbox" id="updated-bios" />
+                <label for="updated-bios">Updated bios for each account</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-first-appt">
+                <input type="checkbox" id="created-fb-ig" />
+                <label for="created-fb-ig">Created and linked together Facebook and Instagram</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-first-appt">
+                <input type="checkbox" id="grammarly" />
+                <label for="grammarly">Installed Grammarly</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-first-appt">
+                <input type="checkbox" id="created-canva" />
+                <label for="created-canva">Created Canva account</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-first-appt">
+                <input type="checkbox" id="created-canva" />
+                <label for="created-canva">Created Chatgpt account</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-second-appt">
+                <input type="checkbox" id="create-canva-templates" />
+                <label for="create-canva-templates">How to create Canva templates</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-third-appt">
+                <input type="checkbox" id="use-mbs" />
+                <label for="use-mbs">How to use Meta Business Suite planner to schedule posts</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-fourth-appt">
+                <input type="checkbox" id="mbs-refresher" />
+                <label for="mbs-refresher">Refresher on creating standard posts using MBS</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-fourth-appt">
+                <input type="checkbox" id="mbs-stories" />
+                <label for="mbs-stories">How to use MBS planner to schedule stories</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-fifth-appt">
+                <input type="checkbox" id="pinterest-boards" />
+                <label for="pinterest-boards">How to create Pinterest boards</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-fifth-appt">
+                <input type="checkbox" id="pin-pinterest-posts" />
+                <label for="pin-pinterest-posts">How to pin existing posts in Pinterest</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-sixth-appt">
+                <input type="checkbox" id="pinterest-refresher" />
+                <label for="pinterest-refresher">Refresher on creating boards & saving pins in Pinterest</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-sixth-appt">
+                <input type="checkbox" id="product-pins" />
+                <label for="product-pins">How to create product pins</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-seventh-appt">
+                <input type="checkbox" id="create-twitter-posts" />
+                <label for="create-twitter-posts">How to create Twitter posts</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-seventh-appt">
+                <input type="checkbox" id="quote-twitter-posts" />
+                <label for="quote-twitter-posts">How to quote existing Twitter posts</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-seventh-appt">
+                <input type="checkbox" id="twitter-follow" />
+                <label for="twitter-follow">How to follow other Twitter accounts</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-eighth-appt">
+                <input type="checkbox" id="join-fb-groups" />
+                <label for="join-fb-groups">How to join & vet FB groups</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-eighth-appt">
+                <input type="checkbox" id="fb-follow-accounts" />
+                <label for="fb-follow-accounts">How to follow other FB accounts</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-eighth-appt">
+                <input type="checkbox" id="react-comment-share-fb" />
+                <label for="react-comment-share-fb">How to react, comment, and share existing FB posts</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-eighth-appt">
+                <input type="checkbox" id="invite-to-like-fb" />
+                <label for="invite-to-like-fb">How to invite FB friends to like the page</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-ninth-appt">
+                <input type="checkbox" id="follow-pinterest-boards" />
+                <label for="follow-pinterest-boards">How to follow Pinterest accounts & boards</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-ninth-appt">
+                <input type="checkbox" id="react-comment-repost-twitter" />
+                <label for="react-comment-repost-twitter">How to react, comment, and repost on Twitter</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-ninth-appt">
+                <input type="checkbox" id="mbs-track" />
+                <label for="mbs-track">How to use MBS to track reactions, comments, and shares</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-tenth-appt">
+                <input type="checkbox" id="mbs-analytics" />
+                <label for="mbs-analytics">How to read and navigate Meta Business Suite analytics</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-tenth-appt">
+                <input type="checkbox" id="performance-content-overviews" />
+                <label for="performance-content-overviews">Discussed performance and content overviews</label>
+              </div>
+              <div data-dept="social-media" data-template="socm-tenth-appt">
+                <input type="checkbox" id="views-reach" />
+                <label for="views-reach">Discussed which posts are gaining the most views and reach</label>
+              </div>
+              <div id="custom-socm-reviewed-container" data-dept="social-media">
+                <div class="custom-socm-reviewed-row">
+                  <input type="checkbox" name="custom-socm-reviewed" id="custom-socm-reviewed-checkbox" class="custom-checkbox" />
+                  <input type="text" name="custom-socm-reviewed" id="custom-socm-reviewed-text" class="custom-text" placeholder="Custom text" />
+                </div>
+              </div>
+            </div>
+
+            <div id="show-all-socm-reviewed-container" data-dept="social-media" data-template='["socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+              <label for="show-all-socm-reviewed" class="show-all-emphasis">Show Reviewed Options</label>
+              <input class="round-checkbox" type="checkbox" id="show-all-socm-reviewed" />
+            </div>
+
+            <div id="assigned-hw" class="grey-bg" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <p class="default-pointer">Assigned homework:</p>
               <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
 
@@ -299,7 +426,52 @@
                 <label for="cont-apply-and-email">Continue sending applications and follow-up emails</label>
               </div>
 
-              <div id="custom-assigned-hw-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <div data-dept="social-media" data-template="socm-first-appt">
+                <input type="checkbox" name="watch-canva" id="watch-canva" />
+                <label for="watch-canva">Watch Canva video</label>
+              </div>
+
+              <div data-dept="social-media" data-template="socm-second-appt">
+                <input type="checkbox" name="create-canva-templates" id="create-canva-templates" />
+                <label for="create-canva-templates">Create 7-10 Canva templates</label>
+              </div>
+
+              <div data-dept="social-media" data-template='["socm-third-appt", "socm-fourth-appt"]'>
+                <input type="checkbox" name="cont-canva-templates" id="cont-canva-templates" />
+                <label for="cont-canva-templates">Continue creating Canva templates</label>
+              </div>
+
+              <div data-dept="social-media" data-template='["socm-third-appt", "socm-fourth-appt"]'>
+                <input type="checkbox" name="plan-fb-ig-posts" id="plan-fb-ig-posts" />
+                <label for="plan-fb-ig-posts">Plan 7-10 FB/Insta posts each week</label>
+              </div>
+
+              <div data-dept="social-media" data-template='["socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+                <input type="checkbox" name="cont-fb-ig-posts" id="cont-fb-ig-posts" />
+                <label for="cont-fb-ig-posts">Continue posting 7-10 times on FB/Insta each week</label>
+              </div>
+
+              <div data-dept="social-media" data-template='["socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+                <input type="checkbox" name="save-twenty-pins" id="save-twenty-pins" />
+                <label for="save-twenty-pins">Save 20 pins in Pinterest each week</label>
+              </div>
+
+              <div data-dept="social-media" data-template='["socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt"]'>
+                <input type="checkbox" name="create-five-pins" id="create-five-pins" />
+                <label for="create-five-pins">Create 5 product pins each week</label>
+              </div>
+
+              <div data-dept="social-media" data-template='["socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+                <input type="checkbox" name="three-five-twitter-posts" id="three-five-twitter-posts" />
+                <label for="three-five-twitter-posts">Create 3-5 Twitter posts each week</label>
+              </div>
+
+              <div data-dept="social-media" data-template='["socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt"]'>
+                <input type="checkbox" name="quote-three-twitter-posts" id="quote-three-twitter-posts" />
+                <label for="quote-three-twitter-posts">Quote 3 Twitter posts each week</label>
+              </div>
+
+              <div id="custom-assigned-hw-container" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
                 <div class="custom-assigned-hw-row">
                   <input type="checkbox" name="custom-assigned-hw" id="custom-assigned-hw-checkbox" class="custom-checkbox" />
                   <input type="text" name="custom-assigned-hw" id="custom-assigned-hw-text" class="custom-text" placeholder="Custom text" />
@@ -307,7 +479,7 @@
               </div>
             </div>
 
-            <div id="show-all-assigned-hw-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up"]'>
+            <div id="show-all-assigned-hw-container" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="show-all-assigned-hw" class="show-all-emphasis">Show All Assigned Homework Options</label>
               <input type="checkbox" id="show-all-assigned-hw" />
             </div>
@@ -377,7 +549,7 @@
               <label for="remove-non-niche">Advised client to remove any non-niche related items.</label>
             </div>
 
-            <div id="additional-notes-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing", "contacted-by-client"]'>
+            <div id="additional-notes-prompt" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing", "contacted-by-client", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="additional-notes">Additional Notes:</label>
               <textarea name="additional-notes" id="additional-notes"></textarea>
             </div>
@@ -510,7 +682,20 @@
               <input type="checkbox" name="additional-training" id="additional-training" />
             </div>
 
-            <div id="next-appt-date-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
+            <div id="socm-completed-prompt" data-dept="social-media" data-template="socm-tenth-appt">
+              <label class="default-pointer">Client completed Social Media training?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="socm-completed" id="socm-completed-no" value="No" />
+                <label for="socm-completed-no">No</label>
+                <input type="radio" name="socm-completed" id="socm-completed-none" value="None" checked />
+                <label for="socm-completed-none"></label>
+                <input type="radio" name="socm-completed" id="socm-completed-yes" value="Yes" />
+                <label for="socm-completed-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div id="next-appt-date-prompt" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="next-appointment-date">Next appointment date:</label>
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
             </div>
@@ -843,7 +1028,7 @@
             </div>
 
             <!-- *Signature/initials -->
-            <div id="initials-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "general", "missed-appt", "sm-marketing"]'>
+            <div id="initials-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "general", "missed-appt", "sm-marketing", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="initials">Initials</label>
               <input type="text" name="initials" id="initials" required />
             </div>
