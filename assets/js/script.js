@@ -13,6 +13,7 @@ var showAllDeptInputsEl = document.querySelector('#show-all-dept-inputs');
 // *DATA ATTRIBUTE SELECTORS FOR DEPT & TEMPLATE SPECIFIC ELEMENTS
 var warheadOptions = document.querySelectorAll('option[data-dept="warhead"]');
 var smOptions = document.querySelectorAll('option[data-dept="supplier-management"]');
+var socmOptions = document.querySelectorAll('option[data-dept="social-media"]');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 var workedOnEl = document.querySelector('#worked-on');
@@ -736,6 +737,10 @@ function updateDeptVisibility() {
 
   smOptions.forEach(function (option) {
     setVisibility(option, isSupplierManagement && !isDefault && !isOnboarding && !isWarhead && !isSoicalMedia);
+  });
+
+  socmOptions.forEach(function (option) {
+    setVisibility(option, isSoicalMedia && !isDefault && !isOnboarding && !isWarhead && !isSupplierManagement);
   });
 }
 
