@@ -1004,6 +1004,8 @@ function setShowAllSocmReviewed() {
 function updateHtmlNotes() {
   var displayApptName = apptLabels[currentApptValue] || currentApptValue;
 
+  updateHw();
+
   if ((currentApptValue === 'wh-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-post-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Warhead Training</b> appointment. ${screenShareText}
@@ -1194,6 +1196,37 @@ function setMovedUp() {
     }
     updateHtmlNotes();
   });
+}
+
+function setHwCompleted() {
+  var hwRadioElements = [hwNoEl, hwNoneEl, hwYesEl];
+
+  hwRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (hwYesEl.checked) {
+        hwCompletedText = `Homework has been completed by client.`;
+      } else if (hwNoEl.checked) {
+        hwCompletedText = `Homework has not been completed by client.`;
+      } else if (hwNoneEl.checked) {
+        hwCompletedText = '';
+      } else {
+        hwCompletedText = '';
+      }
+      updateHw();
+      updateHtmlNotes();
+    });
+  });
+}
+
+function updateHw() {
+  if (hwCompletedText || hwPercentText) {
+    hwText = `<p>
+  ${hwCompletedText} ${hwPercentText}
+</p>
+`;
+  } else {
+    hwText = '';
+  }
 }
 
 function setLiveRegisteredDesign() {
@@ -2604,26 +2637,6 @@ function setScreenShare() {
   });
 }
 
-function setHwCompleted() {
-  var hwRadioElements = [hwNoEl, hwNoneEl, hwYesEl];
-
-  hwRadioElements.forEach(function (element) {
-    element.addEventListener('change', function () {
-      if (hwYesEl.checked) {
-        hwCompletedText = `Homework has been completed by client.`;
-      } else if (hwNoEl.checked) {
-        hwCompletedText = `Homework has not been completed by client.`;
-      } else if (hwNoneEl.checked) {
-        hwCompletedText = '';
-      } else {
-        hwCompletedText = '';
-      }
-      updateHw();
-      updateHtmlNotes();
-    });
-  });
-}
-
 function setHwPercent() {
   if (!hwPercentEl) {
     return;
@@ -2645,17 +2658,6 @@ function setHwPercent() {
     updateHw();
     updateHtmlNotes();
   });
-}
-
-function updateHw() {
-  if (hwCompletedText || hwPercentText) {
-    hwText = `<p>
-  ${hwCompletedText} ${hwPercentText}
-</p>
-`;
-  } else {
-    hwText = '';
-  }
 }
 
 function setStartedRegistering() {
