@@ -1087,6 +1087,7 @@ function resetHtmlNotes() {
   movedUpText = '';
   screenShareText = '';
   hwText = '';
+  hwCompletedText = '';
   hwPercentText = '';
   workedOnText = '';
   updatingNewProdNameText = '';
