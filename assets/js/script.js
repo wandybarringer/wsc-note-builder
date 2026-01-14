@@ -1051,7 +1051,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + initialsText;
+    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -1149,6 +1149,7 @@ function resetHtmlNotes() {
   completionFormSignedText = '';
   whyNotSignedText = '';
   socmReviewedText = '';
+  socmCompletedText = '';
 
   htmlNotesEl.value = '';
 
