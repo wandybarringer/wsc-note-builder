@@ -3158,6 +3158,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setScreenShare();
   setHwCompleted();
   setHwPercent();
+  updateHw();
 
   setWorkedOn();
   initDynamicWorkedOn();
