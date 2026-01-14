@@ -792,6 +792,16 @@ function updateApptVisibility() {
   var conditionalElements = document.querySelectorAll('[data-dept], [data-template]');
   conditionalElements.forEach(parseDataAttributes);
 
+  if (isDefault) {
+    htmlNotesEl.disabled = true;
+    clearBtnEl.disabled = true;
+    showAllDeptInputsEl.disabled = true;
+  } else if (!isDefault) {
+    htmlNotesEl.disabled = false;
+    clearBtnEl.disabled = false;
+    showAllDeptInputsEl.disabled = false;
+  }
+
   if (selectedValue === 'wh-assistance') {
     [contApptPromptEl, hwPromptEl, hwPercentPromptEl].forEach(function (el) {
       setVisibility(el, false);
