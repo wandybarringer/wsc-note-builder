@@ -294,6 +294,53 @@ var reviseTitlesDescEl = document.querySelector('#revise-titles-desc');
 var optimizeImagesEl = document.querySelector('#optimize-images');
 var reviewSocialMediaEl = document.querySelector('#review-social-media');
 
+// *SOCIAL MEDIA
+var socmReviewedEl = document.querySelector('#social-media-reviewed');
+var completedDesignQuestionareEl = document.querySelector('#completed-design-questionnaire');
+var accessAllSocialMediaEl = document.querySelector('#access-all-social-media');
+var updatedBiosEl = document.querySelector('#updated-bios');
+var createdFbIgEl = document.querySelector('#created-fb-ig');
+var grammarlyEl = document.querySelector('#grammarly');
+var createdCanvaEl = document.querySelector('#created-canva');
+var createdChatgptEl = document.querySelector('#created-chatgpt');
+var howCreateCanvaTemplatesEl = document.querySelector('#how-create-canva-templates');
+var useMbsEl = document.querySelector('#use-mbs');
+var mbsRefresherEl = document.querySelector('#mbs-refresher');
+var mbsStoriesEl = document.querySelector('#mbs-stories');
+var pinterestBoardsEl = document.querySelector('#pinterest-boards');
+var pinPinterestPostsEl = document.querySelector('#pin-pinterest-posts');
+var pinterestRefresherEl = document.querySelector('#pinterest-refresher');
+var productPinsEl = document.querySelector('#product-pins');
+var createTwitterPostsEl = document.querySelector('#create-twitter-posts');
+var quoteTwitterPostsEl = document.querySelector('#quote-twitter-posts');
+var twitterFollowEl = document.querySelector('#twitter-follow');
+var joinFbGroupsEl = document.querySelector('#join-fb-groups');
+var fbFollowAccountsEl = document.querySelector('#fb-follow-accounts');
+var reactCommentShareFbEl = document.querySelector('#react-comment-share-fb');
+var inviteToLikeFbEl = document.querySelector('#invite-to-like-fb');
+var followPinterestBoardsEl = document.querySelector('#follow-pinterest-boards');
+var reactCommentShareTwitterEl = document.querySelector('#react-comment-repost-twitter');
+var mbsTrackEl = document.querySelector('#mbs-track');
+var mbsAnalyticsEl = document.querySelector('#mbs-analytics');
+var performanceContentOverviewsEl = document.querySelector('#performance-content-overviews');
+var viewsReachEl = document.querySelector('#views-reach');
+
+var showAllSocmReviewedEl = document.querySelector('#show-all-socm-reviewed');
+
+var watchCanvaEl = document.querySelector('#watch-canva');
+var createCanvaTemplateEl = document.querySelector('#create-canva-templates');
+var contCanvaTemplatedEl = document.querySelector('#cont-canva-templates');
+var planFbIgPostsEl = document.querySelector('#plan-fb-ig-posts');
+var contFbIgPostsEl = document.querySelector('#cont-fb-ig-posts');
+var saveTwentyPinsEl = document.querySelector('#save-twenty-pins');
+var createFivePinsEl = document.querySelector('#create-five-pins');
+var threeFiveTwitterPostsEl = document.querySelector('#three-five-twitter-posts');
+var quoteThreeTwitterPostsEl = document.querySelector('#quote-three-twitter-posts');
+
+var socmCompletedNoEl = document.querySelector('#socm-completed-no');
+var socmCompletedNoneEl = document.querySelector('#socm-completed-none');
+var socmCompletedYesEl = document.querySelector('#socm-completed-yes');
+
 // *THEME & GLOBAL STATE VARIABLES
 var toggleSwitch = document.querySelector('#dark-light-toggle');
 var currentTheme = document.documentElement.getAttribute('data-theme');
@@ -399,6 +446,50 @@ var optimizeImagesText = '';
 var reviewSocialMediaText = '';
 var marketingReviewedText = '';
 
+// Social Media Strings
+var completedDesignQuestionareText = '';
+var accessAllSocialMediaText = '';
+var updatedBiosText = '';
+var createdFbIgText = '';
+var grammarlyText = '';
+var createdCanvaText = '';
+var createdChatgptText = '';
+var howCreateCanvaTemplatesText = '';
+var useMbsText = '';
+var mbsRefresherText = '';
+var mbsStoriesText = '';
+var pinterestBoardsText = '';
+var pinPinterestPostsText = '';
+var pinterestRefresherText = '';
+var productPinsText = '';
+var createTwitterPostsText = '';
+var quoteTwitterPostsText = '';
+var twitterFollowText = '';
+var joinFbGroupsText = '';
+var fbFollowAccountsText = '';
+var reactCommentShareFbText = '';
+var inviteToLikeFbText = '';
+var followPinterestBoardsText = '';
+var reactCommentShareTwitterText = '';
+var mbsTrackText = '';
+var mbsAnalyticsText = '';
+var performanceContentOverviewsText = '';
+var viewsReachText = '';
+var customSocmReviewedText = '';
+var socmReviewedText = '';
+
+var watchCanvaText = '';
+var createCanvaTemplateText = '';
+var contCanvaTemplatedText = '';
+var planFbIgPostsText = '';
+var contFbIgPostsText = '';
+var saveTwentyPinsText = '';
+var createFivePinsText = '';
+var threeFiveTwitterPostsText = '';
+var quoteThreeTwitterPostsText = '';
+
+var socmCompletedText = '';
+
 // Missed Appointment Strings
 var missedApptText = '';
 var attemptText = '';
@@ -490,6 +581,16 @@ var apptLabels = {
   'sm-final-upgraded': 'Final (Upgraded)',
   'sm-final-non-upgraded': 'Final (Non-Upgraded)',
   'sm-marketing': 'One-Time Marketing',
+  'socm-first-appt': '1st',
+  'socm-second-appt': '2nd',
+  'socm-third-appt': '3rd',
+  'socm-fourth-appt': '4th',
+  'socm-fifth-appt': '5th',
+  'socm-sixth-appt': '6th',
+  'socm-seventh-appt': '7th',
+  'socm-eighth-appt': '8th',
+  'socm-ninth-appt': '9th',
+  'socm-tenth-appt': '10th',
 };
 
 // *CORE UI & UTILITY FUNCTIONS
@@ -597,7 +698,7 @@ function clearInputs() {
 }
 
 function setShowAllInputs() {
-  var selector = `[data-dept]:not(#worked-on *):not(#assigned-hw *):not([data-template="missed-appt"]):not([data-template="contacted-by-client"]):not([data-template="reschedule"]):not([data-template="general"]):not([data-template="podio-link"]):not(#show-all-assigned-hw-container):not(#assigned-hw):not(#post-checklist-prompt)`;
+  var selector = `[data-dept]:not(#worked-on *):not(#assigned-hw *):not(#social-media-reviewed *):not([data-template="missed-appt"]):not([data-template="contacted-by-client"]):not([data-template="reschedule"]):not([data-template="general"]):not([data-template="podio-link"]):not(#show-all-assigned-hw-container):not(#assigned-hw):not(#post-checklist-prompt)`;
   var allDeptValues = document.querySelectorAll(selector);
 
   allDeptValues.forEach(function (el) {
@@ -640,6 +741,16 @@ function addNewWorkedOnRow(container) {
 function addNewAssignedHwRow(container) {
   var newRow = document.createElement('div');
   newRow.className = 'custom-assigned-hw-row';
+  newRow.innerHTML = `
+    <input type="checkbox" class="custom-checkbox" /> 
+    <input type="text" class="custom-text" placeholder="Custom text" />
+  `;
+  container.appendChild(newRow);
+}
+
+function addNewSocmReviewedRow(container) {
+  var newRow = document.createElement('div');
+  newRow.className = 'custom-socm-reviewed-row';
   newRow.innerHTML = `
     <input type="checkbox" class="custom-checkbox" /> 
     <input type="text" class="custom-text" placeholder="Custom text" />
@@ -785,6 +896,7 @@ function updateApptVisibility() {
   var isDefault = selectedValue === 'default';
   var isShowAllWorkedOn = showAllWorkedOnEl.checked;
   var isShowAllHw = showAllAssignedHwEl.checked;
+  var isShowAllSocmReviewed = showAllSocmReviewedEl.checked;
   var isShowAllInputs = showAllDeptInputsEl.checked;
 
   setVisibility(nonSpecFormEl, !isDefault);
@@ -809,6 +921,7 @@ function updateApptVisibility() {
   }
 
   var allWorkedOnItems = workedOnEl.querySelectorAll('div[data-dept]');
+  var allSocmReviewedItems = socmReviewedEl.querySelectorAll('div[data-dept]');
 
   if (isShowAllWorkedOn && isShowAllInputs) {
     allWorkedOnItems.forEach(function (el) {
@@ -836,6 +949,23 @@ function updateApptVisibility() {
     });
   }
 
+  if (isShowAllSocmReviewed && isShowAllInputs) {
+    allSocmReviewedItems.forEach(function (el) {
+      if (matchesDept(el, selectedDept)) {
+        setShowAllInputs();
+        setVisibility(el, true);
+      }
+    });
+  } else if (!isShowAllSocmReviewed && isShowAllInputs) {
+    setShowAllInputs();
+  } else if (isShowAllSocmReviewed && !isShowAllInputs) {
+    allSocmReviewedItems.forEach(function (el) {
+      if (matchesDept(el, selectedDept)) {
+        setVisibility(el, true);
+      }
+    });
+  }
+
   updateHtmlNotes();
 }
 
@@ -855,6 +985,16 @@ function setShowAllAssignedHw() {
   }
 
   showAllAssignedHwEl.addEventListener('change', function () {
+    updateApptVisibility();
+  });
+}
+
+function setShowAllSocmReviewed() {
+  if (!showAllSocmReviewedEl) {
+    return;
+  }
+
+  showAllSocmReviewedEl.addEventListener('change', function () {
     updateApptVisibility();
   });
 }
@@ -905,27 +1045,40 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${displayApptName}</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + movedUpText + marketingReviewedText + additionalNotesText + completedMarketingText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
+    htmlNotes = contactedClientText + marketingReviewedText + additionalNotesText + completedMarketingText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
+  } else if ((currentApptValue === 'socm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fifth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-sixth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-seventh-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-eighth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ninth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-tenth-appt' && currentApptValue !== 'default')) {
+    contactedClientText = `<p>
+  Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
+</p>
+`;
+    htmlNotes = contactedClientText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
 }
 
 function resetHtmlNotes() {
-  var container = document.getElementById('custom-worked-on-container');
-  if (container) {
-    container.innerHTML = '';
-    addNewWorkedOnRow(container);
+  var customWorkedOnContainer = document.getElementById('custom-worked-on-container');
+  if (customWorkedOnContainer) {
+    customWorkedOnContainer.innerHTML = '';
+    addNewWorkedOnRow(customWorkedOnContainer);
   }
 
-  var container = document.getElementById('custom-assigned-hw-container');
-  if (container) {
-    container.innerHTML = '';
-    addNewAssignedHwRow(container);
+  var customAssignedHwContainer = document.getElementById('custom-assigned-hw-container');
+  if (customAssignedHwContainer) {
+    customAssignedHwContainer.innerHTML = '';
+    addNewAssignedHwRow(customAssignedHwContainer);
+  }
+
+  var customSocmReviewedContainer = document.getElementById('custom-socm-reviewed-container');
+  if (customSocmReviewedContainer) {
+    customSocmReviewedContainer.innerHTML = '';
+    addNewSocmReviewedRow(customSocmReviewedContainer);
   }
 
   refreshAllCustomWorkedOn();
   refreshAllCustomAssignedHw();
+  refreshAllCustomSocmReviewed();
 
   htmlNotes = '';
   contText = '';
@@ -995,6 +1148,7 @@ function resetHtmlNotes() {
   followUpEmailToText = '';
   completionFormSignedText = '';
   whyNotSignedText = '';
+  socmReviewedText = '';
 
   htmlNotesEl.value = '';
 
@@ -1731,7 +1885,7 @@ function updateWorkedOn() {
 }
 
 // "Assigned HW" String Handlers
-var assignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, firstApptContinueVidEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, secondApptContinueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl];
+var assignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, firstApptContinueVidEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, secondApptContinueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl];
 
 function setAssignedHw() {
   assignedHwElements.forEach(function (element) {
@@ -1817,13 +1971,23 @@ function updateAssignedHw() {
   applyAndEmailText = applyAndEmailEl && applyAndEmailEl.checked ? `\n <li>Apply to a minimum of 2 new suppliers and send follow-up emails every 2-3 days before the next appointment</li>` : '';
   contApplyAndEmailText = contApplyAndEmailEl && contApplyAndEmailEl.checked ? `\n <li>Continue working on sending applications and follow up emails</li>` : '';
 
+  watchCanvaText = watchCanvaEl && watchCanvaEl.checked ? `\n <li>Watch Canva video</li>` : '';
+  createCanvaTemplateText = createCanvaTemplateEl && createCanvaTemplateEl.checked ? `\n <li>Create 7-10 Canva templates to be posted on next appointment</li>` : '';
+  contCanvaTemplatedText = contCanvaTemplatedEl && contCanvaTemplatedEl.checked ? `\n <li>Continue creating Canva templates</li>` : '';
+  planFbIgPostsText = planFbIgPostsEl && planFbIgPostsEl.checked ? `\n <li>plan 7-10 FB/Insta posts each week</li>` : '';
+  contFbIgPostsText = contFbIgPostsEl && contFbIgPostsEl.checked ? `\n <li>Continue posting 7-10 times on FB/Insta each week</li>` : '';
+  saveTwentyPinsText = saveTwentyPinsEl && saveTwentyPinsEl.checked ? `\n <li>Save 20 pins in Pinterest each week</li>` : '';
+  createFivePinsText = createFivePinsEl && createFivePinsEl.checked ? `\n <li>Create 5 product pins each week</li>` : '';
+  threeFiveTwitterPostsText = threeFiveTwitterPostsEl && threeFiveTwitterPostsEl.checked ? `\n <li>Create 3-5 Twitter posts each week</li>` : '';
+  quoteThreeTwitterPostsText = quoteThreeTwitterPostsEl && quoteThreeTwitterPostsEl.checked ? `\n <li>Quote 3 Twitter posts each week</li>` : '';
+
   var isAnythingChecked = assignedHwElements.some(function (el) {
     return el && el.checked;
   });
 
   if (isAnythingChecked || customAssignedHwText !== '') {
     assignedHwText = `Assigned homework: 
-<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${customAssignedHwText}
+<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${watchCanvaText}${createCanvaTemplateText}${contCanvaTemplatedText}${planFbIgPostsText}${contFbIgPostsText}${saveTwentyPinsText}${createFivePinsText}${threeFiveTwitterPostsText}${quoteThreeTwitterPostsText}${customAssignedHwText}
 </ul>
 `;
   } else {
@@ -2818,6 +2982,143 @@ function updateMarketingReviewed() {
   }
 }
 
+// *SOCIAL MEDIA SPECIFIC STRING HANDLERS
+
+var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdCanvaEl, createdChatgptEl, howCreateCanvaTemplatesEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, productPinsEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl];
+
+function setSocmReviewed() {
+  socmReviewedElements.forEach(function (element) {
+    if (element) {
+      element.addEventListener('change', function () {
+        updateSocmReviewed();
+        updateHtmlNotes();
+      });
+    }
+  });
+}
+
+function initDynamicSocmReviewed() {
+  var container = document.getElementById('custom-socm-reviewed-container');
+  if (!container) return;
+
+  container.addEventListener('input', function (event) {
+    var row = event.target.closest('.custom-socm-reviewed-row');
+    if (!row) return;
+
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (event.target.classList.contains('custom-checkbox') && !checkbox.checked) {
+      if (container.children.length > 1 && row !== container.lastElementChild) {
+        row.remove();
+        refreshAllCustomSocmReviewed();
+        return;
+      }
+    }
+
+    if (row === container.lastElementChild) {
+      if (checkbox.checked || textInput.value.trim() !== '') {
+        addNewSocmReviewedRow(container);
+      }
+    }
+
+    refreshAllCustomSocmReviewed();
+  });
+}
+
+function refreshAllCustomSocmReviewed() {
+  var combinedHtml = '';
+
+  var rows = document.querySelectorAll('.custom-socm-reviewed-row');
+
+  rows.forEach((row) => {
+    var checkbox = row.querySelector('.custom-checkbox');
+    var textInput = row.querySelector('.custom-text');
+
+    if (checkbox && checkbox.checked) {
+      var value = textInput.value.trim();
+      if (value !== '') {
+        combinedHtml += `\n <li>${value}</li>`;
+      }
+    }
+  });
+
+  customSocmReviewedText = combinedHtml;
+
+  if (typeof updateSocmReviewed === 'function') updateSocmReviewed();
+  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
+}
+
+function updateSocmReviewed() {
+  completedDesignQuestionareText = completedDesignQuestionareEl && completedDesignQuestionareEl.checked ? `\n <li>Completed Design Questionnaire</li>` : '';
+  accessAllSocialMediaText = accessAllSocialMediaEl && accessAllSocialMediaEl.checked ? `\n <li>Ensured client can access all existing social media accounts (Pinterest, Twitter, Youtube)</li>` : '';
+  updatedBiosText = updatedBiosEl && updatedBiosEl.checked ? `\n <li>Completed Design Questionnaire</li>` : '';
+  createdFbIgText = createdFbIgEl && createdFbIgEl.checked ? `\n <li>Created Facebook and Instagram pages and linked those together/li>` : '';
+  grammarlyText = grammarlyEl && grammarlyEl.checked ? `\n <li>Installed Grammarly</li>` : '';
+  createdCanvaText = createdCanvaEl && createdCanvaEl.checked ? `\n <li>Created Canva account</li>` : '';
+  createdChatgptText = createdChatgptEl && createdChatgptEl.checked ? `\n <li>Created Chatgpt account</li>` : '';
+  howCreateCanvaTemplatesText = howCreateCanvaTemplatesEl && howCreateCanvaTemplatesEl.checked ? `\n <li>Showed client how to create Canva templates</li>` : '';
+  useMbsText = useMbsEl && useMbsEl.checked ? `\n <li>Showed client how to use Meta Business Suite planner to schedule posts</li>` : '';
+  mbsRefresherText = mbsRefresherEl && mbsRefresherEl.checked ? `\n <li>Gave the client a refresher on creating standard posts using MBS</li>` : '';
+  mbsStoriesText = mbsStoriesEl && mbsStoriesEl.checked ? `\n <li>Showed client how to use MBS planner to schedule stories</li>` : '';
+  pinterestBoardsText = pinterestBoardsEl && pinterestBoardsEl.checked ? `\n <li>Showed client how to create Pinterest boards</li>` : '';
+  pinPinterestPostsText = pinPinterestPostsEl && pinPinterestPostsEl.checked ? `\n <li>Showed client how to pin existing posts in Pinterest</li>` : '';
+  pinterestRefresherText = pinterestRefresherEl && pinterestRefresherEl.checked ? `\n <li>Gave a refresher on creating boards & saving pins in Pinterest</li>` : '';
+  productPinsText = productPinsEl && productPinsEl.checked ? `\n <li>Showed client how to create product pins</li>` : '';
+  createTwitterPostsText = createTwitterPostsEl && createTwitterPostsEl.checked ? `\n <li>Showed client how to create Twitter posts</li>` : '';
+  quoteTwitterPostsText = quoteTwitterPostsEl && quoteTwitterPostsEl.checked ? `\n <li>Showed client how to quote existing Twitter posts</li>` : '';
+  twitterFollowText = twitterFollowEl && twitterFollowEl.checked ? `\n <li>Showed client how to follow other Twitter accounts</li>` : '';
+  joinFbGroupsText = joinFbGroupsEl && joinFbGroupsEl.checked ? `\n <li>Showed client how to join & vet FB groups</li>` : '';
+  fbFollowAccountsText = fbFollowAccountsEl && fbFollowAccountsEl.checked ? `\n <li>Showed client how to follow other FB accounts</li>` : '';
+  reactCommentShareFbText = reactCommentShareFbEl && reactCommentShareFbEl.checked ? `\n <li>Showed client how to react, comment, and share existing FB posts</li>` : '';
+  inviteToLikeFbText = inviteToLikeFbEl && inviteToLikeFbEl.checked ? `\n <li>Showed client how to invite FB friends to like the page</li>` : '';
+  followPinterestBoardsText = followPinterestBoardsEl && followPinterestBoardsEl.checked ? `\n <li>Showed client how to follow Pinterest accounts & boards</li>` : '';
+  reactCommentShareTwitterText = reactCommentShareTwitterEl && reactCommentShareTwitterEl.checked ? `\n <li>Showed client how to react, comment, and repost on Twitter</li>` : '';
+  mbsTrackText = mbsTrackEl && mbsTrackEl.checked ? `\n <li>Showed client how to use MBS to track reactions, comments, and shares</li>` : '';
+  mbsAnalyticsText = mbsAnalyticsEl && mbsAnalyticsEl.checked ? `\n <li>Showed client how to read and navigate Meta Business Suite analytics</li>` : '';
+  performanceContentOverviewsText = performanceContentOverviewsEl && performanceContentOverviewsEl.checked ? `\n <li>Discussed performance and content overviews</li>` : '';
+  viewsReachText = viewsReachEl && viewsReachEl.checked ? `\n <li>Discussed which posts are gaining the most views and reach, suggested creating more posts that use similar designs, verbiage, and hashtags as those</li>` : '';
+
+  var isAnythingChecked = socmReviewedElements.some(function (el) {
+    return el && el.checked;
+  });
+
+  if (isAnythingChecked || customSocmReviewedText !== '') {
+    socmReviewedText = `Reviewed the following during our appointment:
+<ul>${completedDesignQuestionareText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdCanvaText}${createdChatgptText}${howCreateCanvaTemplatesText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${productPinsText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${joinFbGroupsText}${fbFollowAccountsText}${reactCommentShareFbText}${inviteToLikeFbText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${customSocmReviewedText}
+</ul>
+`;
+  } else {
+    socmReviewedText = '';
+  }
+}
+
+function setSocmCompleted() {
+  socmCompletedRadioElements = [socmCompletedNoEl, socmCompletedNoneEl, socmCompletedYesEl];
+
+  socmCompletedRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (socmCompletedNoEl.checked) {
+        setVisibility(nextApptDatePromptEl, true);
+        socmCompletedText = `<p>
+  Follow up needed.
+</p>
+`;
+      } else if (socmCompletedYesEl.checked) {
+        setVisibility(nextApptDatePromptEl, false);
+        socmCompletedText = `<p>
+  No follow ups booked as client has completed the process.
+</p>
+`;
+      } else if (socmCompletedNoneEl.checked) {
+        setVisibility(nextApptDatePromptEl, true);
+        socmCompletedText = '';
+      }
+      updateHtmlNotes();
+    });
+  });
+}
+
 // *INITIALIZATION (DOM CONTENT LOADED)
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -2844,6 +3145,7 @@ document.addEventListener('DOMContentLoaded', () => {
   handleShowAllInputs();
   setShowAllWorkedOn();
   setShowAllAssignedHw();
+  setShowAllSocmReviewed();
   setSavedDepartment();
   handleDeptSelection();
   handleApptSelection();
@@ -2878,6 +3180,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setSmWsAppt();
   setMarketingAppt();
   setMarketingReviewed();
+
+  setSocmReviewed();
+  initDynamicSocmReviewed();
+  setSocmCompleted();
 
   setMissedAppointment();
   setContactedByClient();
