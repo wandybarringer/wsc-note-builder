@@ -2584,7 +2584,7 @@ function setReschedule() {
       rescheduleDateText = '';
     } else {
       rescheduleDateText = `<p>
-  Rescheduled Warhead appointment to ${newRescheduleDateStr}.
+  Rescheduled appointment to ${newRescheduleDateStr}.
 </p>
 `;
     }
