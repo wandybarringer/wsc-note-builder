@@ -142,6 +142,8 @@ var vmYesEl = document.querySelector('#vm-yes');
 var noVmReasonPromptEl = document.querySelector('#no-vm-reason-prompt');
 var vmBoxFullEl = document.querySelector('#vm-box-full');
 var vmNotSetupEl = document.querySelector('#vm-not-setup');
+var customNoVmReasonRadioEl = document.querySelector('#custom-no-vm-reason-radio');
+var customNoVmReasonTextEl = document.querySelector('#custom-no-vm-reason-text');
 var emailSentPromptEl = document.querySelector('#email-sent-prompt');
 var emailSentEl = document.querySelector('#email-sent');
 var sentMissedEmailPromptEl = document.querySelector('#sent-missed-email-promt');
@@ -171,6 +173,8 @@ var contactedVmYesEl = document.querySelector('#contacted-vm-yes');
 var contactedVmBoxFullEl = document.querySelector('#contacted-vm-box-full');
 var contactedVmNotSetupEl = document.querySelector('#contacted-vm-not-setup');
 var contactedNoVmReasonPromptEl = document.querySelector('#contacted-no-vm-reason-prompt');
+var contactedCustomNoVmReasonRadioEl = document.querySelector('#contacted-custom-no-vm-reason-radio');
+var contactedCustomNoVmReasonTextEl = document.querySelector('#contacted-custom-no-vm-reason-text');
 var contactedEmailSentPromptEl = document.querySelector('#contacted-email-sent-prompt');
 var contactedEmailSentEl = document.querySelector('#contacted-email-sent');
 var advisedClientEl = document.querySelector('#advised-client');
@@ -538,6 +542,7 @@ var phoneNumberText = '';
 var secondaryPhoneNumberText = '';
 var updatedPhoneNumberText = '';
 var leftVmText = '';
+var customNoVmReasonText = '';
 var noVmReasonText = '';
 var updatedVmText = '';
 var emailSentText = '';
@@ -554,6 +559,7 @@ var contactedPhoneNumberText = '';
 var contactedSecondaryPhoneNumberText = '';
 var updatedContactedPhoneNumberText = '';
 var contactedLeftVmText = '';
+var contactedCustomNoVmReasonText = '';
 var contactedNoVmReasonText = '';
 var contactedUpdatedVmText = '';
 var contactedEmailSentText = '';
@@ -2243,6 +2249,7 @@ function setMissedAppointment() {
       secondaryPhoneNumberEl.value = '';
       emailSentEl.checked = false;
       vmNoneEl.checked = true;
+      customNoVmReasonTextEl.value = '';
 
       if (firstAttemptRadioEl.checked) {
         attemptText = `<b>1st attempt</b>`;
@@ -2255,6 +2262,8 @@ function setMissedAppointment() {
         markedPodioPromptEl.setAttribute('class', 'hide-content');
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
+        customNoVmReasonRadioEl.checked = false;
+        customNoVmReasonTextEl.value = '';
       } else if (secondAttemptRadioEl.checked) {
         attemptText = `<b>2nd attempt</b>`;
         phoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -2266,6 +2275,8 @@ function setMissedAppointment() {
         markedPodioPromptEl.setAttribute('class', 'hide-content');
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
+        customNoVmReasonRadioEl.checked = false;
+        customNoVmReasonTextEl.value = '';
       } else if (thirdAttemptRadioEl.checked) {
         attemptText = `<b>3rd attempt</b>`;
         phoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -2277,6 +2288,8 @@ function setMissedAppointment() {
         markedPodioPromptEl.setAttribute('class', 'show-content');
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
+        customNoVmReasonRadioEl.checked = false;
+        customNoVmReasonTextEl.value = '';
       } else {
         attemptText = ``;
         phoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -2288,6 +2301,8 @@ function setMissedAppointment() {
         markedPodioPromptEl.setAttribute('class', 'hide-content');
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
+        customNoVmReasonRadioEl.checked = false;
+        customNoVmReasonTextEl.value = '';
       }
       updateMissedAppointment();
       updateHtmlNotes();
@@ -2332,15 +2347,21 @@ function setMissedAppointment() {
         noVmReasonPromptEl.setAttribute('class', 'hide-content');
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
+        customNoVmReasonRadioEl.checked = false;
+        customNoVmReasonTextEl.value = '';
       } else if (vmNoneEl.checked) {
         leftVmText = ``;
         noVmReasonPromptEl.setAttribute('class', 'hide-content');
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
+        customNoVmReasonRadioEl.checked = false;
+        customNoVmReasonTextEl.value = '';
       } else {
         leftVmText = ``;
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
+        customNoVmReasonRadioEl.checked = false;
+        customNoVmReasonTextEl.value = '';
       }
       updateVmText();
       updateHtmlNotes();
@@ -2362,6 +2383,30 @@ function setMissedAppointment() {
       noVmReasonText = '';
     } else if (vmNotSetupEl.checked) {
       noVmReasonText = `voicemail is not set up`;
+    }
+    updateVmText();
+    updateHtmlNotes();
+  });
+
+  customNoVmReasonTextEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      customNoVmReasonText = '';
+    } else {
+      customNoVmReasonText = event.target.value;
+    }
+
+    if (customNoVmReasonRadioEl.checked) {
+      noVmReasonText = customNoVmReasonText;
+    }
+    updateVmText();
+    updateHtmlNotes();
+  });
+
+  customNoVmReasonRadioEl.addEventListener('change', function () {
+    if (!customNoVmReasonRadioEl.checked) {
+      noVmReasonText = '';
+    } else if (customNoVmReasonRadioEl.checked) {
+      noVmReasonText = customNoVmReasonText;
     }
     updateVmText();
     updateHtmlNotes();
@@ -2518,6 +2563,8 @@ function setContactedByClient() {
         contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
+        contactedCustomNoVmReasonRadioEl.checked = false;
+        contactedCustomNoVmReasonTextEl.value = '';
       } else if (successfulContactNoneEl.checked) {
         successfulContactText = '';
         contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -2526,6 +2573,8 @@ function setContactedByClient() {
         contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
+        contactedCustomNoVmReasonRadioEl.checked = false;
+        contactedCustomNoVmReasonTextEl.value = '';
       } else {
         successfulContactText = '';
         contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
@@ -2534,6 +2583,8 @@ function setContactedByClient() {
         contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
+        contactedCustomNoVmReasonRadioEl.checked = false;
+        contactedCustomNoVmReasonTextEl.value = '';
       }
       updateReturnContactText();
       updateHtmlNotes();
@@ -2574,16 +2625,22 @@ function setContactedByClient() {
         contactedLeftVmText = `Left voicemail`;
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
+        contactedCustomNoVmReasonRadioEl.checked = false;
+        contactedCustomNoVmReasonTextEl.value = '';
       } else if (contactedVmNoneEl.checked) {
         contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmText = ``;
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
+        contactedCustomNoVmReasonRadioEl.checked = false;
+        contactedCustomNoVmReasonTextEl.value = '';
       } else {
         contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
         contactedLeftVmText = ``;
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
+        contactedCustomNoVmReasonRadioEl.checked = false;
+        contactedCustomNoVmReasonTextEl.value = '';
       }
       updateContactedVmText();
       updateHtmlNotes();
@@ -2605,6 +2662,30 @@ function setContactedByClient() {
       contactedNoVmReasonText = '';
     } else if (contactedVmNotSetupEl.checked) {
       contactedNoVmReasonText = `voicemail is not set up`;
+    }
+    updateContactedVmText();
+    updateHtmlNotes();
+  });
+
+  contactedCustomNoVmReasonTextEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      contactedCustomNoVmReasonText = '';
+    } else {
+      contactedCustomNoVmReasonText = event.target.value;
+    }
+
+    if (contactedCustomNoVmReasonRadioEl.checked) {
+      contactedNoVmReasonText = contactedCustomNoVmReasonText;
+    }
+    updateContactedVmText();
+    updateHtmlNotes();
+  });
+
+  contactedCustomNoVmReasonRadioEl.addEventListener('change', function () {
+    if (!contactedCustomNoVmReasonRadioEl.checked) {
+      contactedNoVmReasonText = '';
+    } else if (contactedCustomNoVmReasonRadioEl.checked) {
+      contactedNoVmReasonText = contactedCustomNoVmReasonText;
     }
     updateContactedVmText();
     updateHtmlNotes();
