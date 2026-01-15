@@ -646,6 +646,13 @@ var apptLabels = {
   'socm-tenth-appt': '10th',
 };
 
+var deptLabels = {
+  onboarding: 'Onboarding',
+  warhead: 'Warhead',
+  'supplier-management': 'Supplier Management',
+  'social-media': 'Social Media',
+};
+
 // *CORE UI & UTILITY FUNCTIONS
 
 function setVisibility(item, show) {
@@ -1092,11 +1099,7 @@ function updateHtmlNotes() {
 `;
     htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + smText + additionalTrainingText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'general' && currentApptValue !== 'default') {
-    contactedClientText = `<p>
-  Contacted client${generalContactPurposeText}.
-</p>
-`;
-    htmlNotes = contactedClientText + generalContactNoteText + initialsText;
+    htmlNotes = generalContactPurposeText + generalContactNoteText + initialsText;
   } else if ((currentApptValue === 'sm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'sm-follow-up' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-upgraded' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-non-upgraded' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Supplier Management</b> appointment.
@@ -2782,7 +2785,10 @@ function setGeneralContact() {
     if (!event.target.value) {
       generalContactPurposeText = '';
     } else {
-      generalContactPurposeText = ` for <b>${event.target.value}</b>`;
+      generalContactPurposeText = `<p>
+  <b>${event.target.value}</b>
+</p>
+`;
     }
     updateHtmlNotes();
   });
@@ -2817,12 +2823,13 @@ function setReschedule() {
 
   rescheduleDateEl.addEventListener('input', function (event) {
     var newRescheduleDateStr = handleDateFormat(event.target.value);
+    var displayDeptName = deptLabels[currentDeptValue] || currentDeptValue;
 
     if (!newRescheduleDateStr) {
       rescheduleDateText = '';
     } else {
       rescheduleDateText = `<p>
-  Rescheduled appointment to ${newRescheduleDateStr}.
+  Rescheduled ${displayDeptName} appointment to ${newRescheduleDateStr}.
 </p>
 `;
     }
