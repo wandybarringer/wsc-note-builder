@@ -39,74 +39,78 @@
       <main class="main-flexbox">
         <section id="input-panel" class="panel-flex">
           <!-- *Note Template Selection -->
-          <div class="flex-row">
+          <div class="flex-row-stasis">
             <div class="flex-row">
-              <form action="" id="department-selection">
-                <select name="department" id="department">
-                  <option value="default" selected>Select department</option>
-                  <option value="onboarding">Onboarding</option>
-                  <option value="warhead">Warhead</option>
-                  <option value="supplier-management">Supplier Management</option>
-                  <option value="social-media">Social Media</option>
-                </select>
-              </form>
-              <form action="" id="template-selection">
-                <select name="appointment" id="appointment">
-                  <option value="default" selected>Select template</option>
-                  <option value="wh-first-appt" data-dept="warhead">1st Appointment</option>
-                  <option value="wh-second-appt" data-dept="warhead">2nd Appointment</option>
-                  <option value="wh-third-appt" data-dept="warhead">3rd Appointment</option>
-                  <option value="wh-post-appt" data-dept="warhead">Post Appointment</option>
-                  <option value="wh-assistance" data-dept="warhead">Warhead Assistance</option>
-                  <option value="sm-first-appt" data-dept="supplier-management">1st Appointment</option>
-                  <option value="sm-follow-up" data-dept="supplier-management">Follow Up</option>
-                  <option value="sm-final-upgraded" data-dept="supplier-management">Final (Upgraded)</option>
-                  <option value="sm-final-non-upgraded" data-dept="supplier-management">Final (Non-Upgraded)</option>
-                  <option value="sm-marketing" data-dept="supplier-management">Marketing</option>
-                  <option value="socm-first-appt" data-dept="social-media">1st Appointment</option>
-                  <option value="socm-second-appt" data-dept="social-media">2nd Appointment</option>
-                  <option value="socm-third-appt" data-dept="social-media">3rd Appointment</option>
-                  <option value="socm-fourth-appt" data-dept="social-media">4th Appointment</option>
-                  <option value="socm-fifth-appt" data-dept="social-media">5th Appointment</option>
-                  <option value="socm-sixth-appt" data-dept="social-media">6th Appointment</option>
-                  <option value="socm-seventh-appt" data-dept="social-media">7th Appointment</option>
-                  <option value="socm-eighth-appt" data-dept="social-media">8th Appointment</option>
-                  <option value="socm-ninth-appt" data-dept="social-media">9th Appointment</option>
-                  <option value="socm-tenth-appt" data-dept="social-media">10th Appointment+</option>
-                  <option value="missed-appt">Missed Appointment</option>
-                  <option value="contacted-by-client">Contacted by Client</option>
-                  <option value="reschedule">Reschedule</option>
-                  <option value="general">General</option>
-                  <option value="podio-link">Podio Link</option>
-                </select>
-              </form>
+              <div class="flex-row">
+                <form action="" id="department-selection">
+                  <select name="department" id="department">
+                    <option value="default" selected>Select department</option>
+                    <option value="onboarding">Onboarding</option>
+                    <option value="warhead">Warhead</option>
+                    <option value="supplier-management">Supplier Management</option>
+                    <option value="social-media">Social Media</option>
+                  </select>
+                </form>
+                <form action="" id="template-selection">
+                  <select name="appointment" id="appointment">
+                    <option value="default" selected>Select template</option>
+                    <option value="wh-first-appt" data-dept="warhead">1st Appointment</option>
+                    <option value="wh-second-appt" data-dept="warhead">2nd Appointment</option>
+                    <option value="wh-third-appt" data-dept="warhead">3rd Appointment</option>
+                    <option value="wh-post-appt" data-dept="warhead">Post Appointment</option>
+                    <option value="wh-assistance" data-dept="warhead">Warhead Assistance</option>
+                    <option value="sm-first-appt" data-dept="supplier-management">1st Appointment</option>
+                    <option value="sm-follow-up" data-dept="supplier-management">Follow Up</option>
+                    <option value="sm-final-upgraded" data-dept="supplier-management">Final (Upgraded)</option>
+                    <option value="sm-final-non-upgraded" data-dept="supplier-management">Final (Non-Upgraded)</option>
+                    <option value="sm-marketing" data-dept="supplier-management">Marketing</option>
+                    <option value="socm-first-appt" data-dept="social-media">1st Appointment</option>
+                    <option value="socm-second-appt" data-dept="social-media">2nd Appointment</option>
+                    <option value="socm-third-appt" data-dept="social-media">3rd Appointment</option>
+                    <option value="socm-fourth-appt" data-dept="social-media">4th Appointment</option>
+                    <option value="socm-fifth-appt" data-dept="social-media">5th Appointment</option>
+                    <option value="socm-sixth-appt" data-dept="social-media">6th Appointment</option>
+                    <option value="socm-seventh-appt" data-dept="social-media">7th Appointment</option>
+                    <option value="socm-eighth-appt" data-dept="social-media">8th Appointment</option>
+                    <option value="socm-ninth-appt" data-dept="social-media">9th Appointment</option>
+                    <option value="socm-tenth-appt" data-dept="social-media">10th Appointment+</option>
+                    <option value="missed-appt">Missed Appointment</option>
+                    <option value="contacted-by-client">Contacted by Client</option>
+                    <option value="reschedule">Reschedule</option>
+                    <option value="general">General</option>
+                    <option value="podio-link">Podio Link</option>
+                  </select>
+                </form>
+              </div>
             </div>
 
-            <div class="flex-row-buttons">
-              <label for="show-all-dept-inputs" class="eye-toggle" title="Show All Options">
-                <input type="checkbox" id="show-all-dept-inputs" />
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-on">
-                  <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
+            <div class="flex-row">
+              <div class="flex-row-buttons">
+                <label for="show-all-dept-inputs" class="eye-toggle" title="Show All Options">
+                  <input type="checkbox" id="show-all-dept-inputs" />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-on">
+                    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-off">
-                  <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
-                  <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
-                  <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
-                  <path d="m2 2 20 20" />
-                </svg>
-              </label>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-off">
+                    <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                    <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                    <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                    <path d="m2 2 20 20" />
+                  </svg>
+                </label>
 
-              <button id="clear-btn" title="Reset Template">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="reset-icon">
-                  <path d="M21 5H3" />
-                  <path d="M7 12H3" />
-                  <path d="M7 19H3" />
-                  <path d="M12 18a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L11 14" />
-                  <path d="M11 10v4h4" />
-                </svg>
-              </button>
+                <button id="clear-btn" title="Reset Template">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="reset-icon">
+                    <path d="M21 5H3" />
+                    <path d="M7 12H3" />
+                    <path d="M7 19H3" />
+                    <path d="M12 18a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L11 14" />
+                    <path d="M11 10v4h4" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 

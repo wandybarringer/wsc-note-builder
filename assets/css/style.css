@@ -87,16 +87,32 @@ section {
   flex-direction: column;
 }
 
+.flex-row-stasis {
+  display: flex;
+  justify-content: space-between;
+  gap: 1%;
+}
+
 .flex-row {
   display: flex;
   justify-content: space-between;
   gap: 1%;
+
+  @media screen and (width < 440px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 .flex-row-buttons {
   display: flex;
   justify-content: space-between;
   gap: 10%;
+
+  @media screen and (width < 440px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 #input-panel {
@@ -143,6 +159,12 @@ header ul {
 }
 
 /* FORM ELEMENTS (INPUTS, SELECT, TEXTAREA) */
+#department,
+#appointment {
+  inline-size: 100%;
+  font-weight: bold;
+}
+
 select,
 #clear-btn,
 .eye-toggle {
@@ -166,6 +188,7 @@ option {
   color: var(--primary-text);
   background: var(--primary-bg);
   cursor: pointer;
+  font-weight: bold;
 }
 
 input {
@@ -177,7 +200,7 @@ input {
 }
 
 input::placeholder {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--primary-text-transparent);
 }
@@ -675,9 +698,16 @@ input[type='checkbox']:hover {
 
 #clear-btn,
 .eye-toggle {
-  inline-size: 2.15rem;
-  block-size: 2.15rem;
-  transition: font-size 0.1s ease, box-shadow 0.1s ease;
+  --btn-size: 2.15rem;
+
+  inline-size: var(--btn-size);
+  block-size: var(--btn-size);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.1s ease;
 }
 
 #clear-btn:active,
@@ -689,10 +719,6 @@ input[type='checkbox']:hover {
 
 #show-all-dept-inputs {
   display: none;
-}
-
-.eye-toggle {
-  cursor: pointer;
 }
 
 .eye-off {
