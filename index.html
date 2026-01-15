@@ -567,7 +567,7 @@
               </div>
             </div>
 
-            <div data-dept="supplier-management" data-template='["sm-final-upgraded", "sm-final-non-upgraded"]'>
+            <div id="completed-supplier-management-prompt" data-dept="supplier-management" data-template='["sm-final-upgraded", "sm-final-non-upgraded"]'>
               <input type="checkbox" name="completed-supplier-management" id="completed-supplier-management" />
               <label for="completed-supplier-management">Client has completed supplier management.</label>
             </div>
@@ -652,31 +652,6 @@
               <textarea name="why-not-signed" id="why-not-signed"></textarea>
             </div>
 
-            <div data-dept="warhead" data-template="wh-post-appt">
-              <label for="booked-sm">Supplier Management set up?</label>
-              <input type="checkbox" name="booked-sm" id="booked-sm" />
-            </div>
-
-            <div id="sent-sm-guide-prompt">
-              <input type="checkbox" name="sent-sm-guide" id="sent-sm-guide" />
-              <label for="sent-sm-guide">Sent SM How to Guide</label>
-            </div>
-
-            <div id="enrolled-sm-prompt">
-              <input type="checkbox" name="enrolled-sm" id="enrolled-sm" />
-              <label for="enrolled-sm">Enrolled in SM training course</label>
-            </div>
-
-            <div id="sm-tech-assigned-prompt">
-              <label for="sm-tech">SM Tech assigned:</label>
-              <input type="text" name="sm-tech" id="sm-tech" />
-            </div>
-
-            <div id="sm-appointment-date-prompt">
-              <label for="sm-appointment-date">Booked SM appointment on:</label>
-              <input type="text" name="sm-appointment-date" id="sm-appointment-date" />
-            </div>
-
             <div id="additional-training-prompt">
               <label for="additional-training">Is client requesting additional WH training?</label>
               <input type="checkbox" name="additional-training" id="additional-training" />
@@ -700,19 +675,19 @@
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
             </div>
 
+            <div id="sent-sm-guide-prompt" data-dept="warhead" data-template="wh-post-appt">
+              <input type="checkbox" name="sent-sm-guide" id="sent-sm-guide" />
+              <label for="sent-sm-guide">Sent SM How to Guide</label>
+            </div>
+
+            <div id="enrolled-sm-prompt" data-dept="warhead" data-template="wh-post-appt">
+              <input type="checkbox" name="enrolled-sm" id="enrolled-sm" />
+              <label for="enrolled-sm">Enrolled in SM training course</label>
+            </div>
+
             <div data-dept="supplier-management" data-template="sm-final-non-upgraded">
               <label for="marketing-date">Set one-time Marketing appointment date:</label>
               <input type="text" name="marketing-date" id="marketing-date" />
-            </div>
-
-            <div data-dept="supplier-management" data-template="sm-final-upgraded">
-              <label for="sm-ws-tech">Website Analysis Tech assigned:</label>
-              <input type="text" name="sm-ws-tech" id="sm-ws-tech" />
-            </div>
-
-            <div data-dept="supplier-management" data-template="sm-final-upgraded">
-              <label for="sm-ws-appointment-date">Booked Website Analysis appointment on:</label>
-              <input type="text" name="sm-ws-appointment-date" id="sm-ws-appointment-date" />
             </div>
 
             <!-- *Missed Appointment Inputs -->
@@ -922,31 +897,6 @@
               <input type="checkbox" name="other-dept-appt" id="other-dept-appt" />
             </div>
 
-            <!-- OTHER WH ASSISTANCE -->
-            <div id="wh-assistance-appt-prompt">
-              <input type="checkbox" name="wh-assistance-appt" id="wh-assistance-appt" />
-              <label for="wh-assistance-appt">Warhead</label>
-            </div>
-
-            <div class="grey-bg" id="other-dept-appt-wh-prompt">
-              <div>
-                <label for="reminder-wh-assistance">Reminder?</label>
-                <input class="round-checkbox" type="checkbox" name="reminder-wh-assistance" id="reminder-wh-assistance" />
-              </div>
-              <div>
-                <label for="wh-assistance-tech">Warhead Tech assigned:</label>
-                <input type="text" name="wh-assistance-tech" id="wh-assistance-tech" />
-              </div>
-              <div>
-                <label for="wh-assistance-date">Booked Warhead appointment on:</label>
-                <input type="text" name="wh-assistance-date" id="wh-assistance-date" />
-              </div>
-              <div id="wh-booking-id-prompt">
-                <label for="wh-assistance-booking-id">Booking ID:</label>
-                <input type="text" name="wh-assistance-booking-id" id="wh-assistance-booking-id" />
-              </div>
-            </div>
-
             <!-- OTHER OB ASSISTANCE -->
             <div id="ob-assistance-appt-prompt">
               <input type="checkbox" name="ob-assistance-appt" id="ob-assistance-appt" />
@@ -955,7 +905,7 @@
 
             <div class="grey-bg" id="other-dept-appt-ob-prompt">
               <div>
-                <label for="reminder--assistance">Reminder?</label>
+                <label for="reminder--assistance">Appointment reminder?</label>
                 <input class="round-checkbox" type="checkbox" name="reminder-ob-assistance" id="reminder-ob-assistance" />
               </div>
               <div>
@@ -972,6 +922,56 @@
               </div>
             </div>
 
+            <!-- OTHER WH ASSISTANCE -->
+            <div id="wh-assistance-appt-prompt">
+              <input type="checkbox" name="wh-assistance-appt" id="wh-assistance-appt" />
+              <label for="wh-assistance-appt">Warhead</label>
+            </div>
+
+            <div class="grey-bg" id="other-dept-appt-wh-prompt">
+              <div>
+                <label for="reminder-wh-assistance">Appointment reminder?</label>
+                <input class="round-checkbox" type="checkbox" name="reminder-wh-assistance" id="reminder-wh-assistance" />
+              </div>
+              <div>
+                <label for="wh-assistance-tech">Warhead Tech assigned:</label>
+                <input type="text" name="wh-assistance-tech" id="wh-assistance-tech" />
+              </div>
+              <div>
+                <label for="wh-assistance-date">Booked Warhead appointment on:</label>
+                <input type="text" name="wh-assistance-date" id="wh-assistance-date" />
+              </div>
+              <div id="wh-booking-id-prompt">
+                <label for="wh-assistance-booking-id">Booking ID:</label>
+                <input type="text" name="wh-assistance-booking-id" id="wh-assistance-booking-id" />
+              </div>
+            </div>
+
+            <!-- OTHER SM -->
+            <div id="sm-appt-prompt">
+              <input type="checkbox" name="sm-appt" id="sm-appt" />
+              <label for="sm-appt">Supplier Management</label>
+            </div>
+
+            <div class="grey-bg" id="other-dept-appt-sm-prompt">
+              <div id="reminder-sm-prompt">
+                <label for="reminder-sm">Appointment reminder?</label>
+                <input class="round-checkbox" type="checkbox" name="reminder-sm" id="reminder-sm" />
+              </div>
+              <div>
+                <label for="sm-tech">Supplier Management Tech assigned:</label>
+                <input type="text" name="sm-tech" id="sm-tech" />
+              </div>
+              <div>
+                <label for="sm-date">Booked Supplier Management appointment on:</label>
+                <input type="text" name="sm-date" id="sm-date" />
+              </div>
+              <div id="sm-booking-id-prompt">
+                <label for="sm-booking-id">Booking ID:</label>
+                <input type="text" name="sm-booking-id" id="sm-booking-id" />
+              </div>
+            </div>
+
             <!-- OTHER NICHE CHANGE -->
             <div id="niche-change-appt-prompt">
               <input type="checkbox" name="niche-change-appt" id="niche-change-appt" />
@@ -980,7 +980,7 @@
 
             <div class="grey-bg" id="other-dept-appt-nc-prompt">
               <div>
-                <label for="reminder-nc">Reminder?</label>
+                <label for="reminder-nc">Appointment reminder?</label>
                 <input class="round-checkbox" type="checkbox" name="reminder-nc" id="reminder-nc" />
               </div>
               <div>
@@ -1005,7 +1005,7 @@
 
             <div class="grey-bg" id="other-dept-appt-wa-prompt">
               <div>
-                <label for="reminder-wa">Reminder?</label>
+                <label for="reminder-wa">Appointment reminder?</label>
                 <input type="checkbox" name="reminder-wa" class="round-checkbox" id="reminder-wa" />
               </div>
               <div>

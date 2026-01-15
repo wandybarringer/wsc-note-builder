@@ -1,4 +1,5 @@
 // *CORE UI & FORM CONTROL ELEMENTS
+
 var deptSelectEl = document.querySelector('#department');
 var apptSelectEl = document.querySelector('#appointment');
 var nonSpecFormEl = document.querySelector('#non-specific-form');
@@ -11,15 +12,18 @@ var initialsEl = document.querySelector('#initials');
 var showAllDeptInputsEl = document.querySelector('#show-all-dept-inputs');
 
 // *DATA ATTRIBUTE SELECTORS FOR DEPT & TEMPLATE SPECIFIC ELEMENTS
+
 var warheadOptions = document.querySelectorAll('option[data-dept="warhead"]');
 var smOptions = document.querySelectorAll('option[data-dept="supplier-management"]');
 var socmOptions = document.querySelectorAll('option[data-dept="social-media"]');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
+
 var workedOnEl = document.querySelector('#worked-on');
 var showAllWorkedOnEl = document.querySelector('#show-all-worked-on');
 
 // *"ASSIGNED HOMEWORK" - PARENT CONTAINERS & SHOW ALL LOGIC
+
 var assignedHwEl = document.querySelector('#assigned-hw');
 var showAllAssignedHwContEl = document.querySelector('#show-all-assigned-hw-container');
 var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
@@ -27,6 +31,7 @@ var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
 // *INDIVIDUAL CHECKBOX/RADIO & PROMPT ELEMENTS
 
 // General Progress Elements
+
 var contApptPromptEl = document.querySelector('#continuation-prompt');
 var contApptEl = document.querySelector('#continuation');
 var movedUpEl = document.querySelector('#moved-up');
@@ -41,6 +46,7 @@ var hwPercentPromptEl = document.querySelector('#hw-percent-prompt');
 var hwPercentEl = document.querySelector('#hw-percent');
 
 // "Worked On" Checklist (1st Appt)
+
 var dashNavEl = document.querySelector('#dashboard-navigation');
 var extraPageEl = document.querySelector('#extra-pages');
 var createCatEl = document.querySelector('#creating-categories');
@@ -50,6 +56,7 @@ var prodGridEl = document.querySelector('#products-grid');
 var catProdEl = document.querySelector('#categorizing-products');
 
 // "Worked On" Checklist (2nd Appt)
+
 var discountsEl = document.querySelector('#discounts');
 var checkoutSectionsEl = document.querySelector('#checkout-sections');
 var payPalEl = document.querySelector('#paypal-apple-pay');
@@ -57,25 +64,30 @@ var testOrderEl = document.querySelector('#test-order');
 var processOrderEl = document.querySelector('#process-order');
 
 // "Worked On" Checklist (3rd Appt)
+
 var updatingProdEl = document.querySelector('#updating-products');
 var unavailableProdEl = document.querySelector('#unavailable-products');
 
 // "Worked On" Checklist (Post Appt)
+
 var stripeEl = document.querySelector('#stripe');
 var variantsEl = document.querySelector('#variants');
 var googleAnalyticsEl = document.querySelector('#google-analytics');
 
 // "Worked On" Checklist (WH Assistance)
+
 var updatingNewProdEl = document.querySelector('#new-updating-products');
 var updatingNewProdNameEl = document.querySelector('#new-updating-products-name');
 var processRealOrderEl = document.querySelector('#process-real-order');
 var modifyVariantsEl = document.querySelector('#modify-variants');
 
 // Custom "Worked On" Checkbox & Text
+
 var customWorkedOnChecboxEl = document.querySelector('#custom-worked-on-checkbox');
 var customWorkedOnTextEl = document.querySelector('#custom-worked-on-text');
 
 // "Assigned Homework" Checklist (1st Appt)
+
 var firstApptFinishVidEl = document.querySelector('#first-appt-finish-videos');
 var reviewExtraPagesEl = document.querySelector('#review-extra-pages');
 var removeProdEl = document.querySelector('#remove-products');
@@ -85,21 +97,25 @@ var registerBusinessEl = document.querySelector('#register-business');
 var firstApptContinueVidEl = document.querySelector('#first-appt-continue-videos');
 
 // "Assigned Homework" Checklist (2nd Appt)
+
 var secondApptFinishVidEl = document.querySelector('#second-appt-finish-videos');
 var practiceDiscountsEl = document.querySelector('#practice-discounts');
 var practiceOrdersEl = document.querySelector('#practice-orders');
 var secondApptContinueVidEl = document.querySelector('#second-appt-continue-videos');
 
 // "Assigned Homework" Checklist (3rd Appt)
+
 var thirdApptFinishVidEl = document.querySelector('#third-appt-finish-videos');
 var practiceUpdateEl = document.querySelector('#practice-updating');
 var allVidEl = document.querySelector('#all-videos');
 
 // Custom "Assigned Homework" Checkbox & Text
+
 var customAssignedHwChecboxEl = document.querySelector('#custom-assigned-hw-checkbox');
 var customAssignedHwTextEl = document.querySelector('#custom-assigned-hw-text');
 
 // Post Training Checklist Elements
+
 var businessEmailEl = document.querySelector('#business-email');
 var timeZoneEl = document.querySelector('#time-zone');
 var taxGroupEl = document.querySelector('#tax-group');
@@ -111,6 +127,7 @@ var varientsCondensedEl = document.querySelector('#varients-condensed');
 var taglineEl = document.querySelector('#tagline');
 
 // Missed Appointment Elements
+
 var firstAttemptRadioEl = document.querySelector('#first-attempt');
 var secondAttemptRadioEl = document.querySelector('#second-attempt');
 var thirdAttemptRadioEl = document.querySelector('#third-attempt');
@@ -133,6 +150,7 @@ var markedPodioPromptEl = document.querySelector('#marked-podio-prompt');
 var markedPodioEl = document.querySelector('#marked-podio');
 
 // Contacted By Client Elements
+
 var messageTypeNoneRadioEl = document.querySelector('#message-type-none');
 var messageTypeVoicemailRadioEl = document.querySelector('#message-type-voicemail');
 var messageTypeEmailRadioEl = document.querySelector('#message-type-email');
@@ -162,17 +180,21 @@ var contactedRescheduleDatePromptEl = document.querySelector('#contacted-resched
 var contactedRescheduleDateEl = document.querySelector('#contacted-reschedule-date');
 
 // Reschedule Elements
+
 var rescheduleReasonEl = document.querySelector('#reschedule-reason');
 var rescheduleDateEl = document.querySelector('#reschedule-date');
 
 // General Contact Elements
+
 var generalContactPurposeEl = document.querySelector('#general-contact-purpose');
 var generalContactNoteEl = document.querySelector('#general-contact-note');
 
 // Podio Link Elements
+
 var podioLinkEl = document.querySelector('#podio-link');
 
 // *COMPLETION FORM & SM (SUPPLIER MANAGEMENT) PROMPTS
+
 var completionFormSentEl = document.querySelector('#completion-form-sent');
 var cfSignedElNo = document.querySelector('#cf-signed-no');
 var cfSignedElNone = document.querySelector('#cf-signed-none');
@@ -188,10 +210,9 @@ var enrolledSmPromptEl = document.querySelector('#enrolled-sm-prompt');
 var enrolledSmEl = document.querySelector('#enrolled-sm');
 var smTechPromptEl = document.querySelector('#sm-tech-assigned-prompt');
 var smTechEl = document.querySelector('#sm-tech');
-var smApptPromptEl = document.querySelector('#sm-appointment-date-prompt');
-var smApptEl = document.querySelector('#sm-appointment-date');
 
 // *POST-APPOINTMENT & NEXT STEPS
+
 var additionalNotesPromptEl = document.querySelector('#additional-notes-prompt');
 var additionalNotesEl = document.querySelector('#additional-notes');
 var startedRegPromptEl = document.querySelector('#started-registering-prompt');
@@ -226,8 +247,18 @@ var nextAppointmentEl = document.querySelector('#next-appointment-date');
 var nextTopicEl = document.querySelector('#next-topic');
 
 // *OTHER APPOINTMENT PROMPS & INPUTS
+
 var otherDeptApptPromptEl = document.querySelector('#other-dept-appt-prompt');
 var otherDeptApptEl = document.querySelector('#other-dept-appt');
+
+var obAssistanceApptPromptEl = document.querySelector('#ob-assistance-appt-prompt');
+var otherDeptApptObPromptEl = document.querySelector('#other-dept-appt-ob-prompt');
+var obAssistanceApptEl = document.querySelector('#ob-assistance-appt');
+var reminderObAssistanceEl = document.querySelector('#reminder-ob-assistance');
+var obAssistanceTechEl = document.querySelector('#ob-assistance-tech');
+var obAssistanceBookingIdEl = document.querySelector('#ob-assistance-booking-id');
+var obAssistanceDateEl = document.querySelector('#ob-assistance-date');
+var obBookingIdPrompt = document.querySelector('#ob-booking-id-prompt');
 
 var whAssistanceApptPromptEl = document.querySelector('#wh-assistance-appt-prompt');
 var otherDeptApptWhPromptEl = document.querySelector('#other-dept-appt-wh-prompt');
@@ -238,14 +269,15 @@ var whAssistanceBookingIdEl = document.querySelector('#wh-assistance-booking-id'
 var whAssistanceDateEl = document.querySelector('#wh-assistance-date');
 var whBookingIdPrompt = document.querySelector('#wh-booking-id-prompt');
 
-var obAssistanceApptPromptEl = document.querySelector('#ob-assistance-appt-prompt');
-var otherDeptApptObPromptEl = document.querySelector('#other-dept-appt-ob-prompt');
-var obAssistanceApptEl = document.querySelector('#ob-assistance-appt');
-var reminderObAssistanceEl = document.querySelector('#reminder-ob-assistance');
-var obAssistanceTechEl = document.querySelector('#ob-assistance-tech');
-var obAssistanceBookingIdEl = document.querySelector('#ob-assistance-booking-id');
-var obAssistanceDateEl = document.querySelector('#ob-assistance-date');
-var obBookingIdPrompt = document.querySelector('#ob-booking-id-prompt');
+var smOtherApptPromptEl = document.querySelector('#sm-appt-prompt');
+var otherDeptApptSmPromptEl = document.querySelector('#other-dept-appt-sm-prompt');
+var smOtherApptEl = document.querySelector('#sm-appt');
+var reminderSmPromptEl = document.querySelector('#reminder-sm-prompt');
+var reminderSmOtherEl = document.querySelector('#reminder-sm');
+var smOtherTechEl = document.querySelector('#sm-tech');
+var smOtherBookingIdEl = document.querySelector('#sm-booking-id');
+var smOtherDateEl = document.querySelector('#sm-date');
+var smBookingIdPrompt = document.querySelector('#sm-booking-id-prompt');
 
 var nicheChangeApptPromptEl = document.querySelector('#niche-change-appt-prompt');
 var otherDeptApptNcPromptEl = document.querySelector('#other-dept-appt-nc-prompt');
@@ -266,6 +298,7 @@ var websiteAnalysisDateEl = document.querySelector('#website-analysis-date');
 var waBookingIdPrompt = document.querySelector('#wa-booking-id-prompt');
 
 // *SUPPLIER MANAGEMENT
+
 var howManyProductsPromptEl = document.querySelector('#how-many-products-prompt');
 var howManyProductsEl = document.querySelector('#how-many-products');
 var howManySuppliersNumberEl = document.querySelector('#how-many-suppliers-number');
@@ -281,11 +314,6 @@ var followUpEmailToEl = document.querySelector('#follow-up-email-to');
 var applyAndEmailEl = document.querySelector('#apply-and-email');
 var contApplyAndEmailEl = document.querySelector('#cont-apply-and-email');
 var removeNonNicheEl = document.querySelector('#remove-non-niche');
-var completedSmEl = document.querySelector('#completed-supplier-management');
-var completedMarketingEl = document.querySelector('#completed-marketing');
-var marketingDateEl = document.querySelector('#marketing-date');
-var smWsTechEl = document.querySelector('#sm-ws-tech');
-var smWsDateEl = document.querySelector('#sm-ws-appointment-date');
 var seoBasicsEl = document.querySelector('#seo-basics');
 var catAndProdEl = document.querySelector('#cat-and-prod');
 var ensureProdCatEl = document.querySelector('#ensure-prod-cat');
@@ -293,8 +321,13 @@ var metasReviewedEl = document.querySelector('#metas-review');
 var reviseTitlesDescEl = document.querySelector('#revise-titles-desc');
 var optimizeImagesEl = document.querySelector('#optimize-images');
 var reviewSocialMediaEl = document.querySelector('#review-social-media');
+var completedSmPromptEl = document.querySelector('#completed-supplier-management-prompt');
+var completedSmEl = document.querySelector('#completed-supplier-management');
+var completedMarketingEl = document.querySelector('#completed-marketing');
+var marketingDateEl = document.querySelector('#marketing-date');
 
 // *SOCIAL MEDIA
+
 var socmReviewedEl = document.querySelector('#social-media-reviewed');
 var completedDesignQuestionareEl = document.querySelector('#completed-design-questionnaire');
 var accessAllSocialMediaEl = document.querySelector('#access-all-social-media');
@@ -342,6 +375,7 @@ var socmCompletedNoneEl = document.querySelector('#socm-completed-none');
 var socmCompletedYesEl = document.querySelector('#socm-completed-yes');
 
 // *THEME & GLOBAL STATE VARIABLES
+
 var toggleSwitch = document.querySelector('#dark-light-toggle');
 var currentTheme = document.documentElement.getAttribute('data-theme');
 var currentDeptValue = '';
@@ -349,6 +383,7 @@ var savedDept = '';
 var currentApptValue = '';
 
 // *TEXT STRING VARIABLES (FOR NOTE GENERATION)
+
 var htmlNotes = '';
 var contactedClientText = '';
 var contText = '';
@@ -359,6 +394,7 @@ var hwPercentText = '';
 var hwText = '';
 
 // Worked On Strings
+
 var workedOnText = '';
 var postWorkedOnText = '';
 var dashNavText = '';
@@ -386,6 +422,7 @@ var modifyVariantsText = '';
 var customWorkedonText = '';
 
 // Assigned HW Strings
+
 var assignedHwText = '';
 var firstApptFinishVidText = '';
 var reviewExtraPagesText = '';
@@ -404,6 +441,7 @@ var allVidText = '';
 var customAssignedHwText = '';
 
 // Post Checklist Strings
+
 var postChecklistText = '';
 var businessEmailText = '';
 var timeZoneText = '';
@@ -416,6 +454,7 @@ var varientsCondensedText = '';
 var taglineText = '';
 
 // Supplier Management Strings
+
 var howManyProductsText = '';
 var howManySuppliersNumberText = '';
 var howManySuppliersNamesText = '';
@@ -447,6 +486,7 @@ var reviewSocialMediaText = '';
 var marketingReviewedText = '';
 
 // Social Media Strings
+
 var completedDesignQuestionareText = '';
 var accessAllSocialMediaText = '';
 var updatedBiosText = '';
@@ -491,6 +531,7 @@ var quoteThreeTwitterPostsText = '';
 var socmCompletedText = '';
 
 // Missed Appointment Strings
+
 var missedApptText = '';
 var attemptText = '';
 var phoneNumberText = '';
@@ -504,6 +545,7 @@ var sentMissedEmailText = '';
 var markedPodioText = '';
 
 // Contacted by Client Strings
+
 var contactedByClientText = '';
 var messageType = '';
 var reasonForContactText = '';
@@ -520,17 +562,21 @@ var returnContactText = '';
 var contactedRescheduleDateText = '';
 
 // Reschedule Strings
+
 var rescheduleReasonText = '';
 var rescheduleDateText = '';
 
 // General Contact Strings
+
 var generalContactPurposeText = '';
 var generalContactNoteText = '';
 
 // Podio Strings
+
 var podioLinkText = '';
 
 // Logic & Footer Strings
+
 var additionalNotesText = '';
 var startedRegText = '';
 var completionFormSentText = '';
@@ -539,9 +585,6 @@ var whyNotSignedText = '';
 var completionFormText = '';
 var sentSmGuideText = '';
 var enrolledSmText = '';
-var smTechText = '';
-var smApptText = '';
-var smText = '';
 var liveText = '';
 var registeredText = '';
 var resaleCertText = '';
@@ -558,6 +601,10 @@ var obAssistanceTechText = '';
 var obAssistanceDateText = '';
 var obAssistanceBookingIdText = '';
 var obAssistanceText = '';
+var smTechText = '';
+var smDateText = '';
+var smBookingIdText = '';
+var smText = '';
 var nicheChangeTechText = '';
 var nicheChangeDateText = '';
 var ncBookingIdText = '';
@@ -863,15 +910,13 @@ function handleApptSelection() {
       htmlNotesEl.disabled = true;
       clearBtnEl.disabled = true;
       showAllDeptInputsEl.disabled = true;
+    } else if (currentApptValue === 'missed-appt' || currentApptValue === 'contacted-by-client' || currentApptValue === 'reschedule' || currentApptValue === 'general' || currentApptValue === 'podio-link') {
+      htmlNotesEl.disabled = false;
+      clearBtnEl.disabled = false;
+      showAllDeptInputsEl.disabled = true;
     } else {
       htmlNotesEl.disabled = false;
       clearBtnEl.disabled = false;
-      showAllDeptInputsEl.disabled = false;
-    }
-
-    if (currentApptValue === 'missed-appt' || currentApptValue === 'contacted-by-client' || currentApptValue === 'reschedule' || currentApptValue === 'general' || currentApptValue === 'podio-link') {
-      showAllDeptInputsEl.disabled = true;
-    } else {
       showAllDeptInputsEl.disabled = false;
     }
 
@@ -904,20 +949,30 @@ function updateApptVisibility() {
   var conditionalElements = document.querySelectorAll('[data-dept], [data-template]');
   conditionalElements.forEach(parseDataAttributes);
 
-  if (isDefault) {
-    htmlNotesEl.disabled = true;
-    clearBtnEl.disabled = true;
-    showAllDeptInputsEl.disabled = true;
-  } else if (!isDefault) {
-    htmlNotesEl.disabled = false;
-    clearBtnEl.disabled = false;
-    showAllDeptInputsEl.disabled = false;
-  }
-
   if (selectedValue === 'wh-assistance') {
     [contApptPromptEl, hwPromptEl, hwPercentPromptEl].forEach(function (el) {
       setVisibility(el, false);
     });
+  }
+
+  if (selectedValue === 'wh-post-appt') {
+    setVisibility(otherDeptApptSmPromptEl, true);
+    enrolledSmPromptEl.after(otherDeptApptSmPromptEl);
+    otherDeptApptSmPromptEl.classList.add('grey-bg');
+    setVisibility(smOtherApptPromptEl, false);
+  } else {
+    setVisibility(otherDeptApptSmPromptEl, false);
+    smOtherApptPromptEl.after(otherDeptApptSmPromptEl);
+  }
+
+  if (selectedValue === 'sm-final-upgraded') {
+    setVisibility(otherDeptApptWaPromptEl, true);
+    completedSmPromptEl.after(otherDeptApptWaPromptEl);
+    otherDeptApptWaPromptEl.classList.add('grey-bg');
+    setVisibility(websiteAnalysisApptPromptEl, false);
+  } else {
+    setVisibility(otherDeptApptWaPromptEl, false);
+    websiteAnalysisApptPromptEl.after(otherDeptApptWaPromptEl);
   }
 
   var allWorkedOnItems = workedOnEl.querySelectorAll('div[data-dept]');
@@ -1011,7 +1066,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Warhead Training</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + smText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'missed-appt' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'contacted-by-client' && currentApptValue !== 'default') {
@@ -1029,7 +1084,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${displayApptName}</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + smText + additionalTrainingText + nextAppointmentText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + smText + additionalTrainingText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'general' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client${generalContactPurposeText}.
@@ -1041,13 +1096,13 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Supplier Management</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + smRequirementsText + howManyProductsText + updatedHowManySuppliersText + workedOnText + assignedHwText + removeNonNicheText + completedSmText + additionalNotesText + nextAppointmentText + updatedSmWsText + marketingDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
+    htmlNotes = contactedClientText + smRequirementsText + howManyProductsText + updatedHowManySuppliersText + workedOnText + assignedHwText + removeNonNicheText + completedSmText + additionalNotesText + nextAppointmentText + updatedSmWsText + marketingDateText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'sm-marketing' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${displayApptName}</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + marketingReviewedText + additionalNotesText + completedMarketingText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
+    htmlNotes = contactedClientText + marketingReviewedText + additionalNotesText + completedMarketingText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + initialsText;
   } else if ((currentApptValue === 'socm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fifth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-sixth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-seventh-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-eighth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ninth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-tenth-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
@@ -1134,6 +1189,10 @@ function resetHtmlNotes() {
   websiteAnalysisDateText = '';
   waBookingIdText = '';
   websiteAnalysisText = '';
+  smTechText = '';
+  smDateText = '';
+  smBookingIdText = '';
+  smText = '';
   howManyProductsText = '';
   howManySuppliersNumberText = '';
   howManySuppliersNamesText = '';
@@ -1163,7 +1222,7 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptWhPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, smOtherApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmPromptEl, otherDeptApptWhPromptEl];
 
   allPrompts.forEach(function (element) {
     element.setAttribute('class', 'hide-content');
@@ -1171,6 +1230,7 @@ function resetHtmlNotes() {
 }
 
 // *All DEPT STRING HANDLERS
+
 function setContAppt() {
   if (!contApptEl) {
     return;
@@ -1362,8 +1422,8 @@ function setNextAppointment() {
 }
 
 function setOtherAppointment() {
-  var otherApptPrompts = [whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl];
-  var otherApptInputs = [otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptWhPromptEl];
+  var otherApptPrompts = [whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, smOtherApptPromptEl];
+  var otherApptInputs = [otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptWhPromptEl, otherDeptApptSmPromptEl];
 
   otherApptPrompts.forEach(function (element) {
     setVisibility(element, false);
@@ -1383,7 +1443,8 @@ function setOtherAppointment() {
       obAssistanceApptEl.checked = false;
       nicheChangeApptEl.checked = false;
       websiteAnalysisApptEl.checked = false;
-      var inputsToClear = [whAssistanceDateEl, obAssistanceDateEl, nicheChangeDateEl, websiteAnalysisDateEl, whAssistanceTechEl, obAssistanceTechEl, nicheChangeTechEl, websiteAnalysisTechEl, ncBookingIdEl, waBookingIdEl, obAssistanceBookingIdEl, whAssistanceBookingIdEl];
+      smOtherApptEl.checked = false;
+      var inputsToClear = [whAssistanceDateEl, obAssistanceDateEl, nicheChangeDateEl, websiteAnalysisDateEl, whAssistanceTechEl, obAssistanceTechEl, nicheChangeTechEl, websiteAnalysisTechEl, ncBookingIdEl, waBookingIdEl, obAssistanceBookingIdEl, whAssistanceBookingIdEl, smOtherBookingIdEl, smOtherDateEl, smOtherTechEl];
       inputsToClear.forEach(function (input) {
         if (input) input.value = '';
       });
@@ -1399,7 +1460,22 @@ function setOtherAppointment() {
       websiteAnalysisDateText = '';
       websiteAnalysisTechText = '';
       websiteAnalysisText = '';
+      smDateText = '';
+      smTechText = '';
+      smBookingIdText = '';
       updateHtmlNotes();
+    }
+
+    if (otherDeptApptEl.checked && currentApptValue === 'wh-post-appt') {
+      setVisibility(smOtherApptPromptEl, false);
+    } else if (!otherDeptApptEl.checked && currentApptValue === 'wh-post-appt') {
+      setVisibility(otherDeptApptSmPromptEl, true);
+    }
+
+    if (otherDeptApptEl.checked && currentApptValue === 'sm-final-upgraded') {
+      setVisibility(websiteAnalysisApptPromptEl, false);
+    } else if (!otherDeptApptEl.checked && currentApptValue === 'sm-final-upgraded') {
+      setVisibility(otherDeptApptWaPromptEl, true);
     }
   });
 
@@ -1417,6 +1493,27 @@ function setOtherAppointment() {
       whAssistanceText = '';
       reminderWhAssistanceEl.checked = false;
       var inputsToClear = [whAssistanceDateEl, whAssistanceTechEl, whAssistanceBookingIdEl];
+      inputsToClear.forEach((input) => {
+        if (input) input.value = '';
+      });
+      updateHtmlNotes();
+    }
+  });
+
+  smOtherApptEl.addEventListener('change', function () {
+    if (smOtherApptEl && smOtherApptEl.checked) {
+      setVisibility(otherDeptApptSmPromptEl, true);
+      setVisibility(smBookingIdPrompt, true);
+      otherDeptApptSmPromptEl.classList.add('grey-bg');
+    } else if (!smOtherApptEl.checked) {
+      setVisibility(otherDeptApptSmPromptEl, false);
+      setVisibility(smBookingIdPrompt, true);
+      smDateText = '';
+      smTechText = '';
+      smBookingIdText = '';
+      smText = '';
+      reminderSmOtherEl.checked = false;
+      var inputsToClear = [smOtherDateEl, smOtherTechEl, smOtherBookingIdEl];
       inputsToClear.forEach((input) => {
         if (input) input.value = '';
       });
@@ -1521,6 +1618,46 @@ function setOtherAppointment() {
       whAssistanceDateText = '';
     } else if (event.target.value) {
       whAssistanceDateText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  smOtherTechEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      smTechText = '';
+    } else if (event.target.value) {
+      smTechText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  smOtherBookingIdEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      smBookingIdText = '';
+    } else {
+      smBookingIdText = `Booking ID: ${event.target.value}`;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  reminderSmOtherEl.addEventListener('change', function () {
+    if (reminderSmOtherEl.checked) {
+      setVisibility(smBookingIdPrompt, false);
+    } else {
+      setVisibility(smBookingIdPrompt, true);
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  smOtherDateEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      smDateText = '';
+    } else if (event.target.value) {
+      smDateText = event.target.value;
     }
     updateOtherAppointment();
     updateHtmlNotes();
@@ -1676,14 +1813,28 @@ function updateOtherAppointment() {
     obAssistanceText = '';
   }
 
+  if (reminderSmOtherEl.checked) {
+    smText = `<p>
+  Reminded client about Supplier Management appointment with ${smTechText} for ${smDateText}.
+</p>
+`;
+  } else if (!reminderSmOtherEl.checked && (smTechText || smDateText)) {
+    smText = `<p>
+  Booked Supplier Management appointment with ${smTechText} for ${smDateText}. ${smBookingIdText}
+</p>
+`;
+  } else {
+    smText = '';
+  }
+
   if (reminderNcEl.checked) {
     nicheChangeText = `<p>
-  Reminded client about Onboarding appointment with ${nicheChangeTechText} for ${nicheChangeDateText}.
+  Reminded client about Niche Change appointment with ${nicheChangeTechText} for ${nicheChangeDateText}.
 </p>
 `;
   } else if (!reminderNcEl.checked && (nicheChangeTechText || nicheChangeDateText)) {
     nicheChangeText = `<p>
-  Booked Onboarding appointment with ${nicheChangeTechText} for ${nicheChangeDateText}. ${ncBookingIdText}
+  Booked Niche Change appointment with ${nicheChangeTechText} for ${nicheChangeDateText}. ${ncBookingIdText}
 </p>
 `;
   } else {
@@ -1692,12 +1843,12 @@ function updateOtherAppointment() {
 
   if (reminderWaEl.checked) {
     websiteAnalysisText = `<p>
-  Reminded client about Onboarding appointment with ${websiteAnalysisTechText} for ${websiteAnalysisDateText}.
+  Reminded client about Website Analysis appointment with ${websiteAnalysisTechText} for ${websiteAnalysisDateText}.
 </p>
 `;
   } else if (!reminderWaEl.checked && (websiteAnalysisTechText || websiteAnalysisDateText)) {
     websiteAnalysisText = `<p>
-  Booked Onboarding appointment with ${websiteAnalysisTechText} for ${websiteAnalysisDateText}. ${waBookingIdText}
+  Booked Website Analysis appointment with ${websiteAnalysisTechText} for ${websiteAnalysisDateText}. ${waBookingIdText}
 </p>
 `;
   } else {
@@ -1768,6 +1919,7 @@ function setInitials() {
 }
 
 // "Worked On" String Handlers
+
 var workedOnElements = [dashNavEl, extraPageEl, createCatEl, organizeCatEl, createProdEl, prodGridEl, catProdEl, discountsEl, checkoutSectionsEl, payPalEl, testOrderEl, processOrderEl, updatingProdEl, unavailableProdEl, stripeEl, variantsEl, googleAnalyticsEl, updatingNewProdEl, processRealOrderEl, modifyVariantsEl, applicationProcessEl, dropshipDatabaseEl, submittedApplicationEl, assistedApplicationEl, followUpEmailEl];
 
 function setWorkedOn() {
@@ -1920,6 +2072,7 @@ function updateWorkedOn() {
 }
 
 // "Assigned HW" String Handlers
+
 var assignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, firstApptContinueVidEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, secondApptContinueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl];
 
 function setAssignedHw() {
@@ -2065,6 +2218,7 @@ function updatePostChecklist() {
 }
 
 // Missed Appointment String Handlers
+
 function setMissedAppointment() {
   var missedApptPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl];
 
@@ -2274,6 +2428,7 @@ function updateMissedAppointment() {
 }
 
 // Contacted By Client String Handlers
+
 function setContactedByClient() {
   setVisibility(contactedEmailSentPromptEl, false);
   contactedByClientText = `<p>
@@ -2540,6 +2695,7 @@ function updateReturnContactText() {
 }
 
 // General String Handler
+
 function setGeneralContact() {
   generalContactPurposeEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -2564,6 +2720,7 @@ function setGeneralContact() {
 }
 
 // Reschedule String Handler
+
 function setReschedule() {
   rescheduleReasonEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -2593,6 +2750,7 @@ function setReschedule() {
 }
 
 // Podio Link String Handlers
+
 function setPodioLink() {
   podioLinkEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -2605,6 +2763,7 @@ function setPodioLink() {
 }
 
 // *WARHEAD SPECIFIC STRING HANDLERS
+
 function setScreenShare() {
   screenShareOtherPromptEl.classList.add('hide-content');
 
@@ -2746,26 +2905,6 @@ function updateCompletionForm() {
 }
 
 function setSupplierManagement() {
-  var smPrompts = [sentSmGuidePromptEl, enrolledSmPromptEl, smTechPromptEl, smApptPromptEl];
-
-  smPrompts.forEach(function (element) {
-    element.setAttribute('class', 'hide-content');
-  });
-
-  bookedSmEl.addEventListener('change', function () {
-    if (bookedSmEl.checked) {
-      smPrompts.forEach(function (element) {
-        element.setAttribute('class', 'show-content');
-      });
-    } else {
-      smPrompts.forEach(function (element) {
-        element.setAttribute('class', 'hide-content');
-        smText = '';
-        updateHtmlNotes();
-      });
-    }
-  });
-
   sentSmGuideEl.addEventListener('change', function () {
     if (sentSmGuideEl.checked) {
       sentSmGuideText = `Sent client SM How to Guide PDF.`;
@@ -2787,35 +2926,17 @@ function setSupplierManagement() {
     updateSupplierManagement();
     updateHtmlNotes();
   });
-
-  smTechEl.addEventListener('input', function (event) {
-    smTechText = event.target.value;
-    updateSupplierManagement();
-    updateHtmlNotes();
-  });
-
-  smApptEl.addEventListener('input', function (event) {
-    var newSmApptStr = handleDateFormat(event.target.value);
-
-    if (!newSmApptStr) {
-      smApptText = '';
-    } else {
-      smApptText = newSmApptStr;
-    }
-
-    updateSupplierManagement();
-    updateHtmlNotes();
-  });
 }
 
 function updateSupplierManagement() {
   smText = `<p>
-  ${sentSmGuideText} ${enrolledSmText} Booked SM Appointment with ${smTechText} on ${smApptText}.
+  ${sentSmGuideText} ${enrolledSmText} Booked SM Appointment with ${smTechText} on ${smDateText}.
 <p>
 `;
 }
 
 // *SUPPLIER MANAGEMENT SPECIFIC STRING HANDLERS
+
 function setHowManyProducts() {
   howManyProductsEl.addEventListener('input', function (event) {
     if (!event.target.value) {
@@ -2903,39 +3024,6 @@ function setCompletedMarketing() {
     }
     updateHtmlNotes();
   });
-}
-
-function setSmWsAppt() {
-  smWsDateEl.addEventListener('input', function (event) {
-    if (!event.target.value) {
-      smWsDateText = '';
-    } else {
-      smWsDateText = event.target.value;
-    }
-    updatedSmWsAppt();
-    updateHtmlNotes();
-  });
-
-  smWsTechEl.addEventListener('input', function (event) {
-    if (!event.target.value) {
-      smWsTechText = '';
-    } else {
-      smWsTechText = event.target.value;
-    }
-    updatedSmWsAppt();
-    updateHtmlNotes();
-  });
-}
-
-function updatedSmWsAppt() {
-  if (smWsDateText || smWsTechText) {
-    updatedSmWsText = `<p>
-  Booked Website Analysis appointment with ${smWsTechText} on ${smWsDateText}
-</p>
-`;
-  } else {
-    updatedSmWsText = '';
-  }
 }
 
 function setMarketingAppt() {
@@ -3182,7 +3270,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setRemoveNonNiche();
   setCompletedSm();
   setCompletedMarketing();
-  setSmWsAppt();
   setMarketingAppt();
   setMarketingReviewed();
 
