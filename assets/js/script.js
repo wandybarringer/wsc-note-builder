@@ -1001,6 +1001,7 @@ function updateApptVisibility() {
   }
 
   var allWorkedOnItems = workedOnEl.querySelectorAll('div[data-dept]');
+  var allHwItems = assignedHwEl.querySelectorAll('div[data-dept]');
   var allSocmReviewedItems = socmReviewedEl.querySelectorAll('div[data-dept]');
 
   if (isShowAllWorkedOn && isShowAllInputs) {
@@ -1021,7 +1022,6 @@ function updateApptVisibility() {
   }
 
   if (isShowAllHw && selectedValue !== 'wh-post-appt') {
-    var allHwItems = assignedHwEl.querySelectorAll('div[data-dept]');
     allHwItems.forEach(function (el) {
       if (matchesDept(el, selectedDept)) {
         setVisibility(el, true);
