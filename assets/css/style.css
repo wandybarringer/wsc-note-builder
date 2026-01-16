@@ -26,8 +26,8 @@
   --toggle-round: #fff;
   --dialog-bg: #ffffff70;
   --glass-shadow: #1e293b18;
-  --line-one: #d2dee452;
-  --line-two: #b9d4e252;
+  --line-one: #c1ced430;
+  --line-two: #b9d4e230;
 }
 
 /* THEME OVERRIDES (DARK MODE) */
@@ -51,8 +51,8 @@
   --toggle-round: #fff;
   --dialog-bg: #00000070;
   --glass-shadow: #f8fafc18;
-  --line-one: #51565852;
-  --line-two: #47545a52;
+  --line-one: #51565820;
+  --line-two: #41485320;
 }
 
 /* LAYOUT & CONTAINERS */
@@ -69,7 +69,12 @@ body {
 }
 
 header h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  position: relative;
+
+  @media screen and (width < 440px) {
+    left: 5%;
+  }
 }
 
 section {
@@ -128,13 +133,17 @@ section {
   line-height: 1.3;
   padding: 1rem;
   word-wrap: break-word;
-  box-shadow: inset 0px 2px 8px var(--glass-shadow), 0px 2px 8px var(--glass-shadow);
+  box-shadow:
+    inset 0px 2px 8px var(--glass-shadow),
+    0px 2px 8px var(--glass-shadow);
 }
 
 #output-panel {
   block-size: 80vh;
   position: relative;
-  box-shadow: inset 0px 2px 8px var(--glass-shadow), 0px 2px 8px var(--glass-shadow);
+  box-shadow:
+    inset 0px 2px 8px var(--glass-shadow),
+    0px 2px 8px var(--glass-shadow);
 }
 
 #input-panel,
@@ -154,6 +163,10 @@ nav {
   justify-content: center;
   position: relative;
   margin-block-start: 8px;
+
+  @media screen and (width < 440px) {
+    justify-content: start;
+  }
 }
 
 header ul {
@@ -279,7 +292,7 @@ input[type='radio'] {
   appearance: none;
   inline-size: 20px;
   block-size: 20px;
-  border: var(--primary-text) solid 1px;
+  border: var(--primary-text-transparent) solid 1px;
   background: var(--primary-bg);
   border-radius: 0.2rem;
   display: inline-grid;
@@ -602,6 +615,9 @@ input[type='checkbox'].round-checkbox {
   background: var(--secondary-grey-bg);
   padding: 5px;
   border: none;
+}
+
+.border-expand {
   border-radius: 5px 5px 0px 5px;
 }
 
@@ -642,7 +658,10 @@ input[type='checkbox']:hover {
   transform: translate(-50%, -50%);
   background: var(--emphasis-bg);
   backdrop-filter: blur(2px);
-  transition: opacity 0.2s ease, display 0.4s allow-discrete, overlay 0.4s allow-discrete;
+  transition:
+    opacity 0.2s ease,
+    display 0.4s allow-discrete,
+    overlay 0.4s allow-discrete;
 }
 
 #copy-dialog {
@@ -659,7 +678,10 @@ input[type='checkbox']:hover {
   transform: translate(-50%, -50%);
   background: var(--dialog-bg);
   backdrop-filter: blur(2px);
-  transition: opacity 0.2s ease, display 0.4s allow-discrete, overlay 0.4s allow-discrete;
+  transition:
+    opacity 0.2s ease,
+    display 0.4s allow-discrete,
+    overlay 0.4s allow-discrete;
 }
 
 #copy-msg-dialog {
@@ -676,7 +698,10 @@ input[type='checkbox']:hover {
   transform: translate(-50%, -50%);
   background: var(--dialog-bg);
   backdrop-filter: blur(2px);
-  transition: opacity 0.2s ease, display 0.4s allow-discrete, overlay 0.4s allow-discrete;
+  transition:
+    opacity 0.2s ease,
+    display 0.4s allow-discrete,
+    overlay 0.4s allow-discrete;
   pointer-events: none;
 }
 
@@ -717,7 +742,9 @@ input[type='checkbox']:hover {
 #clear-btn:active,
 .eye-toggle:active {
   font-size: 1.15rem;
-  box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.25), inset -3px -3px 6px rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 4px 4px 6px rgba(0, 0, 0, 0.25),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.15);
   border-color: var(--input-border);
 }
 
@@ -816,7 +843,9 @@ input[type='checkbox']:hover {
 #html-notes:active {
   appearance: none;
   outline: none;
-  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.3), inset -3px -3px 7px rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.1);
   border-color: var(--input-border);
   transform: translateY(1px);
   padding: 3px;
