@@ -251,6 +251,7 @@ var designFinishedYesEl = document.querySelector('#design-finished-yes');
 var additionalTrainingPromptEl = document.querySelector('#additional-training-prompt');
 var additionalTrainingEl = document.querySelector('#additional-training');
 
+var noFurtherWhAssistanceEl = document.querySelector('#no-further-wh-assistance');
 var nextApptDatePromptEl = document.querySelector('#next-appt-date-prompt');
 var nextTopicPromptEl = document.querySelector('#next-topic-prompt');
 var nextAppointmentEl = document.querySelector('#next-appointment-date');
@@ -610,6 +611,7 @@ var designFinishedText = '';
 var smRequirementsText = '';
 var additionalTrainingText = '';
 var smReminderText = '';
+var noFurtherWhAssistanceText = '';
 var nextAppointmentText = '';
 var whAssistanceTechText = '';
 var whAssistanceDateText = '';
@@ -665,7 +667,44 @@ var deptLabels = {
   'social-media': 'Social Media',
 };
 
+var stripeTimer;
+
 // *CORE UI & UTILITY FUNCTIONS
+
+function updateDynamicStripes() {
+  var form = document.getElementById('non-specific-form');
+  if (!form) return;
+
+  var allDivs = Array.from(form.querySelectorAll(':scope > div'));
+
+  var visibleRows = allDivs.filter((div) => {
+    var hasHideClass = div.classList.contains('hide-content');
+    var hasGreyBg = div.classList.contains('grey-bg');
+    var hasNoLineBg = div.classList.contains('no-line-bg');
+    var isDisplayNone = window.getComputedStyle(div).display === 'none';
+
+    return !hasHideClass && !isDisplayNone && !hasGreyBg && !hasNoLineBg;
+  });
+
+  allDivs.forEach((div) => {
+    if (!div.classList.contains('grey-bg')) {
+      div.style.backgroundColor = 'transparent';
+    }
+  });
+
+  visibleRows.forEach((div, index) => {
+    if (index % 2 === 0) {
+      div.style.backgroundColor = 'var(--line-one)';
+    } else {
+      div.style.backgroundColor = 'var(--line-two)';
+    }
+  });
+}
+
+function scheduleStripeUpdate() {
+  cancelAnimationFrame(stripeTimer);
+  stripeTimer = requestAnimationFrame(updateDynamicStripes);
+}
 
 function setVisibility(item, show) {
   if (!item) return;
@@ -676,6 +715,7 @@ function setVisibility(item, show) {
     el.classList.toggle('show-content', show);
     el.classList.toggle('hide-content', !show);
   });
+  scheduleStripeUpdate();
 }
 
 function setSavedDepartment() {
@@ -964,6 +1004,8 @@ function updateApptVisibility() {
   currentDeptValue = selectedDept;
 
   var isDefault = selectedValue === 'default';
+  var isMissedAppt = selectedValue === 'missed-appt';
+  var isContactedByClient = selectedValue === 'contacted-by-client';
   var isShowAllWorkedOn = showAllWorkedOnEl.checked;
   var isShowAllHw = showAllAssignedHwEl.checked;
   var isShowAllSocmReviewed = showAllSocmReviewedEl.checked;
@@ -973,6 +1015,14 @@ function updateApptVisibility() {
 
   var conditionalElements = document.querySelectorAll('[data-dept], [data-template]');
   conditionalElements.forEach(parseDataAttributes);
+
+  if (isMissedAppt) {
+    setMissedAppointment();
+  }
+
+  if (isContactedByClient) {
+    setContactedByClient();
+  }
 
   if (selectedValue === 'wh-assistance') {
     [contApptPromptEl, hwPromptEl, hwPercentPromptEl].forEach(function (el) {
@@ -1109,7 +1159,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${displayApptName}</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + smText + additionalTrainingText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + smText + additionalTrainingText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'general' && currentApptValue !== 'default') {
     htmlNotes = generalContactPurposeText + generalContactNoteText + initialsText;
   } else if ((currentApptValue === 'sm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'sm-follow-up' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-upgraded' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-non-upgraded' && currentApptValue !== 'default')) {
@@ -1181,6 +1231,7 @@ function resetHtmlNotes() {
   designFinishedText = '';
   smRequirementsText = '';
   additionalTrainingText = '';
+  noFurtherWhAssistanceText = '';
   nextAppointmentText = '';
   nextTopicText = '';
   smReminderText = '';
@@ -1243,10 +1294,10 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, smOtherApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmPromptEl, otherDeptApptWhPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, smOtherApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmPromptEl, otherDeptApptWhPromptEl, screenShareOtherPromptEl];
 
   allPrompts.forEach(function (element) {
-    element.setAttribute('class', 'hide-content');
+    setVisibility(element, false);
   });
 }
 
@@ -1400,15 +1451,11 @@ function setLiveRegisteredDesign() {
 
   additionalTrainingEl.addEventListener('change', function () {
     if (additionalTrainingEl.checked) {
-      nextApptDatePromptEl.setAttribute('class', 'show-content');
-      nextTopicPromptEl.setAttribute('class', 'show-content');
       additionalTrainingText = `<p>
   Client requesting additional training.
 <p>
 `;
     } else {
-      nextApptDatePromptEl.setAttribute('class', 'hide-content');
-      nextTopicPromptEl.setAttribute('class', 'hide-content');
       additionalTrainingText = '';
     }
     updateHtmlNotes();
@@ -2250,7 +2297,7 @@ function setMissedAppointment() {
   var missedApptPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl];
 
   missedApptPrompts.forEach(function (element) {
-    element.setAttribute('class', 'hide-content');
+    setVisibility(element, false);
   });
 
   var missedApptRadioElements = [firstAttemptRadioEl, secondAttemptRadioEl, thirdAttemptRadioEl];
@@ -2274,52 +2321,52 @@ function setMissedAppointment() {
 
       if (firstAttemptRadioEl.checked) {
         attemptText = `<b>1st attempt</b>`;
-        phoneNumberPromptEl.setAttribute('class', 'show-content');
-        secondaryPhoneNumberPromptEl.setAttribute('class', 'show-content');
-        leftVmPromptEl.setAttribute('class', 'show-content');
-        noVmReasonPromptEl.setAttribute('class', 'hide-content');
-        emailSentPromptEl.setAttribute('class', 'show-content');
-        sentMissedEmailPromptEl.setAttribute('class', 'hide-content');
-        markedPodioPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(phoneNumberPromptEl, true);
+        setVisibility(secondaryPhoneNumberPromptEl, true);
+        setVisibility(leftVmPromptEl, true);
+        setVisibility(noVmReasonPromptEl, false);
+        setVisibility(emailSentPromptEl, true);
+        setVisibility(sentMissedEmailPromptEl, false);
+        setVisibility(markedPodioPromptEl, false);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
       } else if (secondAttemptRadioEl.checked) {
         attemptText = `<b>2nd attempt</b>`;
-        phoneNumberPromptEl.setAttribute('class', 'hide-content');
-        secondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        leftVmPromptEl.setAttribute('class', 'show-content');
-        noVmReasonPromptEl.setAttribute('class', 'hide-content');
-        emailSentPromptEl.setAttribute('class', 'hide-content');
-        sentMissedEmailPromptEl.setAttribute('class', 'hide-content');
-        markedPodioPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(phoneNumberPromptEl, false);
+        setVisibility(secondaryPhoneNumberPromptEl, false);
+        setVisibility(leftVmPromptEl, true);
+        setVisibility(noVmReasonPromptEl, false);
+        setVisibility(emailSentPromptEl, true);
+        setVisibility(sentMissedEmailPromptEl, false);
+        setVisibility(markedPodioPromptEl, false);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
       } else if (thirdAttemptRadioEl.checked) {
         attemptText = `<b>3rd attempt</b>`;
-        phoneNumberPromptEl.setAttribute('class', 'hide-content');
-        secondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        leftVmPromptEl.setAttribute('class', 'show-content');
-        noVmReasonPromptEl.setAttribute('class', 'hide-content');
-        emailSentPromptEl.setAttribute('class', 'hide-content');
-        sentMissedEmailPromptEl.setAttribute('class', 'show-content');
-        markedPodioPromptEl.setAttribute('class', 'show-content');
+        setVisibility(phoneNumberPromptEl, false);
+        setVisibility(secondaryPhoneNumberPromptEl, false);
+        setVisibility(leftVmPromptEl, true);
+        setVisibility(noVmReasonPromptEl, false);
+        setVisibility(emailSentPromptEl, false);
+        setVisibility(sentMissedEmailPromptEl, true);
+        setVisibility(markedPodioPromptEl, true);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
       } else {
         attemptText = ``;
-        phoneNumberPromptEl.setAttribute('class', 'hide-content');
-        secondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        leftVmPromptEl.setAttribute('class', 'hide-content');
-        noVmReasonPromptEl.setAttribute('class', 'hide-content');
-        emailSentPromptEl.setAttribute('class', 'hide-content');
-        sentMissedEmailPromptEl.setAttribute('class', 'hide-content');
-        markedPodioPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(phoneNumberPromptEl, false);
+        setVisibility(secondaryPhoneNumberPromptEl, false);
+        setVisibility(leftVmPromptEl, false);
+        setVisibility(noVmReasonPromptEl, false);
+        setVisibility(emailSentPromptEl, false);
+        setVisibility(sentMissedEmailPromptEl, false);
+        setVisibility(markedPodioPromptEl, false);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
@@ -2362,17 +2409,17 @@ function setMissedAppointment() {
     element.addEventListener('change', function () {
       if (vmNoEl.checked) {
         leftVmText = `Did not leave voicemail`;
-        noVmReasonPromptEl.setAttribute('class', 'show-content');
+        setVisibility(noVmReasonPromptEl, true);
       } else if (vmYesEl.checked) {
         leftVmText = `Left voicemail`;
-        noVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(noVmReasonPromptEl, false);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
       } else if (vmNoneEl.checked) {
         leftVmText = ``;
-        noVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(noVmReasonPromptEl, false);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
@@ -2505,7 +2552,7 @@ function setContactedByClient() {
   var contactedPrompts = [successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl];
 
   contactedPrompts.forEach(function (element) {
-    element.setAttribute('class', 'hide-content');
+    setVisibility(element, false);
   });
 
   var messageTypeRadioElements = [messageTypeNoneRadioEl, messageTypeVoicemailRadioEl, messageTypeEmailRadioEl, messageTypeTextRadioEl];
@@ -2528,18 +2575,18 @@ function setContactedByClient() {
         contactedVmNotSetupEl.checked = false;
         setVisibility(contactedEmailSentPromptEl, false);
         contactedPrompts.forEach(function (element) {
-          element.setAttribute('class', 'hide-content');
+          setVisibility(element, false);
         });
       } else if (messageTypeVoicemailRadioEl.checked || messageTypeEmailRadioEl.checked || messageTypeTextRadioEl.checked) {
         contactedByClientText = `<p>
   Contacted by client via ${currentMsgType}.
 </p>
 `;
-        successfulContactPromptEl.setAttribute('class', 'show-content');
-        contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
-        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(successfulContactPromptEl, true);
+        setVisibility(contactedPhoneNumberPromptEl, false);
+        setVisibility(contactedSecondaryPhoneNumberPromptEl, false);
+        setVisibility(contactedLeftVmPromptEl, false);
+        setVisibility(contactedNoVmReasonPromptEl, false);
         setVisibility(contactedEmailSentPromptEl, true);
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
@@ -2573,35 +2620,35 @@ function setContactedByClient() {
       contactedSecondaryPhoneNumberEl.value = '';
       if (successfulContactNoEl.checked) {
         successfulContactText = `Attempted to contact client but got no response.`;
-        contactedPhoneNumberPromptEl.setAttribute('class', 'show-content');
-        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'show-content');
-        contactedLeftVmPromptEl.setAttribute('class', 'show-content');
+        setVisibility(contactedPhoneNumberPromptEl, true);
+        setVisibility(contactedSecondaryPhoneNumberPromptEl, true);
+        setVisibility(contactedLeftVmPromptEl, true);
       } else if (successfulContactYesEl.checked) {
         successfulContactText = `Successfully contacted client.`;
-        contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
-        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(contactedPhoneNumberPromptEl, false);
+        setVisibility(contactedSecondaryPhoneNumberPromptEl, false);
+        setVisibility(contactedLeftVmPromptEl, false);
+        setVisibility(contactedNoVmReasonPromptEl, false);
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
         contactedCustomNoVmReasonRadioEl.checked = false;
         contactedCustomNoVmReasonTextEl.value = '';
       } else if (successfulContactNoneEl.checked) {
         successfulContactText = '';
-        contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
-        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(contactedPhoneNumberPromptEl, false);
+        setVisibility(contactedSecondaryPhoneNumberPromptEl, false);
+        setVisibility(contactedLeftVmPromptEl, false);
+        setVisibility(contactedNoVmReasonPromptEl, false);
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
         contactedCustomNoVmReasonRadioEl.checked = false;
         contactedCustomNoVmReasonTextEl.value = '';
       } else {
         successfulContactText = '';
-        contactedPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        contactedSecondaryPhoneNumberPromptEl.setAttribute('class', 'hide-content');
-        contactedLeftVmPromptEl.setAttribute('class', 'hide-content');
-        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(contactedPhoneNumberPromptEl, false);
+        setVisibility(contactedSecondaryPhoneNumberPromptEl, false);
+        setVisibility(contactedLeftVmPromptEl, false);
+        setVisibility(contactedNoVmReasonPromptEl, false);
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
         contactedCustomNoVmReasonRadioEl.checked = false;
@@ -2639,24 +2686,24 @@ function setContactedByClient() {
   contactedVmRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
       if (contactedVmNoEl.checked) {
-        contactedNoVmReasonPromptEl.setAttribute('class', 'show-content');
+        setVisibility(contactedNoVmReasonPromptEl, true);
         contactedLeftVmText = `Did not leave voicemail`;
       } else if (contactedVmYesEl.checked) {
-        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(contactedNoVmReasonPromptEl, false);
         contactedLeftVmText = `Left voicemail`;
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
         contactedCustomNoVmReasonRadioEl.checked = false;
         contactedCustomNoVmReasonTextEl.value = '';
       } else if (contactedVmNoneEl.checked) {
-        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(contactedNoVmReasonPromptEl, false);
         contactedLeftVmText = ``;
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
         contactedCustomNoVmReasonRadioEl.checked = false;
         contactedCustomNoVmReasonTextEl.value = '';
       } else {
-        contactedNoVmReasonPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(contactedNoVmReasonPromptEl, false);
         contactedLeftVmText = ``;
         contactedVmBoxFullEl.checked = false;
         contactedVmNotSetupEl.checked = false;
@@ -2736,13 +2783,13 @@ function setContactedByClient() {
 
   needsRescheduledEl.addEventListener('change', function () {
     if (needsRescheduledEl.checked) {
-      contactedRescheduleDatePromptEl.setAttribute('class', 'show-content');
+      setVisibility(contactedRescheduleDatePromptEl, true);
     } else if (!needsRescheduledEl.checked) {
-      contactedRescheduleDatePromptEl.setAttribute('class', 'hide-content');
+      setVisibility(contactedRescheduleDatePromptEl, false);
       contactedRescheduleDateText = '';
       contactedRescheduleDateEl.value = '';
     } else {
-      contactedRescheduleDatePromptEl.setAttribute('class', 'hide-content');
+      setVisibility(contactedRescheduleDatePromptEl, false);
     }
     updateHtmlNotes();
   });
@@ -2871,7 +2918,7 @@ function setPodioLink() {
 // *WARHEAD SPECIFIC STRING HANDLERS
 
 function setScreenShare() {
-  screenShareOtherPromptEl.classList.add('hide-content');
+  setVisibility(screenShareOtherPromptEl, false);
 
   screenShareEl.addEventListener('change', function (event) {
     currentScreenShareValue = event.target.value;
@@ -2883,11 +2930,9 @@ function setScreenShare() {
     }
 
     if (currentScreenShareValue === 'Other') {
-      screenShareOtherPromptEl.classList.remove('hide-content');
-      screenShareOtherPromptEl.classList.add('show-content');
+      setVisibility(screenShareOtherPromptEl, true);
     } else if (currentScreenShareValue !== 'Other') {
-      screenShareOtherPromptEl.classList.remove('show-content');
-      screenShareOtherPromptEl.classList.add('hide-content');
+      setVisibility(screenShareOtherPromptEl, false);
     }
 
     updateHtmlNotes();
@@ -2951,13 +2996,13 @@ function setStartedRegistering() {
 }
 
 function setCompletionForm() {
-  whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+  setVisibility(whyNotSignedPromptEl, false);
 
   completionFormSentEl.addEventListener('change', function () {
     if (completionFormSentEl.checked) {
       completionFormSentText = `Sent & explained completion form.`;
     } else {
-      whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+      setVisibility(whyNotSignedPromptEl, false);
       completionFormSentText = ``;
       completionFormSignedText = '';
       whyNotSignedText = '';
@@ -2971,13 +3016,13 @@ function setCompletionForm() {
   cfSignedRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
       if (cfSignedElYes.checked) {
-        whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(whyNotSignedPromptEl, false);
         completionFormSignedText = ` Client has <b>signed</b> completion form.`;
       } else if (cfSignedElNo.checked) {
-        whyNotSignedPromptEl.setAttribute('class', 'show-content');
+        setVisibility(whyNotSignedPromptEl, true);
         completionFormSignedText = ` Client has <b>not signed</b> completion form.`;
       } else if (cfSignedElNone.checked) {
-        whyNotSignedPromptEl.setAttribute('class', 'hide-content');
+        setVisibility(whyNotSignedPromptEl, false);
         completionFormSignedText = '';
       } else {
         completionFormSignedText = '';
@@ -3039,6 +3084,20 @@ function updateSupplierManagement() {
   ${sentSmGuideText} ${enrolledSmText} Booked SM Appointment with ${smTechText} on ${smDateText}.
 <p>
 `;
+}
+
+function setNoFurtherWhAssistance() {
+  noFurtherWhAssistanceEl.addEventListener('change', function () {
+    if (!noFurtherWhAssistanceEl.checked) {
+      noFurtherWhAssistanceText = '';
+    } else if (noFurtherWhAssistanceEl.checked) {
+      noFurtherWhAssistanceText = `<p>
+  No further WH Assistance appointments scheduled with me at this time.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
 }
 
 // *SUPPLIER MANAGEMENT SPECIFIC STRING HANDLERS
@@ -3367,6 +3426,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setCompletionForm();
   setSupplierManagement();
   setLiveRegisteredDesign();
+  setNoFurtherWhAssistance();
   setNextAppointment();
   setOtherAppointment();
   setNextTopic();

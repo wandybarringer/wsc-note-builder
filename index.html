@@ -103,11 +103,8 @@
 
                 <button id="clear-btn" title="Reset Template">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="reset-icon">
-                    <path d="M21 5H3" />
-                    <path d="M7 12H3" />
-                    <path d="M7 19H3" />
-                    <path d="M12 18a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L11 14" />
-                    <path d="M11 10v4h4" />
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                    <path d="M3 3v5h5" />
                   </svg>
                 </button>
               </div>
@@ -270,7 +267,7 @@
               </div>
             </div>
 
-            <div id="show-all-worked-on-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
+            <div id="show-all-worked-on-container" class="no-line-bg" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
               <label for="show-all-worked-on" class="list-chevrons-toggle" title="Show All Worked On Options">
                 <input type="checkbox" id="show-all-worked-on" />
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevrons-up-down">
@@ -413,7 +410,7 @@
               </div>
             </div>
 
-            <div id="show-all-socm-reviewed-container" data-dept="social-media" data-template='["socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="show-all-socm-reviewed-container" class="no-line-bg" data-dept="social-media" data-template='["socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="show-all-socm-reviewed" class="list-chevrons-toggle" title="Show All Review Options">
                 <input type="checkbox" id="show-all-socm-reviewed" />
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevrons-up-down">
@@ -527,7 +524,7 @@
               </div>
             </div>
 
-            <div id="show-all-assigned-hw-container" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="show-all-assigned-hw-container" class="no-line-bg" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="show-all-assigned-hw" class="list-chevrons-toggle" title="Show All Assigned HW Options">
                 <input type="checkbox" id="show-all-assigned-hw" />
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevrons-up-down">
@@ -734,6 +731,11 @@
               </div>
             </div>
 
+            <div data-dept="warhead" data-template="wh-assistance">
+              <input type="checkbox" name="no-further-wh-assistance" id="no-further-wh-assistance" />
+              <label for="no-further-wh-assistance">No further WH Assistance appointments</label>
+            </div>
+
             <div id="next-appt-date-prompt" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="next-appointment-date">Next appointment date:</label>
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
@@ -755,191 +757,201 @@
             </div>
 
             <!-- *Missed Appointment Inputs -->
-            <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
-              <div class="grey-bg" id="attempts-prompt">
+            <div class="grey-bg" id="attempts-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
+              <div>
+                <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
+                <label for="first-attempt">1st Attempt</label>
+              </div>
+              <div>
+                <input type="radio" name="attempt" id="second-attempt" value="Second attempt" />
+                <label for="second-attempt">2nd Attempt</label>
+              </div>
+              <div>
+                <input type="radio" name="attempt" id="third-attempt" value="Third attempt" />
+                <label for="third-attempt">3rd Attempt</label>
+              </div>
+            </div>
+
+            <div id="phone-number-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
+              <label for="phone-number">Phone number called:</label>
+              <input type="text" name="phone-number" id="phone-number" />
+            </div>
+
+            <div id="secondary-phone-number-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
+              <label for="secondary-phone-number">Secondary phone number:</label>
+              <input type="text" name="secondary-phone-number" id="secondary-phone-number" />
+            </div>
+
+            <div id="left-vm-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
+              <label class="default-pointer">Left voicemail?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="vm" id="vm-no" value="No" />
+                <label for="vm-no">No</label>
+                <input type="radio" name="vm" id="vm-none" value="None" checked />
+                <label for="vm-none"></label>
+                <input type="radio" name="vm" id="vm-yes" value="Yes" />
+                <label for="vm-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div id="no-vm-reason-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
+              <div class="grey-bg">
+                <p>Reason unable to leave a voicemail:</p>
                 <div>
-                  <input type="radio" name="attempt" id="first-attempt" value="First attempt" />
-                  <label for="first-attempt">1st Attempt</label>
+                  <input type="radio" name="no-vm-reason" id="vm-box-full" />
+                  <label for="vm-box-full">Voicemail Box Full</label>
                 </div>
                 <div>
-                  <input type="radio" name="attempt" id="second-attempt" value="Second attempt" />
-                  <label for="second-attempt">2nd Attempt</label>
+                  <input type="radio" name="no-vm-reason" id="vm-not-setup" />
+                  <label for="vm-not-setup">Voicemail Not Set Up</label>
                 </div>
                 <div>
-                  <input type="radio" name="attempt" id="third-attempt" value="Third attempt" />
-                  <label for="third-attempt">3rd Attempt</label>
+                  <input type="radio" name="no-vm-reason" id="custom-no-vm-reason-radio" />
+                  <input type="text" name="no-vm-reason" id="custom-no-vm-reason-text" placeholder="Custom Text" />
                 </div>
               </div>
-              <div id="phone-number-prompt">
-                <label for="phone-number">Phone number called:</label>
-                <input type="text" name="phone-number" id="phone-number" />
-              </div>
-              <div id="secondary-phone-number-prompt">
-                <label for="secondary-phone-number">Secondary phone number:</label>
-                <input type="text" name="secondary-phone-number" id="secondary-phone-number" />
-              </div>
-              <div id="left-vm-prompt">
-                <label class="default-pointer">Left voicemail?</label>
-                <div class="toggle-switch">
-                  <input type="radio" name="vm" id="vm-no" value="No" />
-                  <label for="vm-no">No</label>
-                  <input type="radio" name="vm" id="vm-none" value="None" checked />
-                  <label for="vm-none"></label>
-                  <input type="radio" name="vm" id="vm-yes" value="Yes" />
-                  <label for="vm-yes">Yes</label>
-                  <div class="selection-slider"></div>
-                </div>
-              </div>
-              <div id="no-vm-reason-prompt">
-                <label for="no-vm-reason">Reason unable to leave voicemail:</label>
-                <div class="grey-bg">
-                  <div>
-                    <input type="radio" name="no-vm-reason" id="vm-box-full" />
-                    <label for="vm-box-full">Voicemail Box Full</label>
-                  </div>
-                  <div>
-                    <input type="radio" name="no-vm-reason" id="vm-not-setup" />
-                    <label for="vm-not-setup">Voicemail Not Set Up</label>
-                  </div>
-                  <div>
-                    <input type="radio" name="no-vm-reason" id="custom-no-vm-reason-radio" />
-                    <input type="text" name="no-vm-reason" id="custom-no-vm-reason-text" placeholder="Custom Text" />
-                  </div>
-                </div>
-              </div>
-              <div id="email-sent-prompt">
-                <input type="checkbox" name="email-sent" id="email-sent" />
-                <label for="email-sent">Sent email to client</label>
-              </div>
-              <div id="sent-missed-email-promt">
-                <input type="checkbox" name="sent-missed-email" id="sent-missed-email" />
-                <label for="sent-missed-email">Sent missed appointment email</label>
-              </div>
-              <div id="marked-podio-prompt">
-                <input type="checkbox" name="marked-podio" id="marked-podio" />
-                <label for="marked-podio">Marked podio for missed appointment</label>
-              </div>
+            </div>
+
+            <div id="email-sent-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
+              <input type="checkbox" name="email-sent" id="email-sent" />
+              <label for="email-sent">Sent email to client</label>
+            </div>
+
+            <div id="sent-missed-email-promt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
+              <input type="checkbox" name="sent-missed-email" id="sent-missed-email" />
+              <label for="sent-missed-email">Sent missed appointment email</label>
+            </div>
+
+            <div id="marked-podio-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="missed-appt">
+              <input type="checkbox" name="marked-podio" id="marked-podio" />
+              <label for="marked-podio">Marked podio for missed appointment</label>
             </div>
 
             <!-- *Contacted by Client Inputs -->
             <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
-              <div>
-                <label class="default-pointer">Recieved message from client:</label>
-                <div class="panel-flex grey-bg" id="message-type-prompt">
-                  <div>
-                    <input type="radio" name="message-types" id="message-type-none" value="none" checked />
-                    <label for="message-type-none">No (Direct Call)</label>
-                  </div>
-                  <div>
-                    <input type="radio" name="message-types" id="message-type-voicemail" value="voicemail" />
-                    <label for="message-type-voicemail">Voicemail</label>
-                  </div>
-                  <div>
-                    <input type="radio" name="message-types" id="message-type-email" value="email" />
-                    <label for="message-type-email">Email</label>
-                  </div>
-                  <div>
-                    <input type="radio" name="message-types" id="message-type-text" value="text" />
-                    <label for="message-type-text">Text</label>
-                  </div>
+              <label class="default-pointer">Recieved message from client:</label>
+              <div class="panel-flex grey-bg" id="message-type-prompt">
+                <div>
+                  <input type="radio" name="message-types" id="message-type-none" value="none" checked />
+                  <label for="message-type-none">No (Direct Call)</label>
+                </div>
+                <div>
+                  <input type="radio" name="message-types" id="message-type-voicemail" value="voicemail" />
+                  <label for="message-type-voicemail">Voicemail</label>
+                </div>
+                <div>
+                  <input type="radio" name="message-types" id="message-type-email" value="email" />
+                  <label for="message-type-email">Email</label>
+                </div>
+                <div>
+                  <input type="radio" name="message-types" id="message-type-text" value="text" />
+                  <label for="message-type-text">Text</label>
                 </div>
               </div>
-              <div>
-                <label for="reason-for-contact">Reason for contact:</label>
-                <textarea name="reason-for-contact" id="reason-for-contact"></textarea>
-              </div>
-              <div>
-                <div id="successful-contact-prompt">
-                  <label class="default-pointer">If client called, successfully contacted?</label>
-                  <div class="toggle-switch">
-                    <input type="radio" name="successful-contact" id="successful-contact-no" value="No" />
-                    <label for="successful-contact-no">No</label>
-                    <input type="radio" name="successful-contact" id="successful-contact-none" value="None" checked />
-                    <label for="successful-contact-none"></label>
-                    <input type="radio" name="successful-contact" id="successful-contact-yes" value="Yes" />
-                    <label for="successful-contact-yes">Yes</label>
-                    <div class="selection-slider"></div>
-                  </div>
-                </div>
-              </div>
-              <div id="contacted-phone-number-prompt">
-                <label for="contacted-phone-number">Phone number called:</label>
-                <input type="text" name="contacted-phone-number" id="contacted-phone-number" />
-              </div>
-              <div id="contacted-secondary-phone-number-prompt">
-                <label for="contacted-secondary-phone-number">Secondary phone number:</label>
-                <input type="text" name="contacted-secondary-phone-number" id="contacted-secondary-phone-number" />
-              </div>
+            </div>
 
-              <div id="contacted-left-vm-prompt">
-                <label class="default-pointer">Left voicemail?</label>
+            <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
+              <label for="reason-for-contact">Reason for contact:</label>
+              <textarea name="reason-for-contact" id="reason-for-contact"></textarea>
+            </div>
+
+            <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
+              <div id="successful-contact-prompt">
+                <label class="default-pointer">If client called, successfully contacted?</label>
                 <div class="toggle-switch">
-                  <input type="radio" name="contacted-vm" id="contacted-vm-no" value="No" />
-                  <label for="contacted-vm-no">No</label>
-                  <input type="radio" name="contacted-vm" id="contacted-vm-none" value="None" checked />
-                  <label for="contacted-vm-none"></label>
-                  <input type="radio" name="contacted-vm" id="contacted-vm-yes" value="Yes" />
-                  <label for="contacted-vm-yes">Yes</label>
+                  <input type="radio" name="successful-contact" id="successful-contact-no" value="No" />
+                  <label for="successful-contact-no">No</label>
+                  <input type="radio" name="successful-contact" id="successful-contact-none" value="None" checked />
+                  <label for="successful-contact-none"></label>
+                  <input type="radio" name="successful-contact" id="successful-contact-yes" value="Yes" />
+                  <label for="successful-contact-yes">Yes</label>
                   <div class="selection-slider"></div>
                 </div>
               </div>
-              <div id="contacted-no-vm-reason-prompt">
-                <label for="contacted-no-vm-reason">Reason unable to leave voicemail:</label>
-                <div class="grey-bg">
-                  <div>
-                    <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-box-full" />
-                    <label for="contacted-vm-box-full">Voicemail Box Full</label>
-                  </div>
-                  <div>
-                    <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-not-setup" />
-                    <label for="contacted-vm-not-setup">Voicemail Not Set Up</label>
-                  </div>
-                  <div>
-                    <input type="radio" name="contacted-no-vm-reason" id="contacted-custom-no-vm-reason-radio" />
-                    <input type="text" name="contacted-no-vm-reason" id="contacted-custom-no-vm-reason-text" placeholder="Custom Text" />
-                  </div>
-                </div>
-              </div>
-              <div id="contacted-email-sent-prompt">
-                <input type="checkbox" name="contacted-email-sent" id="contacted-email-sent" />
-                <label for="contacted-email-sent">Sent email to client</label>
-              </div>
-              <div id="advised-client-prompt">
-                <label for="advised-client">Advised client:</label>
-                <textarea name="advised-client" id="advised-client"></textarea>
+            </div>
+
+            <div id="contacted-phone-number-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
+              <label for="contacted-phone-number">Phone number called:</label>
+              <input type="text" name="contacted-phone-number" id="contacted-phone-number" />
+            </div>
+
+            <div id="contacted-secondary-phone-number-prompt">
+              <label for="contacted-secondary-phone-number">Secondary phone number:</label>
+              <input type="text" name="contacted-secondary-phone-number" id="contacted-secondary-phone-number" />
+            </div>
+
+            <div id="contacted-left-vm-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
+              <label class="default-pointer">Left voicemail?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="contacted-vm" id="contacted-vm-no" value="No" />
+                <label for="contacted-vm-no">No</label>
+                <input type="radio" name="contacted-vm" id="contacted-vm-none" value="None" checked />
+                <label for="contacted-vm-none"></label>
+                <input type="radio" name="contacted-vm" id="contacted-vm-yes" value="Yes" />
+                <label for="contacted-vm-yes">Yes</label>
+                <div class="selection-slider"></div>
               </div>
             </div>
+
+            <div id="contacted-no-vm-reason-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
+              <label for="contacted-no-vm-reason">Reason unable to leave voicemail:</label>
+              <div class="grey-bg">
+                <div>
+                  <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-box-full" />
+                  <label for="contacted-vm-box-full">Voicemail Box Full</label>
+                </div>
+                <div>
+                  <input type="radio" name="contacted-no-vm-reason" id="contacted-vm-not-setup" />
+                  <label for="contacted-vm-not-setup">Voicemail Not Set Up</label>
+                </div>
+                <div>
+                  <input type="radio" name="contacted-no-vm-reason" id="contacted-custom-no-vm-reason-radio" />
+                  <input type="text" name="contacted-no-vm-reason" id="contacted-custom-no-vm-reason-text" placeholder="Custom Text" />
+                </div>
+              </div>
+            </div>
+
+            <div id="contacted-email-sent-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
+              <input type="checkbox" name="contacted-email-sent" id="contacted-email-sent" />
+              <label for="contacted-email-sent">Sent email to client</label>
+            </div>
+
+            <div id="advised-client-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
+              <label for="advised-client">Advised client:</label>
+              <textarea name="advised-client" id="advised-client"></textarea>
+            </div>
+
             <div id="contacted-needs-reschedule-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
               <label for="needs-reschedule">Client needs rescheduled?</label>
               <input type="checkbox" name="needs-reschedule" id="needs-reschedule" />
             </div>
-            <div id="contacted-reschedule-date-prompt">
+
+            <div id="contacted-reschedule-date-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="contacted-by-client">
               <label for="contacted-reschedule-date">Rescheduled appointment to:</label>
               <input type="text" name="contacted-reschedule-date" id="contacted-reschedule-date" />
             </div>
 
             <!-- *Reschedule Inputs -->
             <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="reschedule">
-              <div>
-                <label for="reschedule-reason">Reason for reschedule:</label>
-                <textarea name="reschedule-reason" id="reschedule-reason"></textarea>
-              </div>
-              <div id="reschedule-date-prompt">
-                <label for="reschedule-date">Rescheduled appointment to:</label>
-                <input type="text" name="reschedule-date" id="reschedule-date" />
-              </div>
+              <label for="reschedule-reason">Reason for reschedule:</label>
+              <textarea name="reschedule-reason" id="reschedule-reason"></textarea>
+            </div>
+
+            <div id="reschedule-date-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="reschedule">
+              <label for="reschedule-date">Rescheduled appointment to:</label>
+              <input type="text" name="reschedule-date" id="reschedule-date" />
             </div>
 
             <!-- *General Inputs -->
             <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="general">
-              <div>
-                <label for="general-contact-purpose">Purpose of contact/note:</label>
-                <input type="text" name="general-contact-purpose" id="general-contact-purpose" />
-              </div>
-              <div>
-                <label for="general-contact-note">Note:</label>
-                <textarea name="general-contact-note" id="general-contact-note"></textarea>
-              </div>
+              <label for="general-contact-purpose">Purpose of contact/note:</label>
+              <input type="text" name="general-contact-purpose" id="general-contact-purpose" />
+            </div>
+
+            <div data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template="general">
+              <label for="general-contact-note">Note:</label>
+              <textarea name="general-contact-note" id="general-contact-note"></textarea>
             </div>
 
             <!-- *Podio Link Input -->

@@ -26,6 +26,8 @@
   --toggle-round: #fff;
   --dialog-bg: #ffffff70;
   --glass-shadow: #1e293b18;
+  --line-one: #d2dee452;
+  --line-two: #b9d4e252;
 }
 
 /* THEME OVERRIDES (DARK MODE) */
@@ -49,6 +51,8 @@
   --toggle-round: #fff;
   --dialog-bg: #00000070;
   --glass-shadow: #f8fafc18;
+  --line-one: #51565852;
+  --line-two: #47545a52;
 }
 
 /* LAYOUT & CONTAINERS */
@@ -100,7 +104,7 @@ section {
 
   @media screen and (width < 440px) {
     flex-direction: column;
-    gap: 10px;
+    gap: 13px;
   }
 }
 
@@ -234,8 +238,13 @@ label {
   flex-direction: column;
 }
 
-#non-specific-form > * {
-  padding-block: 0.15rem;
+#non-specific-form > .hide-content {
+  display: none !important;
+}
+
+#non-specific-form > div:not(.hide-content):not(.grey-bg) {
+  margin-block: 0.2rem;
+  padding-block: 0;
 }
 
 #non-specific-form p.default-pointer {
@@ -270,7 +279,7 @@ input[type='radio'] {
   appearance: none;
   inline-size: 20px;
   block-size: 20px;
-  border: var(--input-border) solid 1px;
+  border: var(--primary-text) solid 1px;
   background: var(--primary-bg);
   border-radius: 0.2rem;
   display: inline-grid;
@@ -769,20 +778,18 @@ input[type='checkbox']:hover {
   align-items: center;
   justify-content: flex-end;
   inline-size: 100%;
-  padding: 0;
-  line-height: 0;
 }
 
 .list-chevrons-toggle {
   position: relative;
-  top: -10px;
+  top: -15px;
   background: var(--secondary-grey-bg);
   align-self: flex-end;
   display: flex;
   padding: 0.3rem;
   cursor: pointer;
   border-radius: 0px 0px 5px 5px;
-  margin-block-end: 5px;
+  margin-block: -13px;
 }
 
 .list-chevrons-toggle:hover .chevrons-down-up,
