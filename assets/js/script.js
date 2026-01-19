@@ -810,7 +810,7 @@ function clearInputs() {
 }
 
 function setShowAllInputs() {
-  var selector = `[data-dept]:not(#worked-on *):not(#assigned-hw *):not(#social-media-reviewed *):not([data-template="missed-appt"]):not([data-template="contacted-by-client"]):not([data-template="reschedule"]):not([data-template="general"]):not([data-template="podio-link"]):not(#show-all-assigned-hw-container):not(#assigned-hw):not(#post-checklist-prompt)`;
+  var selector = `[data-dept]:not(#worked-on *):not(#assigned-hw *):not(#social-media-reviewed *):not([data-template="missed-appt"]):not([data-template="contacted-by-client"]):not([data-template="reschedule"]):not([data-template="general"]):not([data-template="podio-link"]):not(#show-all-assigned-hw-container):not(#assigned-hw)`;
   var allDeptValues = document.querySelectorAll(selector);
 
   allDeptValues.forEach(function (el) {
