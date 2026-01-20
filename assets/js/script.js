@@ -1159,7 +1159,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${displayApptName}</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + smText + additionalTrainingText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'general' && currentApptValue !== 'default') {
     htmlNotes = generalContactPurposeText + generalContactNoteText + initialsText;
   } else if ((currentApptValue === 'sm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'sm-follow-up' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-upgraded' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-non-upgraded' && currentApptValue !== 'default')) {
