@@ -1035,6 +1035,7 @@ function updateApptVisibility() {
     enrolledSmPromptEl.after(otherDeptApptSmPromptEl);
     otherDeptApptSmPromptEl.classList.add('grey-bg');
     setVisibility(smOtherApptPromptEl, false);
+    setVisibility(smBookingIdPrompt, true);
   } else {
     setVisibility(otherDeptApptSmPromptEl, false);
     smOtherApptPromptEl.after(otherDeptApptSmPromptEl);
