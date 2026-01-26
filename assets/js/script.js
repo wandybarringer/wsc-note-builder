@@ -100,14 +100,13 @@ var removeProdEl = document.querySelector('#remove-products');
 var practiceCatProdEl = document.querySelector('#practice-categorizing-products');
 var practiceCreateCatdEl = document.querySelector('#practice-creating-categories');
 var registerBusinessEl = document.querySelector('#register-business');
-var firstApptContinueVidEl = document.querySelector('#first-appt-continue-videos');
 
 // "Assigned Homework" Checklist (2nd Appt)
 
 var secondApptFinishVidEl = document.querySelector('#second-appt-finish-videos');
 var practiceDiscountsEl = document.querySelector('#practice-discounts');
 var practiceOrdersEl = document.querySelector('#practice-orders');
-var secondApptContinueVidEl = document.querySelector('#second-appt-continue-videos');
+var continueVidEl = document.querySelector('#continue-videos');
 
 // "Assigned Homework" Checklist (3rd Appt)
 
@@ -447,11 +446,10 @@ var removeProdText = '';
 var practiceCatProdText = '';
 var practiceCreateCatdText = '';
 var registerBusinessText = '';
-var firstApptContinueVidText = '';
+var continueVidText = '';
 var secondApptFinishVidText = '';
 var practiceDiscountsText = '';
 var practiceOrdersText = '';
-var secondApptContinueVidText = '';
 var thirdApptFinishVidText = '';
 var practiceUpdateText = '';
 var allVidText = '';
@@ -2148,7 +2146,7 @@ function updateWorkedOn() {
 
 // "Assigned HW" String Handlers
 
-var assignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, firstApptContinueVidEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, secondApptContinueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl];
+var assignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl];
 
 function setAssignedHw() {
   assignedHwElements.forEach(function (element) {
@@ -2220,12 +2218,11 @@ function updateAssignedHw() {
   practiceCatProdText = practiceCatProdEl && practiceCatProdEl.checked ? `\n <li>Practice categorizing products using guide</li>` : '';
   practiceCreateCatdText = practiceCreateCatdEl && practiceCreateCatdEl.checked ? `\n <li>Practice creating categories</li>` : '';
   registerBusinessText = registerBusinessEl && registerBusinessEl.checked ? `\n <li>Register business</li>` : '';
-  firstApptContinueVidText = firstApptContinueVidEl && firstApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos</li>` : '';
 
   secondApptFinishVidText = secondApptFinishVidEl && secondApptFinishVidEl.checked ? `\n <li>Finish 2nd appointment teachable videos</li>` : ``;
   practiceDiscountsText = practiceDiscountsEl && practiceDiscountsEl.checked ? `\n <li>Practice creating discounts</li>` : ``;
   practiceOrdersText = practiceOrdersEl && practiceOrdersEl.checked ? `\n <li>Practice making & processing test orders using guides</li>` : '';
-  secondApptContinueVidText = secondApptContinueVidEl && secondApptContinueVidEl.checked ? `\n <li>Continue watching teachable videos</li>` : '';
+  continueVidText = continueVidEl && continueVidEl.checked ? `\n <li>Continue watching teachable videos</li>` : '';
 
   thirdApptFinishVidText = thirdApptFinishVidEl && thirdApptFinishVidEl.checked ? `\n <li>Finish 3rd appointment teachable videos</li>` : '';
   practiceUpdateText = practiceUpdateEl && practiceUpdateEl.checked ? `\n <li>Practice updating products using guides</li>` : '';
@@ -2250,7 +2247,7 @@ function updateAssignedHw() {
 
   if (isAnythingChecked || customAssignedHwText !== '') {
     assignedHwText = `Assigned homework: 
-<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${firstApptContinueVidText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${secondApptContinueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${watchCanvaText}${createCanvaTemplateText}${contCanvaTemplatedText}${planFbIgPostsText}${contFbIgPostsText}${saveTwentyPinsText}${createFivePinsText}${threeFiveTwitterPostsText}${quoteThreeTwitterPostsText}${customAssignedHwText}
+<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${continueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${watchCanvaText}${createCanvaTemplateText}${contCanvaTemplatedText}${planFbIgPostsText}${contFbIgPostsText}${saveTwentyPinsText}${createFivePinsText}${threeFiveTwitterPostsText}${quoteThreeTwitterPostsText}${customAssignedHwText}
 </ul>
 `;
   } else {
