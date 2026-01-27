@@ -54,6 +54,11 @@
                 <form action="" id="template-selection">
                   <select name="appointment" id="appointment">
                     <option value="default" selected>Select template</option>
+                    <option value="ob-first-appt" data-dept="onboarding">1st Appointment</option>
+                    <option value="ob-second-appt" data-dept="onboarding">2nd Appointment</option>
+                    <option value="ob-third-appt" data-dept="onboarding">3rd Appointment</option>
+                    <option value="ob-fourth-appt" data-dept="onboarding">4th Appointment</option>
+                    <option value="ob-assistance-appt" data-dept="onboarding">Onboarding Assistance</option>
                     <option value="wh-first-appt" data-dept="warhead">1st Appointment</option>
                     <option value="wh-second-appt" data-dept="warhead">2nd Appointment</option>
                     <option value="wh-third-appt" data-dept="warhead">3rd Appointment</option>
@@ -112,14 +117,63 @@
           </div>
 
           <form action="" class="hide-content" id="non-specific-form">
-            <div id="continuation-prompt" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-tenth-appt"]'>
+            <div id="continuation-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-tenth-appt"]'>
               <input type="checkbox" name="continuation" id="continuation" class="continuation" />
               <label for="continuation">Continuation appointment</label>
             </div>
 
-            <div id="moved-up-prompt" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="moved-up-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <input type="checkbox" name="moved-up" id="moved-up" class="moved-up" />
               <label for="moved-up">Moved client up</label>
+            </div>
+
+            <div data-dept="onboarding" data-template="ob-first-appt">
+              <label class="default-pointer">Niche completed?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="niche-completed" id="niche-completed-no" value="No" />
+                <label for="niche-completed-no">No</label>
+                <input type="radio" name="niche-completed" id="niche-completed-none" value="None" checked />
+                <label for="niche-completed-none"></label>
+                <input type="radio" name="niche-completed" id="niche-completed-yes" value="Yes" />
+                <label for="niche-completed-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div data-dept="onboarding" data-template="ob-second-appt">
+              <label class="default-pointer">Niche discussed?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="niche-discussed" id="niche-discussed-no" value="No" />
+                <label for="niche-discussed-no">No</label>
+                <input type="radio" name="niche-discussed" id="niche-discussed-none" value="None" checked />
+                <label for="niche-discussed-none"></label>
+                <input type="radio" name="niche-discussed" id="niche-discussed-yes" value="Yes" />
+                <label for="niche-discussed-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt"]'>
+              <label for="niche-selections">Niche Selection(s):</label>
+              <input type="text" id="niche-selections" />
+            </div>
+
+            <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt"]'>
+              <label class="default-pointer">Domain completed?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="domain-completed" id="domain-completed-no" value="No" />
+                <label for="domain-completed-no">No</label>
+                <input type="radio" name="domain-completed" id="domain-completed-none" value="None" checked />
+                <label for="domain-completed-none"></label>
+                <input type="radio" name="domain-completed" id="domain-completed-yes" value="Yes" />
+                <label for="domain-completed-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt"]'>
+              <label for="domain">Domain:</label>
+              <input type="text" id="domain" />
             </div>
 
             <div id="screen-share-prompt" data-dept="warhead" data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance"]'>
@@ -139,7 +193,7 @@
               <input type="text" name="screen-share-other" id="screen-share-other" />
             </div>
 
-            <div id="hw-prompt" data-dept='["warhead", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="hw-prompt" data-dept='["onboarding", "warhead", "social-media"]' data-template='["ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label class="default-pointer">Homework completed?</label>
               <div class="toggle-switch">
                 <input type="radio" name="hw" id="hw-no" value="No" />
@@ -608,7 +662,7 @@
               <label for="remove-non-niche">Advised client to remove any non-niche related items.</label>
             </div>
 
-            <div id="additional-notes-prompt" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing", "contacted-by-client", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="additional-notes-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "sm-marketing", "contacted-by-client", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="additional-notes">Additional Notes:</label>
               <textarea name="additional-notes" id="additional-notes"></textarea>
             </div>
@@ -734,7 +788,7 @@
               <label for="no-further-wh-assistance">No further WH Assistance appointments</label>
             </div>
 
-            <div id="next-appt-date-prompt" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="next-appt-date-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="next-appointment-date">Next appointment date:</label>
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
             </div>
@@ -1111,7 +1165,7 @@
             </div>
 
             <!-- *Signature/initials -->
-            <div id="initials-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "general", "missed-appt", "sm-marketing", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="initials-prompt" data-dept='["onboarding", "warhead", "supplier-management", "onboarding", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "general", "missed-appt", "sm-marketing", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="initials">Initials</label>
               <input type="text" name="initials" id="initials" required />
             </div>

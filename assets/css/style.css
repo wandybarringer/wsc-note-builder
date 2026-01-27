@@ -373,6 +373,9 @@ input[type='number'] {
   color: var(--secondary-text);
 }
 
+#niche-completed-no:checked ~ .selection-slider,
+#niche-discussed-no:checked ~ .selection-slider,
+#domain-completed-no:checked ~ .selection-slider,
 #contacted-vm-no:checked ~ .selection-slider,
 #intro-no:checked ~ .selection-slider,
 #hw-no:checked ~ .selection-slider,
@@ -389,6 +392,9 @@ input[type='number'] {
   transform: translateX(0);
 }
 
+#niche-completed-none:checked ~ .selection-slider,
+#niche-discussed-none:checked ~ .selection-slider,
+#domain-completed-none:checked ~ .selection-slider,
 #contacted-vm-none:checked ~ .selection-slider,
 #intro-none:checked ~ .selection-slider,
 #hw-none:checked ~ .selection-slider,
@@ -405,6 +411,9 @@ input[type='number'] {
   transform: translateX(35px);
 }
 
+#niche-completed-yes:checked ~ .selection-slider,
+#niche-discussed-yes:checked ~ .selection-slider,
+#domain-completed-yes:checked ~ .selection-slider,
 #contacted-vm-yes:checked ~ .selection-slider,
 #intro-yes:checked ~ .selection-slider,
 #hw-yes:checked ~ .selection-slider,
