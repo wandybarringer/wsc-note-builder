@@ -46,7 +46,7 @@ var hwYesEl = document.querySelector('#hw-yes');
 var hwPercentPromptEl = document.querySelector('#hw-percent-prompt');
 var hwPercentEl = document.querySelector('#hw-percent');
 
-// "Worked On" Checklist (1st Appt)
+// *WARHEAD WORKED ON CHECKLIST
 
 var dashNavEl = document.querySelector('#dashboard-navigation');
 var extraPageEl = document.querySelector('#extra-pages');
@@ -55,9 +55,6 @@ var organizeCatEl = document.querySelector('#organizing-categories');
 var createProdEl = document.querySelector('#creating-products');
 var prodGridEl = document.querySelector('#products-grid');
 var catProdEl = document.querySelector('#categorizing-products');
-
-// "Worked On" Checklist (2nd Appt)
-
 var discountsEl = document.querySelector('#discounts');
 var checkoutSectionsEl = document.querySelector('#checkout-sections');
 var payPalEl = document.querySelector('#paypal-apple-pay');
@@ -67,22 +64,13 @@ var ordersGridEl = document.querySelector('#orders-grid');
 var processDobaOrderEl = document.querySelector('#process-doba-order');
 var processCjOrderEl = document.querySelector('#process-cj-order');
 var sentGuidesProcessingEl = document.querySelector('#sent-guides-processing');
-
-// "Worked On" Checklist (3rd Appt)
-
 var exportingProductsEl = document.querySelector('#exporting-products');
 var updatingProdEl = document.querySelector('#updating-products');
 var unavailableProdEl = document.querySelector('#unavailable-products');
 var sentGuidesUpdatingEl = document.querySelector('#sent-guides-updating');
-
-// "Worked On" Checklist (Post Appt)
-
 var stripeEl = document.querySelector('#stripe');
 var variantsEl = document.querySelector('#variants');
 var googleAnalyticsEl = document.querySelector('#google-analytics');
-
-// "Worked On" Checklist (WH Assistance)
-
 var updatingNewProdEl = document.querySelector('#new-updating-products');
 var updatingNewProdNameEl = document.querySelector('#new-updating-products-name');
 var processRealOrderEl = document.querySelector('#process-real-order');
@@ -93,7 +81,7 @@ var modifyVariantsEl = document.querySelector('#modify-variants');
 var customWorkedOnChecboxEl = document.querySelector('#custom-worked-on-checkbox');
 var customWorkedOnTextEl = document.querySelector('#custom-worked-on-text');
 
-// "Assigned Homework" Checklist (1st Appt)
+// *WARHEAD ASSIGNED HW CHECKLIST
 
 var firstApptFinishVidEl = document.querySelector('#first-appt-finish-videos');
 var reviewExtraPagesEl = document.querySelector('#review-extra-pages');
@@ -101,16 +89,10 @@ var removeProdEl = document.querySelector('#remove-products');
 var practiceCatProdEl = document.querySelector('#practice-categorizing-products');
 var practiceCreateCatdEl = document.querySelector('#practice-creating-categories');
 var registerBusinessEl = document.querySelector('#register-business');
-
-// "Assigned Homework" Checklist (2nd Appt)
-
 var secondApptFinishVidEl = document.querySelector('#second-appt-finish-videos');
 var practiceDiscountsEl = document.querySelector('#practice-discounts');
 var practiceOrdersEl = document.querySelector('#practice-orders');
 var continueVidEl = document.querySelector('#continue-videos');
-
-// "Assigned Homework" Checklist (3rd Appt)
-
 var thirdApptFinishVidEl = document.querySelector('#third-appt-finish-videos');
 var practiceUpdateEl = document.querySelector('#practice-updating');
 var allVidEl = document.querySelector('#all-videos');
@@ -120,7 +102,7 @@ var allVidEl = document.querySelector('#all-videos');
 var customAssignedHwChecboxEl = document.querySelector('#custom-assigned-hw-checkbox');
 var customAssignedHwTextEl = document.querySelector('#custom-assigned-hw-text');
 
-// Post Training Checklist Elements
+// Post Training Checklist
 
 var businessEmailEl = document.querySelector('#business-email');
 var timeZoneEl = document.querySelector('#time-zone');
@@ -308,6 +290,64 @@ var waBookingIdEl = document.querySelector('#wa-booking-id');
 var websiteAnalysisDateEl = document.querySelector('#website-analysis-date');
 var waBookingIdPrompt = document.querySelector('#wa-booking-id-prompt');
 
+// *ONBOARDING
+
+var nicheCompletedNoEl = document.querySelector('#niche-completed-no');
+var nicheCompletedNoneEl = document.querySelector('#niche-completed-none');
+var nicheCompletedYesEl = document.querySelector('#niche-completed-yes');
+var nicheDiscussedNoEl = document.querySelector('#niche-discussed-no');
+var nicheDiscussedNoneEl = document.querySelector('#niche-discussed-none');
+var nicheDiscussedYesEl = document.querySelector('#niche-discussed-yes');
+var nicheSelectionEl = document.querySelector('#niche-selection');
+var domainCompletedNoEl = document.querySelector('#domain-completed-no');
+var domainCompletedNoneEl = document.querySelector('#domain-completed-none');
+var domainCompletedYesEl = document.querySelector('#domain-completed-yes');
+var domainEl = document.querySelector('#domain');
+var requiresObAssistanceEl = document.querySelector('#requires-ob-assistance');
+var obCompleteEl = document.querySelector('#ob-complete');
+
+// OB Worked On Checklist
+var canLogInEl = document.querySelector('#can-log-in');
+var discussedSuppliersEl = document.querySelector('#discussed-suppliers');
+var discussedRegistrationEl = document.querySelector('#discussed-registration');
+var downloadChromeEl = document.querySelector('#download-chrome');
+var createGmailEl = document.querySelector('#create-gmail');
+var createFavFolderEl = document.querySelector('#create-fav-folder');
+var linkedBingEl = document.querySelector('#linked-bing');
+var ciasEl = document.querySelector('#cais');
+var googleVoiceEl = document.querySelector('#google-voice');
+var googleSignatureEl = document.querySelector('#google-signature');
+var completePinterestEl = document.querySelector('#complete-pinterest');
+var completeYoutubeEl = document.querySelector('#complete-youtube');
+var completeTwitterEl = document.querySelector('#complete-twitter');
+var logInWhEl = document.querySelector('#log-in-wh');
+var createdTeachableEl = document.querySelector('#created-teachable');
+var obCompletedQuestionnaireEl = document.querySelector('#ob-completed-questionnaire');
+var completeStripeEl = document.querySelector('#complete-stripe');
+var completePaypalEl = document.querySelector('#complete-paypal');
+var dobaSignupEl = document.querySelector('#doba-signup');
+var dobaInventoryEl = document.querySelector('#doba-inventory');
+var cjSignupEl = document.querySelector('#cj-signup');
+var cjCategoryEl = document.querySelector('#cj-category');
+
+// OB Assigned HW Checklist
+var googleVoiceHwEl = document.querySelector('#google-voice-hw');
+var googleSignatureHwEl = document.querySelector('#google-signature-hw');
+var createPinterestHwEl = document.querySelector('#create-pinterest-hw');
+var createYoutubeHwEl = document.querySelector('#create-youtube-hw');
+var createTwitterHwEl = document.querySelector('#create-twitter-hw');
+var createStripeHwEl = document.querySelector('#create-stripe-hw');
+var createPaypalHwEl = document.querySelector('#create-paypal-hw');
+var stripeLinkBankEl = document.querySelector('#stripe-link-bank');
+var paypalLinkBankEl = document.querySelector('#paypal-link-bank');
+var complete2dEl = document.querySelector('#complete-2d');
+var createCjHwEl = document.querySelector('#create-cj-hw');
+var cjCategoryHwEl = document.querySelector('#cj-category-hw');
+var createDobaHwEl = document.querySelector('#create-doba-hw');
+var dobaInventoryHwEl = document.querySelector('#doba-inventory-hw');
+var whVideosHwEl = document.querySelector('#wh-videos-hw');
+var registerBusinessHwEl = document.querySelector('#register-business-hw');
+
 // *SUPPLIER MANAGEMENT
 
 var howManyProductsPromptEl = document.querySelector('#how-many-products-prompt');
@@ -468,6 +508,56 @@ var brandsText = '';
 var genericCategoriesText = '';
 var varientsCondensedText = '';
 var taglineText = '';
+
+// Onboarding Strings
+
+var nicheCompletedText = '';
+var nicheDiscussedText = '';
+var nicheSelectionText = '';
+var domainCompletedText = '';
+var domainText = '';
+var requiresObAssistanceText = '';
+var obCompleteText = '';
+
+var canLogInText = '';
+var discussedSuppliersText = '';
+var discussedRegistrationText = '';
+var downloadChromeText = '';
+var createGmailText = '';
+var createFavFolderText = '';
+var linkedBingText = '';
+var ciasText = '';
+var googleVoiceText = '';
+var googleSignatureText = '';
+var completePinterestText = '';
+var completeYoutubeText = '';
+var completeTwitterText = '';
+var logInWhText = '';
+var createdTeachableText = '';
+var obCompletedQuestionnaireText = '';
+var completeStripeText = '';
+var completePaypalText = '';
+var dobaSignupText = '';
+var dobaInventoryText = '';
+var cjSignupText = '';
+var cjCategoryText = '';
+
+var googleVoiceHwText = '';
+var googleSignatureHwText = '';
+var createPinterestHwText = '';
+var createYoutubeHwText = '';
+var createTwitterHwText = '';
+var createStripeHwText = '';
+var createPaypalHwText = '';
+var stripeLinkBankText = '';
+var paypalLinkBankText = '';
+var complete2dText = '';
+var createCjHwText = '';
+var cjCategoryHwText = '';
+var createDobaHwText = '';
+var dobaInventoryHwText = '';
+var whVideosHwText = '';
+var registerBusinessHwText = '';
 
 // Supplier Management Strings
 
