@@ -222,21 +222,69 @@
               <input type="text" name="how-many-suppliers-names" id="how-many-suppliers-names" placeholder="Supplier Names" />
             </div>
 
-            <div id="worked-on" class="grey-bg border-expand" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
+            <div id="worked-on" class="grey-bg border-expand" data-dept='["onboarding","warhead", "supplier-management"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
               <p class="default-pointer">Worked on:</p>
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
+              <!-- OB Worked On Items -->
+              <div data-dept="onboarding" data-template='["ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="can-log-in" id="can-log-in" /> <label for="can-log-in">Ensured client can log into warhead and teachable</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
+              <div data-dept="onboarding" data-template='["ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="discussed-suppliers" id="discussed-suppliers" /> <label for="discussed-suppliers">Discussed future suppliers</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
+              <div data-dept="onboarding" data-template='["ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="discussed-registration" id="discussed-registration" /> <label for="discussed-registration">Discussed Business registration</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
+              <div data-dept="onboarding" data-template="ob-first-appt"><input type="checkbox" name="download-chrome" id="download-chrome" /> <label for="download-chrome">Downloaded Chrome</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-assistance-appt"]'><input type="checkbox" name="create-gmail" id="create-gmail" /> <label for="create-gmail">Created Gmail account</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="create-fav-folder" id="create-fav-folder" /> <label for="create-fav-folder">Created Favorites Folder</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="linked-bing" id="linked-bing" /> <label for="linked-bing">Linked Bing account</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="cais" id="cais" /> <label for="cais">Made and sent CAIS</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="google-voice" id="google-voice" /> <label for="google-voice">Completed Google Voice</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="google-signature" id="google-signature" /> <label for="google-signature">Completed Google Signature</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="complete-pinterest" id="complete-pinterest" /> <label for="complete-pinterest">Completed Pinterest</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="complete-youtube" id="complete-youtube" /> <label for="complete-youtube">Completed YouTube</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="complete-twitter" id="complete-twitter" /> <label for="complete-twitter">Completed Twitter</label></div>
+
+              <div data-dept="onboarding" data-template="ob-first-appt"><input type="checkbox" name="log-in-wh" id="log-in-wh" /> <label for="log-in-wh">Logged into warhead</label></div>
+
+              <div data-dept="onboarding" data-template="ob-first-appt"><input type="checkbox" name="created-teachable" id="created-teachable" /> <label for="created-teachable">Created Teachable account registered for warhead videos</label></div>
+
+              <div data-dept="onboarding" data-template="ob-first-appt"><input type="checkbox" name="ob-completed-questionnaire" id="ob-completed-questionnaire" /> <label for="ob-completed-questionnaire">Completed Design Questionnaire</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="complete-stripe" id="complete-stripe" /> <label for="complete-stripe">Completed Stripe</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="complete-paypal" id="complete-paypal" /> <label for="complete-paypal">Completed PayPal</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt"]'><input type="checkbox" name="doba-signup" id="doba-signup" /> <label for="doba-signup">Completed Doba Signup</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt"]'><input type="checkbox" name="doba-inventory" id="doba-inventory" /> <label for="doba-inventory">Completed Doba Inventory</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt"]'><input type="checkbox" name="cj-signup" id="cj-signup" /> <label for="cj-signup">Completed Cj Signup/Linked Ebay</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt"]'><input type="checkbox" name="cj-category" id="cj-category" /> <label for="cj-category">Completed Cj Category Selection</label></div>
+
+              <!-- WH Worked On Items -->
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="dashboard-navigation" id="dashboard-navigation" /> <label for="dashboard-navigation">Dashboard/Account Navigation</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="extra-pages" id="extra-pages" /> <label for="extra-pages">Extra Pages</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="creating-categories" id="creating-categories" /> <label for="creating-categories">Creating Categories</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="organizing-categories" id="organizing-categories" /> <label for="organizing-categories">Organizing Categories</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="creating-products" id="creating-products" /> <label for="creating-products">Creating Products</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="products-grid" id="products-grid" /> <label for="products-grid">Products Grid</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="categorizing-products" id="categorizing-products" /> <label for="categorizing-products">Categorizing Products</label></div>
 
               <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="discounts" id="discounts" /> <label for="discounts">Discounts</label></div>
 
@@ -285,6 +333,7 @@
                 <label for="modify-variants">Modifying Singular Products to Variants</label>
               </div>
 
+              <!-- SM Worked On Items -->
               <div data-dept="supplier-management" data-template="sm-first-appt">
                 <input type="checkbox" name="application-process" id="application-process" />
                 <label for="application-process">Covered the supplier application process</label>
@@ -313,7 +362,8 @@
                 <input type="text" name="follow-up-email-to" id="follow-up-email-to" placeholder="Supplier Name(s)" />
               </div>
 
-              <div id="custom-worked-on-container" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
+              <!-- Custom Worked On Item -->
+              <div id="custom-worked-on-container" data-dept='["onboarding","warhead", "supplier-management"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded"]'>
                 <div class="custom-worked-on-row">
                   <input type="checkbox" name="custom-worked-on" id="custom-worked-on-checkbox" class="custom-checkbox" />
                   <input type="text" name="custom-worked-on" id="custom-worked-on-text" class="custom-text" placeholder="Custom text" />
@@ -321,7 +371,7 @@
               </div>
             </div>
 
-            <div id="show-all-worked-on-container" class="no-line-bg" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
+            <div id="show-all-worked-on-container" class="no-line-bg" data-dept='["onboarding","warhead", "supplier-management"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up"]'>
               <label for="show-all-worked-on" class="list-chevrons-toggle" title="Show All Worked On Options">
                 <input type="checkbox" id="show-all-worked-on" />
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevrons-up-down">
@@ -485,19 +535,53 @@
               </label>
             </div>
 
-            <div id="assigned-hw" class="grey-bg border-expand" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="assigned-hw" class="grey-bg border-expand" data-dept='["onboarding","warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <p class="default-pointer">Assigned homework:</p>
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
+              <!-- OB Assigned HW Items -->
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="google-voice-hw" id="google-voice-hw" /> <label for="google-voice-hw">Create Google Voice</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="google-signature-hw" id="google-signature-hw" /> <label for="google-signature-hw">Create Google Signature</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="google-pinterest-hw" id="google-pinterest-hw" /> <label for="google-pinterest-hw">Create Pinterest</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="google-youtube-hw" id="google-youtube-hw" /> <label for="google-youtube-hw">Create YouTube</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="google-twitter-hw" id="google-twitter-hw" /> <label for="google-twitter-hw">Create Twitter</label></div>
 
-              <div class="first-appt" data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="register-business" id="register-business" /> <label for="register-business">Register business</label></div>
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="google-stripe-hw" id="google-stripe-hw" /> <label for="google-stripe-hw">Create Stripe</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="google-paypal-hw" id="google-paypal-hw" /> <label for="google-paypal-hw">Create PayPal</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="stripe-link-bank" id="stripe-link-bank" /> <label for="stripe-link-bank">Link Bank to Stripe</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="paypal-link-bank" id="paypal-link-bank" /> <label for="paypal-link-bank">Link Bank to PayPal</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="complete-2d" id="complete-2d" /> <label for="complete-2d">Complete 2d</label></div>
+
+              <div data-dept="onboarding" data-template='ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="create-cj-hw" id="create-cj-hw" /> <label for="create-cj-hw">Create Cj Dropshipping Account/Link Ebay</label></div>
+
+              <div data-dept="onboarding" data-template='ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="cj-category-hw" id="cj-category-hw" /> <label for="cj-category-hw">Select CJ Categories</label></div>
+
+              <div data-dept="onboarding" data-template='ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="create-doba-hw" id="create-doba-hw" /> <label for="create-doba-hw">Create Doba account</label></div>
+
+              <div data-dept="onboarding" data-template='ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="doba-inventory-hw" id="doba-inventory-hw" /> <label for="doba-inventory-hw">Add inventory to Doba</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="wh-videos-hw" id="wh-videos-hw" /> <label for="wh-videos-hw">Watch Warhead training videos</label></div>
+
+              <div data-dept="onboarding" data-template='["ob-first-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="register-business-hw" id="register-business-hw" /> <label for="register-business-hw">Work on business registration</label></div>
+
+              <!-- WH Assigned HW Items -->
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
+
+              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="register-business" id="register-business" /> <label for="register-business">Register business</label></div>
 
               <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
 
@@ -513,6 +597,7 @@
 
               <div class="third-appt" data-dept="warhead" data-template="wh-third-appt"><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
 
+              <!-- SM Assigned HW Items -->
               <div data-dept="supplier-management" data-template="sm-first-appt">
                 <input type="checkbox" name="apply-and-email" id="apply-and-email" />
                 <label for="apply-and-email">Apply to new suppliers and send follow-up emails</label>
@@ -523,6 +608,7 @@
                 <label for="cont-apply-and-email">Continue sending applications and follow-up emails</label>
               </div>
 
+              <!-- SocM Assigned HW Items -->
               <div data-dept="social-media" data-template="socm-first-appt">
                 <input type="checkbox" name="watch-canva" id="watch-canva" />
                 <label for="watch-canva">Watch Canva video</label>
@@ -568,7 +654,8 @@
                 <label for="quote-three-twitter-posts">Quote 3 Twitter posts each week</label>
               </div>
 
-              <div id="custom-assigned-hw-container" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+              <!-- Custom Assigned HW Item -->
+              <div id="custom-assigned-hw-container" data-dept='["onboarding","warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt","wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
                 <div class="custom-assigned-hw-row">
                   <input type="checkbox" name="custom-assigned-hw" id="custom-assigned-hw-checkbox" class="custom-checkbox" />
                   <input type="text" name="custom-assigned-hw" id="custom-assigned-hw-text" class="custom-text" placeholder="Custom text" />
@@ -576,7 +663,7 @@
               </div>
             </div>
 
-            <div id="show-all-assigned-hw-container" class="no-line-bg" data-dept='["warhead", "supplier-management", "social-media"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="show-all-assigned-hw-container" class="no-line-bg" data-dept='["onboarding","warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="show-all-assigned-hw" class="list-chevrons-toggle" title="Show All Assigned HW Options">
                 <input type="checkbox" id="show-all-assigned-hw" />
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevrons-up-down">
