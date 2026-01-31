@@ -127,7 +127,7 @@
               <label for="moved-up">Moved client up</label>
             </div>
 
-            <div data-dept="onboarding" data-template="ob-first-appt">
+            <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt"]'>
               <label class="default-pointer">Niche completed?</label>
               <div class="toggle-switch">
                 <input type="radio" name="niche-completed" id="niche-completed-no" value="No" />
@@ -140,20 +140,7 @@
               </div>
             </div>
 
-            <div data-dept="onboarding" data-template="ob-second-appt">
-              <label class="default-pointer">Niche discussed?</label>
-              <div class="toggle-switch">
-                <input type="radio" name="niche-discussed" id="niche-discussed-no" value="No" />
-                <label for="niche-discussed-no">No</label>
-                <input type="radio" name="niche-discussed" id="niche-discussed-none" value="None" checked />
-                <label for="niche-discussed-none"></label>
-                <input type="radio" name="niche-discussed" id="niche-discussed-yes" value="Yes" />
-                <label for="niche-discussed-yes">Yes</label>
-                <div class="selection-slider"></div>
-              </div>
-            </div>
-
-            <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt"]'>
+            <div id="niche-selection-prompt">
               <label for="niche-selection">Niche Selection(s):</label>
               <input type="text" id="niche-selection" />
             </div>
@@ -171,7 +158,7 @@
               </div>
             </div>
 
-            <div data-dept="onboarding" data-template='["ob-first-appt", "ob-second-appt"]'>
+            <div id="domain-prompt">
               <label for="domain">Domain:</label>
               <input type="text" id="domain" />
             </div>

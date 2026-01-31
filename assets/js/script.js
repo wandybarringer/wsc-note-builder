@@ -295,13 +295,12 @@ var waBookingIdPrompt = document.querySelector('#wa-booking-id-prompt');
 var nicheCompletedNoEl = document.querySelector('#niche-completed-no');
 var nicheCompletedNoneEl = document.querySelector('#niche-completed-none');
 var nicheCompletedYesEl = document.querySelector('#niche-completed-yes');
-var nicheDiscussedNoEl = document.querySelector('#niche-discussed-no');
-var nicheDiscussedNoneEl = document.querySelector('#niche-discussed-none');
-var nicheDiscussedYesEl = document.querySelector('#niche-discussed-yes');
+var nicheSelectionPromptEl = document.querySelector('#niche-selection-prompt');
 var nicheSelectionEl = document.querySelector('#niche-selection');
 var domainCompletedNoEl = document.querySelector('#domain-completed-no');
 var domainCompletedNoneEl = document.querySelector('#domain-completed-none');
 var domainCompletedYesEl = document.querySelector('#domain-completed-yes');
+var domainPromptEl = document.querySelector('#domain-prompt');
 var domainEl = document.querySelector('#domain');
 var requiresObAssistanceEl = document.querySelector('#requires-ob-assistance');
 var obCompleteEl = document.querySelector('#ob-complete');
@@ -512,10 +511,11 @@ var taglineText = '';
 // Onboarding Strings
 
 var nicheCompletedText = '';
-var nicheDiscussedText = '';
 var nicheSelectionText = '';
+var updatedNicheText = '';
 var domainCompletedText = '';
 var domainText = '';
+var updatedDomainText = '';
 var requiresObAssistanceText = '';
 var obCompleteText = '';
 
@@ -727,6 +727,11 @@ var storedInitials = '';
 var initialsText = '';
 
 var apptLabels = {
+  'ob-first-appt': '1st Onboarding',
+  'ob-second-appt': '2nd Onboarding',
+  'ob-third-appt': '3rd Onboarding',
+  'ob-fourth-appt': '4th Onboarding',
+  'ob-assistance-appt': 'Onboarding Assistance',
   'wh-first-appt': '1st',
   'wh-second-appt': '2nd',
   'wh-third-appt': '3rd',
@@ -1273,7 +1278,13 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + initialsText;
+    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+  } else if ((currentApptValue === 'ob-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-fourth-appt' && currentApptValue !== 'default')) {
+    contactedClientText = `<p>
+  Contacted client${movedUpText} for <b>${contText}${displayApptName}</b> appointment.
+</p>
+`;
+    htmlNotes = contactedClientText + updatedNicheText + updatedDomainText + hwText + workedOnText + assignedHwText + additionalNotesText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -3008,6 +3019,114 @@ function setPodioLink() {
   });
 }
 
+// *ONBOARDING SPECIFIC STRING HANDLERS
+
+function setNicheStrings() {
+  setVisibility(nicheSelectionPromptEl, false);
+
+  var nicheCompletedRadioElements = [nicheCompletedNoEl, nicheCompletedNoneEl, nicheCompletedYesEl];
+
+  nicheCompletedRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (nicheCompletedYesEl.checked) {
+        nicheCompletedText = 'Niche has been completed.';
+        setVisibility(nicheSelectionPromptEl, true);
+      } else if (nicheCompletedNoEl.checked) {
+        nicheCompletedText = 'Niche has not been completed.';
+        nicheSelectionEl.value = '';
+        nicheSelectionText = '';
+        setVisibility(nicheSelectionPromptEl, false);
+      } else if (nicheCompletedNoneEl.checked) {
+        nicheCompletedText = '';
+        nicheSelectionEl.value = '';
+        nicheSelectionText = '';
+        setVisibility(nicheSelectionPromptEl, false);
+      } else {
+        nicheCompletedText = '';
+        nicheSelectionEl.value = '';
+        nicheSelectionText = '';
+        setVisibility(nicheSelectionPromptEl, false);
+      }
+      updateNicheString();
+      updateHtmlNotes();
+    });
+  });
+
+  nicheSelectionEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      nicheSelectionText = '';
+    } else {
+      nicheSelectionText = `Client has selected <b>${event.target.value}</b> for their niche(s).`;
+    }
+    updateNicheString();
+    updateHtmlNotes();
+  });
+}
+
+function updateNicheString() {
+  if (nicheCompletedText || nicheSelectionText) {
+    updatedNicheText = `<p>
+  ${nicheCompletedText} ${nicheSelectionText}
+</p>
+`;
+  } else {
+    updatedNicheText = '';
+  }
+}
+
+function setDomainStrings() {
+  setVisibility(domainPromptEl, false);
+
+  var domainCompletedRadioElements = [domainCompletedNoEl, domainCompletedNoneEl, domainCompletedYesEl];
+
+  domainCompletedRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (domainCompletedYesEl.checked) {
+        domainCompletedText = 'Domain has been completed.';
+        setVisibility(domainPromptEl, true);
+      } else if (domainCompletedNoEl.checked) {
+        domainCompletedText = 'Domain has not been completed.';
+        domainEl.value = '';
+        domainText = '';
+        setVisibility(domainPromptEl, false);
+      } else if (domainCompletedNoneEl.checked) {
+        domainCompletedText = '';
+        domainEl.value = '';
+        domainText = '';
+        setVisibility(domainPromptEl, false);
+      } else {
+        domainCompletedText = '';
+        domainEl.value = '';
+        domainText = '';
+        setVisibility(domainPromptEl, false);
+      }
+      updateDomainString();
+      updateHtmlNotes();
+    });
+  });
+
+  domainEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      domainText = '';
+    } else {
+      domainText = `Client's domain: <b>${event.target.value}</b>`;
+    }
+    updateDomainString();
+    updateHtmlNotes();
+  });
+}
+
+function updateDomainString() {
+  if (domainCompletedText || domainText) {
+    updatedDomainText = `<p>
+  ${domainCompletedText} ${domainText}
+</p>
+`;
+  } else {
+    updatedDomainText = '';
+  }
+}
+
 // *WARHEAD SPECIFIC STRING HANDLERS
 
 function setScreenShare() {
@@ -3499,6 +3618,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setSavedDepartment();
   handleDeptSelection();
   handleApptSelection();
+
+  setNicheStrings();
+  setDomainStrings();
+
   setContAppt();
   setMovedUp();
   setScreenShare();
