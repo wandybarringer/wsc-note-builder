@@ -2093,7 +2093,7 @@ function setInitials() {
 
 // "Worked On" String Handlers
 
-var workedOnElements = [dashNavEl, extraPageEl, createCatEl, organizeCatEl, createProdEl, prodGridEl, catProdEl, discountsEl, checkoutSectionsEl, payPalEl, testOrderEl, explainedOrderEmailsEl, ordersGridEl, processDobaOrderEl, processCjOrderEl, sentGuidesProcessingEl, exportingProductsEl, updatingProdEl, unavailableProdEl, sentGuidesUpdatingEl, stripeEl, variantsEl, googleAnalyticsEl, updatingNewProdEl, processRealOrderEl, modifyVariantsEl, applicationProcessEl, dropshipDatabaseEl, submittedApplicationEl, assistedApplicationEl, followUpEmailEl];
+var workedOnElements = [canLogInEl, discussedSuppliersEl, discussedRegistrationEl, downloadChromeEl, createGmailEl, createFavFolderEl, linkedBingEl, ciasEl, googleVoiceEl, googleSignatureEl, completePinterestEl, completeYoutubeEl, completeTwitterEl, logInWhEl, createdTeachableEl, obCompletedQuestionnaireEl, completeStripeEl, completePaypalEl, dobaSignupEl, dobaInventoryEl, cjSignupEl, cjCategoryEl, dashNavEl, extraPageEl, createCatEl, organizeCatEl, createProdEl, prodGridEl, catProdEl, discountsEl, checkoutSectionsEl, payPalEl, testOrderEl, explainedOrderEmailsEl, ordersGridEl, processDobaOrderEl, processCjOrderEl, sentGuidesProcessingEl, exportingProductsEl, updatingProdEl, unavailableProdEl, sentGuidesUpdatingEl, stripeEl, variantsEl, googleAnalyticsEl, updatingNewProdEl, processRealOrderEl, modifyVariantsEl, applicationProcessEl, dropshipDatabaseEl, submittedApplicationEl, assistedApplicationEl, followUpEmailEl];
 
 function setWorkedOn() {
   updatingNewProdNameEl.addEventListener('input', function (event) {
@@ -2199,6 +2199,29 @@ function refreshAllCustomWorkedOn() {
 }
 
 function updateWorkedOn() {
+  canLogInText = canLogInEl && canLogInEl.checked ? `\n <li>Checked that client can log into warhead and teachable</li>` : '';
+  discussedSuppliersText = discussedSuppliersEl && discussedSuppliersEl.checked ? `\n <li>Discussed future suppliers</li>` : '';
+  discussedRegistrationText = discussedRegistrationEl && discussedRegistrationEl.checked ? `\n <li>Discussed business registration</li>` : '';
+  downloadChromeText = downloadChromeEl && downloadChromeEl.checked ? `\n <li>Downloaded Chrome</li>` : '';
+  createGmailText = createGmailEl && createGmailEl.checked ? `\n <li>Created Gmail account</li>` : '';
+  createFavFolderText = createFavFolderEl && createFavFolderEl.checked ? `\n <li>Created Gmail account</li>` : '';
+  linkedBingText = linkedBingEl && linkedBingEl.checked ? `\n <li>Linked Bing account</li>` : '';
+  ciasText = ciasEl && ciasEl.checked ? `\n <li>Made and sent CAIS</li>` : '';
+  googleVoiceText = googleVoiceEl && googleVoiceEl.checked ? `\n <li>Completed Google Voice</li>` : '';
+  googleSignatureText = googleSignatureEl && googleSignatureEl.checked ? `\n <li>Completed Google Signature</li>` : '';
+  completePinterestText = completePinterestEl && completePinterestEl.checked ? `\n <li>Completed Pinterest</li>` : '';
+  completeYoutubeText = completeYoutubeEl && completeYoutubeEl.checked ? `\n <li>Completed YouTube</li>` : '';
+  completeTwitterText = completeTwitterEl && completeTwitterEl.checked ? `\n <li>Completed Twitter</li>` : '';
+  logInWhText = logInWhEl && logInWhEl.checked ? `\n <li>Logged into Warhead</li>` : '';
+  createdTeachableText = createdTeachableEl && createdTeachableEl.checked ? `\n <li>Created Teachable account registered for warhead videos</li>` : '';
+  obCompletedQuestionnaireText = obCompletedQuestionnaireEl && obCompletedQuestionnaireEl.checked ? `\n <li>Completed Design Questionnaire</li>` : '';
+  completeStripeText = completeStripeEl && completeStripeEl.checked ? `\n <li>Completed Stripe</li>` : '';
+  completePaypalText = completePaypalEl && completePaypalEl.checked ? `\n <li>Completed PayPal</li>` : '';
+  dobaSignupText = dobaSignupEl && dobaSignupEl.checked ? `\n <li>Completed Doba signup</li>` : '';
+  dobaInventoryText = dobaInventoryEl && dobaInventoryEl.checked ? `\n <li>Completed Doba inventory</li>` : '';
+  cjSignupText = cjSignupEl && cjSignupEl.checked ? `\n <li>Completed Cj signup & Linked Ebay</li>` : '';
+  cjCategoryText = cjCategoryEl && cjCategoryEl.checked ? `\n <li>Completed Cj category selection</li>` : '';
+
   dashNavText = dashNavEl && dashNavEl.checked ? `\n <li>Dashboard/Account Navigation</li>` : ``;
   extraPageText = extraPageEl && extraPageEl.checked ? `\n <li>Extra Pages</li>` : ``;
   createCatText = createCatEl && createCatEl.checked ? `\n <li>Creating Categories</li>` : '';
@@ -2242,7 +2265,7 @@ function updateWorkedOn() {
 
   if (isAnythingChecked || customWorkedonText !== '') {
     workedOnText = `Worked On: 
-<ul>${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${explainedOrderEmailsText}${ordersGridText}${processDobaOrderText}${processCjOrderText}${sentGuidesProcessingText}${exportingProductsText}${updatingProdText}${unavailableProdText}${sentGuidesUpdatingText}${stripeText}${variantsText}${googleAnalyticsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}${applicationProcessText}${dropshipDatabaseText}${submittedApplicationText}${assistedApplicationText}${followUpEmailText}${customWorkedonText}
+<ul>${canLogInText}${discussedSuppliersText}${discussedRegistrationText}${downloadChromeText}${createGmailText}${createFavFolderText}${linkedBingText}${ciasText}${googleVoiceText}${googleSignatureText}${completePinterestText}${completeYoutubeText}${completeTwitterText}${logInWhText}${createdTeachableText}${obCompletedQuestionnaireText}${completeStripeText}${completePaypalText}${dobaSignupText}${dobaInventoryText}${cjSignupText}${cjCategoryText}${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${explainedOrderEmailsText}${ordersGridText}${processDobaOrderText}${processCjOrderText}${sentGuidesProcessingText}${exportingProductsText}${updatingProdText}${unavailableProdText}${sentGuidesUpdatingText}${stripeText}${variantsText}${googleAnalyticsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}${applicationProcessText}${dropshipDatabaseText}${submittedApplicationText}${assistedApplicationText}${followUpEmailText}${customWorkedonText}
 </ul>
 `;
   } else {
@@ -2252,7 +2275,7 @@ function updateWorkedOn() {
 
 // "Assigned HW" String Handlers
 
-var assignedHwElements = [firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl];
+var assignedHwElements = [googleVoiceHwEl, googleSignatureHwEl, createPinterestHwEl, createYoutubeHwEl, createTwitterHwEl, createStripeHwEl, createPaypalHwEl, stripeLinkBankEl, paypalLinkBankEl, complete2dEl, createCjHwEl, cjCategoryHwEl, createDobaHwEl, dobaInventoryHwEl, whVideosHwEl, registerBusinessHwEl, firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl];
 
 function setAssignedHw() {
   assignedHwElements.forEach(function (element) {
@@ -2318,6 +2341,23 @@ function refreshAllCustomAssignedHw() {
 }
 
 function updateAssignedHw() {
+  googleVoiceHwText = googleVoiceHwEl && googleVoiceHwEl.checked ? `\n <li>Create Google Voice</li>` : ``;
+  googleSignatureHwText = googleSignatureHwEl && googleSignatureHwEl.checked ? `\n <li>Create Google Signature</li>` : ``;
+  createPinterestHwText = createPinterestHwEl && createPinterestHwEl.checked ? `\n <li>Create Pinterest account</li>` : ``;
+  createYoutubeHwText = createYoutubeHwEl && createYoutubeHwEl.checked ? `\n <li>Create YouTube account</li>` : ``;
+  createTwitterHwText = createTwitterHwEl && createTwitterHwEl.checked ? `\n <li>Create Twitter account</li>` : ``;
+  createStripeHwText = createStripeHwEl && createStripeHwEl.checked ? `\n <li>Create Stripe account</li>` : ``;
+  createPaypalHwText = createPaypalHwEl && createPaypalHwEl.checked ? `\n <li>Create PayPal account</li>` : ``;
+  stripeLinkBankText = stripeLinkBankEl && stripeLinkBankEl.checked ? `\n <li>Link bank to Stripe</li>` : ``;
+  paypalLinkBankText = paypalLinkBankEl && paypalLinkBankEl.checked ? `\n <li>Link bank to PayPal</li>` : ``;
+  complete2dText = complete2dEl && complete2dEl.checked ? `\n <li>Complete 2d</li>` : ``;
+  createCjHwText = createCjHwEl && createCjHwEl.checked ? `\n <li>Create CJ Dropshipping account & link Ebay</li>` : ``;
+  cjCategoryHwText = cjCategoryEl && cjCategoryEl.checked ? `\n <li>Select CJ categories</li>` : ``;
+  createDobaHwText = createDobaHwEl && createDobaHwEl.checked ? `\n <li>Create Doba account</li>` : ``;
+  dobaInventoryHwText = dobaInventoryEl && dobaInventoryEl.checked ? `\n <li>Select Doba inventory</li>` : ``;
+  whVideosHwText = whVideosHwEl && whVideosHwEl.checked ? `\n <li>Watch Warhead training videos</li>` : ``;
+  registerBusinessHwText = registerBusinessHwEl && registerBusinessHwEl.checked ? `\n <li>Work on business registration</li>` : ``;
+
   firstApptFinishVidText = firstApptFinishVidEl && firstApptFinishVidEl.checked ? `\n <li>Finish 1st appointment teachable videos</li>` : ``;
   reviewExtraPagesText = reviewExtraPagesEl && reviewExtraPagesEl.checked ? `\n <li>Review Extra Pages</li>` : ``;
   removeProdText = removeProdEl && removeProdEl.checked ? `\n <li>Remove unrelated products</li>` : '';
@@ -2353,7 +2393,7 @@ function updateAssignedHw() {
 
   if (isAnythingChecked || customAssignedHwText !== '') {
     assignedHwText = `Assigned homework: 
-<ul>${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${continueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${watchCanvaText}${createCanvaTemplateText}${contCanvaTemplatedText}${planFbIgPostsText}${contFbIgPostsText}${saveTwentyPinsText}${createFivePinsText}${threeFiveTwitterPostsText}${quoteThreeTwitterPostsText}${customAssignedHwText}
+<ul>${googleVoiceHwText}${googleSignatureHwText}${createPinterestHwText}${createYoutubeHwText}${createTwitterHwText}${createStripeHwText}${createPaypalHwText}${stripeLinkBankText}${paypalLinkBankText}${complete2dText}${createCjHwText}${cjCategoryHwText}${createDobaHwText}${dobaInventoryHwText}${whVideosHwText}${registerBusinessHwText}${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${continueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${watchCanvaText}${createCanvaTemplateText}${contCanvaTemplatedText}${planFbIgPostsText}${contFbIgPostsText}${saveTwentyPinsText}${createFivePinsText}${threeFiveTwitterPostsText}${quoteThreeTwitterPostsText}${customAssignedHwText}
 </ul>
 `;
   } else {
