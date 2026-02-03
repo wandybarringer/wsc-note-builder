@@ -247,6 +247,7 @@ var otherDeptApptEl = document.querySelector('#other-dept-appt');
 var obAssistanceApptPromptEl = document.querySelector('#ob-assistance-appt-prompt');
 var otherDeptApptObPromptEl = document.querySelector('#other-dept-appt-ob-prompt');
 var obAssistanceApptEl = document.querySelector('#ob-assistance-appt');
+var reminderObAssistancePromptEl = document.querySelector('#reminder-ob-assistance-prompt');
 var reminderObAssistanceEl = document.querySelector('#reminder-ob-assistance');
 var obAssistanceTechEl = document.querySelector('#ob-assistance-tech');
 var obAssistanceBookingIdEl = document.querySelector('#ob-assistance-booking-id');
@@ -256,6 +257,7 @@ var obBookingIdPrompt = document.querySelector('#ob-booking-id-prompt');
 var whAssistanceApptPromptEl = document.querySelector('#wh-assistance-appt-prompt');
 var otherDeptApptWhPromptEl = document.querySelector('#other-dept-appt-wh-prompt');
 var whAssistanceApptEl = document.querySelector('#wh-assistance-appt');
+var reminderWhAssistancePromptEl = document.querySelector('#reminder-wh-assistance-prompt');
 var reminderWhAssistanceEl = document.querySelector('#reminder-wh-assistance');
 var whAssistanceTechEl = document.querySelector('#wh-assistance-tech');
 var whAssistanceBookingIdEl = document.querySelector('#wh-assistance-booking-id');
@@ -302,7 +304,6 @@ var domainCompletedNoneEl = document.querySelector('#domain-completed-none');
 var domainCompletedYesEl = document.querySelector('#domain-completed-yes');
 var domainPromptEl = document.querySelector('#domain-prompt');
 var domainEl = document.querySelector('#domain');
-var requiresObAssistanceEl = document.querySelector('#requires-ob-assistance');
 var obCompleteEl = document.querySelector('#ob-complete');
 
 // OB Worked On Checklist
@@ -1122,6 +1123,18 @@ function updateApptVisibility() {
     setContactedByClient();
   }
 
+  if (selectedValue === 'ob-fourth-appt') {
+    setVisibility(otherDeptApptWhPromptEl, true);
+    enrolledSmPromptEl.after(otherDeptApptWhPromptEl);
+    otherDeptApptWhPromptEl.classList.add('grey-bg');
+    setVisibility(whAssistanceApptPromptEl, false);
+    setVisibility(reminderWhAssistancePromptEl, false);
+    setVisibility(whBookingIdPrompt, true);
+  } else {
+    setVisibility(otherDeptApptWhPromptEl, false);
+    whAssistanceApptPromptEl.after(otherDeptApptWhPromptEl);
+  }
+
   if (selectedValue === 'wh-assistance') {
     [contApptPromptEl, hwPromptEl, hwPercentPromptEl].forEach(function (el) {
       setVisibility(el, false);
@@ -1279,12 +1292,12 @@ function updateHtmlNotes() {
 </p>
 `;
     htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
-  } else if ((currentApptValue === 'ob-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-fourth-appt' && currentApptValue !== 'default')) {
+  } else if ((currentApptValue === 'ob-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-assistance-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${contText}${displayApptName}</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + updatedNicheText + updatedDomainText + hwText + workedOnText + assignedHwText + additionalNotesText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + updatedNicheText + updatedDomainText + hwText + workedOnText + assignedHwText + additionalNotesText + obCompleteText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -1389,6 +1402,11 @@ function resetHtmlNotes() {
   whyNotSignedText = '';
   socmReviewedText = '';
   socmCompletedText = '';
+  updatedNicheText = '';
+  updatedDomainText = '';
+  customNoVmReasonText = '';
+  contactedCustomNoVmReasonText = '';
+  obCompleteText = '';
 
   htmlNotesEl.value = '';
 
@@ -1399,7 +1417,7 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, smOtherApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmPromptEl, otherDeptApptWhPromptEl, screenShareOtherPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, smOtherApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmPromptEl, otherDeptApptWhPromptEl, screenShareOtherPromptEl, nicheSelectionPromptEl, domainPromptEl];
 
   allPrompts.forEach(function (element) {
     setVisibility(element, false);
@@ -1637,6 +1655,12 @@ function setOtherAppointment() {
       smTechText = '';
       smBookingIdText = '';
       updateHtmlNotes();
+    }
+
+    if (otherDeptApptEl.checked && currentApptValue === 'ob-fourth-appt') {
+      setVisibility(whAssistanceApptPromptEl, false);
+    } else if (!otherDeptApptEl.checked && currentApptValue === 'ob-fourth-appt') {
+      setVisibility(otherDeptApptWhPromptEl, true);
     }
 
     if (otherDeptApptEl.checked && currentApptValue === 'wh-post-appt') {
@@ -1974,7 +1998,7 @@ function updateOtherAppointment() {
 
   if (reminderObAssistanceEl.checked) {
     obAssistanceText = `<p>
-  Reminded client about Onboarding appointment with ${obAssistanceTechText} for ${obAssistanceDateText}.
+  Reminded client about Onboarding Assistance appointment with ${obAssistanceTechText} for ${obAssistanceDateText}.
 </p>
 `;
   } else if (!reminderObAssistanceEl.checked && (obAssistanceTechText || obAssistanceDateText)) {
@@ -2352,9 +2376,9 @@ function updateAssignedHw() {
   paypalLinkBankText = paypalLinkBankEl && paypalLinkBankEl.checked ? `\n <li>Link bank to PayPal</li>` : ``;
   complete2dText = complete2dEl && complete2dEl.checked ? `\n <li>Complete 2d</li>` : ``;
   createCjHwText = createCjHwEl && createCjHwEl.checked ? `\n <li>Create CJ Dropshipping account & link Ebay</li>` : ``;
-  cjCategoryHwText = cjCategoryEl && cjCategoryEl.checked ? `\n <li>Select CJ categories</li>` : ``;
+  cjCategoryHwText = cjCategoryHwEl && cjCategoryHwEl.checked ? `\n <li>Select CJ categories</li>` : ``;
   createDobaHwText = createDobaHwEl && createDobaHwEl.checked ? `\n <li>Create Doba account</li>` : ``;
-  dobaInventoryHwText = dobaInventoryEl && dobaInventoryEl.checked ? `\n <li>Select Doba inventory</li>` : ``;
+  dobaInventoryHwText = dobaInventoryHwEl && dobaInventoryHwEl.checked ? `\n <li>Select Doba inventory</li>` : ``;
   whVideosHwText = whVideosHwEl && whVideosHwEl.checked ? `\n <li>Watch Warhead training videos</li>` : ``;
   registerBusinessHwText = registerBusinessHwEl && registerBusinessHwEl.checked ? `\n <li>Work on business registration</li>` : ``;
 
@@ -3167,6 +3191,20 @@ function updateDomainString() {
   }
 }
 
+function setOnboardingComplete() {
+  obCompleteEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      obCompleteText = '';
+    } else {
+      obCompleteText = `<p>
+  Client has completed Onboarding
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
 // *WARHEAD SPECIFIC STRING HANDLERS
 
 function setScreenShare() {
@@ -3661,6 +3699,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setNicheStrings();
   setDomainStrings();
+  setOnboardingComplete();
 
   setContAppt();
   setMovedUp();

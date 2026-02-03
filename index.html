@@ -742,16 +742,6 @@
               <textarea name="additional-notes" id="additional-notes"></textarea>
             </div>
 
-            <div data-dept="onboarding" data-template='["ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt"]'>
-              <label for="requires-ob-assistance">Does client require Onboarding Assistance?</label>
-              <input type="checkbox" name="requires-ob-assistance" id="requires-ob-assistance" class="round-checkbox" />
-            </div>
-
-            <div data-dept="onboarding" data-template='["ob-fourth-appt", "ob-assistance-appt"]'>
-              <input type="checkbox" name="ob-complete" id="ob-complete" class="ob-complete" />
-              <label for="ob-complete">Client has completed Onboarding</label>
-            </div>
-
             <div id="started-registering-prompt" data-dept="warhead" data-template="wh-first-appt">
               <label class="default-pointer">Started registering business?</label>
               <div class="toggle-switch">
@@ -876,6 +866,11 @@
             <div id="next-appt-date-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
               <label for="next-appointment-date">Next appointment date:</label>
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
+            </div>
+
+            <div data-dept="onboarding" data-template='["ob-fourth-appt", "ob-assistance-appt"]'>
+              <input type="checkbox" name="ob-complete" id="ob-complete" class="ob-complete" />
+              <label for="ob-complete">Client has completed Onboarding</label>
             </div>
 
             <div id="sent-sm-guide-prompt" data-dept="warhead" data-template="wh-post-appt">
@@ -1102,19 +1097,7 @@
             </div>
 
             <!-- *Other Appts -->
-            <!-- TODO: Attach to select options to their prompts and append new select option for additional appointments -->
-            <!-- <div id="other-dept-appt-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "sm-marketing"]'>
-              <select name="other-dept-appt" id="other-dept-appt">
-                <option value="default" selected>Other Dept Appt</option>
-                <option value="other-dept-ob" data-other-dept="ob">Onboarding</option>
-                <option value="other-dept-wh" data-other-dept="wh">Warhead</option>
-                <option value="other-dept-sm" data-other-dept="sm">Supplier Management</option>
-                <option value="other-dept-wa" data-other-dept="wa">Website Analysis</option>
-                <option value="other-dept-nc" data-other-dept="nc">Niche Change</option>
-              </select>
-            </div> -->
-
-            <div id="other-dept-appt-prompt" data-dept='["warhead", "supplier-management"]' data-template='["wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "sm-marketing"]'>
+            <div id="other-dept-appt-prompt" data-dept='["onboarding", "warhead", "supplier-management"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "sm-marketing"]'>
               <label for="other-dept-appt">Other department appointment(s)?</label>
               <input type="checkbox" name="other-dept-appt" id="other-dept-appt" />
             </div>
@@ -1126,8 +1109,8 @@
             </div>
 
             <div class="grey-bg" id="other-dept-appt-ob-prompt">
-              <div>
-                <label for="reminder--assistance">Appointment reminder?</label>
+              <div id="reminder-ob-assistance-prompt">
+                <label for="reminder-ob-assistance">Appointment reminder?</label>
                 <input class="round-checkbox" type="checkbox" name="reminder-ob-assistance" id="reminder-ob-assistance" />
               </div>
               <div>
@@ -1151,7 +1134,7 @@
             </div>
 
             <div class="grey-bg" id="other-dept-appt-wh-prompt">
-              <div>
+              <div id="reminder-wh-assistance-prompt">
                 <label for="reminder-wh-assistance">Appointment reminder?</label>
                 <input class="round-checkbox" type="checkbox" name="reminder-wh-assistance" id="reminder-wh-assistance" />
               </div>

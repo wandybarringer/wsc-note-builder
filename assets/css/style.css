@@ -78,7 +78,7 @@ header h1 {
 }
 
 section {
-  border: var(--input-border) solid 1px;
+  border: var(--primary-text-transparent) solid 1px;
   border-radius: 0.6rem;
 }
 
@@ -183,6 +183,7 @@ header ul {
 }
 
 select,
+button,
 #clear-btn,
 .eye-toggle {
   cursor: pointer;
@@ -732,6 +733,27 @@ input[type='checkbox']:hover {
   #initials-required-dialog[open] {
     opacity: 0;
   }
+}
+
+.flex-input {
+  display: flex;
+  gap: 5px;
+}
+
+#add-appt-btn {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.plus {
+  /* Remove position: absolute */
+  block-size: 1.2rem;
+  inline-size: 1.2rem;
 }
 
 #clear-btn,
