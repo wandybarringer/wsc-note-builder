@@ -494,7 +494,8 @@ input[type='checkbox'].round-checkbox {
 #hw-percent,
 #how-many-products,
 #how-many-suppliers-number,
-#initials {
+#initials,
+#note-number {
   inline-size: 50px;
 }
 

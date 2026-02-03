@@ -83,6 +83,7 @@
                     <option value="contacted-by-client">Contacted by Client</option>
                     <option value="reschedule">Reschedule</option>
                     <option value="general">General</option>
+                    <option value="edit-note">Edit Note</option>
                     <option value="podio-link">Podio Link</option>
                   </select>
                 </form>
@@ -1232,8 +1233,22 @@
               <textarea name="next-topic" id="next-topic"></textarea>
             </div>
 
+            <!-- *EDIT NOTE -->
+
+            <div data-dept='["onboarding", "warhead", "supplier-management", "social-media"]' data-template="edit-note">
+              <p class="show-all-emphasis">Use for edits or additions to notes on SP.</p>
+              <div>
+                <label for="note-number">Note Number:</label>
+                <input type="number" name="note-number" id="note-number" />
+              </div>
+              <div>
+                <label for="edit-note-text">Note:</label>
+                <textarea name="edit-note-text" id="edit-note-text"></textarea>
+              </div>
+            </div>
+
             <!-- *Signature/initials -->
-            <div id="initials-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "general", "missed-appt", "sm-marketing", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+            <div id="initials-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "reschedule", "contacted-by-client", "general", "missed-appt", "sm-marketing", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt", "edit-note"]'>
               <label for="initials">Initials</label>
               <input type="text" name="initials" id="initials" required />
             </div>

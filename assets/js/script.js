@@ -425,6 +425,10 @@ var socmCompletedNoEl = document.querySelector('#socm-completed-no');
 var socmCompletedNoneEl = document.querySelector('#socm-completed-none');
 var socmCompletedYesEl = document.querySelector('#socm-completed-yes');
 
+// *EDIT NOTE
+var noteNumberEl = document.querySelector('#note-number');
+var editNoteTextEl = document.querySelector('#edit-note-text');
+
 // *THEME & GLOBAL STATE VARIABLES
 
 var toggleSwitch = document.querySelector('#dark-light-toggle');
@@ -679,6 +683,10 @@ var rescheduleDateText = '';
 
 var generalContactPurposeText = '';
 var generalContactNoteText = '';
+
+// Edit Note Strings
+var noteNumberText = '';
+var editNoteText = '';
 
 // Podio Strings
 
@@ -1074,7 +1082,7 @@ function handleApptSelection() {
       htmlNotesEl.disabled = true;
       clearBtnEl.disabled = true;
       showAllDeptInputsEl.disabled = true;
-    } else if (currentApptValue === 'missed-appt' || currentApptValue === 'contacted-by-client' || currentApptValue === 'reschedule' || currentApptValue === 'general' || currentApptValue === 'podio-link') {
+    } else if (currentApptValue === 'missed-appt' || currentApptValue === 'contacted-by-client' || currentApptValue === 'reschedule' || currentApptValue === 'general' || currentApptValue === 'edit-note' || currentApptValue === 'podio-link') {
       htmlNotesEl.disabled = false;
       clearBtnEl.disabled = false;
       showAllDeptInputsEl.disabled = true;
@@ -1298,6 +1306,8 @@ function updateHtmlNotes() {
 </p>
 `;
     htmlNotes = contactedClientText + updatedNicheText + updatedDomainText + hwText + workedOnText + assignedHwText + additionalNotesText + obCompleteText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+  } else if (currentApptValue === 'edit-note' && currentApptValue !== 'default') {
+    htmlNotes = noteNumberText + editNoteText + initialsText;
   }
 
   htmlNotesEl.value = htmlNotes;
@@ -1407,6 +1417,8 @@ function resetHtmlNotes() {
   customNoVmReasonText = '';
   contactedCustomNoVmReasonText = '';
   obCompleteText = '';
+  editNoteText = '';
+  noteNumberText = '';
 
   htmlNotesEl.value = '';
 
@@ -3070,6 +3082,34 @@ function setReschedule() {
   });
 }
 
+// Edit Note String Handler
+
+function setEditNote() {
+  noteNumberEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      noteNumberText = '';
+    } else {
+      noteNumberText = `<p>
+  <b>Edit to Note #${event.target.value}</b>
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+
+  editNoteTextEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      editNoteText = '';
+    } else {
+      editNoteText = `<p>
+  ${event.target.value}
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
 // Podio Link String Handlers
 
 function setPodioLink() {
@@ -3742,6 +3782,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setContactedByClient();
   setReschedule();
   setGeneralContact();
+  setEditNote();
   setPodioLink();
   setInitials();
 });
