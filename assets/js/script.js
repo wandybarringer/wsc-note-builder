@@ -3309,11 +3309,13 @@ function setStartedRegistering() {
       if (startedRegYesEl.checked) {
         startedRegText = `<p>
   Client <b>has</b> started registering business.
-</p>`;
+</p>
+`;
       } else if (startedRegNoEl.checked) {
         startedRegText = `<p>
   Client <b>has not</b> started registering business.
-</p>`;
+</p>
+`;
       } else if (startedRegNoneEl.checked) {
         startedRegText = '';
       } else {
