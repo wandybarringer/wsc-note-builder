@@ -2759,7 +2759,7 @@ function setContactedByClient() {
         });
       } else if (messageTypeVoicemailRadioEl.checked || messageTypeEmailRadioEl.checked || messageTypeTextRadioEl.checked) {
         contactedByClientText = `<p>
-  Contacted by client via ${currentMsgType}.
+  <b>Contacted by client via ${currentMsgType}</b>
 </p>
 `;
         setVisibility(successfulContactPromptEl, true);
