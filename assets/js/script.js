@@ -58,6 +58,8 @@ var catProdEl = document.querySelector('#categorizing-products');
 var discountsEl = document.querySelector('#discounts');
 var checkoutSectionsEl = document.querySelector('#checkout-sections');
 var payPalEl = document.querySelector('#paypal-apple-pay');
+var payPalStandardEl = document.querySelector('#paypal-standard');
+var payPalStandardReasonEl = document.querySelector('#paypal-standard-reason');
 var testOrderEl = document.querySelector('#test-order');
 var explainedOrderEmailsEl = document.querySelector('#explained-order-emails');
 var ordersGridEl = document.querySelector('#orders-grid');
@@ -462,6 +464,8 @@ var catProdText = '';
 var discountsText = '';
 var checkoutSectionsText = '';
 var payPalText = '';
+var payPalStandardText = '';
+var payPalStandardReasonText = '';
 var testOrderText = '';
 var explainedOrderEmailsText = '';
 var ordersGridText = '';
@@ -2129,9 +2133,19 @@ function setInitials() {
 
 // "Worked On" String Handlers
 
-var workedOnElements = [canLogInEl, discussedSuppliersEl, discussedRegistrationEl, downloadChromeEl, createGmailEl, createFavFolderEl, linkedBingEl, ciasEl, googleVoiceEl, googleSignatureEl, completePinterestEl, completeYoutubeEl, completeTwitterEl, logInWhEl, createdTeachableEl, obCompletedQuestionnaireEl, completeStripeEl, completePaypalEl, dobaSignupEl, dobaInventoryEl, cjSignupEl, cjCategoryEl, dashNavEl, extraPageEl, createCatEl, organizeCatEl, createProdEl, prodGridEl, catProdEl, discountsEl, checkoutSectionsEl, payPalEl, testOrderEl, explainedOrderEmailsEl, ordersGridEl, processDobaOrderEl, processCjOrderEl, sentGuidesProcessingEl, exportingProductsEl, updatingProdEl, unavailableProdEl, sentGuidesUpdatingEl, stripeEl, variantsEl, googleAnalyticsEl, updatingNewProdEl, processRealOrderEl, modifyVariantsEl, applicationProcessEl, dropshipDatabaseEl, submittedApplicationEl, assistedApplicationEl, followUpEmailEl];
+var workedOnElements = [canLogInEl, discussedSuppliersEl, discussedRegistrationEl, downloadChromeEl, createGmailEl, createFavFolderEl, linkedBingEl, ciasEl, googleVoiceEl, googleSignatureEl, completePinterestEl, completeYoutubeEl, completeTwitterEl, logInWhEl, createdTeachableEl, obCompletedQuestionnaireEl, completeStripeEl, completePaypalEl, dobaSignupEl, dobaInventoryEl, cjSignupEl, cjCategoryEl, dashNavEl, extraPageEl, createCatEl, organizeCatEl, createProdEl, prodGridEl, catProdEl, discountsEl, checkoutSectionsEl, payPalEl, payPalStandardEl, testOrderEl, explainedOrderEmailsEl, ordersGridEl, processDobaOrderEl, processCjOrderEl, sentGuidesProcessingEl, exportingProductsEl, updatingProdEl, unavailableProdEl, sentGuidesUpdatingEl, stripeEl, variantsEl, googleAnalyticsEl, updatingNewProdEl, processRealOrderEl, modifyVariantsEl, applicationProcessEl, dropshipDatabaseEl, submittedApplicationEl, assistedApplicationEl, followUpEmailEl];
 
 function setWorkedOn() {
+  payPalStandardReasonEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      payPalStandardReasonText = '';
+    } else {
+      payPalStandardReasonText = ` - ${event.target.value}`;
+    }
+    updateWorkedOn();
+    updateHtmlNotes();
+  });
+
   updatingNewProdNameEl.addEventListener('input', function (event) {
     if (!event.target.value) {
       updatingNewProdNameText = 'New Supplier(s)';
@@ -2265,17 +2279,16 @@ function updateWorkedOn() {
   createProdText = createProdEl && createProdEl.checked ? `\n <li>Creating Products</li>` : '';
   prodGridText = prodGridEl && prodGridEl.checked ? `\n <li>Products Grid</li>` : '';
   catProdText = catProdEl && catProdEl.checked ? `\n <li>Categorizing Products</li>` : '';
-
   discountsText = discountsEl && discountsEl.checked ? `\n <li>Discounts</li>` : '';
   checkoutSectionsText = checkoutSectionsEl && checkoutSectionsEl.checked ? `\n <li>Checkout Sections</li>` : '';
   payPalText = payPalEl && payPalEl.checked ? `\n <li>Linked PayPal/Apple Pay</li>` : '';
+  payPalStandardText = payPalStandardEl && payPalStandardEl.checked ? `\n <li>Linked PayPal Standard Checkout${payPalStandardReasonText}</li>` : '';
   testOrderText = testOrderEl && testOrderEl.checked ? `\n <li>Creating a Test Order</li>` : '';
   explainedOrderEmailsText = explainedOrderEmailsEl && explainedOrderEmailsEl.checked ? `\n <li>Explained order emails</li>` : '';
   ordersGridText = ordersGridEl && ordersGridEl.checked ? `\n <li>Orders grid</li>` : '';
   processDobaOrderText = processDobaOrderEl && processDobaOrderEl.checked ? `\n <li>Processed Doba test order</li>` : '';
   processCjOrderText = processCjOrderEl && processCjOrderEl.checked ? `\n <li>Processed CJ test order</li>` : '';
   sentGuidesProcessingText = sentGuidesProcessingEl && sentGuidesProcessingEl.checked ? `\n <li>Sent client order processing guide(s)</li>` : '';
-
   exportingProductsText = exportingProductsEl && exportingProductsEl.checked ? `\n <li>Exporting product spreadsheet from Warhead</li>` : '';
   updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
   unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products</li>` : '';
@@ -2301,7 +2314,7 @@ function updateWorkedOn() {
 
   if (isAnythingChecked || customWorkedonText !== '') {
     workedOnText = `Worked On: 
-<ul>${canLogInText}${discussedSuppliersText}${discussedRegistrationText}${downloadChromeText}${createGmailText}${createFavFolderText}${linkedBingText}${ciasText}${googleVoiceText}${googleSignatureText}${completePinterestText}${completeYoutubeText}${completeTwitterText}${logInWhText}${createdTeachableText}${obCompletedQuestionnaireText}${completeStripeText}${completePaypalText}${dobaSignupText}${dobaInventoryText}${cjSignupText}${cjCategoryText}${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${testOrderText}${explainedOrderEmailsText}${ordersGridText}${processDobaOrderText}${processCjOrderText}${sentGuidesProcessingText}${exportingProductsText}${updatingProdText}${unavailableProdText}${sentGuidesUpdatingText}${stripeText}${variantsText}${googleAnalyticsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}${applicationProcessText}${dropshipDatabaseText}${submittedApplicationText}${assistedApplicationText}${followUpEmailText}${customWorkedonText}
+<ul>${canLogInText}${discussedSuppliersText}${discussedRegistrationText}${downloadChromeText}${createGmailText}${createFavFolderText}${linkedBingText}${ciasText}${googleVoiceText}${googleSignatureText}${completePinterestText}${completeYoutubeText}${completeTwitterText}${logInWhText}${createdTeachableText}${obCompletedQuestionnaireText}${completeStripeText}${completePaypalText}${dobaSignupText}${dobaInventoryText}${cjSignupText}${cjCategoryText}${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${payPalStandardText}${testOrderText}${explainedOrderEmailsText}${ordersGridText}${processDobaOrderText}${processCjOrderText}${sentGuidesProcessingText}${exportingProductsText}${updatingProdText}${unavailableProdText}${sentGuidesUpdatingText}${stripeText}${variantsText}${googleAnalyticsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}${applicationProcessText}${dropshipDatabaseText}${submittedApplicationText}${assistedApplicationText}${followUpEmailText}${customWorkedonText}
 </ul>
 `;
   } else {
