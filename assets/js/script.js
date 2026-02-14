@@ -2967,7 +2967,7 @@ function setContactedByClient() {
       advisedClientText = '';
     } else {
       advisedClientText = `<p>
-  Advised client: ${event.target.value}
+  ${event.target.value}
 </p>
 `;
     }
