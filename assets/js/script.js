@@ -1425,6 +1425,7 @@ function resetHtmlNotes() {
   obCompleteText = '';
   editNoteText = '';
   noteNumberText = '';
+  whCompletedText = '';
 
   htmlNotesEl.value = '';
 
