@@ -235,6 +235,7 @@ var designFinishedYesEl = document.querySelector('#design-finished-yes');
 var additionalTrainingPromptEl = document.querySelector('#additional-training-prompt');
 var additionalTrainingEl = document.querySelector('#additional-training');
 
+var whCompletedEl = document.querySelector('#wh-completed');
 var noFurtherWhAssistanceEl = document.querySelector('#no-further-wh-assistance');
 var nextApptDatePromptEl = document.querySelector('#next-appt-date-prompt');
 var nextTopicPromptEl = document.querySelector('#next-topic-prompt');
@@ -713,6 +714,7 @@ var designFinishedText = '';
 var smRequirementsText = '';
 var additionalTrainingText = '';
 var smReminderText = '';
+var whCompletedText = '';
 var noFurtherWhAssistanceText = '';
 var nextAppointmentText = '';
 var whAssistanceTechText = '';
@@ -1265,7 +1267,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Warhead Training</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + whCompletedText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'missed-appt' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'contacted-by-client' && currentApptValue !== 'default') {
@@ -3431,6 +3433,20 @@ function updateSupplierManagement() {
 `;
 }
 
+function setWhCompleted() {
+  whCompletedEl.addEventListener('change', function () {
+    if (!whCompletedEl.checked) {
+      whCompletedText = '';
+    } else if (whCompletedEl.checked) {
+      whCompletedText = `<p>
+  Client has <b>completed Warhead Training</b>.
+</p>
+`;
+    }
+    updateHtmlNotes();
+  });
+}
+
 function setNoFurtherWhAssistance() {
   noFurtherWhAssistanceEl.addEventListener('change', function () {
     if (!noFurtherWhAssistanceEl.checked) {
@@ -3776,6 +3792,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setCompletionForm();
   setSupplierManagement();
   setLiveRegisteredDesign();
+  setWhCompleted();
   setNoFurtherWhAssistance();
   setNextAppointment();
   setOtherAppointment();
