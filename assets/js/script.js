@@ -2257,7 +2257,7 @@ function updateWorkedOn() {
   discussedRegistrationText = discussedRegistrationEl && discussedRegistrationEl.checked ? `\n <li>Discussed business registration</li>` : '';
   downloadChromeText = downloadChromeEl && downloadChromeEl.checked ? `\n <li>Downloaded Chrome</li>` : '';
   createGmailText = createGmailEl && createGmailEl.checked ? `\n <li>Created Gmail account</li>` : '';
-  createFavFolderText = createFavFolderEl && createFavFolderEl.checked ? `\n <li>Created Gmail account</li>` : '';
+  createFavFolderText = createFavFolderEl && createFavFolderEl.checked ? `\n <li>Created favorites folder</li>` : '';
   linkedBingText = linkedBingEl && linkedBingEl.checked ? `\n <li>Linked Bing account</li>` : '';
   ciasText = ciasEl && ciasEl.checked ? `\n <li>Made and sent CAIS</li>` : '';
   googleVoiceText = googleVoiceEl && googleVoiceEl.checked ? `\n <li>Completed Google Voice</li>` : '';
