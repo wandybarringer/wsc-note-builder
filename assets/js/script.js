@@ -1830,10 +1830,11 @@ function setOtherAppointment() {
   });
 
   whAssistanceDateEl.addEventListener('input', function (event) {
+    var newWhAssistanceDate = handleDateFormat(event.target.value);
     if (!event.target.value) {
       whAssistanceDateText = '';
     } else if (event.target.value) {
-      whAssistanceDateText = event.target.value;
+      whAssistanceDateText = newWhAssistanceDate;
     }
     updateOtherAppointment();
     updateHtmlNotes();
@@ -1870,10 +1871,12 @@ function setOtherAppointment() {
   });
 
   smOtherDateEl.addEventListener('input', function (event) {
+    var newSmDate = handleDateFormat(event.target.value);
+
     if (!event.target.value) {
       smDateText = '';
     } else if (event.target.value) {
-      smDateText = event.target.value;
+      smDateText = newSmDate;
     }
     updateOtherAppointment();
     updateHtmlNotes();
@@ -1910,10 +1913,11 @@ function setOtherAppointment() {
   });
 
   obAssistanceDateEl.addEventListener('input', function (event) {
+    var newObDate = handleDateFormat(event.target.value);
     if (!event.target.value) {
       obAssistanceDateText = '';
     } else if (event.target.value) {
-      obAssistanceDateText = event.target.value;
+      obAssistanceDateText = newObDate;
     }
     updateOtherAppointment();
     updateHtmlNotes();
@@ -1950,10 +1954,11 @@ function setOtherAppointment() {
   });
 
   nicheChangeDateEl.addEventListener('input', function (event) {
+    var newNicheChangeDate = handleDateFormat(event.target.value);
     if (!event.target.value) {
       nicheChangeDateText = '';
     } else if (event.target.value) {
-      nicheChangeDateText = event.target.value;
+      nicheChangeDateText = newNicheChangeDate;
     }
     updateOtherAppointment();
     updateHtmlNotes();
@@ -1970,10 +1975,11 @@ function setOtherAppointment() {
   });
 
   websiteAnalysisDateEl.addEventListener('input', function (event) {
+    var newWaDate = handleDateFormat(event.target.value);
     if (!event.target.value) {
       websiteAnalysisDateText = '';
     } else if (event.target.value) {
-      websiteAnalysisDateText = event.target.value;
+      websiteAnalysisDateText = newWaDate;
     }
     updateOtherAppointment();
     updateHtmlNotes();
