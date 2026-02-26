@@ -2696,7 +2696,7 @@ function setMissedAppointment() {
     if (!sentMissedEmailEl.checked) {
       sentMissedEmailText = '';
     } else if (sentMissedEmailEl.checked) {
-      sentMissedEmailText = ' Sent <b>missed appointment</b> email to account manager and front-end.';
+      sentMissedEmailText = ' Sent <b>missed appointment</b> email to account manager, front-end, Christina & liasons.';
     }
     updateMissedAppointment();
     updateHtmlNotes();
