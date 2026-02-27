@@ -865,7 +865,7 @@ function copyHtmlNotes() {
     if (initialsText === '') {
       initialsReqDialogEl.show();
     } else {
-      copyMsgDialogEl.show();
+      copyMsgDialogEl.classList.add('is-visible');
     }
   });
 
@@ -874,7 +874,7 @@ function copyHtmlNotes() {
     if (initialsText === '') {
       initialsReqDialogEl.close();
     } else {
-      copyMsgDialogEl.close();
+      copyMsgDialogEl.classList.remove('is-visible');
     }
   });
 
