@@ -1250,7 +1250,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Supplier Management</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + smRequirementsText + howManyProductsText + updatedHowManySuppliersText + workedOnText + assignedHwText + removeNonNicheText + completedSmText + additionalNotesText + nextAppointmentText + updatedSmWsText + marketingDateText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + smRequirementsText + howManyProductsText + updatedHowManySuppliersText + workedOnText + assignedHwText + removeNonNicheText + completedSmText + additionalNotesText + nextAppointmentText + updatedSmWsText + marketingDateText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'sm-marketing' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${displayApptName}</b> appointment.
