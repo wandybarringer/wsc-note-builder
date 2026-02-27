@@ -3356,10 +3356,7 @@ function setCompletionForm() {
     if (completionFormSentEl.checked) {
       completionFormSentText = `Sent & explained completion form.`;
     } else {
-      setVisibility(whyNotSignedPromptEl, false);
       completionFormSentText = ``;
-      completionFormSignedText = '';
-      whyNotSignedText = '';
     }
     updateCompletionForm();
     updateHtmlNotes();
@@ -3372,12 +3369,16 @@ function setCompletionForm() {
       if (cfSignedElYes.checked) {
         setVisibility(whyNotSignedPromptEl, false);
         completionFormSignedText = ` Client has <b>signed</b> completion form.`;
+        whyNotSignedText = '';
+        whyNotSignedEl.value = '';
       } else if (cfSignedElNo.checked) {
         setVisibility(whyNotSignedPromptEl, true);
         completionFormSignedText = ` Client has <b>not signed</b> completion form.`;
       } else if (cfSignedElNone.checked) {
         setVisibility(whyNotSignedPromptEl, false);
         completionFormSignedText = '';
+        whyNotSignedText = '';
+        whyNotSignedEl.value = '';
       } else {
         completionFormSignedText = '';
       }
