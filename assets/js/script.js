@@ -3198,7 +3198,7 @@ function setOnboardingComplete() {
       obCompleteText = '';
     } else {
       obCompleteText = `<p>
-  Client has completed Onboarding
+  Client has <b>completed Onboarding</b>.
 </p>
 `;
     }
