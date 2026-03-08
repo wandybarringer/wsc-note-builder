@@ -1231,7 +1231,7 @@ function updateHtmlNotes() {
     htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + additionalNotesText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  Contacted client but they are <b>unable to attend appointment.</b>
+  Contacted client${movedUpText} but they are <b>unable to attend appointment.</b>
 </p>
 `;
     htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
