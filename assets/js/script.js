@@ -2686,7 +2686,7 @@ function updateMissedAppointment() {
 function setContactedByClient() {
   setVisibility(contactedEmailSentPromptEl, false);
   contactedByClientText = `<p>
-  Contacted by client.
+  <b>Contacted by client.</b>
 </p>
 `;
 
@@ -2709,7 +2709,7 @@ function setContactedByClient() {
       additionalNotesEl.value = '';
       if (messageTypeNoneRadioEl.checked) {
         contactedByClientText = `<p>
-  Contacted by client.
+  <b>Contacted by client.</b>
 </p>
 `;
         contactedVmBoxFullEl.checked = false;
