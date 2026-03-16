@@ -2676,7 +2676,7 @@ function updateVmText() {
 
 function updateMissedAppointment() {
   missedApptText = `<p>
-  ${attemptText} to reach out to client.${updatedPhoneNumberText} Client didn't answer.${updatedVmText}${emailSentText}${sentMissedEmailText}${markedPodioText}
+  ${attemptText} to contact client.${updatedPhoneNumberText} Client didn't answer.${updatedVmText}${emailSentText}${sentMissedEmailText}${markedPodioText}
 </p>
 `;
 }
