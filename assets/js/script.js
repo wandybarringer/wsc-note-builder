@@ -1120,65 +1120,126 @@ function handleApptSelection() {
   });
 }
 
+// function updateApptVisibility() {
+//   var selectedValue = apptSelectEl.value;
+//   currentApptValue = selectedValue;
+//   var selectedDept = deptSelectEl.value;
+//   currentDeptValue = selectedDept;
+
+//   var isDefault = selectedValue === 'default';
+//   var isMissedAppt = selectedValue === 'missed-appt';
+//   var isContactedByClient = selectedValue === 'contacted-by-client';
+//   var isShowAllWorkedOn = showAllWorkedOnEl.checked;
+//   var isShowAllHw = showAllAssignedHwEl.checked;
+//   var isShowAllSocmReviewed = showAllSocmReviewedEl.checked;
+//   var isShowAllInputs = showAllDeptInputsEl.checked;
+
+//   setVisibility(nonSpecFormEl, !isDefault);
+
+//   var conditionalElements = document.querySelectorAll('[data-dept], [data-template]');
+//   conditionalElements.forEach(parseDataAttributes);
+
+//   if (isMissedAppt) {
+//     setMissedAppointment();
+//   }
+
+//   if (isContactedByClient) {
+//     setContactedByClient();
+//   }
+
+//   if (selectedValue === 'wh-assistance') {
+//     [contApptPromptEl, hwPromptEl, hwPercentPromptEl].forEach(function (el) {
+//       setVisibility(el, false);
+//     });
+//   }
+
+//   var allWorkedOnItems = workedOnEl.querySelectorAll('div[data-dept]');
+//   var allHwItems = assignedHwEl.querySelectorAll('div[data-dept]');
+//   var allSocmReviewedItems = socmReviewedEl.querySelectorAll('div[data-dept]');
+
+//   if (isShowAllInputs || isShowAllWorkedOn) {
+//     allWorkedOnItems.forEach(function (el) {
+//       if (matchesDept(el, selectedDept)) {
+//         setVisibility(el, true);
+//       }
+//     });
+//   }
+
+//   if (isShowAllHw && selectedValue !== 'wh-post-appt') {
+//     allHwItems.forEach(function (el) {
+//       if (matchesDept(el, selectedDept)) {
+//         setVisibility(el, true);
+//       }
+//     });
+//   }
+
+//   if (isShowAllInputs || isShowAllSocmReviewed) {
+//     allSocmReviewedItems.forEach(function (el) {
+//       if (matchesDept(el, selectedDept)) {
+//         setVisibility(el, true);
+//       }
+//     });
+//   }
+
+//   updateHtmlNotes();
+// }
+
 function updateApptVisibility() {
   var selectedValue = apptSelectEl.value;
-  currentApptValue = selectedValue;
   var selectedDept = deptSelectEl.value;
-  currentDeptValue = selectedDept;
 
-  var isDefault = selectedValue === 'default';
-  var isMissedAppt = selectedValue === 'missed-appt';
-  var isContactedByClient = selectedValue === 'contacted-by-client';
-  var isShowAllWorkedOn = showAllWorkedOnEl.checked;
-  var isShowAllHw = showAllAssignedHwEl.checked;
-  var isShowAllSocmReviewed = showAllSocmReviewedEl.checked;
-  var isShowAllInputs = showAllDeptInputsEl.checked;
+  var isGlobalShow = showAllDeptInputsEl.checked;
+  var isWorkedOnShow = showAllWorkedOnEl.checked;
+  var isHwShow = showAllAssignedHwEl.checked;
+  var isSocmShow = showAllSocmReviewedEl.checked;
 
-  setVisibility(nonSpecFormEl, !isDefault);
+  setVisibility(nonSpecFormEl, selectedValue !== 'default');
 
-  var conditionalElements = document.querySelectorAll('[data-dept], [data-template]');
-  conditionalElements.forEach(parseDataAttributes);
+  const specialTemplates = ['missed-appt', 'contacted-by-client', 'reschedule', 'general', 'podio-link', 'edit-note'];
 
-  if (isMissedAppt) {
-    setMissedAppointment();
-  }
+  var allConditional = document.querySelectorAll('[data-dept], [data-template]');
 
-  if (isContactedByClient) {
-    setContactedByClient();
-  }
+  allConditional.forEach((el) => {
+    var deptMatch = matchesDept(el, selectedDept);
+    var tempAttr = el.getAttribute('data-template');
+    var isSpecial = specialTemplates.includes(tempAttr);
 
+    var inWorkedOn = el.closest('#worked-on');
+    var inHw = el.closest('#assigned-hw');
+    var inSocm = el.closest('#social-media-reviewed');
+
+    var finalVisibility = false;
+
+    if (deptMatch) {
+      if (inWorkedOn) {
+        finalVisibility = isWorkedOnShow;
+      } else if (inHw) {
+        if (selectedValue === 'wh-assistance') {
+          finalVisibility = false;
+        } else {
+          finalVisibility = isHwShow;
+        }
+      } else if (inSocm) {
+        finalVisibility = isSocmShow;
+      } else if (isGlobalShow && !isSpecial) {
+        finalVisibility = true;
+      }
+
+      if (!finalVisibility) {
+        var allowedTemplates = tempAttr ? (tempAttr.startsWith('[') ? JSON.parse(tempAttr) : [tempAttr]) : [];
+        if (allowedTemplates.length === 0 || allowedTemplates.includes(selectedValue)) {
+          finalVisibility = true;
+        }
+      }
+    }
+
+    setVisibility(el, finalVisibility);
+  });
+
+  if (selectedValue === 'missed-appt') setMissedAppointment();
+  if (selectedValue === 'contacted-by-client') setContactedByClient();
   if (selectedValue === 'wh-assistance') {
-    [contApptPromptEl, hwPromptEl, hwPercentPromptEl].forEach(function (el) {
-      setVisibility(el, false);
-    });
-  }
-
-  var allWorkedOnItems = workedOnEl.querySelectorAll('div[data-dept]');
-  var allHwItems = assignedHwEl.querySelectorAll('div[data-dept]');
-  var allSocmReviewedItems = socmReviewedEl.querySelectorAll('div[data-dept]');
-
-  if (isShowAllInputs || isShowAllWorkedOn) {
-    allWorkedOnItems.forEach(function (el) {
-      if (matchesDept(el, selectedDept)) {
-        setVisibility(el, true);
-      }
-    });
-  }
-
-  if (isShowAllHw && selectedValue !== 'wh-post-appt') {
-    allHwItems.forEach(function (el) {
-      if (matchesDept(el, selectedDept)) {
-        setVisibility(el, true);
-      }
-    });
-  }
-
-  if (isShowAllInputs || isShowAllSocmReviewed) {
-    allSocmReviewedItems.forEach(function (el) {
-      if (matchesDept(el, selectedDept)) {
-        setVisibility(el, true);
-      }
-    });
+    [contApptPromptEl, hwPromptEl, hwPercentPromptEl, showAllAssignedHwEl.closest('div')].forEach((el) => setVisibility(el, false));
   }
 
   updateHtmlNotes();
