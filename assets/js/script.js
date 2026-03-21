@@ -1297,7 +1297,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} but they are <b>unable to attend appointment.</b>
 </p>
 `;
-    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
+    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + smText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'podio-link' && currentApptValue !== 'default') {
     htmlNotes = podioLinkText;
   } else if (currentApptValue === 'wh-assistance' && currentApptValue !== 'default') {
