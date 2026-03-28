@@ -1383,6 +1383,7 @@ function resetHtmlNotes() {
   liveText = '';
   registeredText = '';
   designFinishedText = '';
+  resaleCertText = '';
   smRequirementsText = '';
   additionalTrainingText = '';
   noFurtherWhAssistanceText = '';
