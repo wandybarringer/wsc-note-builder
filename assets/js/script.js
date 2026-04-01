@@ -398,7 +398,6 @@ var mbsStoriesEl = document.querySelector('#mbs-stories');
 var pinterestBoardsEl = document.querySelector('#pinterest-boards');
 var pinPinterestPostsEl = document.querySelector('#pin-pinterest-posts');
 var pinterestRefresherEl = document.querySelector('#pinterest-refresher');
-var productPinsEl = document.querySelector('#product-pins');
 var createTwitterPostsEl = document.querySelector('#create-twitter-posts');
 var quoteTwitterPostsEl = document.querySelector('#quote-twitter-posts');
 var twitterFollowEl = document.querySelector('#twitter-follow');
@@ -619,7 +618,6 @@ var mbsStoriesText = '';
 var pinterestBoardsText = '';
 var pinPinterestPostsText = '';
 var pinterestRefresherText = '';
-var productPinsText = '';
 var createTwitterPostsText = '';
 var quoteTwitterPostsText = '';
 var twitterFollowText = '';
@@ -3550,7 +3548,7 @@ function updateMarketingReviewed() {
 
 // *SOCIAL MEDIA SPECIFIC STRING HANDLERS
 
-var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdCanvaEl, createdChatgptEl, howCreateCanvaTemplatesEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, productPinsEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl];
+var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdCanvaEl, createdChatgptEl, howCreateCanvaTemplatesEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl];
 
 function setSocmReviewed() {
   socmReviewedElements.forEach(function (element) {
@@ -3630,7 +3628,6 @@ function updateSocmReviewed() {
   pinterestBoardsText = pinterestBoardsEl && pinterestBoardsEl.checked ? `\n <li>Showed client how to create Pinterest boards</li>` : '';
   pinPinterestPostsText = pinPinterestPostsEl && pinPinterestPostsEl.checked ? `\n <li>Showed client how to pin existing posts in Pinterest</li>` : '';
   pinterestRefresherText = pinterestRefresherEl && pinterestRefresherEl.checked ? `\n <li>Gave a refresher on creating boards & saving pins in Pinterest</li>` : '';
-  productPinsText = productPinsEl && productPinsEl.checked ? `\n <li>Showed client how to create product pins</li>` : '';
   createTwitterPostsText = createTwitterPostsEl && createTwitterPostsEl.checked ? `\n <li>Showed client how to create Twitter posts</li>` : '';
   quoteTwitterPostsText = quoteTwitterPostsEl && quoteTwitterPostsEl.checked ? `\n <li>Showed client how to quote existing Twitter posts</li>` : '';
   twitterFollowText = twitterFollowEl && twitterFollowEl.checked ? `\n <li>Showed client how to follow other Twitter accounts</li>` : '';
@@ -3651,7 +3648,7 @@ function updateSocmReviewed() {
 
   if (isAnythingChecked || customSocmReviewedText !== '') {
     socmReviewedText = `Reviewed the following during our appointment:
-<ul>${completedDesignQuestionareText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdCanvaText}${createdChatgptText}${howCreateCanvaTemplatesText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${productPinsText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${joinFbGroupsText}${fbFollowAccountsText}${reactCommentShareFbText}${inviteToLikeFbText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${customSocmReviewedText}
+<ul>${completedDesignQuestionareText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdCanvaText}${createdChatgptText}${howCreateCanvaTemplatesText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${joinFbGroupsText}${fbFollowAccountsText}${reactCommentShareFbText}${inviteToLikeFbText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${customSocmReviewedText}
 </ul>
 `;
   } else {
