@@ -17,6 +17,7 @@ var obOptions = document.querySelectorAll('option[data-dept="onboarding"]');
 var warheadOptions = document.querySelectorAll('option[data-dept="warhead"]');
 var smOptions = document.querySelectorAll('option[data-dept="supplier-management"]');
 var socmOptions = document.querySelectorAll('option[data-dept="social-media"]');
+var socmSerOptions = document.querySelectorAll('option[data-dept="social-media-ser"]');
 
 // *"WORKED ON" - PARENT CONTAINERS & SHOW ALL LOGIC
 
@@ -1050,7 +1051,8 @@ function updateDeptVisibility() {
   var isOnboarding = selectedValue === 'onboarding';
   var isWarhead = selectedValue === 'warhead';
   var isSupplierManagement = selectedValue === 'supplier-management';
-  var isSoicalMedia = selectedValue === 'social-media';
+  var isSocialMedia = selectedValue === 'social-media';
+  var isSocialMediaSER = selectedValue === 'social-media-ser';
 
   if (isDefault) {
     htmlNotesEl.disabled = true;
@@ -1072,19 +1074,23 @@ function updateDeptVisibility() {
   }
 
   obOptions.forEach(function (option) {
-    setVisibility(option, isOnboarding && !isDefault && !isWarhead && !isSupplierManagement && !isSoicalMedia);
+    setVisibility(option, isOnboarding && !isDefault && !isWarhead && !isSupplierManagement && !isSocialMedia && !isSocialMediaSER);
   });
 
   warheadOptions.forEach(function (option) {
-    setVisibility(option, isWarhead && !isDefault && !isOnboarding && !isSupplierManagement && !isSoicalMedia);
+    setVisibility(option, isWarhead && !isDefault && !isOnboarding && !isSupplierManagement && !isSocialMedia && !isSocialMediaSER);
   });
 
   smOptions.forEach(function (option) {
-    setVisibility(option, isSupplierManagement && !isDefault && !isOnboarding && !isWarhead && !isSoicalMedia);
+    setVisibility(option, isSupplierManagement && !isDefault && !isOnboarding && !isWarhead && !isSocialMedia && !isSocialMediaSER);
   });
 
   socmOptions.forEach(function (option) {
-    setVisibility(option, isSoicalMedia && !isDefault && !isOnboarding && !isWarhead && !isSupplierManagement);
+    setVisibility(option, isSocialMedia && !isDefault && !isOnboarding && !isWarhead && !isSupplierManagement && !isSocialMediaSER);
+  });
+
+  socmSerOptions.forEach(function (option) {
+    setVisibility(option, isSocialMediaSER && !isDefault && !isOnboarding && !isWarhead && !isSupplierManagement && !isSocialMedia);
   });
 }
 
