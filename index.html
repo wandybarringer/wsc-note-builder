@@ -449,13 +449,17 @@
                 <input type="checkbox" id="mbs-stories" />
                 <label for="mbs-stories">How to use MBS planner to schedule stories</label>
               </div>
-              <div data-dept="social-media" data-template="socm-fifth-appt">
+              <div data-dept='["social-media", "social-media-ser"]' data-template='["socm-fifth-appt", "socm-ser-second-appt"]'>
                 <input type="checkbox" id="pinterest-boards" />
                 <label for="pinterest-boards">How to create Pinterest boards</label>
               </div>
-              <div data-dept="social-media" data-template="socm-fifth-appt">
+              <div data-dept='["social-media", "social-media-ser"]' data-template='["socm-fifth-appt", "socm-ser-second-appt"]'>
                 <input type="checkbox" id="pin-pinterest-posts" />
-                <label for="pin-pinterest-posts">How to pin existing posts in Pinterest</label>
+                <label for="pin-pinterest-posts">How to save Pinterest pins</label>
+              </div>
+              <div data-dept="social-media-ser" data-template="socm-ser-third-appt">
+                <input type="checkbox" id="create-infographic" />
+                <label for="create-infographic">How to create Infographics in Canva</label>
               </div>
               <div data-dept="social-media" data-template="socm-sixth-appt">
                 <input type="checkbox" id="pinterest-refresher" />
@@ -661,9 +665,14 @@
                 <label for="hw-follow-ig-pages">Follow 15+ more IG pages</label>
               </div>
 
-              <div data-dept="social-media-ser" data-template="socm-ser-first-appt">
+              <div data-dept="social-media-ser" data-template='["socm-ser-first-appt", "socm-ser-second-appt"]'>
                 <input type="checkbox" name="hw-follow-pin-boards" id="hw-follow-pin-boards" />
-                <label for="hw-follow-pin-boards">Follow 15+ more Pinterest boards/accts</label>
+                <label for="hw-follow-pin-boards">Follow 15+ more Pinterest boards</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template="socm-ser-second-appt">
+                <input type="checkbox" name="hw-save-pins" id="hw-save-pins" />
+                <label for="hw-save-pins">Save 30+ more Pinterest pins to each board</label>
               </div>
 
               <div data-dept="social-media-ser" data-template="socm-ser-first-appt">
@@ -674,6 +683,11 @@
               <div data-dept="social-media-ser" data-template="socm-ser-first-appt">
                 <input type="checkbox" name="hw-schedule-posts" id="hw-schedule-posts" />
                 <label for="hw-schedule-posts">Schedule 5 posts and 2 stories weekly for the next month</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template='["socm-ser-second-appt", "socm-ser-third-appt", "socm-ser-fourth-appt", "socm-ser-fifth-appt", "socm-ser-sixth-appt"]'>
+                <input type="checkbox" name="hw-continue-schedule-posts" id="hw-continue-schedule-posts" />
+                <label for="hw-continue-schedule-posts">Continue scheduling 5 posts and 2 stories weekly</label>
               </div>
 
               <div data-dept="social-media" data-template="socm-second-appt">
@@ -947,6 +961,11 @@
             <div id="next-appt-date-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media", "social-media-ser"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt", "socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
               <label for="next-appointment-date">Next appointment date:</label>
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
+            </div>
+
+            <div data-dept="social-media-ser" data-template='["socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
+              <input type="checkbox" name="client-will-email" id="client-will-email" />
+              <label for="client-will-email">Client will call/email once homework is done to schedule appt</label>
             </div>
 
             <div data-dept="onboarding" data-template='["ob-fourth-appt", "ob-assistance-appt"]'>
