@@ -386,6 +386,9 @@ var marketingDateEl = document.querySelector('#marketing-date');
 
 var socmReviewedEl = document.querySelector('#social-media-reviewed');
 var completedDesignQuestionareEl = document.querySelector('#completed-design-questionnaire');
+var socmCreatedTwitterEl = document.querySelector('#socm-created-twitter');
+var socmCreatedPinterestEl = document.querySelector('#socm-created-pinterest');
+var socmCreatedYoutubeEl = document.querySelector('#socm-created-youtube');
 var accessAllSocialMediaEl = document.querySelector('#access-all-social-media');
 var updatedBiosEl = document.querySelector('#updated-bios');
 var createdFbIgEl = document.querySelector('#created-fb-ig');
@@ -403,10 +406,13 @@ var createTwitterPostsEl = document.querySelector('#create-twitter-posts');
 var quoteTwitterPostsEl = document.querySelector('#quote-twitter-posts');
 var twitterFollowEl = document.querySelector('#twitter-follow');
 var joinFbGroupsEl = document.querySelector('#join-fb-groups');
+var igFollowAcctsEl = document.querySelector('#ig-follow-accounts');
 var fbFollowAccountsEl = document.querySelector('#fb-follow-accounts');
 var reactCommentShareFbEl = document.querySelector('#react-comment-share-fb');
 var inviteToLikeFbEl = document.querySelector('#invite-to-like-fb');
 var followPinterestBoardsEl = document.querySelector('#follow-pinterest-boards');
+var createInfographicEl = document.querySelector('#create-infographic');
+var postInfographicPinEl = document.querySelector('#post-infographic-pin');
 var reactCommentShareTwitterEl = document.querySelector('#react-comment-repost-twitter');
 var mbsTrackEl = document.querySelector('#mbs-track');
 var mbsAnalyticsEl = document.querySelector('#mbs-analytics');
@@ -634,6 +640,12 @@ var performanceContentOverviewsText = '';
 var viewsReachText = '';
 var customSocmReviewedText = '';
 var socmReviewedText = '';
+var socmCreatedTwitterText = '';
+var socmCreatedPinterestText = '';
+var socmCreatedYoutubeText = '';
+var igFollowAcctsText = '';
+var createInfographicText = '';
+var postInfographicPinText = '';
 
 var watchCanvaText = '';
 var createCanvaTemplateText = '';
@@ -768,13 +780,20 @@ var apptLabels = {
   'socm-eighth-appt': '8th',
   'socm-ninth-appt': '9th',
   'socm-tenth-appt': '10th',
+  'socm-ser-first-appt': '1st',
+  'socm-ser-second-appt': '2nd',
+  'socm-ser-third-appt': '3rd',
+  'socm-ser-fourth-appt': '4th',
+  'socm-ser-fifth-appt': '5th',
+  'socm-ser-sixth-appt': '6th',
 };
 
 var deptLabels = {
   onboarding: 'Onboarding',
   warhead: 'Warhead',
   'supplier-management': 'Supplier Management',
-  'social-media': 'Social Media',
+  'social-media': 'Social Media (Diamond)',
+  'social-media-ser': 'Social Media (Sapphire, Emerald, Ruby)',
 };
 
 var stripeTimer;
@@ -1261,6 +1280,12 @@ function updateHtmlNotes() {
 `;
     htmlNotes = contactedClientText + marketingReviewedText + additionalNotesText + completedMarketingText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + initialsText;
   } else if ((currentApptValue === 'socm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fifth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-sixth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-seventh-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-eighth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ninth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-tenth-appt' && currentApptValue !== 'default')) {
+    contactedClientText = `<p>
+  Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
+</p>
+`;
+    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+  } else if ((currentApptValue === 'socm-ser-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-fifth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-sixth-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
 </p>
@@ -2640,7 +2665,7 @@ function setMissedAppointment() {
     if (!sentMissedEmailEl.checked) {
       sentMissedEmailText = '';
     } else if (sentMissedEmailEl.checked) {
-      sentMissedEmailText = ' Sent <b>missed appointment</b> email to account manager, front-end, Christina & liasons.';
+      sentMissedEmailText = ' Sent <b>missed appointment</b> email to account manager, front-end, Christina & liaisons.';
     }
     updateMissedAppointment();
     updateHtmlNotes();
@@ -3554,7 +3579,7 @@ function updateMarketingReviewed() {
 
 // *SOCIAL MEDIA SPECIFIC STRING HANDLERS
 
-var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdCanvaEl, createdChatgptEl, howCreateCanvaTemplatesEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl];
+var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdCanvaEl, createdChatgptEl, howCreateCanvaTemplatesEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl, socmCreatedTwitterEl, socmCreatedPinterestEl, socmCreatedYoutubeEl, igFollowAcctsEl, createInfographicEl, postInfographicPinEl];
 
 function setSocmReviewed() {
   socmReviewedElements.forEach(function (element) {
@@ -3622,31 +3647,37 @@ function refreshAllCustomSocmReviewed() {
 function updateSocmReviewed() {
   completedDesignQuestionareText = completedDesignQuestionareEl && completedDesignQuestionareEl.checked ? `\n <li>Completed Design Questionnaire</li>` : '';
   accessAllSocialMediaText = accessAllSocialMediaEl && accessAllSocialMediaEl.checked ? `\n <li>Ensured client can access all existing social media accounts (Pinterest, Twitter, Youtube)</li>` : '';
-  updatedBiosText = updatedBiosEl && updatedBiosEl.checked ? `\n <li>Completed Design Questionnaire</li>` : '';
+  updatedBiosText = updatedBiosEl && updatedBiosEl.checked ? `\n <li>Updated bios for each account</li>` : '';
   createdFbIgText = createdFbIgEl && createdFbIgEl.checked ? `\n <li>Created Facebook and Instagram pages and linked those together/li>` : '';
   grammarlyText = grammarlyEl && grammarlyEl.checked ? `\n <li>Installed Grammarly</li>` : '';
   createdCanvaText = createdCanvaEl && createdCanvaEl.checked ? `\n <li>Created Canva account</li>` : '';
   createdChatgptText = createdChatgptEl && createdChatgptEl.checked ? `\n <li>Created Chatgpt account</li>` : '';
-  howCreateCanvaTemplatesText = howCreateCanvaTemplatesEl && howCreateCanvaTemplatesEl.checked ? `\n <li>Showed client how to create Canva templates</li>` : '';
-  useMbsText = useMbsEl && useMbsEl.checked ? `\n <li>Showed client how to use Meta Business Suite planner to schedule posts</li>` : '';
+  howCreateCanvaTemplatesText = howCreateCanvaTemplatesEl && howCreateCanvaTemplatesEl.checked ? `\n <li>How to create Canva templates</li>` : '';
+  useMbsText = useMbsEl && useMbsEl.checked ? `\n <li>How to use Meta Business Suite planner to schedule posts</li>` : '';
   mbsRefresherText = mbsRefresherEl && mbsRefresherEl.checked ? `\n <li>Gave the client a refresher on creating standard posts using MBS</li>` : '';
-  mbsStoriesText = mbsStoriesEl && mbsStoriesEl.checked ? `\n <li>Showed client how to use MBS planner to schedule stories</li>` : '';
-  pinterestBoardsText = pinterestBoardsEl && pinterestBoardsEl.checked ? `\n <li>Showed client how to create Pinterest boards</li>` : '';
-  pinPinterestPostsText = pinPinterestPostsEl && pinPinterestPostsEl.checked ? `\n <li>Showed client how to pin existing posts in Pinterest</li>` : '';
+  mbsStoriesText = mbsStoriesEl && mbsStoriesEl.checked ? `\n <li>How to use MBS planner to schedule stories</li>` : '';
+  pinterestBoardsText = pinterestBoardsEl && pinterestBoardsEl.checked ? `\n <li>How to create Pinterest boards</li>` : '';
+  pinPinterestPostsText = pinPinterestPostsEl && pinPinterestPostsEl.checked ? `\n <li>How to pin existing posts in Pinterest</li>` : '';
   pinterestRefresherText = pinterestRefresherEl && pinterestRefresherEl.checked ? `\n <li>Gave a refresher on creating boards & saving pins in Pinterest</li>` : '';
-  createTwitterPostsText = createTwitterPostsEl && createTwitterPostsEl.checked ? `\n <li>Showed client how to create Twitter posts</li>` : '';
-  quoteTwitterPostsText = quoteTwitterPostsEl && quoteTwitterPostsEl.checked ? `\n <li>Showed client how to quote existing Twitter posts</li>` : '';
-  twitterFollowText = twitterFollowEl && twitterFollowEl.checked ? `\n <li>Showed client how to follow other Twitter accounts</li>` : '';
-  joinFbGroupsText = joinFbGroupsEl && joinFbGroupsEl.checked ? `\n <li>Showed client how to join & vet FB groups</li>` : '';
-  fbFollowAccountsText = fbFollowAccountsEl && fbFollowAccountsEl.checked ? `\n <li>Showed client how to follow other FB accounts</li>` : '';
-  reactCommentShareFbText = reactCommentShareFbEl && reactCommentShareFbEl.checked ? `\n <li>Showed client how to react, comment, and share existing FB posts</li>` : '';
-  inviteToLikeFbText = inviteToLikeFbEl && inviteToLikeFbEl.checked ? `\n <li>Showed client how to invite FB friends to like the page</li>` : '';
-  followPinterestBoardsText = followPinterestBoardsEl && followPinterestBoardsEl.checked ? `\n <li>Showed client how to follow Pinterest accounts & boards</li>` : '';
-  reactCommentShareTwitterText = reactCommentShareTwitterEl && reactCommentShareTwitterEl.checked ? `\n <li>Showed client how to react, comment, and repost on Twitter</li>` : '';
-  mbsTrackText = mbsTrackEl && mbsTrackEl.checked ? `\n <li>Showed client how to use MBS to track reactions, comments, and shares</li>` : '';
-  mbsAnalyticsText = mbsAnalyticsEl && mbsAnalyticsEl.checked ? `\n <li>Showed client how to read and navigate Meta Business Suite analytics</li>` : '';
+  createTwitterPostsText = createTwitterPostsEl && createTwitterPostsEl.checked ? `\n <li>How to create Twitter posts</li>` : '';
+  quoteTwitterPostsText = quoteTwitterPostsEl && quoteTwitterPostsEl.checked ? `\n <li>How to quote existing Twitter posts</li>` : '';
+  twitterFollowText = twitterFollowEl && twitterFollowEl.checked ? `\n <li>How to follow other Twitter accounts</li>` : '';
+  joinFbGroupsText = joinFbGroupsEl && joinFbGroupsEl.checked ? `\n <li>How to join & vet FB groups</li>` : '';
+  fbFollowAccountsText = fbFollowAccountsEl && fbFollowAccountsEl.checked ? `\n <li>How to follow other FB accounts</li>` : '';
+  reactCommentShareFbText = reactCommentShareFbEl && reactCommentShareFbEl.checked ? `\n <li>How to react, comment, and share existing FB posts</li>` : '';
+  inviteToLikeFbText = inviteToLikeFbEl && inviteToLikeFbEl.checked ? `\n <li>How to invite FB friends to like the page</li>` : '';
+  followPinterestBoardsText = followPinterestBoardsEl && followPinterestBoardsEl.checked ? `\n <li>How to follow Pinterest accounts & boards</li>` : '';
+  reactCommentShareTwitterText = reactCommentShareTwitterEl && reactCommentShareTwitterEl.checked ? `\n <li>How to react, comment, and repost on Twitter</li>` : '';
+  mbsTrackText = mbsTrackEl && mbsTrackEl.checked ? `\n <li>How to use MBS to track reactions, comments, and shares</li>` : '';
+  mbsAnalyticsText = mbsAnalyticsEl && mbsAnalyticsEl.checked ? `\n <li>How to read and navigate Meta Business Suite analytics</li>` : '';
   performanceContentOverviewsText = performanceContentOverviewsEl && performanceContentOverviewsEl.checked ? `\n <li>Discussed performance and content overviews</li>` : '';
   viewsReachText = viewsReachEl && viewsReachEl.checked ? `\n <li>Discussed which posts are gaining the most views and reach, suggested creating more posts that use similar designs, verbiage, and hashtags as those</li>` : '';
+  socmCreatedTwitterText = socmCreatedTwitterEl && socmCreatedTwitterEl.checked ? `\n <li>Created Twitter</li>` : '';
+  socmCreatedPinterestText = socmCreatedPinterestEl && socmCreatedPinterestEl.checked ? `\n <li>Created Pinterest</li>` : '';
+  socmCreatedYoutubeText = socmCreatedYoutubeEl && socmCreatedYoutubeEl.checked ? `\n <li>Created YouTube</li>` : '';
+  igFollowAcctsText = igFollowAcctsEl && igFollowAcctsEl.checked ? `\n <li>How to follow IG accts</li>` : '';
+  createInfographicText = createInfographicEl && createInfographicEl.checked ? `\n <li>How to create Infographics in Canva</li>` : '';
+  postInfographicPinText = postInfographicPinEl && postInfographicPinEl.checked ? `\n <li>How to post Infographics in Pinterest</li>` : '';
 
   var isAnythingChecked = socmReviewedElements.some(function (el) {
     return el && el.checked;
@@ -3654,7 +3685,7 @@ function updateSocmReviewed() {
 
   if (isAnythingChecked || customSocmReviewedText !== '') {
     socmReviewedText = `Reviewed the following during our appointment:
-<ul>${completedDesignQuestionareText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdCanvaText}${createdChatgptText}${howCreateCanvaTemplatesText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${joinFbGroupsText}${fbFollowAccountsText}${reactCommentShareFbText}${inviteToLikeFbText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${customSocmReviewedText}
+<ul>${completedDesignQuestionareText}${socmCreatedTwitterText}${socmCreatedYoutubeText}${socmCreatedYoutubeText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdCanvaText}${createdChatgptText}${howCreateCanvaTemplatesText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${igFollowAcctsText}${createInfographicText}${postInfographicPinText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${joinFbGroupsText}${fbFollowAccountsText}${reactCommentShareFbText}${inviteToLikeFbText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${customSocmReviewedText}
 </ul>
 `;
   } else {

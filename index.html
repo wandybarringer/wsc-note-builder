@@ -433,7 +433,7 @@
                 <input type="checkbox" id="created-chatgpt" />
                 <label for="created-chatgpt">Created ChatGPT account</label>
               </div>
-              <div data-dept="social-media" data-template="socm-second-appt">
+              <div data-dept='["social-media", "social-media-ser"]' data-template='["socm-second-appt", "socm-ser-first-appt"]'>
                 <input type="checkbox" id="how-create-canva-templates" />
                 <label for="how-create-canva-templates">How to create Canva templates</label>
               </div>
@@ -457,19 +457,23 @@
                 <input type="checkbox" id="pin-pinterest-posts" />
                 <label for="pin-pinterest-posts">How to save Pinterest pins</label>
               </div>
-              <div data-dept="social-media-ser" data-template="socm-ser-third-appt">
-                <input type="checkbox" id="create-infographic" />
-                <label for="create-infographic">How to create Infographics in Canva</label>
-              </div>
               <div data-dept="social-media" data-template="socm-sixth-appt">
                 <input type="checkbox" id="pinterest-refresher" />
                 <label for="pinterest-refresher">Refresher on creating boards & saving pins in Pinterest</label>
               </div>
-              <div data-dept="social-media" data-template="socm-seventh-appt">
+              <div data-dept="social-media-ser" data-template="socm-ser-third-appt">
+                <input type="checkbox" id="create-infographic" />
+                <label for="create-infographic">How to create Infographics in Canva</label>
+              </div>
+              <div data-dept="social-media-ser" data-template="socm-ser-fourth-appt">
+                <input type="checkbox" id="post-infographic-pin" />
+                <label for="post-infographic-pin">How to post Infographics in Pinterest</label>
+              </div>
+              <div data-dept='["social-media", "social-media-ser"]' data-template='["socm-seventh-appt", "socm-ser-fifth-appt"]'>
                 <input type="checkbox" id="create-twitter-posts" />
                 <label for="create-twitter-posts">How to create Twitter posts</label>
               </div>
-              <div data-dept="social-media" data-template="socm-seventh-appt">
+              <div data-dept='["social-media", "social-media-ser"]' data-template='["socm-seventh-appt", "socm-ser-fifth-appt"]'>
                 <input type="checkbox" id="quote-twitter-posts" />
                 <label for="quote-twitter-posts">How to quote existing Twitter posts</label>
               </div>
@@ -509,15 +513,15 @@
                 <input type="checkbox" id="mbs-track" />
                 <label for="mbs-track">How to use MBS to track reactions, comments, and shares</label>
               </div>
-              <div data-dept="social-media" data-template="socm-tenth-appt">
+              <div data-dept='["social-media", "social-media-ser"]' data-template='["socm-tenth-appt", "socm-ser-sixth-appt"]'>
                 <input type="checkbox" id="mbs-analytics" />
-                <label for="mbs-analytics">How to read and navigate Meta Business Suite analytics</label>
+                <label for="mbs-analytics">How to read and navigate MBS analytics</label>
               </div>
-              <div data-dept="social-media" data-template="socm-tenth-appt">
+              <div data-dept='["social-media", "social-media-ser"]' data-template='["socm-tenth-appt", "socm-ser-sixth-appt"]'>
                 <input type="checkbox" id="performance-content-overviews" />
                 <label for="performance-content-overviews">Discussed performance and content overviews</label>
               </div>
-              <div data-dept="social-media" data-template="socm-tenth-appt">
+              <div data-dept='["social-media", "social-media-ser"]' data-template='["socm-tenth-appt", "socm-ser-sixth-appt"]'>
                 <input type="checkbox" id="views-reach" />
                 <label for="views-reach">Discussed which posts are gaining the most views and reach</label>
               </div>
@@ -665,14 +669,9 @@
                 <label for="hw-follow-ig-pages">Follow 15+ more IG pages</label>
               </div>
 
-              <div data-dept="social-media-ser" data-template='["socm-ser-first-appt", "socm-ser-second-appt"]'>
+              <div data-dept="social-media-ser" data-template="socm-ser-first-appt">
                 <input type="checkbox" name="hw-follow-pin-boards" id="hw-follow-pin-boards" />
-                <label for="hw-follow-pin-boards">Follow 15+ more Pinterest boards</label>
-              </div>
-
-              <div data-dept="social-media-ser" data-template="socm-ser-second-appt">
-                <input type="checkbox" name="hw-save-pins" id="hw-save-pins" />
-                <label for="hw-save-pins">Save 30+ more Pinterest pins to each board</label>
+                <label for="hw-follow-pin-boards">Follow 15+ more Pinterest boards/accts</label>
               </div>
 
               <div data-dept="social-media-ser" data-template="socm-ser-first-appt">
@@ -688,6 +687,51 @@
               <div data-dept="social-media-ser" data-template='["socm-ser-second-appt", "socm-ser-third-appt", "socm-ser-fourth-appt", "socm-ser-fifth-appt", "socm-ser-sixth-appt"]'>
                 <input type="checkbox" name="hw-continue-schedule-posts" id="hw-continue-schedule-posts" />
                 <label for="hw-continue-schedule-posts">Continue scheduling 5 posts and 2 stories weekly</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template="socm-ser-second-appt">
+                <input type="checkbox" name="hw-create-pin-boards" id="hw-create-pin-boards" />
+                <label for="hw-create-pin-boards">Create 15+ more Pinterest boards</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template="socm-ser-second-appt">
+                <input type="checkbox" name="hw-save-pins" id="hw-save-pins" />
+                <label for="hw-save-pins">Save 30+ more Pinterest pins to each board</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template='["socm-ser-third-appt", "socm-ser-fourth-appt", "socm-ser-fifth-appt", "socm-ser-sixth-appt"]'>
+                <input type="checkbox" name="hw-create-one-board" id="hw-create-one-board" />
+                <label for="hw-create-one-board">Create 1+ more Pinterest board(s)</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template='["socm-ser-third-appt", "socm-ser-fourth-appt", "socm-ser-fifth-appt", "socm-ser-sixth-appt"]'>
+                <input type="checkbox" name="hw-save-pins-total" id="hw-save-pins-total" />
+                <label for="hw-save-pins-total">Save 30 more Pinterest pins total</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template="socm-ser-third-appt">
+                <input type="checkbox" name="hw-create-infrographics" id="hw-create-infrographics" />
+                <label for="hw-create-infrographics">Create 10+ more infographics</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template='["socm-ser-fourth-appt", "socm-ser-fifth-appt", "socm-ser-sixth-appt"]'>
+                <input type="checkbox" name="hw-create-infrographic-weekly" id="hw-create-infrographic-weekly" />
+                <label for="hw-create-infrographic-weekly">Create and post 1+ more infographic weekly</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template='["socm-ser-fifth-appt", "socm-ser-sixth-appt"]'>
+                <input type="checkbox" name="hw-create-twenty-x-posts" id="hw-create-twenty-x-posts" />
+                <label for="hw-create-twenty-x-posts">Create 20+ more X posts over the course of the next month</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template='["socm-ser-fifth-appt", "socm-ser-sixth-appt"]'>
+                <input type="checkbox" name="hw-quote-ten-x-posts" id="hw-quote-ten-x-posts" />
+                <label for="hw-quote-ten-x-posts">Quote 10+ more X posts over the course of the next month</label>
+              </div>
+
+              <div data-dept="social-media-ser" data-template="socm-ser-fourth-appt">
+                <input type="checkbox" name="hw-post-remaining-infographics" id="hw-post-remaining-infographics" />
+                <label for="hw-post-remaining-infographics">Post all remaining infographics from initial 10 created</label>
               </div>
 
               <div data-dept="social-media" data-template="socm-second-appt">
@@ -935,7 +979,7 @@
               <input type="checkbox" name="additional-training" id="additional-training" />
             </div>
 
-            <div id="socm-completed-prompt" data-dept="social-media" data-template="socm-tenth-appt">
+            <div id="socm-completed-prompt" data-dept='["social-media", "social-media-ser"]' data-template='["socm-tenth-appt", "socm-ser-sixth-appt"]'>
               <label class="default-pointer">Client completed Social Media training?</label>
               <div class="toggle-switch">
                 <input type="radio" name="socm-completed" id="socm-completed-no" value="No" />
@@ -958,12 +1002,35 @@
               <label for="no-further-wh-assistance">No further WH Assistance appointments</label>
             </div>
 
+            <div data-dept="social-media-ser" data-template="socm-ser-fifth-appt">
+              <label for="deliverables-complete">Deliverables Complete?</label>
+              <div class="toggle-switch">
+                <input type="radio" name="deliverables" id="deliverables-no" value="No" />
+                <label for="deliverables-no">No</label>
+                <input type="radio" name="deliverables" id="deliverables-none" value="None" checked />
+                <label for="deliverables-none"></label>
+                <input type="radio" name="deliverables" id="deliverables-yes" value="Yes" />
+                <label for="deliverables-yes">Yes</label>
+                <div class="selection-slider"></div>
+              </div>
+            </div>
+
+            <div data-dept="social-media-ser" data-template="socm-ser-fifth-appt">
+              <input type="checkbox" name="emailed-design" id="emailed-design" />
+              <label for="emailed-design">Sent email to Lexi/design</label>
+            </div>
+
+            <div data-dept="social-media-ser" data-template="socm-ser-fifth-appt">
+              <input type="checkbox" name="marked-urgent" id="marked-urgent" />
+              <label for="marked-urgent">Marked “Urgent” in podio</label>
+            </div>
+
             <div id="next-appt-date-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media", "social-media-ser"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt", "socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
               <label for="next-appointment-date">Next appointment date:</label>
               <input type="text" name="next-appointment-date" id="next-appointment-date" />
             </div>
 
-            <div data-dept="social-media-ser" data-template='["socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
+            <div data-dept="social-media-ser" data-template='["socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt"]'>
               <input type="checkbox" name="client-will-email" id="client-will-email" />
               <label for="client-will-email">Client will call/email once homework is done to schedule appt</label>
             </div>
