@@ -452,6 +452,7 @@ var hwPostRemainingInfographicsEl = document.querySelector('#hw-post-remaining-i
 var hwCreateTwentyXPostsEl = document.querySelector('#hw-create-twenty-x-posts');
 var hwQuoteTenXPostsEl = document.querySelector('#hw-quote-ten-x-posts');
 
+var clientWillEmailEl = document.querySelector('#client-will-email');
 var socmCompletedNoEl = document.querySelector('#socm-completed-no');
 var socmCompletedNoneEl = document.querySelector('#socm-completed-none');
 var socmCompletedYesEl = document.querySelector('#socm-completed-yes');
@@ -699,6 +700,7 @@ var hwPostRemainingInfographicsText = '';
 var hwCreateTwentyXPostsText = '';
 var hwQuoteTenXPostsText = '';
 
+var clientWillEmailText = '';
 var socmCompletedText = '';
 
 // Missed Appointment Strings
@@ -1332,7 +1334,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + clientWillEmailText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
   } else if ((currentApptValue === 'ob-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-assistance-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${contText}${displayApptName}</b> appointment.
@@ -1454,6 +1456,7 @@ function resetHtmlNotes() {
   editNoteText = '';
   noteNumberText = '';
   whCompletedText = '';
+  clientWillEmailText = '';
 
   htmlNotesEl.value = '';
 
@@ -2343,7 +2346,7 @@ function updateWorkedOn() {
 
 // "Assigned HW" String Handlers
 
-var assignedHwElements = [googleVoiceHwEl, googleSignatureHwEl, createPinterestHwEl, createYoutubeHwEl, createTwitterHwEl, createStripeHwEl, createPaypalHwEl, stripeLinkBankEl, paypalLinkBankEl, complete2dEl, createCjHwEl, cjCategoryHwEl, createDobaHwEl, dobaInventoryHwEl, whVideosHwEl, registerBusinessHwEl, firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl, createIgAccountEl, hwJoinFbGroupsEl, hwFollowFbPagesEl, hwFollowIgPagesEl, hwFollowPinBoardsEl, hwFollowXAcctsEl, hwSchedulePostsEl, hwContinueSchedulePostsEl, hwCreatePinBoardsEl, hwSavePinsEl, hwCreateOneBoardEl, hwSavePinsTotalEl, hwCreateInfographicsEl, hwCreateInfographicWeeklyEl, hwPostRemainingInfographicsEl, hwCreateTwentyXPostsEl, hwQuoteTenXPostsEl];
+var assignedHwElements = [googleVoiceHwEl, googleSignatureHwEl, createPinterestHwEl, createYoutubeHwEl, createTwitterHwEl, createStripeHwEl, createPaypalHwEl, stripeLinkBankEl, paypalLinkBankEl, complete2dEl, createCjHwEl, cjCategoryHwEl, createDobaHwEl, dobaInventoryHwEl, whVideosHwEl, registerBusinessHwEl, firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl, createIgAccountEl, hwJoinFbGroupsEl, hwFollowFbPagesEl, hwFollowIgPagesEl, hwFollowPinBoardsEl, hwFollowXAcctsEl, hwSchedulePostsEl, hwContinueSchedulePostsEl, hwCreatePinBoardsEl, hwSavePinsEl, hwCreateOneBoardEl, hwSavePinsTotalEl, hwCreateInfographicsEl, hwCreateInfographicWeeklyEl, hwPostRemainingInfographicsEl, hwCreateTwentyXPostsEl, hwQuoteTenXPostsEl, createCanvaAccountEl, createChatGPTAccountEl, hwInstallGrammarlyEl];
 
 function setAssignedHw() {
   assignedHwElements.forEach(function (element) {
@@ -2459,22 +2462,22 @@ function updateAssignedHw() {
   createChatGPTAccountText = createChatGPTAccountEl && createChatGPTAccountEl.checked ? `\n <li>Create ChatGPT account</li>` : '';
   hwInstallGrammarlyText = hwInstallGrammarlyEl && hwInstallGrammarlyEl.checked ? `\n <li>Install Grammarly</li>` : '';
   createIgAccountText = createIgAccountEl && createIgAccountEl.checked ? `\n <li>Create Instagram account</li>` : '';
-  hwJoinFbGroupsText = '';
-  hwFollowFbPagesText = '';
-  hwFollowIgPagesText = '';
-  hwFollowPinBoardsText = '';
-  hwFollowXAcctsText = '';
-  hwSchedulePostsText = '';
-  hwContinueSchedulePostsText = '';
-  hwCreatePinBoardsText = '';
-  hwSavePinsText = '';
-  hwCreateOneBoardText = '';
-  hwSavePinsTotalText = '';
-  hwCreateInfographicsText = '';
-  hwCreateInfographicWeeklyText = '';
-  hwPostRemainingInfographicsText = '';
-  hwCreateTwentyXPostsText = '';
-  hwQuoteTenXPostsText = '';
+  hwJoinFbGroupsText = hwJoinFbGroupsEl && hwJoinFbGroupsEl.checked ? `\n <li>Join 10+ more FB groups</li>` : '';
+  hwFollowFbPagesText = hwFollowFbPagesEl && hwFollowFbPagesEl.checked ? `\n <li>Follow 15+ more FB pages</li>` : '';
+  hwFollowIgPagesText = hwFollowIgPagesEl && hwFollowIgPagesEl.checked ? `\n <li>Follow 15+ more IG pages</li>` : '';
+  hwFollowPinBoardsText = hwFollowPinBoardsEl && hwFollowPinBoardsEl.checked ? `\n <li>Follow 15+ more Pinterest boards/accts</li>` : '';
+  hwFollowXAcctsText = hwFollowXAcctsEl && hwFollowXAcctsEl.checked ? `\n <li>Follow 15+ more X accounts</li>` : '';
+  hwSchedulePostsText = hwSchedulePostsEl && hwSchedulePostsEl.checked ? `\n <li>Schedule 5 posts and 2 stories weekly for the next month</li>` : '';
+  hwContinueSchedulePostsText = hwContinueSchedulePostsEl && hwContinueSchedulePostsEl.checked ? `\n <li>Continue scheduling 5 posts and 2 stories weekly</li>` : '';
+  hwCreatePinBoardsText = hwCreatePinBoardsEl && hwCreatePinBoardsEl.checked ? `\n <li>Create 15+ more Pinterest boards</li>` : '';
+  hwSavePinsText = hwSavePinsEl && hwSavePinsEl.checked ? `\n <li>Save 30+ more Pinterest pins to each board</li>` : '';
+  hwCreateOneBoardText = hwCreateOneBoardEl && hwCreateOneBoardEl.checked ? `\n <li>Create 1+ more Pinterest board(s)</li>` : '';
+  hwSavePinsTotalText = hwSavePinsTotalEl && hwSavePinsTotalEl.checked ? `\n <li>Save 30 more Pinterest pins total</li>` : '';
+  hwCreateInfographicsText = hwCreateInfographicsEl && hwCreateInfographicsEl.checked ? `\n <li>Create 10+ more infographics</li>` : '';
+  hwCreateInfographicWeeklyText = hwCreateInfographicWeeklyEl && hwCreateInfographicWeeklyEl.checked ? `\n <li>Create and post 1+ more infographic weekly</li>` : '';
+  hwPostRemainingInfographicsText = hwPostRemainingInfographicsEl && hwPostRemainingInfographicsEl.checked ? `\n <li>Post all remaining infographics from initial 10 created</li>` : '';
+  hwCreateTwentyXPostsText = hwCreateTwentyXPostsEl && hwCreateTwentyXPostsEl.checked ? `\n <li>Create 20+ more X posts over the course of the next month</li>` : '';
+  hwQuoteTenXPostsText = hwQuoteTenXPostsEl && hwQuoteTenXPostsEl.checked ? `\n <li>Quote 10+ more X posts over the course of the next month</li>` : '';
 
   var isAnythingChecked = assignedHwElements.some(function (el) {
     return el && el.checked;
@@ -2482,7 +2485,7 @@ function updateAssignedHw() {
 
   if (isAnythingChecked || customAssignedHwText !== '') {
     assignedHwText = `Assigned homework: 
-<ul>${googleVoiceHwText}${googleSignatureHwText}${createPinterestHwText}${createYoutubeHwText}${createTwitterHwText}${createStripeHwText}${createPaypalHwText}${stripeLinkBankText}${paypalLinkBankText}${complete2dText}${createCjHwText}${cjCategoryHwText}${createDobaHwText}${dobaInventoryHwText}${whVideosHwText}${registerBusinessHwText}${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${continueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${watchCanvaText}${createCanvaTemplateText}${contCanvaTemplatedText}${planFbIgPostsText}${contFbIgPostsText}${saveTwentyPinsText}${createFivePinsText}${threeFiveTwitterPostsText}${quoteThreeTwitterPostsText}${customAssignedHwText}
+<ul>${googleVoiceHwText}${googleSignatureHwText}${createPinterestHwText}${createYoutubeHwText}${createTwitterHwText}${createStripeHwText}${createPaypalHwText}${stripeLinkBankText}${paypalLinkBankText}${complete2dText}${createCjHwText}${cjCategoryHwText}${createDobaHwText}${dobaInventoryHwText}${whVideosHwText}${registerBusinessHwText}${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${continueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${createCanvaAccountText}${createChatGPTAccountText}${hwInstallGrammarlyText}${createIgAccountText}${watchCanvaText}${hwJoinFbGroupsText}${hwFollowFbPagesText}${hwFollowIgPagesText}${hwFollowPinBoardsText}${hwFollowXAcctsText}${hwSchedulePostsText}${hwContinueSchedulePostsText}${hwCreatePinBoardsText}${hwSavePinsText}${hwCreateOneBoardText}${hwSavePinsTotalText}${hwCreateInfographicsText}${hwCreateInfographicWeeklyText}${hwPostRemainingInfographicsText}${hwCreateTwentyXPostsText}${hwQuoteTenXPostsText}${createCanvaTemplateText}${contCanvaTemplatedText}${planFbIgPostsText}${contFbIgPostsText}${saveTwentyPinsText}${createFivePinsText}${threeFiveTwitterPostsText}${quoteThreeTwitterPostsText}${customAssignedHwText}
 </ul>
 `;
   } else {
@@ -3642,6 +3645,21 @@ function updateMarketingReviewed() {
 
 // *SOCIAL MEDIA SPECIFIC STRING HANDLERS
 
+var socialMediaSwitchEl = document.querySelector('#social-media-switch');
+
+// TODO: Create toggle for social media package switch instead of using dropdown (HTML LINE 129 ao 4/5/26)
+// function setSwithPackage() {
+//   socialMediaSwitchEl.addEventListener('change', function () {
+//     if (socialMediaSwitchEl.checked) {
+//       deptSelectEl = 'social-media-ser';
+//       updateApptVisibility();
+//     } else {
+//       deptSelectEl = 'social-media';
+//       updateApptVisibility();
+//     }
+//   });
+// }
+
 var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdCanvaEl, createdChatgptEl, howCreateCanvaTemplatesEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl, socmCreatedTwitterEl, socmCreatedPinterestEl, socmCreatedYoutubeEl, igFollowAcctsEl, createInfographicEl, postInfographicPinEl];
 
 function setSocmReviewed() {
@@ -3748,12 +3766,26 @@ function updateSocmReviewed() {
 
   if (isAnythingChecked || customSocmReviewedText !== '') {
     socmReviewedText = `Reviewed the following during our appointment:
-<ul>${completedDesignQuestionareText}${socmCreatedTwitterText}${socmCreatedYoutubeText}${socmCreatedYoutubeText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdCanvaText}${createdChatgptText}${howCreateCanvaTemplatesText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${igFollowAcctsText}${createInfographicText}${postInfographicPinText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${joinFbGroupsText}${fbFollowAccountsText}${reactCommentShareFbText}${inviteToLikeFbText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${customSocmReviewedText}
+<ul>${completedDesignQuestionareText}${socmCreatedTwitterText}${socmCreatedPinterestText}${socmCreatedYoutubeText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdCanvaText}${createdChatgptText}${howCreateCanvaTemplatesText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${createInfographicText}${postInfographicPinText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${fbFollowAccountsText}${joinFbGroupsText}${reactCommentShareFbText}${inviteToLikeFbText}${igFollowAcctsText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${customSocmReviewedText}
 </ul>
 `;
   } else {
     socmReviewedText = '';
   }
+}
+
+function setClientWillCallEmailString() {
+  clientWillEmailEl.addEventListener('change', function () {
+    if (clientWillEmailEl.checked) {
+      clientWillEmailText = `<p>
+<b>Client will call or email</b> me once all homework is done to schedule next appointment.
+</p>
+`;
+    } else {
+      clientWillEmailText = '';
+    }
+    updateHtmlNotes();
+  });
 }
 
 function setSocmCompleted() {
@@ -3764,13 +3796,13 @@ function setSocmCompleted() {
       if (socmCompletedNoEl.checked) {
         setVisibility(nextApptDatePromptEl, true);
         socmCompletedText = `<p>
-  Follow up needed.
+  Client has not completed Social Media training. <b>Follow up needed</b>.
 </p>
 `;
       } else if (socmCompletedYesEl.checked) {
         setVisibility(nextApptDatePromptEl, false);
         socmCompletedText = `<p>
-  No follow ups booked as client has completed the process.
+  No follow ups booked as client has <b>completed Social Media training</b>.
 </p>
 `;
       } else if (socmCompletedNoneEl.checked) {
@@ -3853,6 +3885,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setSocmReviewed();
   initDynamicSocmReviewed();
+  setClientWillCallEmailString();
   setSocmCompleted();
 
   setMissedAppointment();
