@@ -431,6 +431,27 @@ var createFivePinsEl = document.querySelector('#create-five-pins');
 var threeFiveTwitterPostsEl = document.querySelector('#three-five-twitter-posts');
 var quoteThreeTwitterPostsEl = document.querySelector('#quote-three-twitter-posts');
 
+var createCanvaAccountEl = document.querySelector('#create-canva-account');
+var createChatGPTAccountEl = document.querySelector('#create-chatGPT-account');
+var hwInstallGrammarlyEl = document.querySelector('#hw-install-grammarly');
+var createIgAccountEl = document.querySelector('#create-ig-account');
+var hwJoinFbGroupsEl = document.querySelector('#hw-join-fb-groups');
+var hwFollowFbPagesEl = document.querySelector('#hw-follow-fb-pages');
+var hwFollowIgPagesEl = document.querySelector('#hw-follow-ig-pages');
+var hwFollowPinBoardsEl = document.querySelector('#hw-follow-pin-boards');
+var hwFollowXAcctsEl = document.querySelector('#hw-follow-x-accts');
+var hwSchedulePostsEl = document.querySelector('#hw-schedule-posts');
+var hwContinueSchedulePostsEl = document.querySelector('#hw-continue-schedule-posts');
+var hwCreatePinBoardsEl = document.querySelector('#hw-create-pin-boards');
+var hwSavePinsEl = document.querySelector('#hw-save-pins');
+var hwCreateOneBoardEl = document.querySelector('#hw-create-one-board');
+var hwSavePinsTotalEl = document.querySelector('#hw-save-pins-total');
+var hwCreateInfographicsEl = document.querySelector('#hw-create-infographics');
+var hwCreateInfographicWeeklyEl = document.querySelector('#hw-create-infographic-weekly');
+var hwPostRemainingInfographicsEl = document.querySelector('#hw-post-remaining-infographics');
+var hwCreateTwentyXPostsEl = document.querySelector('#hw-create-twenty-x-posts');
+var hwQuoteTenXPostsEl = document.querySelector('#hw-quote-ten-x-posts');
+
 var socmCompletedNoEl = document.querySelector('#socm-completed-no');
 var socmCompletedNoneEl = document.querySelector('#socm-completed-none');
 var socmCompletedYesEl = document.querySelector('#socm-completed-yes');
@@ -656,6 +677,27 @@ var saveTwentyPinsText = '';
 var createFivePinsText = '';
 var threeFiveTwitterPostsText = '';
 var quoteThreeTwitterPostsText = '';
+
+var createCanvaAccountText = '';
+var createChatGPTAccountText = '';
+var hwInstallGrammarlyText = '';
+var createIgAccountText = '';
+var hwJoinFbGroupsText = '';
+var hwFollowFbPagesText = '';
+var hwFollowIgPagesText = '';
+var hwFollowPinBoardsText = '';
+var hwFollowXAcctsText = '';
+var hwSchedulePostsText = '';
+var hwContinueSchedulePostsText = '';
+var hwCreatePinBoardsText = '';
+var hwSavePinsText = '';
+var hwCreateOneBoardText = '';
+var hwSavePinsTotalText = '';
+var hwCreateInfographicsText = '';
+var hwCreateInfographicWeeklyText = '';
+var hwPostRemainingInfographicsText = '';
+var hwCreateTwentyXPostsText = '';
+var hwQuoteTenXPostsText = '';
 
 var socmCompletedText = '';
 
@@ -2301,7 +2343,7 @@ function updateWorkedOn() {
 
 // "Assigned HW" String Handlers
 
-var assignedHwElements = [googleVoiceHwEl, googleSignatureHwEl, createPinterestHwEl, createYoutubeHwEl, createTwitterHwEl, createStripeHwEl, createPaypalHwEl, stripeLinkBankEl, paypalLinkBankEl, complete2dEl, createCjHwEl, cjCategoryHwEl, createDobaHwEl, dobaInventoryHwEl, whVideosHwEl, registerBusinessHwEl, firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl];
+var assignedHwElements = [googleVoiceHwEl, googleSignatureHwEl, createPinterestHwEl, createYoutubeHwEl, createTwitterHwEl, createStripeHwEl, createPaypalHwEl, stripeLinkBankEl, paypalLinkBankEl, complete2dEl, createCjHwEl, cjCategoryHwEl, createDobaHwEl, dobaInventoryHwEl, whVideosHwEl, registerBusinessHwEl, firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl, createIgAccountEl, hwJoinFbGroupsEl, hwFollowFbPagesEl, hwFollowIgPagesEl, hwFollowPinBoardsEl, hwFollowXAcctsEl, hwSchedulePostsEl, hwContinueSchedulePostsEl, hwCreatePinBoardsEl, hwSavePinsEl, hwCreateOneBoardEl, hwSavePinsTotalEl, hwCreateInfographicsEl, hwCreateInfographicWeeklyEl, hwPostRemainingInfographicsEl, hwCreateTwentyXPostsEl, hwQuoteTenXPostsEl];
 
 function setAssignedHw() {
   assignedHwElements.forEach(function (element) {
@@ -2412,6 +2454,27 @@ function updateAssignedHw() {
   createFivePinsText = createFivePinsEl && createFivePinsEl.checked ? `\n <li>Create 5 product pins each week</li>` : '';
   threeFiveTwitterPostsText = threeFiveTwitterPostsEl && threeFiveTwitterPostsEl.checked ? `\n <li>Create 3-5 Twitter posts each week</li>` : '';
   quoteThreeTwitterPostsText = quoteThreeTwitterPostsEl && quoteThreeTwitterPostsEl.checked ? `\n <li>Quote 3 Twitter posts each week</li>` : '';
+
+  createCanvaAccountText = createCanvaAccountEl && createCanvaAccountEl.checked ? `\n <li>Create Canva account</li>` : '';
+  createChatGPTAccountText = createChatGPTAccountEl && createChatGPTAccountEl.checked ? `\n <li>Create ChatGPT account</li>` : '';
+  hwInstallGrammarlyText = hwInstallGrammarlyEl && hwInstallGrammarlyEl.checked ? `\n <li>Install Grammarly</li>` : '';
+  createIgAccountText = createIgAccountEl && createIgAccountEl.checked ? `\n <li>Create Instagram account</li>` : '';
+  hwJoinFbGroupsText = '';
+  hwFollowFbPagesText = '';
+  hwFollowIgPagesText = '';
+  hwFollowPinBoardsText = '';
+  hwFollowXAcctsText = '';
+  hwSchedulePostsText = '';
+  hwContinueSchedulePostsText = '';
+  hwCreatePinBoardsText = '';
+  hwSavePinsText = '';
+  hwCreateOneBoardText = '';
+  hwSavePinsTotalText = '';
+  hwCreateInfographicsText = '';
+  hwCreateInfographicWeeklyText = '';
+  hwPostRemainingInfographicsText = '';
+  hwCreateTwentyXPostsText = '';
+  hwQuoteTenXPostsText = '';
 
   var isAnythingChecked = assignedHwElements.some(function (el) {
     return el && el.checked;
