@@ -2645,7 +2645,7 @@ function setMissedAppointment() {
   vmRadioElements.forEach(function (element) {
     element.addEventListener('change', function () {
       if (vmNoEl.checked) {
-        leftVmText = `Did not leave voicemail`;
+        leftVmText = `Could not leave voicemail`;
         setVisibility(noVmReasonPromptEl, true);
       } else if (vmYesEl.checked) {
         leftVmText = `Left voicemail`;
@@ -2924,7 +2924,7 @@ function setContactedByClient() {
     element.addEventListener('change', function () {
       if (contactedVmNoEl.checked) {
         setVisibility(contactedNoVmReasonPromptEl, true);
-        contactedLeftVmText = `Did not leave voicemail`;
+        contactedLeftVmText = `Could not leave voicemail`;
       } else if (contactedVmYesEl.checked) {
         setVisibility(contactedNoVmReasonPromptEl, false);
         contactedLeftVmText = `Left voicemail`;
