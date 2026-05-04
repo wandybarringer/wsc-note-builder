@@ -1308,7 +1308,7 @@ function updateHtmlNotes() {
   } else if (currentApptValue === 'missed-appt' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'contacted-by-client' && currentApptValue !== 'default') {
-    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + additionalNotesText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
+    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + additionalNotesText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + smText + nicheChangeText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client${movedUpText} but they are <b>unable to attend appointment.</b>
