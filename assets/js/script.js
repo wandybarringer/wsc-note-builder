@@ -2309,8 +2309,8 @@ function updateWorkedOn() {
   cjCategoryText = cjCategoryEl && cjCategoryEl.checked ? `\n <li>Completed Cj category selection</li>` : '';
   chromeProfileText = chromeProfileEl && chromeProfileEl.checked ? `\n <li>Created chrome profile</li>` : '';
   einText = einEl && einEl.checked ? `\n <li>Completed 2d (EIN)</li>` : '';
-  potentialSuppliersText = potentialSuppliersEl && potentialSuppliersEl.checked ? `\n <li>Verified Age with 2c (Business Email)</li>` : '';
-  ageVerificationText = ageVerificationEl && ageVerificationEl.checked ? `\n <li>Provided Potential suppliers</li>` : '';
+  potentialSuppliersText = potentialSuppliersEl && potentialSuppliersEl.checked ? `\n <li>Provided potential suppliers</li>` : '';
+  ageVerificationText = ageVerificationEl && ageVerificationEl.checked ? `\n <li>Verified Age with 2c (Business Email)</li>` : '';
 
   dashNavText = dashNavEl && dashNavEl.checked ? `\n <li>Dashboard/Account Navigation</li>` : ``;
   extraPageText = extraPageEl && extraPageEl.checked ? `\n <li>Extra Pages</li>` : ``;
