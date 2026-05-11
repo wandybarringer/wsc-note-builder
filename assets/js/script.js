@@ -288,6 +288,15 @@ var ncBookingIdEl = document.querySelector('#nc-booking-id');
 var nicheChangeDateEl = document.querySelector('#niche-change-date');
 var ncBookingIdPrompt = document.querySelector('#nc-booking-id-prompt');
 
+var socmedAssistanceApptPromptEl = document.querySelector('#socmed-assistance-appt-prompt');
+var otherDeptApptSmaPromptEl = document.querySelector('#other-dept-appt-socmed-assistance-prompt');
+var socmedAssistanceApptEl = document.querySelector('#socmed-assistance-appt');
+var reminderSmaEl = document.querySelector('#reminder-socmed-assistance');
+var socmedAssistanceTechEl = document.querySelector('#socmed-assistance-tech');
+var smaBookingIdEl = document.querySelector('#socmed-assistance-booking-id');
+var socmedAssistanceDateEl = document.querySelector('#socmed-assistance-date');
+var smaBookingIdPrompt = document.querySelector('#socmed-assistance-booking-id-prompt');
+
 var websiteAnalysisApptPromptEl = document.querySelector('#website-analysis-appt-prompt');
 var otherDeptApptWaPromptEl = document.querySelector('#other-dept-appt-wa-prompt');
 var websiteAnalysisApptEl = document.querySelector('#website-analysis-appt');
@@ -804,6 +813,10 @@ var nicheChangeTechText = '';
 var nicheChangeDateText = '';
 var ncBookingIdText = '';
 var nicheChangeText = '';
+var socMedAssistanceTechText = '';
+var socMedAssistanceDateText = '';
+var smaBookingIdText = '';
+var socMedAssistanceText = '';
 var websiteAnalysisTechText = '';
 var websiteAnalysisDateText = '';
 var waBookingIdText = '';
@@ -855,7 +868,7 @@ var deptLabels = {
 };
 
 var stripeTimer;
-var otherPrompts = [whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, smOtherApptPromptEl];
+var otherPrompts = [whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, smOtherApptPromptEl, socmedAssistanceApptPromptEl];
 
 // *CORE UI & UTILITY FUNCTIONS
 
@@ -1011,7 +1024,7 @@ function setShowAllInputs() {
   });
 
   if (otherDeptApptEl.checked) {
-    [whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, smOtherApptPromptEl].forEach((el) => {
+    [whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, smOtherApptPromptEl, socmedAssistanceApptPromptEl].forEach((el) => {
       if (el) setVisibility(el, true);
     });
   }
@@ -1304,17 +1317,17 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Warhead Training</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + whCompletedText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + whCompletedText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'missed-appt' && currentApptValue !== 'default') {
     htmlNotes = missedApptText + initialsText;
   } else if (currentApptValue === 'contacted-by-client' && currentApptValue !== 'default') {
-    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + additionalNotesText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + smText + nicheChangeText + websiteAnalysisText + initialsText;
+    htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + additionalNotesText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client${movedUpText} but they are <b>unable to attend appointment.</b>
 </p>
 `;
-    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + smText + obAssistanceText + nicheChangeText + websiteAnalysisText + initialsText;
+    htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + smText + obAssistanceText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'podio-link' && currentApptValue !== 'default') {
     htmlNotes = podioLinkText;
   } else if (currentApptValue === 'wh-assistance' && currentApptValue !== 'default') {
@@ -1322,7 +1335,7 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${displayApptName}</b> appointment. ${screenShareText}
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'general' && currentApptValue !== 'default') {
     htmlNotes = generalContactPurposeText + generalContactNoteText + initialsText;
   } else if ((currentApptValue === 'sm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'sm-follow-up' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-upgraded' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-non-upgraded' && currentApptValue !== 'default')) {
@@ -1330,31 +1343,31 @@ function updateHtmlNotes() {
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Supplier Management</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + smRequirementsText + howManyProductsText + updatedHowManySuppliersText + workedOnText + assignedHwText + removeNonNicheText + completedSmText + additionalNotesText + nextAppointmentText + updatedSmWsText + marketingDateText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + smRequirementsText + howManyProductsText + updatedHowManySuppliersText + workedOnText + assignedHwText + removeNonNicheText + completedSmText + additionalNotesText + nextAppointmentText + updatedSmWsText + marketingDateText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'sm-marketing' && currentApptValue !== 'default') {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${displayApptName}</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + marketingReviewedText + additionalNotesText + completedMarketingText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + initialsText;
+    htmlNotes = contactedClientText + marketingReviewedText + additionalNotesText + completedMarketingText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + initialsText;
   } else if ((currentApptValue === 'socm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fifth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-sixth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-seventh-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-eighth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ninth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-tenth-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
   } else if ((currentApptValue === 'socm-ser-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-fifth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-sixth-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + clientWillEmailText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + clientWillEmailText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
   } else if ((currentApptValue === 'ob-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-assistance-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   Contacted client${movedUpText} for <b>${contText}${displayApptName}</b> appointment.
 </p>
 `;
-    htmlNotes = contactedClientText + updatedNicheText + updatedDomainText + hwText + workedOnText + assignedHwText + additionalNotesText + obCompleteText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + websiteAnalysisText + nextTopicText + initialsText;
+    htmlNotes = contactedClientText + updatedNicheText + updatedDomainText + hwText + workedOnText + assignedHwText + additionalNotesText + obCompleteText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'edit-note' && currentApptValue !== 'default') {
     htmlNotes = noteNumberText + editNoteText + initialsText;
   }
@@ -1435,6 +1448,10 @@ function resetHtmlNotes() {
   nicheChangeDateText = '';
   ncBookingIdText = '';
   nicheChangeText = '';
+  socMedAssistanceTechText = '';
+  socMedAssistanceDateText = '';
+  smaBookingIdText = '';
+  socMedAssistanceText = '';
   websiteAnalysisTechText = '';
   websiteAnalysisDateText = '';
   waBookingIdText = '';
@@ -1481,7 +1498,7 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, smOtherApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmPromptEl, otherDeptApptWhPromptEl, screenShareOtherPromptEl, nicheSelectionPromptEl, domainPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, smOtherApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, socmedAssistanceApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmPromptEl, otherDeptApptWhPromptEl, otherDeptApptSmaPromptEl, screenShareOtherPromptEl, nicheSelectionPromptEl, domainPromptEl];
 
   allPrompts.forEach(function (element) {
     setVisibility(element, false);
@@ -1677,8 +1694,8 @@ function setNextAppointment() {
 }
 
 function setOtherAppointment() {
-  var otherApptPrompts = [whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, smOtherApptPromptEl];
-  var otherApptInputs = [otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptWhPromptEl, otherDeptApptSmPromptEl];
+  var otherApptPrompts = [whAssistanceApptPromptEl, obAssistanceApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, smOtherApptPromptEl, socmedAssistanceApptPromptEl];
+  var otherApptInputs = [otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmaPromptEl, otherDeptApptWhPromptEl, otherDeptApptSmPromptEl];
 
   otherApptPrompts.forEach(function (element) {
     setVisibility(element, false);
@@ -1699,7 +1716,8 @@ function setOtherAppointment() {
       nicheChangeApptEl.checked = false;
       websiteAnalysisApptEl.checked = false;
       smOtherApptEl.checked = false;
-      var inputsToClear = [whAssistanceDateEl, obAssistanceDateEl, nicheChangeDateEl, websiteAnalysisDateEl, whAssistanceTechEl, obAssistanceTechEl, nicheChangeTechEl, websiteAnalysisTechEl, ncBookingIdEl, waBookingIdEl, obAssistanceBookingIdEl, whAssistanceBookingIdEl, smOtherBookingIdEl, smOtherDateEl, smOtherTechEl];
+      socmedAssistanceApptEl.checked = false;
+      var inputsToClear = [whAssistanceDateEl, obAssistanceDateEl, nicheChangeDateEl, websiteAnalysisDateEl, whAssistanceTechEl, obAssistanceTechEl, nicheChangeTechEl, websiteAnalysisTechEl, ncBookingIdEl, waBookingIdEl, obAssistanceBookingIdEl, whAssistanceBookingIdEl, smOtherBookingIdEl, smOtherDateEl, smOtherTechEl, smaBookingIdEl, socmedAssistanceDateEl, socmedAssistanceTechEl];
       inputsToClear.forEach(function (input) {
         if (input) input.value = '';
       });
@@ -1718,6 +1736,9 @@ function setOtherAppointment() {
       smDateText = '';
       smTechText = '';
       smBookingIdText = '';
+      socMedAssistanceDateText = '';
+      socMedAssistanceTechText = '';
+      smaBookingIdText = '';
       updateHtmlNotes();
     }
   });
@@ -1798,6 +1819,26 @@ function setOtherAppointment() {
       nicheChangeText = '';
       reminderNcEl.checked = false;
       var inputsToClear = [nicheChangeDateEl, nicheChangeTechEl, ncBookingIdEl];
+      inputsToClear.forEach((input) => {
+        if (input) input.value = '';
+      });
+      updateHtmlNotes();
+    }
+  });
+
+  socmedAssistanceApptEl.addEventListener('change', function () {
+    if (socmedAssistanceApptEl && socmedAssistanceApptEl.checked) {
+      setVisibility(otherDeptApptSmaPromptEl, true);
+      setVisibility(smaBookingIdPrompt, true);
+      otherDeptApptSmaPromptEl.classList.add('grey-bg');
+    } else if (!socmedAssistanceApptEl.checked) {
+      setVisibility(otherDeptApptSmaPromptEl, false);
+      socMedAssistanceDateText = '';
+      socMedAssistanceTechText = '';
+      smaBookingIdText = '';
+      socMedAssistanceText = '';
+      reminderSmaEl.checked = false;
+      var inputsToClear = [socmedAssistanceDateEl, socmedAssistanceTechEl, smaBookingIdEl];
       inputsToClear.forEach((input) => {
         if (input) input.value = '';
       });
@@ -1991,6 +2032,47 @@ function setOtherAppointment() {
     updateHtmlNotes();
   });
 
+  socmedAssistanceTechEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      socMedAssistanceTechText = '';
+    } else if (event.target.value) {
+      socMedAssistanceTechText = event.target.value;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  smaBookingIdEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      smaBookingIdText = '';
+    } else {
+      smaBookingIdText = `Booking ID: ${event.target.value}`;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  reminderSmaEl.addEventListener('change', function () {
+    if (reminderSmaEl.checked) {
+      setVisibility(smaBookingIdPrompt, false);
+    } else {
+      setVisibility(smaBookingIdPrompt, true);
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
+  socmedAssistanceDateEl.addEventListener('input', function (event) {
+    var newSocmedAssistanceDate = handleDateFormat(event.target.value);
+    if (!event.target.value) {
+      socMedAssistanceDateText = '';
+    } else if (event.target.value) {
+      socMedAssistanceDateText = newSocmedAssistanceDate;
+    }
+    updateOtherAppointment();
+    updateHtmlNotes();
+  });
+
   websiteAnalysisTechEl.addEventListener('input', function (event) {
     if (!event.target.value) {
       websiteAnalysisTechText = '';
@@ -2088,6 +2170,20 @@ function updateOtherAppointment() {
 `;
   } else {
     nicheChangeText = '';
+  }
+
+  if (reminderSmaEl.checked) {
+    socMedAssistanceText = `<p>
+  Reminded client about Social Media Assistance appointment with ${socMedAssistanceTechText} for ${socMedAssistanceDateText}.
+</p>
+`;
+  } else if (!reminderSmaEl.checked && (socMedAssistanceTechText || socMedAssistanceDateText)) {
+    socMedAssistanceText = `<p>
+  Booked Social Media Assistance appointment with ${socMedAssistanceTechText} for ${socMedAssistanceDateText}. ${smaBookingIdText}
+</p>
+`;
+  } else {
+    socMedAssistanceText = '';
   }
 
   if (reminderWaEl.checked) {
