@@ -46,6 +46,7 @@ var hwNoneEl = document.querySelector('#hw-none');
 var hwYesEl = document.querySelector('#hw-yes');
 var hwPercentPromptEl = document.querySelector('#hw-percent-prompt');
 var hwPercentEl = document.querySelector('#hw-percent');
+var hwDetailsEl = document.querySelector('#hw-details');
 
 // *WARHEAD WORKED ON CHECKLIST
 
@@ -494,6 +495,7 @@ var movedUpText = '';
 var screenShareText = '';
 var hwCompletedText = '';
 var hwPercentText = '';
+var hwDetailsText = '';
 var hwText = '';
 
 // Worked On Strings
@@ -1405,6 +1407,7 @@ function resetHtmlNotes() {
   hwText = '';
   hwCompletedText = '';
   hwPercentText = '';
+  hwDetailsText = '';
   workedOnText = '';
   updatingNewProdNameText = '';
   customWorkedonText = '';
@@ -1556,9 +1559,9 @@ function setHwCompleted() {
 }
 
 function updateHw() {
-  if (hwCompletedText || hwPercentText) {
+  if (hwCompletedText || hwPercentText || hwDetailsText) {
     hwText = `<p>
-  ${hwCompletedText} ${hwPercentText}
+  ${hwCompletedText} ${hwPercentText}${hwDetailsText}
 </p>
 `;
   } else {
@@ -3475,6 +3478,18 @@ function setHwPercent() {
   });
 }
 
+function setHwDetails() {
+  hwDetailsEl.addEventListener('input', function (event) {
+    if (!event.target.value) {
+      hwDetailsText = '';
+    } else {
+      hwDetailsText = ` ${event.target.value}`;
+    }
+    updateHw();
+    updateHtmlNotes();
+  });
+}
+
 function setStartedRegistering() {
   var startedRegRadioElements = [startedRegNoEl, startedRegNoneEl, startedRegYesEl];
 
@@ -3971,6 +3986,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setScreenShare();
   setHwCompleted();
   setHwPercent();
+  setHwDetails();
   updateHw();
 
   setWorkedOn();
