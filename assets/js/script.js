@@ -2689,6 +2689,8 @@ function setMissedAppointment() {
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
+        sentMissedEmailEl.checked = false;
+        markedPodioEl.checked = false;
       } else if (secondAttemptRadioEl.checked) {
         attemptText = `<b>2nd attempt</b>`;
         setVisibility(phoneNumberPromptEl, false);
@@ -2702,6 +2704,8 @@ function setMissedAppointment() {
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
+        sentMissedEmailEl.checked = false;
+        markedPodioEl.checked = false;
       } else if (thirdAttemptRadioEl.checked) {
         attemptText = `<b>3rd attempt</b>`;
         setVisibility(phoneNumberPromptEl, false);
@@ -2715,6 +2719,8 @@ function setMissedAppointment() {
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
+        sentMissedEmailEl.checked = false;
+        markedPodioEl.checked = false;
       } else {
         attemptText = ``;
         setVisibility(phoneNumberPromptEl, false);
@@ -2728,6 +2734,8 @@ function setMissedAppointment() {
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
+        sentMissedEmailEl.checked = false;
+        markedPodioEl.checked = false;
       }
       updateMissedAppointment();
       updateHtmlNotes();
