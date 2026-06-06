@@ -1460,6 +1460,8 @@ function resetHtmlNotes() {
   waBookingIdText = '';
   websiteAnalysisText = '';
   smTechText = '';
+  enrolledSmText = '';
+  sentSmGuideText = '';
   smDateText = '';
   smBookingIdText = '';
   smText = '';
