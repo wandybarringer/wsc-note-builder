@@ -888,3 +888,15 @@ input[type='checkbox']:hover {
   pointer-events: none;
   box-shadow: none;
 }
+
+.worked-on-dividers {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  background: var(--input-panel-bg);
+  padding: 3px 10px 3px 10px;
+  margin-block: 10px 5px;
+  border-radius: 3px 3px 0px 0px;
+  border-block-end: var(--primary-text-transparent) solid 1px;
+}

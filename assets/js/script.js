@@ -83,7 +83,15 @@ var modifyVariantsEl = document.querySelector('#modify-variants');
 // Custom "Worked On" Checkbox & Text
 
 var customWorkedOnChecboxEl = document.querySelector('#custom-worked-on-checkbox');
+var customWorkedOnChecboxFirstWhEl = document.querySelector('#custom-worked-on-checkbox-first-wh');
+var customWorkedOnChecboxSecondWhEl = document.querySelector('#custom-worked-on-checkbox-second-wh');
+var customWorkedOnChecboxThirdWhEl = document.querySelector('#custom-worked-on-checkbox-third-wh');
+var customWorkedOnChecboxPostWhEl = document.querySelector('#custom-worked-on-checkbox-third-wh');
 var customWorkedOnTextEl = document.querySelector('#custom-worked-on-text');
+var customWorkedOnTextFirstWhEl = document.querySelector('#custom-worked-on-text-first-wh');
+var customWorkedOnTextSecondWhEl = document.querySelector('#custom-worked-on-text-second-wh');
+var customWorkedOnTextThirdWhEl = document.querySelector('#custom-worked-on-text-third-wh');
+var customWorkedOnTextPostWhEl = document.querySelector('#custom-worked-on-text-third-wh');
 
 // *WARHEAD ASSIGNED HW CHECKLIST
 
@@ -533,6 +541,10 @@ var updatingNewProdNameText = 'New Supplier(s)';
 var processRealOrderText = '';
 var modifyVariantsText = '';
 var customWorkedonText = '';
+var customWorkedonFirstWhText = '';
+var customWorkedonSecondWhText = '';
+var customWorkedonThirdWhText = '';
+var customWorkedonPostWhText = '';
 
 // Assigned HW Strings
 
@@ -1060,6 +1072,46 @@ function addNewWorkedOnRow(container) {
   container.appendChild(newRow);
 }
 
+function addNewWorkedOnRowFirstWh(container) {
+  var newRow = document.createElement('div');
+  newRow.className = 'custom-worked-on-row-first-wh';
+  newRow.innerHTML = `
+    <input type="checkbox" class="custom-checkbox-first-wh" /> 
+    <input type="text" class="custom-text-first-wh" placeholder="Custom text" />
+  `;
+  container.appendChild(newRow);
+}
+
+function addNewWorkedOnRowSecondWh(container) {
+  var newRow = document.createElement('div');
+  newRow.className = 'custom-worked-on-row-second-wh';
+  newRow.innerHTML = `
+    <input type="checkbox" class="custom-checkbox-second-wh" /> 
+    <input type="text" class="custom-text-second-wh" placeholder="Custom text" />
+  `;
+  container.appendChild(newRow);
+}
+
+function addNewWorkedOnRowThirdWh(container) {
+  var newRow = document.createElement('div');
+  newRow.className = 'custom-worked-on-row-third-wh';
+  newRow.innerHTML = `
+    <input type="checkbox" class="custom-checkbox-third-wh" /> 
+    <input type="text" class="custom-text-third-wh" placeholder="Custom text" />
+  `;
+  container.appendChild(newRow);
+}
+
+function addNewWorkedOnRowPostWh(container) {
+  var newRow = document.createElement('div');
+  newRow.className = 'custom-worked-on-row-post-wh';
+  newRow.innerHTML = `
+    <input type="checkbox" class="custom-checkbox-post-wh" /> 
+    <input type="text" class="custom-text-post-wh" placeholder="Custom text" />
+  `;
+  container.appendChild(newRow);
+}
+
 function addNewAssignedHwRow(container) {
   var newRow = document.createElement('div');
   newRow.className = 'custom-assigned-hw-row';
@@ -1384,6 +1436,30 @@ function resetHtmlNotes() {
     addNewWorkedOnRow(customWorkedOnContainer);
   }
 
+  var customWorkedOnContainerFirstWh = document.getElementById('custom-worked-on-container-first-wh');
+  if (customWorkedOnContainerFirstWh) {
+    customWorkedOnContainerFirstWh.innerHTML = '';
+    addNewWorkedOnRowFirstWh(customWorkedOnContainerFirstWh);
+  }
+
+  var customWorkedOnContainerSecondWh = document.getElementById('custom-worked-on-container-second-wh');
+  if (customWorkedOnContainerSecondWh) {
+    customWorkedOnContainerSecondWh.innerHTML = '';
+    addNewWorkedOnRowSecondWh(customWorkedOnContainerSecondWh);
+  }
+
+  var customWorkedOnContainerThirdWh = document.getElementById('custom-worked-on-container-third-wh');
+  if (customWorkedOnContainerThirdWh) {
+    customWorkedOnContainerThirdWh.innerHTML = '';
+    addNewWorkedOnRowThirdWh(customWorkedOnContainerThirdWh);
+  }
+
+  var customWorkedOnContainerPostWh = document.getElementById('custom-worked-on-container-post-wh');
+  if (customWorkedOnContainerPostWh) {
+    customWorkedOnContainerPostWh.innerHTML = '';
+    addNewWorkedOnRowPostWh(customWorkedOnContainerPostWh);
+  }
+
   var customAssignedHwContainer = document.getElementById('custom-assigned-hw-container');
   if (customAssignedHwContainer) {
     customAssignedHwContainer.innerHTML = '';
@@ -1411,6 +1487,10 @@ function resetHtmlNotes() {
   workedOnText = '';
   updatingNewProdNameText = '';
   customWorkedonText = '';
+  customWorkedonFirstWhText = '';
+  customWorkedonSecondWhText = '';
+  customWorkedonThirdWhText = '';
+  customWorkedonPostWhText = '';
   postWorkedOnText = '';
   assignedHwText = '';
   customAssignedHwText = '';
@@ -2362,6 +2442,122 @@ function initDynamicWorkedOn() {
   });
 }
 
+function initDynamicWorkedOnFirstWh() {
+  var container = document.getElementById('custom-worked-on-container-first-wh');
+  if (!container) return;
+
+  container.addEventListener('input', function (event) {
+    var row = event.target.closest('.custom-worked-on-row-first-wh');
+    if (!row) return;
+
+    var checkbox = row.querySelector('.custom-checkbox-first-wh');
+    var textInput = row.querySelector('.custom-text-first-wh');
+
+    if (event.target.classList.contains('custom-checkbox-first-wh') && !checkbox.checked) {
+      if (container.children.length > 1 && row !== container.lastElementChild) {
+        row.remove();
+        refreshAllCustomWorkedOnFirstWh();
+        return;
+      }
+    }
+
+    if (row === container.lastElementChild) {
+      if (checkbox.checked || textInput.value.trim() !== '') {
+        addNewWorkedOnRowFirstWh(container);
+      }
+    }
+
+    refreshAllCustomWorkedOnFirstWh();
+  });
+}
+
+function initDynamicWorkedOnSecondWh() {
+  var container = document.getElementById('custom-worked-on-container-second-wh');
+  if (!container) return;
+
+  container.addEventListener('input', function (event) {
+    var row = event.target.closest('.custom-worked-on-row-second-wh');
+    if (!row) return;
+
+    var checkbox = row.querySelector('.custom-checkbox-second-wh');
+    var textInput = row.querySelector('.custom-text-second-wh');
+
+    if (event.target.classList.contains('custom-checkbox-second-wh') && !checkbox.checked) {
+      if (container.children.length > 1 && row !== container.lastElementChild) {
+        row.remove();
+        refreshAllCustomWorkedOnSecondWh();
+        return;
+      }
+    }
+
+    if (row === container.lastElementChild) {
+      if (checkbox.checked || textInput.value.trim() !== '') {
+        addNewWorkedOnRowSecondWh(container);
+      }
+    }
+
+    refreshAllCustomWorkedOnSecondWh();
+  });
+}
+
+function initDynamicWorkedOnThirdWh() {
+  var container = document.getElementById('custom-worked-on-container-third-wh');
+  if (!container) return;
+
+  container.addEventListener('input', function (event) {
+    var row = event.target.closest('.custom-worked-on-row-third-wh');
+    if (!row) return;
+
+    var checkbox = row.querySelector('.custom-checkbox-third-wh');
+    var textInput = row.querySelector('.custom-text-third-wh');
+
+    if (event.target.classList.contains('custom-checkbox-third-wh') && !checkbox.checked) {
+      if (container.children.length > 1 && row !== container.lastElementChild) {
+        row.remove();
+        refreshAllCustomWorkedOnThirdWh();
+        return;
+      }
+    }
+
+    if (row === container.lastElementChild) {
+      if (checkbox.checked || textInput.value.trim() !== '') {
+        addNewWorkedOnRowThirdWh(container);
+      }
+    }
+
+    refreshAllCustomWorkedOnThirdWh();
+  });
+}
+
+function initDynamicWorkedOnPostWh() {
+  var container = document.getElementById('custom-worked-on-container-post-wh');
+  if (!container) return;
+
+  container.addEventListener('input', function (event) {
+    var row = event.target.closest('.custom-worked-on-row-post-wh');
+    if (!row) return;
+
+    var checkbox = row.querySelector('.custom-checkbox-post-wh');
+    var textInput = row.querySelector('.custom-text-post-wh');
+
+    if (event.target.classList.contains('custom-checkbox-post-wh') && !checkbox.checked) {
+      if (container.children.length > 1 && row !== container.lastElementChild) {
+        row.remove();
+        refreshAllCustomWorkedOnPostWh();
+        return;
+      }
+    }
+
+    if (row === container.lastElementChild) {
+      if (checkbox.checked || textInput.value.trim() !== '') {
+        addNewWorkedOnRowPostWh(container);
+      }
+    }
+
+    refreshAllCustomWorkedOnPostWh();
+  });
+}
+
 function refreshAllCustomWorkedOn() {
   var combinedHtml = '';
 
@@ -2380,6 +2576,98 @@ function refreshAllCustomWorkedOn() {
   });
 
   customWorkedonText = combinedHtml;
+
+  if (typeof updateWorkedOn === 'function') updateWorkedOn();
+  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
+}
+
+function refreshAllCustomWorkedOnFirstWh() {
+  var combinedHtml = '';
+
+  var rows = document.querySelectorAll('.custom-worked-on-row-first-wh');
+
+  rows.forEach((row) => {
+    var checkbox = row.querySelector('.custom-checkbox-first-wh');
+    var textInput = row.querySelector('.custom-text-first-wh');
+
+    if (checkbox && checkbox.checked) {
+      var value = textInput.value.trim();
+      if (value !== '') {
+        combinedHtml += `\n <li>${value}</li>`;
+      }
+    }
+  });
+
+  customWorkedonFirstWhText = combinedHtml;
+
+  if (typeof updateWorkedOn === 'function') updateWorkedOn();
+  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
+}
+
+function refreshAllCustomWorkedOnSecondWh() {
+  var combinedHtml = '';
+
+  var rows = document.querySelectorAll('.custom-worked-on-row-second-wh');
+
+  rows.forEach((row) => {
+    var checkbox = row.querySelector('.custom-checkbox-second-wh');
+    var textInput = row.querySelector('.custom-text-second-wh');
+
+    if (checkbox && checkbox.checked) {
+      var value = textInput.value.trim();
+      if (value !== '') {
+        combinedHtml += `\n <li>${value}</li>`;
+      }
+    }
+  });
+
+  customWorkedonSecondWhText = combinedHtml;
+
+  if (typeof updateWorkedOn === 'function') updateWorkedOn();
+  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
+}
+
+function refreshAllCustomWorkedOnThirdWh() {
+  var combinedHtml = '';
+
+  var rows = document.querySelectorAll('.custom-worked-on-row-third-wh');
+
+  rows.forEach((row) => {
+    var checkbox = row.querySelector('.custom-checkbox-third-wh');
+    var textInput = row.querySelector('.custom-text-third-wh');
+
+    if (checkbox && checkbox.checked) {
+      var value = textInput.value.trim();
+      if (value !== '') {
+        combinedHtml += `\n <li>${value}</li>`;
+      }
+    }
+  });
+
+  customWorkedonThirdWhText = combinedHtml;
+
+  if (typeof updateWorkedOn === 'function') updateWorkedOn();
+  if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
+}
+
+function refreshAllCustomWorkedOnPostWh() {
+  var combinedHtml = '';
+
+  var rows = document.querySelectorAll('.custom-worked-on-row-post-wh');
+
+  rows.forEach((row) => {
+    var checkbox = row.querySelector('.custom-checkbox-post-wh');
+    var textInput = row.querySelector('.custom-text-post-wh');
+
+    if (checkbox && checkbox.checked) {
+      var value = textInput.value.trim();
+      if (value !== '') {
+        combinedHtml += `\n <li>${value}</li>`;
+      }
+    }
+  });
+
+  customWorkedonPostWhText = combinedHtml;
 
   if (typeof updateWorkedOn === 'function') updateWorkedOn();
   if (typeof updateHtmlNotes === 'function') updateHtmlNotes();
@@ -2413,13 +2701,15 @@ function updateWorkedOn() {
   potentialSuppliersText = potentialSuppliersEl && potentialSuppliersEl.checked ? `\n <li>Provided potential suppliers</li>` : '';
   ageVerificationText = ageVerificationEl && ageVerificationEl.checked ? `\n <li>Verified Age with 2c (Business Email)</li>` : '';
 
+  // 1st Appointment WH
   dashNavText = dashNavEl && dashNavEl.checked ? `\n <li>Dashboard/Account Navigation</li>` : ``;
   extraPageText = extraPageEl && extraPageEl.checked ? `\n <li>Extra Pages</li>` : ``;
   createCatText = createCatEl && createCatEl.checked ? `\n <li>Creating Categories</li>` : '';
-  organizeCatText = organizeCatEl && organizeCatEl.checked ? `\n <li>Organizing Categories</li>` : '';
   createProdText = createProdEl && createProdEl.checked ? `\n <li>Creating Products</li>` : '';
   prodGridText = prodGridEl && prodGridEl.checked ? `\n <li>Products Grid</li>` : '';
   catProdText = catProdEl && catProdEl.checked ? `\n <li>Categorizing Products</li>` : '';
+
+  // 2nd Appointment WH
   discountsText = discountsEl && discountsEl.checked ? `\n <li>Discounts</li>` : '';
   checkoutSectionsText = checkoutSectionsEl && checkoutSectionsEl.checked ? `\n <li>Checkout Sections</li>` : '';
   payPalText = payPalEl && payPalEl.checked ? `\n <li>Linked PayPal/Apple Pay</li>` : '';
@@ -2427,18 +2717,21 @@ function updateWorkedOn() {
   testOrderText = testOrderEl && testOrderEl.checked ? `\n <li>Creating a Test Order</li>` : '';
   explainedOrderEmailsText = explainedOrderEmailsEl && explainedOrderEmailsEl.checked ? `\n <li>Explained order emails</li>` : '';
   ordersGridText = ordersGridEl && ordersGridEl.checked ? `\n <li>Orders grid</li>` : '';
-  processDobaOrderText = processDobaOrderEl && processDobaOrderEl.checked ? `\n <li>Processed Doba test order</li>` : '';
-  processCjOrderText = processCjOrderEl && processCjOrderEl.checked ? `\n <li>Processed CJ test order</li>` : '';
-  sentGuidesProcessingText = sentGuidesProcessingEl && sentGuidesProcessingEl.checked ? `\n <li>Sent client order processing guide(s)</li>` : '';
+  processDobaOrderText = processDobaOrderEl && processDobaOrderEl.checked ? `\n <li>Processed Doba Test Order</li>` : '';
+  processCjOrderText = processCjOrderEl && processCjOrderEl.checked ? `\n <li>Processed CJ Test Order</li>` : '';
+  sentGuidesProcessingText = sentGuidesProcessingEl && sentGuidesProcessingEl.checked ? `\n <li>Sent order processing guide(s)</li>` : '';
+
+  // 3rd Appointment WH
   exportingProductsText = exportingProductsEl && exportingProductsEl.checked ? `\n <li>Exporting product spreadsheet from Warhead</li>` : '';
   updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
-  unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products</li>` : '';
-  sentGuidesUpdatingText = sentGuidesUpdatingEl && sentGuidesUpdatingEl.checked ? `\n <li>Sent client product updating guide(s)</li>` : '';
+  unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products (disabling/enabling)</li>` : '';
+  sentGuidesUpdatingText = sentGuidesUpdatingEl && sentGuidesUpdatingEl.checked ? `\n <li>Sent product updating guide(s)</li>` : '';
+  organizeCatText = organizeCatEl && organizeCatEl.checked ? `\n <li>Organizing Categories</li>` : '';
 
+  // Post Appt & Assistance WH
   stripeText = stripeEl && stripeEl.checked ? `\n <li>Linked Stripe</li>` : ``;
   variantsText = variantsEl && variantsEl.checked ? `\n <li>Condensing Variants</li>` : ``;
   googleAnalyticsText = googleAnalyticsEl && googleAnalyticsEl.checked ? `\n <li>Helped set up Google Analytics</li>` : ``;
-
   updatingNewProdText = updatingNewProdEl && updatingNewProdEl.checked ? `\n <li>Updating Products from ${updatingNewProdNameText}</li>` : '';
   processRealOrderText = processRealOrderEl && processRealOrderEl.checked ? `\n <li>Processing Real Customer Order</li>` : '';
   modifyVariantsText = modifyVariantsEl && modifyVariantsEl.checked ? `\n <li>Modifying Singular Products to Variants</li>` : '';
@@ -2449,21 +2742,32 @@ function updateWorkedOn() {
   assistedApplicationText = assistedApplicationEl && assistedApplicationEl.checked ? `\n <li>Assisted client in submitting applications to: ${assistedApplicationToText}</li>` : '';
   followUpEmailText = followUpEmailEl && followUpEmailEl.checked ? `\n <li>Assisted client in sending follow up emails to: ${followUpEmailToText}</li>` : '';
 
+  // TODO: Change the OB & SM worked on items to be divided by appointment type like WH
+  var obSmCombined = `${canLogInText}${discussedSuppliersText}${discussedRegistrationText}${downloadChromeText}${createGmailText}${createFavFolderText}${linkedBingText}${chromeProfileText}${einText}${ageVerificationText}${ciasText}${googleVoiceText}${googleSignatureText}${completePinterestText}${completeYoutubeText}${completeTwitterText}${logInWhText}${createdTeachableText}${obCompletedQuestionnaireText}${completeStripeText}${completePaypalText}${dobaSignupText}${dobaInventoryText}${cjSignupText}${cjCategoryText}${applicationProcessText}${dropshipDatabaseText}${submittedApplicationText}${assistedApplicationText}${followUpEmailText}${potentialSuppliersText}${customWorkedonText}`;
+
+  var whFirstCombined = `${dashNavText}${extraPageText}${createCatText}${createProdText}${prodGridText}${catProdText}${customWorkedonFirstWhText}`;
+  var whFirstBlock = whFirstCombined !== '' ? `\n1st Warhead\n<ul>${whFirstCombined}\n</ul>` : '';
+
+  var whSecondCombined = `${discountsText}${checkoutSectionsText}${payPalText}${payPalStandardText}${testOrderText}${explainedOrderEmailsText}${ordersGridText}${processDobaOrderText}${processCjOrderText}${sentGuidesProcessingText}${customWorkedonSecondWhText}`;
+  var whSecondBlock = whSecondCombined !== '' ? `\n2nd Warhead\n<ul>${whSecondCombined}\n</ul>` : '';
+
+  var whThirdCombined = `${exportingProductsText}${updatingProdText}${unavailableProdText}${sentGuidesUpdatingText}${organizeCatText}${customWorkedonThirdWhText}`;
+  var whThirdBlock = whThirdCombined !== '' ? `\n3rd Warhead\n<ul>${whThirdCombined}\n</ul>` : '';
+
+  var whPostCombined = `${stripeText}${variantsText}${googleAnalyticsText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}${customWorkedonPostWhText}`;
+  var whPostBlock = whPostCombined !== '' ? `\nPost/Warhead Assistance\n<ul>${whPostCombined}\n</ul>` : '';
+
   var isAnythingChecked = workedOnElements.some(function (el) {
     return el && el.checked;
   });
 
-  if (isAnythingChecked || customWorkedonText !== '') {
-    workedOnText = `Worked On: 
-<ul>${canLogInText}${discussedSuppliersText}${discussedRegistrationText}${downloadChromeText}${createGmailText}${createFavFolderText}${linkedBingText}${chromeProfileText}${einText}${ageVerificationText}${ciasText}${googleVoiceText}${googleSignatureText}${completePinterestText}${completeYoutubeText}${completeTwitterText}${logInWhText}${createdTeachableText}${obCompletedQuestionnaireText}${completeStripeText}${completePaypalText}${dobaSignupText}${dobaInventoryText}${cjSignupText}${cjCategoryText}${dashNavText}${extraPageText}${createCatText}${organizeCatText}${createProdText}${prodGridText}${catProdText}${discountsText}${checkoutSectionsText}${payPalText}${payPalStandardText}${testOrderText}${explainedOrderEmailsText}${ordersGridText}${processDobaOrderText}${processCjOrderText}${sentGuidesProcessingText}${exportingProductsText}${updatingProdText}${unavailableProdText}${sentGuidesUpdatingText}${stripeText}${variantsText}${googleAnalyticsText}${unavailableCjProdText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}${applicationProcessText}${dropshipDatabaseText}${submittedApplicationText}${assistedApplicationText}${followUpEmailText}${customWorkedonText}${potentialSuppliersText}
-</ul>
-`;
+  if (isAnythingChecked || customWorkedonText !== '' || customWorkedonFirstWhText !== '' || customWorkedonSecondWhText !== '' || customWorkedonThirdWhText !== '' || customWorkedonPostWhText !== '') {
+    workedOnText = `Worked On: \n<ul>${obSmCombined}\n</ul>${whFirstBlock}${whSecondBlock}${whThirdBlock}${whPostBlock}
+    `;
   } else {
     workedOnText = '';
   }
 }
-
-// "Assigned HW" String Handlers
 
 var assignedHwElements = [googleVoiceHwEl, googleSignatureHwEl, createPinterestHwEl, createYoutubeHwEl, createTwitterHwEl, createStripeHwEl, createPaypalHwEl, stripeLinkBankEl, paypalLinkBankEl, complete2dEl, createCjHwEl, cjCategoryHwEl, createDobaHwEl, dobaInventoryHwEl, whVideosHwEl, registerBusinessHwEl, firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl, createIgAccountEl, hwJoinFbGroupsEl, hwFollowFbPagesEl, hwFollowIgPagesEl, hwFollowPinBoardsEl, hwFollowXAcctsEl, hwSchedulePostsEl, hwContinueSchedulePostsEl, hwCreatePinBoardsEl, hwSavePinsEl, hwCreateOneBoardEl, hwSavePinsTotalEl, hwCreateInfographicsEl, hwCreateInfographicWeeklyEl, hwPostRemainingInfographicsEl, hwCreateTwentyXPostsEl, hwQuoteTenXPostsEl, createCanvaAccountEl, createChatGPTAccountEl, hwInstallGrammarlyEl, , setUpBusinessEmailEl, submitDesignQuestionnaireEl, setUpCheckingAccountEl];
 
@@ -4001,6 +4305,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setWorkedOn();
   initDynamicWorkedOn();
+  initDynamicWorkedOnFirstWh();
+  initDynamicWorkedOnSecondWh();
+  initDynamicWorkedOnThirdWh();
+  initDynamicWorkedOnPostWh();
 
   setAssignedHw();
   initDynamicAssignedHw();
