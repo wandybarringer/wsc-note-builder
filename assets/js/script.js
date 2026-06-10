@@ -152,6 +152,7 @@ var sentMissedEmailPromptEl = document.querySelector('#sent-missed-email-promt')
 var sentMissedEmailEl = document.querySelector('#sent-missed-email');
 var markedPodioPromptEl = document.querySelector('#marked-podio-prompt');
 var markedPodioEl = document.querySelector('#marked-podio');
+var unableToMarkPodioEl = document.querySelector('#unable-to-mark-podio');
 
 // Contacted By Client Elements
 
@@ -3004,6 +3005,7 @@ function setMissedAppointment() {
         customNoVmReasonTextEl.value = '';
         sentMissedEmailEl.checked = false;
         markedPodioEl.checked = false;
+        unableToMarkPodioEl.checked = false;
       } else if (secondAttemptRadioEl.checked) {
         attemptText = `<b>2nd attempt</b>`;
         setVisibility(phoneNumberPromptEl, false);
@@ -3019,6 +3021,7 @@ function setMissedAppointment() {
         customNoVmReasonTextEl.value = '';
         sentMissedEmailEl.checked = false;
         markedPodioEl.checked = false;
+        unableToMarkPodioEl.checked = false;
       } else if (thirdAttemptRadioEl.checked) {
         attemptText = `<b>3rd attempt</b>`;
         setVisibility(phoneNumberPromptEl, false);
@@ -3034,6 +3037,7 @@ function setMissedAppointment() {
         customNoVmReasonTextEl.value = '';
         sentMissedEmailEl.checked = false;
         markedPodioEl.checked = false;
+        unableToMarkPodioEl.checked = false;
       } else {
         attemptText = ``;
         setVisibility(phoneNumberPromptEl, false);
@@ -3049,6 +3053,7 @@ function setMissedAppointment() {
         customNoVmReasonTextEl.value = '';
         sentMissedEmailEl.checked = false;
         markedPodioEl.checked = false;
+        unableToMarkPodioEl.checked = false;
       }
       updateMissedAppointment();
       updateHtmlNotes();
@@ -3178,15 +3183,31 @@ function setMissedAppointment() {
     updateHtmlNotes();
   });
 
-  markedPodioEl.addEventListener('change', function () {
-    if (!markedPodioEl.checked) {
-      markedPodioText = '';
-    } else if (markedPodioEl.checked) {
-      markedPodioText = ' Marked Podio.';
-    }
-    updateMissedAppointment();
-    updateHtmlNotes();
+  var markedPodioRadioElements = [markedPodioEl, unableToMarkPodioEl];
+
+  markedPodioRadioElements.forEach(function (element) {
+    element.addEventListener('change', function () {
+      if (markedPodioEl.checked) {
+        markedPodioText = ` Marked Podio.`;
+      } else if (unableToMarkPodioEl.checked) {
+        markedPodioText = ` <b>Client has missed more than 6 appointments.</b> Unable to mark Podio.`;
+      } else {
+        markedPodioText = ``;
+      }
+      updateMissedAppointment();
+      updateHtmlNotes();
+    });
   });
+
+  // markedPodioEl.addEventListener('change', function () {
+  //   if (!markedPodioEl.checked) {
+  //     markedPodioText = '';
+  //   } else if (markedPodioEl.checked) {
+  //     markedPodioText = ' Marked Podio.';
+  //   }
+  //   updateMissedAppointment();
+  //   updateHtmlNotes();
+  // });
 }
 
 function updatePhoneNumberText() {

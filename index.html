@@ -1195,8 +1195,14 @@
             </div>
 
             <div id="marked-podio-prompt" data-dept='["warhead", "supplier-management", "onboarding", "social-media", "social-media-ser"]' data-template="missed-appt">
-              <input type="checkbox" name="marked-podio" id="marked-podio" />
-              <label for="marked-podio">Marked podio for missed appointment</label>
+              <div>
+                <input type="radio" name="marked-podio" id="marked-podio" />
+                <label for="marked-podio">Marked podio for missed appointment</label>
+              </div>
+              <div>
+                <input type="radio" name="marked-podio" id="unable-to-mark-podio" />
+                <label for="unable-to-mark-podio">Client has missed more than 6 appts. Unable to mark Podio.</label>
+              </div>
             </div>
 
             <!-- *Contacted by Client Inputs -->
