@@ -3093,6 +3093,7 @@ function setMissedAppointment() {
       if (vmNoEl.checked) {
         leftVmText = `Could not leave voicemail`;
         setVisibility(noVmReasonPromptEl, true);
+        noVmReasonText = '';
       } else if (vmYesEl.checked) {
         leftVmText = `Left voicemail`;
         setVisibility(noVmReasonPromptEl, false);
@@ -3100,6 +3101,7 @@ function setMissedAppointment() {
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
+        noVmReasonText = '';
       } else if (vmNoneEl.checked) {
         leftVmText = ``;
         setVisibility(noVmReasonPromptEl, false);
@@ -3107,12 +3109,14 @@ function setMissedAppointment() {
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
+        noVmReasonText = '';
       } else {
         leftVmText = ``;
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
+        noVmReasonText = '';
       }
       updateVmText();
       updateHtmlNotes();
@@ -3122,8 +3126,10 @@ function setMissedAppointment() {
   vmBoxFullEl.addEventListener('change', function () {
     if (!vmBoxFullEl.checked) {
       noVmReasonText = '';
+      customNoVmReasonTextEl.value = '';
     } else if (vmBoxFullEl.checked) {
       noVmReasonText = `voicemail box is full`;
+      customNoVmReasonTextEl.value = '';
     }
     updateVmText();
     updateHtmlNotes();
@@ -3132,8 +3138,10 @@ function setMissedAppointment() {
   vmNotSetupEl.addEventListener('change', function () {
     if (!vmNotSetupEl.checked) {
       noVmReasonText = '';
+      customNoVmReasonTextEl.value = '';
     } else if (vmNotSetupEl.checked) {
       noVmReasonText = `voicemail is not set up`;
+      customNoVmReasonTextEl.value = '';
     }
     updateVmText();
     updateHtmlNotes();
@@ -3148,6 +3156,7 @@ function setMissedAppointment() {
 
     if (customNoVmReasonRadioEl.checked) {
       noVmReasonText = customNoVmReasonText;
+      customNoVmReasonText = '';
     }
     updateVmText();
     updateHtmlNotes();
@@ -3198,16 +3207,6 @@ function setMissedAppointment() {
       updateHtmlNotes();
     });
   });
-
-  // markedPodioEl.addEventListener('change', function () {
-  //   if (!markedPodioEl.checked) {
-  //     markedPodioText = '';
-  //   } else if (markedPodioEl.checked) {
-  //     markedPodioText = ' Marked Podio.';
-  //   }
-  //   updateMissedAppointment();
-  //   updateHtmlNotes();
-  // });
 }
 
 function updatePhoneNumberText() {
