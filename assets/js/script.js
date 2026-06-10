@@ -123,6 +123,7 @@ var modulesEl = document.querySelector('#modules');
 var testItemsEl = document.querySelector('#test-items');
 var brandsEl = document.querySelector('#brands');
 var genericCategoriesEl = document.querySelector('#generic-categories');
+var corePagesIndexEl = document.querySelector('#core-pages-index');
 var featuredProductsEl = document.querySelector('#featured-products');
 var varientsCondensedEl = document.querySelector('#varients-condensed');
 var taglineEl = document.querySelector('#tagline');
@@ -574,6 +575,7 @@ var modulesText = '';
 var testItemsText = '';
 var brandsText = '';
 var genericCategoriesText = '';
+var corePagesIndexText = '';
 var featuredProductsText = '';
 var varientsCondensedText = '';
 var taglineText = '';
@@ -2919,9 +2921,9 @@ function updateAssignedHw() {
   }
 }
 
-function setPostChecklist() {
-  var postChecklistsElements = [businessEmailEl, timeZoneEl, taxGroupEl, modulesEl, testItemsEl, brandsEl, genericCategoriesEl, featuredProductsEl, varientsCondensedEl, taglineEl];
+var postChecklistsElements = [businessEmailEl, timeZoneEl, taxGroupEl, modulesEl, testItemsEl, brandsEl, genericCategoriesEl, corePagesIndexEl, featuredProductsEl, varientsCondensedEl, taglineEl];
 
+function setPostChecklist() {
   postChecklistsElements.forEach(function (element) {
     if (element) {
       element.addEventListener('change', function () {
@@ -2940,13 +2942,18 @@ function updatePostChecklist() {
   testItemsText = testItemsEl && testItemsEl.checked ? `\n <li>Test items are removed</li>` : '';
   brandsText = brandsEl && brandsEl.checked ? `\n <li>Unrelated brands removed</li>` : '';
   genericCategoriesText = genericCategoriesEl && genericCategoriesEl.checked ? `\n <li>Generic categories removed</li>` : '';
+  corePagesIndexText = corePagesIndexEl && corePagesIndexEl.checked ? `\n <li>Updated Index (Home Page & Page Title)</li>` : '';
   featuredProductsText = featuredProductsEl && featuredProductsEl.checked ? `\n <li>Featured 8 products</li>` : '';
   varientsCondensedText = varientsCondensedEl && varientsCondensedEl.checked ? `\n <li>Variants are condensed</li>` : '';
   taglineText = taglineEl && taglineEl.checked ? `\n <li>Removed tagline placeholder text</li>` : '';
 
-  if ((businessEmailEl && businessEmailEl.checked) || (timeZoneEl && timeZoneEl.checked) || (taxGroupEl && taxGroupEl.checked) || (modulesEl && modulesEl.checked) || (testItemsEl && testItemsEl.checked) || (brandsEl && brandsEl.checked) || (genericCategoriesEl && genericCategoriesEl.checked) || (featuredProductsEl && featuredProductsEl.checked) || (varientsCondensedEl && varientsCondensedEl.checked) || (taglineEl && taglineEl.checked)) {
+  var isAnythingChecked = postChecklistsElements.some(function (el) {
+    return el && el.checked;
+  });
+
+  if (isAnythingChecked) {
     postChecklistText = `Post Training Checklist:
-<ul>${businessEmailText}${timeZoneText}${taxGroupText}${modulesText}${testItemsText}${brandsText}${genericCategoriesText}${featuredProductsText}${varientsCondensedText}${taglineText}
+<ul>${businessEmailText}${timeZoneText}${taxGroupText}${modulesText}${testItemsText}${brandsText}${genericCategoriesText}${corePagesIndexText}${featuredProductsText}${varientsCondensedText}${taglineText}
 </ul>
 `;
   } else {
