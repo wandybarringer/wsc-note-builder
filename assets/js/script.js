@@ -2749,16 +2749,16 @@ function updateWorkedOn() {
   var obSmCombined = `${canLogInText}${discussedSuppliersText}${discussedRegistrationText}${downloadChromeText}${createGmailText}${createFavFolderText}${linkedBingText}${chromeProfileText}${einText}${ageVerificationText}${ciasText}${googleVoiceText}${googleSignatureText}${completePinterestText}${completeYoutubeText}${completeTwitterText}${logInWhText}${createdTeachableText}${obCompletedQuestionnaireText}${completeStripeText}${completePaypalText}${dobaSignupText}${dobaInventoryText}${cjSignupText}${cjCategoryText}${applicationProcessText}${dropshipDatabaseText}${submittedApplicationText}${assistedApplicationText}${followUpEmailText}${potentialSuppliersText}${customWorkedonText}`;
 
   var whFirstCombined = `${dashNavText}${extraPageText}${createCatText}${createProdText}${prodGridText}${catProdText}${customWorkedonFirstWhText}`;
-  var whFirstBlock = whFirstCombined !== '' ? `\n1st Warhead\n<ul>${whFirstCombined}\n</ul>` : '';
+  var whFirstBlock = whFirstCombined !== '' ? `\n<u>1st Warhead</u>\n<ul>${whFirstCombined}\n</ul>` : '';
 
   var whSecondCombined = `${discountsText}${checkoutSectionsText}${payPalText}${payPalStandardText}${testOrderText}${explainedOrderEmailsText}${ordersGridText}${processDobaOrderText}${processCjOrderText}${sentGuidesProcessingText}${customWorkedonSecondWhText}`;
-  var whSecondBlock = whSecondCombined !== '' ? `\n2nd Warhead\n<ul>${whSecondCombined}\n</ul>` : '';
+  var whSecondBlock = whSecondCombined !== '' ? `\n<u>2nd Warhead</u>\n<ul>${whSecondCombined}\n</ul>` : '';
 
   var whThirdCombined = `${exportingProductsText}${updatingProdText}${unavailableProdText}${sentGuidesUpdatingText}${organizeCatText}${customWorkedonThirdWhText}`;
-  var whThirdBlock = whThirdCombined !== '' ? `\n3rd Warhead\n<ul>${whThirdCombined}\n</ul>` : '';
+  var whThirdBlock = whThirdCombined !== '' ? `\n<u>3rd Warhead</u>\n<ul>${whThirdCombined}\n</ul>` : '';
 
   var whPostCombined = `${stripeText}${variantsText}${googleAnalyticsText}${updatingNewProdText}${processRealOrderText}${modifyVariantsText}${customWorkedonPostWhText}`;
-  var whPostBlock = whPostCombined !== '' ? `\nPost/Warhead Assistance\n<ul>${whPostCombined}\n</ul>` : '';
+  var whPostBlock = whPostCombined !== '' ? `\n<u>Post/Warhead Assistance</u>\n<ul>${whPostCombined}\n</ul>` : '';
 
   var isAnythingChecked = workedOnElements.some(function (el) {
     return el && el.checked;
