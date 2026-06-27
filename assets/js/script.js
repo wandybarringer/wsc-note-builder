@@ -2725,7 +2725,7 @@ function updateWorkedOn() {
   sentGuidesProcessingText = sentGuidesProcessingEl && sentGuidesProcessingEl.checked ? `\n <li>Sent order processing guide(s)</li>` : '';
 
   // 3rd Appointment WH
-  exportingProductsText = exportingProductsEl && exportingProductsEl.checked ? `\n <li>Exporting product spreadsheet from Warhead</li>` : '';
+  exportingProductsText = exportingProductsEl && exportingProductsEl.checked ? `\n <li>Exporting product & variant spreadsheets from Warhead</li>` : '';
   updatingProdText = updatingProdEl && updatingProdEl.checked ? `\n <li>Updating Doba Products</li>` : '';
   unavailableProdText = unavailableProdEl && unavailableProdEl.checked ? `\n <li>Managing Unavailable Products (disabling/enabling)</li>` : '';
   sentGuidesUpdatingText = sentGuidesUpdatingEl && sentGuidesUpdatingEl.checked ? `\n <li>Sent product updating guide(s)</li>` : '';
