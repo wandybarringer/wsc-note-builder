@@ -2954,7 +2954,7 @@ function updatePostChecklist() {
 
   if (isAnythingChecked) {
     postChecklistText = `Post Training Checklist:
-<ul>${businessEmailText}${timeZoneText}${taxGroupText}${modulesText}${testItemsText}${brandsText}${genericCategoriesText}${corePagesIndexText}${featuredProductsText}${varientsCondensedText}${taglineText}
+<ul>${businessEmailText}${timeZoneText}${corePagesIndexText}${brandsText}${genericCategoriesText}${varientsCondensedText}${testItemsText}${modulesText}${taxGroupText}${taglineText}${featuredProductsText}
 </ul>
 `;
   } else {
