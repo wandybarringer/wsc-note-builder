@@ -37,6 +37,7 @@ var showAllAssignedHwEl = document.querySelector('#show-all-assigned-hw');
 var contApptPromptEl = document.querySelector('#continuation-prompt');
 var contApptEl = document.querySelector('#continuation');
 var movedUpEl = document.querySelector('#moved-up');
+var coverApptEl = document.querySelector('#cover-appt');
 var screenShareEl = document.querySelector('#screen-share');
 var screenShareOtherPromptEl = document.querySelector('#screen-share-other-prompt');
 var screenShareOtherEl = document.querySelector('#screen-share-other');
@@ -502,6 +503,7 @@ var htmlNotes = '';
 var contactedClientText = '';
 var contText = '';
 var movedUpText = '';
+var coverApptText = '';
 var screenShareText = '';
 var hwCompletedText = '';
 var hwPercentText = '';
@@ -1371,7 +1373,7 @@ function updateHtmlNotes() {
 
   if ((currentApptValue === 'wh-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'wh-post-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
-  Contacted client${movedUpText} for <b>${contText}${displayApptName} Warhead Training</b> appointment. ${screenShareText}
+  ${coverApptText}Contacted client${movedUpText} for <b>${contText}${displayApptName} Warhead Training</b> appointment. ${screenShareText}
 </p>
 `;
     htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + whCompletedText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
@@ -1381,7 +1383,7 @@ function updateHtmlNotes() {
     htmlNotes = contactedByClientText + reasonForContactText + returnContactText + advisedClientText + additionalNotesText + contactedRescheduleDateText + whAssistanceText + obAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + initialsText;
   } else if (currentApptValue === 'reschedule' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  Contacted client${movedUpText} but they are <b>unable to attend appointment.</b>
+  ${coverApptText}Contacted client${movedUpText} but they are <b>unable to attend appointment.</b>
 </p>
 `;
     htmlNotes = contactedClientText + rescheduleReasonText + rescheduleDateText + whAssistanceText + smText + obAssistanceText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + initialsText;
@@ -1389,7 +1391,7 @@ function updateHtmlNotes() {
     htmlNotes = podioLinkText;
   } else if (currentApptValue === 'wh-assistance' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  Contacted client${movedUpText} for <b>${displayApptName}</b> appointment. ${screenShareText}
+  ${coverApptText}Contacted client${movedUpText} for <b>${displayApptName}</b> appointment. ${screenShareText}
 </p>
 `;
     htmlNotes = contactedClientText + hwText + workedOnText + postWorkedOnText + assignedHwText + postChecklistText + additionalNotesText + startedRegText + smRequirementsText + completionFormText + additionalTrainingText + noFurtherWhAssistanceText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
@@ -1397,31 +1399,31 @@ function updateHtmlNotes() {
     htmlNotes = generalContactPurposeText + generalContactNoteText + initialsText;
   } else if ((currentApptValue === 'sm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'sm-follow-up' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-upgraded' && currentApptValue !== 'default') || (currentApptValue === 'sm-final-non-upgraded' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
-  Contacted client${movedUpText} for <b>${contText}${displayApptName} Supplier Management</b> appointment.
+  ${coverApptText}Contacted client${movedUpText} for <b>${contText}${displayApptName} Supplier Management</b> appointment.
 </p>
 `;
     htmlNotes = contactedClientText + hwText + smRequirementsText + howManyProductsText + updatedHowManySuppliersText + workedOnText + assignedHwText + removeNonNicheText + completedSmText + additionalNotesText + nextAppointmentText + updatedSmWsText + marketingDateText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
   } else if (currentApptValue === 'sm-marketing' && currentApptValue !== 'default') {
     contactedClientText = `<p>
-  Contacted client${movedUpText} for <b>${displayApptName}</b> appointment.
+  ${coverApptText}Contacted client${movedUpText} for <b>${displayApptName}</b> appointment.
 </p>
 `;
     htmlNotes = contactedClientText + marketingReviewedText + additionalNotesText + completedMarketingText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + initialsText;
   } else if ((currentApptValue === 'socm-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-fifth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-sixth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-seventh-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-eighth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ninth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-tenth-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
-  Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
+  ${coverApptText}Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
 </p>
 `;
     htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
   } else if ((currentApptValue === 'socm-ser-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-fifth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-sixth-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
-  Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
+  ${coverApptText}Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
 </p>
 `;
     htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + clientWillEmailText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
   } else if ((currentApptValue === 'ob-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'ob-assistance-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
-  Contacted client${movedUpText} for <b>${contText}${displayApptName}</b> appointment.
+  ${coverApptText}Contacted client${movedUpText} for <b>${contText}${displayApptName}</b> appointment.
 </p>
 `;
     htmlNotes = contactedClientText + updatedNicheText + updatedDomainText + hwText + workedOnText + assignedHwText + additionalNotesText + obCompleteText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
@@ -1482,6 +1484,7 @@ function resetHtmlNotes() {
   htmlNotes = '';
   contText = '';
   movedUpText = '';
+  coverApptText = '';
   screenShareText = '';
   hwText = '';
   hwCompletedText = '';
@@ -1618,6 +1621,17 @@ function setMovedUp() {
       movedUpText = '';
     } else if (movedUpEl.checked) {
       movedUpText = ` early due to availability`;
+    }
+    updateHtmlNotes();
+  });
+}
+
+function setCoverAppt() {
+  coverApptEl.addEventListener('change', function () {
+    if (!coverApptEl.checked) {
+      coverApptText = '';
+    } else if (coverApptEl.checked) {
+      coverApptText = `<em><b>Covered Appointment.</b></em> `;
     }
     updateHtmlNotes();
   });
@@ -4324,6 +4338,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setContAppt();
   setMovedUp();
+  setCoverAppt();
   setScreenShare();
   setHwCompleted();
   setHwPercent();
