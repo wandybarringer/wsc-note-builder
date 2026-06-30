@@ -150,7 +150,9 @@ var customNoVmReasonTextEl = document.querySelector('#custom-no-vm-reason-text')
 var emailSentPromptEl = document.querySelector('#email-sent-prompt');
 var emailSentEl = document.querySelector('#email-sent');
 var sentMissedEmailPromptEl = document.querySelector('#sent-missed-email-promt');
+var sentMissedEmailAmPromptEl = document.querySelector('#sent-missed-email-am-promt');
 var sentMissedEmailEl = document.querySelector('#sent-missed-email');
+var sentMissedEmailAmEl = document.querySelector('#sent-missed-email-am');
 var markedPodioPromptEl = document.querySelector('#marked-podio-prompt');
 var markedPodioEl = document.querySelector('#marked-podio');
 var unableToMarkPodioEl = document.querySelector('#unable-to-mark-podio');
@@ -1589,7 +1591,7 @@ function resetHtmlNotes() {
     form.reset();
   });
 
-  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, smOtherApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, socmedAssistanceApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmPromptEl, otherDeptApptWhPromptEl, otherDeptApptSmaPromptEl, screenShareOtherPromptEl, nicheSelectionPromptEl, domainPromptEl];
+  var allPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, sentMissedEmailAmPromptEl, markedPodioPromptEl, successfulContactPromptEl, contactedPhoneNumberPromptEl, contactedSecondaryPhoneNumberPromptEl, contactedLeftVmPromptEl, contactedNoVmReasonPromptEl, contactedRescheduleDatePromptEl, completionFormSignedPromptEl, whyNotSignedPromptEl, additionalTrainingPromptEl, sentSmGuidePromptEl, enrolledSmPromptEl, whAssistanceApptPromptEl, obAssistanceApptPromptEl, smOtherApptPromptEl, nicheChangeApptPromptEl, websiteAnalysisApptPromptEl, socmedAssistanceApptPromptEl, resaleCertPromptEl, otherDeptApptNcPromptEl, otherDeptApptObPromptEl, otherDeptApptWaPromptEl, otherDeptApptSmPromptEl, otherDeptApptWhPromptEl, otherDeptApptSmaPromptEl, screenShareOtherPromptEl, nicheSelectionPromptEl, domainPromptEl];
 
   allPrompts.forEach(function (element) {
     setVisibility(element, false);
@@ -2979,7 +2981,7 @@ function updatePostChecklist() {
 // Missed Appointment String Handlers
 
 function setMissedAppointment() {
-  var missedApptPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, markedPodioPromptEl];
+  var missedApptPrompts = [phoneNumberPromptEl, secondaryPhoneNumberPromptEl, leftVmPromptEl, noVmReasonPromptEl, emailSentPromptEl, sentMissedEmailPromptEl, sentMissedEmailAmPromptEl, markedPodioPromptEl];
 
   missedApptPrompts.forEach(function (element) {
     setVisibility(element, false);
@@ -3012,12 +3014,14 @@ function setMissedAppointment() {
         setVisibility(noVmReasonPromptEl, false);
         setVisibility(emailSentPromptEl, true);
         setVisibility(sentMissedEmailPromptEl, false);
+        setVisibility(sentMissedEmailAmPromptEl, false);
         setVisibility(markedPodioPromptEl, false);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
         sentMissedEmailEl.checked = false;
+        sentMissedEmailAmEl.checked = false;
         markedPodioEl.checked = false;
         unableToMarkPodioEl.checked = false;
       } else if (secondAttemptRadioEl.checked) {
@@ -3028,12 +3032,14 @@ function setMissedAppointment() {
         setVisibility(noVmReasonPromptEl, false);
         setVisibility(emailSentPromptEl, true);
         setVisibility(sentMissedEmailPromptEl, false);
+        setVisibility(sentMissedEmailAmPromptEl, false);
         setVisibility(markedPodioPromptEl, false);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
         sentMissedEmailEl.checked = false;
+        sentMissedEmailAmEl.checked = false;
         markedPodioEl.checked = false;
         unableToMarkPodioEl.checked = false;
       } else if (thirdAttemptRadioEl.checked) {
@@ -3044,12 +3050,14 @@ function setMissedAppointment() {
         setVisibility(noVmReasonPromptEl, false);
         setVisibility(emailSentPromptEl, false);
         setVisibility(sentMissedEmailPromptEl, true);
+        setVisibility(sentMissedEmailAmPromptEl, false);
         setVisibility(markedPodioPromptEl, true);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
         sentMissedEmailEl.checked = false;
+        sentMissedEmailAmEl.checked = false;
         markedPodioEl.checked = false;
         unableToMarkPodioEl.checked = false;
       } else {
@@ -3060,12 +3068,14 @@ function setMissedAppointment() {
         setVisibility(noVmReasonPromptEl, false);
         setVisibility(emailSentPromptEl, false);
         setVisibility(sentMissedEmailPromptEl, false);
+        setVisibility(sentMissedEmailAmPromptEl, false);
         setVisibility(markedPodioPromptEl, false);
         vmBoxFullEl.checked = false;
         vmNotSetupEl.checked = false;
         customNoVmReasonRadioEl.checked = false;
         customNoVmReasonTextEl.value = '';
         sentMissedEmailEl.checked = false;
+        sentMissedEmailAmEl.checked = false;
         markedPodioEl.checked = false;
         unableToMarkPodioEl.checked = false;
       }
@@ -3199,7 +3209,21 @@ function setMissedAppointment() {
   sentMissedEmailEl.addEventListener('change', function () {
     if (!sentMissedEmailEl.checked) {
       sentMissedEmailText = '';
+      sentMissedEmailAmEl.checked = false;
+      setVisibility(sentMissedEmailAmPromptEl, false);
     } else if (sentMissedEmailEl.checked) {
+      setVisibility(sentMissedEmailAmPromptEl, true);
+      sentMissedEmailText = ' Sent <b>missed appointment</b> email to front-end, Christina & liaisons.';
+    }
+    updateMissedAppointment();
+    updateHtmlNotes();
+  });
+
+  sentMissedEmailAmEl.addEventListener('change', function () {
+    if (!sentMissedEmailAmEl.checked) {
+      sentMissedEmailText = ' Sent <b>missed appointment</b> email to front-end, Christina & liaisons.';
+    } else if (sentMissedEmailEl.checked) {
+      setVisibility(sentMissedEmailAmPromptEl, true);
       sentMissedEmailText = ' Sent <b>missed appointment</b> email to account manager, front-end, Christina & liaisons.';
     }
     updateMissedAppointment();
