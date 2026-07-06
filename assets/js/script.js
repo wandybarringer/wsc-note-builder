@@ -3993,7 +3993,7 @@ function setWhCompleted() {
       whCompletedText = '';
     } else if (whCompletedEl.checked) {
       whCompletedText = `<p>
-  Client has <b>completed Warhead Training</b>.
+  Client has <b>completed Warhead Training</b>. Marked Podio as completed.
 </p>
 `;
     }
