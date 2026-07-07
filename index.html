@@ -131,7 +131,7 @@
               <input type="checkbox" id="social-media-switch" class="round-checkbox" />
             </div> -->
 
-            <div id="continuation-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media", "social-media-ser"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-tenth-appt", "socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
+            <div id="continuation-prompt" data-dept='["onboarding", "warhead", "supplier-management", "social-media", "social-media-ser"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-tenth-appt", "socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
               <input type="checkbox" name="continuation" id="continuation" class="continuation" />
               <label for="continuation">Continuation appointment</label>
             </div>
@@ -622,7 +622,7 @@
               </label>
             </div>
 
-            <div id="assigned-hw" class="grey-bg border-expand" data-dept='["onboarding","warhead", "supplier-management", "social-media", "social-media-ser"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt", "socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
+            <div id="assigned-hw" class="grey-bg border-expand" data-dept='["onboarding","warhead", "supplier-management", "social-media", "social-media-ser"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-assistance" ,"sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt", "socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
               <p class="default-pointer">Assigned homework:</p>
 
               <!-- OB Assigned HW Items -->
@@ -665,31 +665,31 @@
               <div data-dept="onboarding" data-template='["ob-first-appt", "ob-fourth-appt", "ob-assistance-appt"]'><input type="checkbox" name="register-business-hw" id="register-business-hw" /> <label for="register-business-hw">Work on business registration</label></div>
 
               <!-- WH Assigned HW Items -->
-              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
+              <div data-dept="warhead" data-template='["wh-first-appt", "wh-assistance"]'><input type="checkbox" name="first-appt-finish-videos" id="first-appt-finish-videos" /> <label for="first-appt-finish-videos">Finish 1st appointment teachable videos</label></div>
 
-              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
+              <div data-dept="warhead" data-template='["wh-first-appt", "wh-assistance"]'><input type="checkbox" name="review-extra-pages" id="review-extra-pages" /> <label for="review-extra-pages">Review Extra Pages</label></div>
 
-              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
+              <div data-dept="warhead" data-template='["wh-first-appt", "wh-assistance"]'><input type="checkbox" name="remove-products" id="remove-products" /> <label for="remove-products">Remove unrelated products</label></div>
 
-              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
+              <div data-dept="warhead" data-template='["wh-first-appt", "wh-assistance"]'><input type="checkbox" name="practice-categorizing-products" id="practice-categorizing-products" /> <label for="practice-categorizing-products">Practice categorizing products using guide</label></div>
 
-              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
+              <div data-dept="warhead" data-template='["wh-first-appt", "wh-assistance"]'><input type="checkbox" name="practice-creating-categories" id="practice-creating-categories" /> <label for="practice-creating-categories">Practice creating categories</label></div>
 
-              <div data-dept="warhead" data-template="wh-first-appt"><input type="checkbox" name="register-business" id="register-business" /> <label for="register-business">Register business</label></div>
+              <div data-dept="warhead" data-template='["wh-first-appt", "wh-assistance"]'><input type="checkbox" name="register-business" id="register-business" /> <label for="register-business">Register business</label></div>
 
-              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
+              <div class="second-appt" data-dept="warhead" data-template='["wh-second-appt", "wh-assistance"]'><input type="checkbox" name="second-appt-finish-videos" id="second-appt-finish-videos" /> <label for="second-appt-finish-videos">Finish 2nd appointment teachable videos</label></div>
 
-              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="practice-discounts" id="practice-discounts" /> <label for="practice-discounts">Practice creating discounts</label></div>
+              <div class="second-appt" data-dept="warhead" data-template='["wh-second-appt", "wh-assistance"]'><input type="checkbox" name="practice-discounts" id="practice-discounts" /> <label for="practice-discounts">Practice creating discounts</label></div>
 
-              <div class="second-appt" data-dept="warhead" data-template="wh-second-appt"><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
+              <div class="second-appt" data-dept="warhead" data-template='["wh-second-appt", "wh-assistance"]'><input type="checkbox" name="practice-orders" id="practice-orders" /> <label for="practice-orders">Practice making & processing test orders using guides</label></div>
 
-              <div class="third-appt" data-dept="warhead" data-template="wh-third-appt"><input type="checkbox" name="third-appt-finish-videos" id="third-appt-finish-videos" /> <label for="third-appt-finish-videos">Finish 3rd appointment teachable videos</label></div>
+              <div class="third-appt" data-dept="warhead" data-template='["wh-third-appt", "wh-assistance"]'><input type="checkbox" name="third-appt-finish-videos" id="third-appt-finish-videos" /> <label for="third-appt-finish-videos">Finish 3rd appointment teachable videos</label></div>
 
-              <div class="third-appt" data-dept="warhead" data-template="wh-third-appt"><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating products using guide</label></div>
+              <div class="third-appt" data-dept="warhead" data-template='["wh-third-appt", "wh-assistance"]'><input type="checkbox" name="practice-updating" id="practice-updating" /> <label for="practice-updating">Practice updating products using guide</label></div>
 
-              <div class="second-appt" data-dept="warhead" data-template='["wh-first-appt", "wh-second-appt"]'><input type="checkbox" name="continue-videos" id="continue-videos" /> <label for="continue-videos">Continue watching teachable videos</label></div>
+              <div class="second-appt" data-dept="warhead" data-template='["wh-first-appt", "wh-second-appt", "wh-assistance"]'><input type="checkbox" name="continue-videos" id="continue-videos" /> <label for="continue-videos">Continue watching teachable videos</label></div>
 
-              <div class="third-appt" data-dept="warhead" data-template="wh-third-appt"><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
+              <div class="third-appt" data-dept="warhead" data-template='["wh-third-appt", "wh-assistance"]'><input type="checkbox" name="all-videos" id="all-videos" /> <label for="all-videos">Finish watching all teachable videos</label></div>
 
               <!-- SM Assigned HW Items -->
               <div data-dept="supplier-management" data-template="sm-first-appt">
@@ -849,7 +849,7 @@
               </div>
 
               <!-- Custom Assigned HW Item -->
-              <div id="custom-assigned-hw-container" data-dept='["onboarding","warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt","wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
+              <div id="custom-assigned-hw-container" data-dept='["onboarding","warhead", "supplier-management", "social-media"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt","wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-post-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "sm-final-upgraded", "sm-final-non-upgraded", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt"]'>
                 <div class="custom-assigned-hw-row">
                   <input type="checkbox" name="custom-assigned-hw" id="custom-assigned-hw-checkbox" class="custom-checkbox" />
                   <input type="text" name="custom-assigned-hw" id="custom-assigned-hw-text" class="custom-text" placeholder="Custom text" />
@@ -857,7 +857,7 @@
               </div>
             </div>
 
-            <div id="show-all-assigned-hw-container" class="no-line-bg" data-dept='["onboarding","warhead", "supplier-management", "social-media", "social-media-ser"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt", "socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
+            <div id="show-all-assigned-hw-container" class="no-line-bg" data-dept='["onboarding","warhead", "supplier-management", "social-media", "social-media-ser"]' data-template='["ob-first-appt", "ob-second-appt", "ob-third-appt", "ob-fourth-appt", "ob-assistance-appt", "wh-first-appt", "wh-second-appt", "wh-third-appt", "wh-assistance", "sm-first-appt", "sm-follow-up", "socm-first-appt", "socm-second-appt", "socm-third-appt", "socm-fourth-appt", "socm-fifth-appt", "socm-sixth-appt", "socm-seventh-appt", "socm-eighth-appt", "socm-ninth-appt", "socm-tenth-appt", "socm-ser-first-appt", "socm-ser-second-appt","socm-ser-third-appt","socm-ser-fourth-appt","socm-ser-fifth-appt","socm-ser-sixth-appt"]'>
               <label for="show-all-assigned-hw" class="list-chevrons-toggle" title="Show All Assigned HW Options">
                 <input type="checkbox" id="show-all-assigned-hw" />
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevrons-up-down">
@@ -1075,7 +1075,7 @@
 
             <div data-dept="warhead" data-template="wh-assistance">
               <input type="checkbox" name="no-further-wh-assistance" id="no-further-wh-assistance" />
-              <label for="no-further-wh-assistance">No further WH Assistance appointments</label>
+              <label for="no-further-wh-assistance">No further WH Assistance appointments needed</label>
             </div>
 
             <div data-dept="social-media-ser" data-template="socm-ser-fifth-appt">
