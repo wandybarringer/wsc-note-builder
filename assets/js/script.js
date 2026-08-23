@@ -423,9 +423,7 @@ var accessAllSocialMediaEl = document.querySelector('#access-all-social-media');
 var updatedBiosEl = document.querySelector('#updated-bios');
 var createdFbIgEl = document.querySelector('#created-fb-ig');
 var grammarlyEl = document.querySelector('#grammarly');
-var createdCanvaEl = document.querySelector('#created-canva');
 var createdChatgptEl = document.querySelector('#created-chatgpt');
-var howCreateCanvaTemplatesEl = document.querySelector('#how-create-canva-templates');
 var useMbsEl = document.querySelector('#use-mbs');
 var mbsRefresherEl = document.querySelector('#mbs-refresher');
 var mbsStoriesEl = document.querySelector('#mbs-stories');
@@ -448,12 +446,12 @@ var mbsTrackEl = document.querySelector('#mbs-track');
 var mbsAnalyticsEl = document.querySelector('#mbs-analytics');
 var performanceContentOverviewsEl = document.querySelector('#performance-content-overviews');
 var viewsReachEl = document.querySelector('#views-reach');
+var pexelsPhotosEl = document.querySelector('#pexels-photos');
+var profileBannerPhotosEl = document.querySelector('#profile-banner-photos');
+var postedCarouselEl = document.querySelector('#posted-carousel');
 
 var showAllSocmReviewedEl = document.querySelector('#show-all-socm-reviewed');
 
-var watchCanvaEl = document.querySelector('#watch-canva');
-var createCanvaTemplateEl = document.querySelector('#create-canva-templates');
-var contCanvaTemplatedEl = document.querySelector('#cont-canva-templates');
 var planFbIgPostsEl = document.querySelector('#plan-fb-ig-posts');
 var contFbIgPostsEl = document.querySelector('#cont-fb-ig-posts');
 var saveTwentyPinsEl = document.querySelector('#save-twenty-pins');
@@ -461,7 +459,6 @@ var createFivePinsEl = document.querySelector('#create-five-pins');
 var threeFiveTwitterPostsEl = document.querySelector('#three-five-twitter-posts');
 var quoteThreeTwitterPostsEl = document.querySelector('#quote-three-twitter-posts');
 
-var createCanvaAccountEl = document.querySelector('#create-canva-account');
 var createChatGPTAccountEl = document.querySelector('#create-chatGPT-account');
 var hwInstallGrammarlyEl = document.querySelector('#hw-install-grammarly');
 var createIgAccountEl = document.querySelector('#create-ig-account');
@@ -682,9 +679,7 @@ var accessAllSocialMediaText = '';
 var updatedBiosText = '';
 var createdFbIgText = '';
 var grammarlyText = '';
-var createdCanvaText = '';
 var createdChatgptText = '';
-var howCreateCanvaTemplatesText = '';
 var useMbsText = '';
 var mbsRefresherText = '';
 var mbsStoriesText = '';
@@ -704,6 +699,9 @@ var mbsTrackText = '';
 var mbsAnalyticsText = '';
 var performanceContentOverviewsText = '';
 var viewsReachText = '';
+var pexelsPhotosText = '';
+var profileBannerPhotosText = '';
+var postedCarouselText = '';
 var customSocmReviewedText = '';
 var socmReviewedText = '';
 var socmCreatedTwitterText = '';
@@ -713,9 +711,6 @@ var igFollowAcctsText = '';
 var createInfographicText = '';
 var postInfographicPinText = '';
 
-var watchCanvaText = '';
-var createCanvaTemplateText = '';
-var contCanvaTemplatedText = '';
 var planFbIgPostsText = '';
 var contFbIgPostsText = '';
 var saveTwentyPinsText = '';
@@ -723,7 +718,6 @@ var createFivePinsText = '';
 var threeFiveTwitterPostsText = '';
 var quoteThreeTwitterPostsText = '';
 
-var createCanvaAccountText = '';
 var createChatGPTAccountText = '';
 var hwInstallGrammarlyText = '';
 var createIgAccountText = '';
@@ -876,8 +870,6 @@ var apptLabels = {
   'socm-ser-second-appt': '2nd',
   'socm-ser-third-appt': '3rd',
   'socm-ser-fourth-appt': '4th',
-  'socm-ser-fifth-appt': '5th',
-  'socm-ser-sixth-appt': '6th',
 };
 
 var deptLabels = {
@@ -1417,7 +1409,7 @@ function updateHtmlNotes() {
 </p>
 `;
     htmlNotes = contactedClientText + hwText + socmReviewedText + assignedHwText + additionalNotesText + socmCompletedText + nextAppointmentText + obAssistanceText + whAssistanceText + smText + nicheChangeText + socMedAssistanceText + websiteAnalysisText + nextTopicText + initialsText;
-  } else if ((currentApptValue === 'socm-ser-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-fourth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-fifth-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-sixth-appt' && currentApptValue !== 'default')) {
+  } else if ((currentApptValue === 'socm-ser-first-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-second-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-third-appt' && currentApptValue !== 'default') || (currentApptValue === 'socm-ser-fourth-appt' && currentApptValue !== 'default')) {
     contactedClientText = `<p>
   ${coverApptText}Contacted client${movedUpText} for <b>${contText}${displayApptName} Social Media</b> appointment.
 </p>
@@ -2788,7 +2780,7 @@ function updateWorkedOn() {
   }
 }
 
-var assignedHwElements = [googleVoiceHwEl, googleSignatureHwEl, createPinterestHwEl, createYoutubeHwEl, createTwitterHwEl, createStripeHwEl, createPaypalHwEl, stripeLinkBankEl, paypalLinkBankEl, complete2dEl, createCjHwEl, cjCategoryHwEl, createDobaHwEl, dobaInventoryHwEl, whVideosHwEl, registerBusinessHwEl, firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, watchCanvaEl, createCanvaTemplateEl, contCanvaTemplatedEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl, createIgAccountEl, hwJoinFbGroupsEl, hwFollowFbPagesEl, hwFollowIgPagesEl, hwFollowPinBoardsEl, hwFollowXAcctsEl, hwSchedulePostsEl, hwContinueSchedulePostsEl, hwCreatePinBoardsEl, hwSavePinsEl, hwCreateOneBoardEl, hwSavePinsTotalEl, hwCreateInfographicsEl, hwCreateInfographicWeeklyEl, hwPostRemainingInfographicsEl, hwCreateTwentyXPostsEl, hwQuoteTenXPostsEl, createCanvaAccountEl, createChatGPTAccountEl, hwInstallGrammarlyEl, , setUpBusinessEmailEl, submitDesignQuestionnaireEl, setUpCheckingAccountEl];
+var assignedHwElements = [googleVoiceHwEl, googleSignatureHwEl, createPinterestHwEl, createYoutubeHwEl, createTwitterHwEl, createStripeHwEl, createPaypalHwEl, stripeLinkBankEl, paypalLinkBankEl, complete2dEl, createCjHwEl, cjCategoryHwEl, createDobaHwEl, dobaInventoryHwEl, whVideosHwEl, registerBusinessHwEl, firstApptFinishVidEl, reviewExtraPagesEl, removeProdEl, practiceCatProdEl, practiceCreateCatdEl, registerBusinessEl, secondApptFinishVidEl, practiceDiscountsEl, practiceOrdersEl, continueVidEl, thirdApptFinishVidEl, practiceUpdateEl, allVidEl, applyAndEmailEl, contApplyAndEmailEl, planFbIgPostsEl, contFbIgPostsEl, saveTwentyPinsEl, createFivePinsEl, threeFiveTwitterPostsEl, quoteThreeTwitterPostsEl, createIgAccountEl, hwJoinFbGroupsEl, hwFollowFbPagesEl, hwFollowIgPagesEl, hwFollowPinBoardsEl, hwFollowXAcctsEl, hwSchedulePostsEl, hwContinueSchedulePostsEl, hwCreatePinBoardsEl, hwSavePinsEl, hwCreateOneBoardEl, hwSavePinsTotalEl, hwCreateInfographicsEl, hwCreateInfographicWeeklyEl, hwPostRemainingInfographicsEl, hwCreateTwentyXPostsEl, hwQuoteTenXPostsEl, createChatGPTAccountEl, hwInstallGrammarlyEl, , setUpBusinessEmailEl, submitDesignQuestionnaireEl, setUpCheckingAccountEl];
 
 function setAssignedHw() {
   assignedHwElements.forEach(function (element) {
@@ -2893,9 +2885,6 @@ function updateAssignedHw() {
   applyAndEmailText = applyAndEmailEl && applyAndEmailEl.checked ? `\n <li>Apply to a minimum of 2 new suppliers and send follow-up emails every 2-3 days before the next appointment</li>` : '';
   contApplyAndEmailText = contApplyAndEmailEl && contApplyAndEmailEl.checked ? `\n <li>Continue working on sending applications and follow up emails</li>` : '';
 
-  watchCanvaText = watchCanvaEl && watchCanvaEl.checked ? `\n <li>Watch Canva video</li>` : '';
-  createCanvaTemplateText = createCanvaTemplateEl && createCanvaTemplateEl.checked ? `\n <li>Create 7-10 Canva templates to be posted on next appointment</li>` : '';
-  contCanvaTemplatedText = contCanvaTemplatedEl && contCanvaTemplatedEl.checked ? `\n <li>Continue creating Canva templates</li>` : '';
   planFbIgPostsText = planFbIgPostsEl && planFbIgPostsEl.checked ? `\n <li>plan 7-10 FB/Insta posts each week</li>` : '';
   contFbIgPostsText = contFbIgPostsEl && contFbIgPostsEl.checked ? `\n <li>Continue posting 7-10 times on FB/Insta each week</li>` : '';
   saveTwentyPinsText = saveTwentyPinsEl && saveTwentyPinsEl.checked ? `\n <li>Save 20 pins in Pinterest each week</li>` : '';
@@ -2903,7 +2892,6 @@ function updateAssignedHw() {
   threeFiveTwitterPostsText = threeFiveTwitterPostsEl && threeFiveTwitterPostsEl.checked ? `\n <li>Create 3-5 Twitter posts each week</li>` : '';
   quoteThreeTwitterPostsText = quoteThreeTwitterPostsEl && quoteThreeTwitterPostsEl.checked ? `\n <li>Quote 3 Twitter posts each week</li>` : '';
 
-  createCanvaAccountText = createCanvaAccountEl && createCanvaAccountEl.checked ? `\n <li>Create Canva account</li>` : '';
   createChatGPTAccountText = createChatGPTAccountEl && createChatGPTAccountEl.checked ? `\n <li>Create ChatGPT account</li>` : '';
   hwInstallGrammarlyText = hwInstallGrammarlyEl && hwInstallGrammarlyEl.checked ? `\n <li>Install Grammarly</li>` : '';
   createIgAccountText = createIgAccountEl && createIgAccountEl.checked ? `\n <li>Create Instagram account</li>` : '';
@@ -2930,7 +2918,7 @@ function updateAssignedHw() {
 
   if (isAnythingChecked || customAssignedHwText !== '') {
     assignedHwText = `Assigned homework: 
-<ul>${googleVoiceHwText}${googleSignatureHwText}${createPinterestHwText}${createYoutubeHwText}${createTwitterHwText}${setUpBusinessEmailText}${submitDesignQuestionnaireText}${setUpCheckingAccountText}${createStripeHwText}${createPaypalHwText}${stripeLinkBankText}${paypalLinkBankText}${complete2dText}${createCjHwText}${cjCategoryHwText}${createDobaHwText}${dobaInventoryHwText}${whVideosHwText}${registerBusinessHwText}${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${continueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${createCanvaAccountText}${createChatGPTAccountText}${hwInstallGrammarlyText}${createIgAccountText}${watchCanvaText}${hwJoinFbGroupsText}${hwFollowFbPagesText}${hwFollowIgPagesText}${hwFollowPinBoardsText}${hwFollowXAcctsText}${hwSchedulePostsText}${hwContinueSchedulePostsText}${hwCreatePinBoardsText}${hwSavePinsText}${hwCreateOneBoardText}${hwSavePinsTotalText}${hwCreateInfographicsText}${hwCreateInfographicWeeklyText}${hwPostRemainingInfographicsText}${hwCreateTwentyXPostsText}${hwQuoteTenXPostsText}${createCanvaTemplateText}${contCanvaTemplatedText}${planFbIgPostsText}${contFbIgPostsText}${saveTwentyPinsText}${createFivePinsText}${threeFiveTwitterPostsText}${quoteThreeTwitterPostsText}${customAssignedHwText}
+<ul>${googleVoiceHwText}${googleSignatureHwText}${createPinterestHwText}${createYoutubeHwText}${createTwitterHwText}${setUpBusinessEmailText}${submitDesignQuestionnaireText}${setUpCheckingAccountText}${createStripeHwText}${createPaypalHwText}${stripeLinkBankText}${paypalLinkBankText}${complete2dText}${createCjHwText}${cjCategoryHwText}${createDobaHwText}${dobaInventoryHwText}${whVideosHwText}${registerBusinessHwText}${firstApptFinishVidText}${reviewExtraPagesText}${removeProdText}${practiceCatProdText}${practiceCreateCatdText}${registerBusinessText}${secondApptFinishVidText}${practiceDiscountsText}${practiceOrdersText}${continueVidText}${thirdApptFinishVidText}${practiceUpdateText}${allVidText}${applyAndEmailText}${contApplyAndEmailText}${createChatGPTAccountText}${hwInstallGrammarlyText}${createIgAccountText}${hwJoinFbGroupsText}${hwFollowFbPagesText}${hwFollowIgPagesText}${hwFollowPinBoardsText}${hwFollowXAcctsText}${hwSchedulePostsText}${hwContinueSchedulePostsText}${hwCreatePinBoardsText}${hwSavePinsText}${hwCreateOneBoardText}${hwSavePinsTotalText}${hwCreateInfographicsText}${hwCreateInfographicWeeklyText}${hwPostRemainingInfographicsText}${hwCreateTwentyXPostsText}${hwQuoteTenXPostsText}${planFbIgPostsText}${contFbIgPostsText}${saveTwentyPinsText}${createFivePinsText}${threeFiveTwitterPostsText}${quoteThreeTwitterPostsText}${customAssignedHwText}
 </ul>
 `;
   } else {
@@ -4171,7 +4159,7 @@ var socialMediaSwitchEl = document.querySelector('#social-media-switch');
 //   });
 // }
 
-var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdCanvaEl, createdChatgptEl, howCreateCanvaTemplatesEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl, socmCreatedTwitterEl, socmCreatedPinterestEl, socmCreatedYoutubeEl, igFollowAcctsEl, createInfographicEl, postInfographicPinEl];
+var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdChatgptEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl, pexelsPhotosEl, profileBannerPhotosEl, postedCarouselEl, socmCreatedTwitterEl, socmCreatedPinterestEl, socmCreatedYoutubeEl, igFollowAcctsEl, createInfographicEl, postInfographicPinEl];
 
 function setSocmReviewed() {
   socmReviewedElements.forEach(function (element) {
@@ -4242,9 +4230,7 @@ function updateSocmReviewed() {
   updatedBiosText = updatedBiosEl && updatedBiosEl.checked ? `\n <li>Updated bios for each account</li>` : '';
   createdFbIgText = createdFbIgEl && createdFbIgEl.checked ? `\n <li>Created Facebook and Instagram pages and linked those together/li>` : '';
   grammarlyText = grammarlyEl && grammarlyEl.checked ? `\n <li>Installed Grammarly</li>` : '';
-  createdCanvaText = createdCanvaEl && createdCanvaEl.checked ? `\n <li>Created Canva account</li>` : '';
   createdChatgptText = createdChatgptEl && createdChatgptEl.checked ? `\n <li>Created Chatgpt account</li>` : '';
-  howCreateCanvaTemplatesText = howCreateCanvaTemplatesEl && howCreateCanvaTemplatesEl.checked ? `\n <li>How to create Canva templates</li>` : '';
   useMbsText = useMbsEl && useMbsEl.checked ? `\n <li>How to use Meta Business Suite planner to schedule posts</li>` : '';
   mbsRefresherText = mbsRefresherEl && mbsRefresherEl.checked ? `\n <li>Gave the client a refresher on creating standard posts using MBS</li>` : '';
   mbsStoriesText = mbsStoriesEl && mbsStoriesEl.checked ? `\n <li>How to use MBS planner to schedule stories</li>` : '';
@@ -4264,11 +4250,13 @@ function updateSocmReviewed() {
   mbsAnalyticsText = mbsAnalyticsEl && mbsAnalyticsEl.checked ? `\n <li>How to read and navigate Meta Business Suite analytics</li>` : '';
   performanceContentOverviewsText = performanceContentOverviewsEl && performanceContentOverviewsEl.checked ? `\n <li>Discussed performance and content overviews</li>` : '';
   viewsReachText = viewsReachEl && viewsReachEl.checked ? `\n <li>Discussed which posts are gaining the most views and reach, suggested creating more posts that use similar designs, verbiage, and hashtags as those</li>` : '';
+  pexelsPhotosText = pexelsPhotosEl && pexelsPhotosEl.checked ? `\n <li>How to download Pexels photos</li>` : '';
+  profileBannerPhotosText = profileBannerPhotosEl && profileBannerPhotosEl.checked ? `\n <li>Updated profile and banner photos on each account</li>` : '';
+  postedCarouselText = postedCarouselEl && postedCarouselEl.checked ? `\n <li>Posted Image Carousel</li>` : '';
   socmCreatedTwitterText = socmCreatedTwitterEl && socmCreatedTwitterEl.checked ? `\n <li>Created Twitter</li>` : '';
   socmCreatedPinterestText = socmCreatedPinterestEl && socmCreatedPinterestEl.checked ? `\n <li>Created Pinterest</li>` : '';
   socmCreatedYoutubeText = socmCreatedYoutubeEl && socmCreatedYoutubeEl.checked ? `\n <li>Created YouTube</li>` : '';
   igFollowAcctsText = igFollowAcctsEl && igFollowAcctsEl.checked ? `\n <li>How to follow IG accts</li>` : '';
-  createInfographicText = createInfographicEl && createInfographicEl.checked ? `\n <li>How to create Infographics in Canva</li>` : '';
   postInfographicPinText = postInfographicPinEl && postInfographicPinEl.checked ? `\n <li>How to post Infographics in Pinterest</li>` : '';
 
   var isAnythingChecked = socmReviewedElements.some(function (el) {
@@ -4277,7 +4265,7 @@ function updateSocmReviewed() {
 
   if (isAnythingChecked || customSocmReviewedText !== '') {
     socmReviewedText = `Reviewed the following during our appointment:
-<ul>${completedDesignQuestionareText}${socmCreatedTwitterText}${socmCreatedPinterestText}${socmCreatedYoutubeText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdCanvaText}${createdChatgptText}${howCreateCanvaTemplatesText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${createInfographicText}${postInfographicPinText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${fbFollowAccountsText}${joinFbGroupsText}${reactCommentShareFbText}${inviteToLikeFbText}${igFollowAcctsText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${customSocmReviewedText}
+<ul>${completedDesignQuestionareText}${socmCreatedTwitterText}${socmCreatedPinterestText}${socmCreatedYoutubeText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdChatgptText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${createInfographicText}${postInfographicPinText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${fbFollowAccountsText}${joinFbGroupsText}${reactCommentShareFbText}${inviteToLikeFbText}${igFollowAcctsText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${pexelsPhotosText}${profileBannerPhotosText}${postedCarouselText}${customSocmReviewedText}
 </ul>
 `;
   } else {
