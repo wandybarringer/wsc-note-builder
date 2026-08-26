@@ -449,6 +449,7 @@ var viewsReachEl = document.querySelector('#views-reach');
 var pexelsPhotosEl = document.querySelector('#pexels-photos');
 var profileBannerPhotosEl = document.querySelector('#profile-banner-photos');
 var postedCarouselEl = document.querySelector('#posted-carousel');
+var postedInfographicEl = document.querySelector('#posted-infographic');
 
 var showAllSocmReviewedEl = document.querySelector('#show-all-socm-reviewed');
 
@@ -702,6 +703,7 @@ var viewsReachText = '';
 var pexelsPhotosText = '';
 var profileBannerPhotosText = '';
 var postedCarouselText = '';
+var postedInfographicText = '';
 var customSocmReviewedText = '';
 var socmReviewedText = '';
 var socmCreatedTwitterText = '';
@@ -4159,7 +4161,7 @@ var socialMediaSwitchEl = document.querySelector('#social-media-switch');
 //   });
 // }
 
-var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdChatgptEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl, pexelsPhotosEl, profileBannerPhotosEl, postedCarouselEl, socmCreatedTwitterEl, socmCreatedPinterestEl, socmCreatedYoutubeEl, igFollowAcctsEl, createInfographicEl, postInfographicPinEl];
+var socmReviewedElements = [completedDesignQuestionareEl, accessAllSocialMediaEl, updatedBiosEl, createdFbIgEl, grammarlyEl, createdChatgptEl, useMbsEl, mbsRefresherEl, mbsStoriesEl, pinterestBoardsEl, pinPinterestPostsEl, pinterestRefresherEl, createTwitterPostsEl, quoteTwitterPostsEl, twitterFollowEl, joinFbGroupsEl, fbFollowAccountsEl, reactCommentShareFbEl, inviteToLikeFbEl, followPinterestBoardsEl, reactCommentShareTwitterEl, mbsTrackEl, mbsAnalyticsEl, performanceContentOverviewsEl, viewsReachEl, pexelsPhotosEl, profileBannerPhotosEl, postedCarouselEl, postedInfographicEl, socmCreatedTwitterEl, socmCreatedPinterestEl, socmCreatedYoutubeEl, igFollowAcctsEl, createInfographicEl, postInfographicPinEl];
 
 function setSocmReviewed() {
   socmReviewedElements.forEach(function (element) {
@@ -4253,6 +4255,7 @@ function updateSocmReviewed() {
   pexelsPhotosText = pexelsPhotosEl && pexelsPhotosEl.checked ? `\n <li>How to download Pexels photos</li>` : '';
   profileBannerPhotosText = profileBannerPhotosEl && profileBannerPhotosEl.checked ? `\n <li>Updated profile and banner photos on each account</li>` : '';
   postedCarouselText = postedCarouselEl && postedCarouselEl.checked ? `\n <li>Posted Image Carousel</li>` : '';
+  postedInfographicText = postedInfographicEl && postedInfographicEl.checked ? `\n <li>Posted Infographic</li>` : '';
   socmCreatedTwitterText = socmCreatedTwitterEl && socmCreatedTwitterEl.checked ? `\n <li>Created Twitter</li>` : '';
   socmCreatedPinterestText = socmCreatedPinterestEl && socmCreatedPinterestEl.checked ? `\n <li>Created Pinterest</li>` : '';
   socmCreatedYoutubeText = socmCreatedYoutubeEl && socmCreatedYoutubeEl.checked ? `\n <li>Created YouTube</li>` : '';
@@ -4265,7 +4268,7 @@ function updateSocmReviewed() {
 
   if (isAnythingChecked || customSocmReviewedText !== '') {
     socmReviewedText = `Reviewed the following during our appointment:
-<ul>${completedDesignQuestionareText}${socmCreatedTwitterText}${socmCreatedPinterestText}${socmCreatedYoutubeText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdChatgptText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${createInfographicText}${postInfographicPinText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${fbFollowAccountsText}${joinFbGroupsText}${reactCommentShareFbText}${inviteToLikeFbText}${igFollowAcctsText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${pexelsPhotosText}${profileBannerPhotosText}${postedCarouselText}${customSocmReviewedText}
+<ul>${completedDesignQuestionareText}${socmCreatedTwitterText}${socmCreatedPinterestText}${socmCreatedYoutubeText}${accessAllSocialMediaText}${updatedBiosText}${createdFbIgText}${grammarlyText}${createdChatgptText}${useMbsText}${mbsRefresherText}${mbsStoriesText}${pinterestBoardsText}${pinPinterestPostsText}${pinterestRefresherText}${createInfographicText}${postInfographicPinText}${createTwitterPostsText}${quoteTwitterPostsText}${twitterFollowText}${fbFollowAccountsText}${joinFbGroupsText}${reactCommentShareFbText}${inviteToLikeFbText}${igFollowAcctsText}${followPinterestBoardsText}${reactCommentShareTwitterText}${mbsTrackText}${mbsAnalyticsText}${performanceContentOverviewsText}${viewsReachText}${pexelsPhotosText}${profileBannerPhotosText}${postedCarouselText}${postedInfographicText}${customSocmReviewedText}
 </ul>
 `;
   } else {
